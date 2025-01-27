@@ -8,17 +8,20 @@ dependencies = [
     "aiohttp>=3.11.11",
     "black>=24.10.0",
     "flake8-pyproject>=1.2.3",
+    "humanfriendly>=10.0",
     "mypy>=1.14.1",
     "requests>=2.32.3",
+    "selenium>=4.28.1",
+    "types-humanfriendly>=10.0.1.20241221",
 ]
 
 [tool.mypy]
 exclude = ".venv"
 
 [tool.black]
-line-length = 120
+line-length = 144
 exclude = '.venv'
 
 [tool.flake8]
-max-line-length = 120
+max-line-length = 144
 exclude = '.venv'
