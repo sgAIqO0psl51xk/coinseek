@@ -18,6 +18,6 @@ check: sync format_check mypy flake8
 clean:  
 	rm -rf .venv  
 
-.PHONY: sync format check clean  
+.PHONY: sync format format_check mypy flake8 check clean  
 
 .DEFAULT_GOAL := sync  
