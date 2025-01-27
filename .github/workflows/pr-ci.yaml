@@ -1,0 +1,53 @@
+name: PR Checks
+
+on:
+  pull_request:
+
+jobs:
+  black:
+    name: Run Black (Formatting)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: astral-sh/setup-uv@v5
+        with:
+          version: latest
+
+      - name: Sync Dependencies
+        run: make sync
+
+      - name: Run Black
+        run: make format_check
+
+  mypy:
+    name: Run MyPy (Type Checking)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: astral-sh/setup-uv@v5
+        with:
+          version: latest
+
+      - name: Sync Dependencies
+        run: make sync
+
+      - name: Run MyPy
+        run: make mypy
+
+  flake8:
+    name: Run Flake8 (Linting)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: astral-sh/setup-uv@v5
+        with:
+          version: latest
+
+      - name: Sync Dependencies
+        run: make sync
+
+      - name: Run Flake8
+        run: make flake8
