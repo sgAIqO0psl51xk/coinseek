@@ -16,7 +16,7 @@ jobs:
         run: curl -LsSf https://astral.sh/uv/install.sh | sh
 
       - name: Sync Dependencies
-        run: uv sync
+        run: make sync
 
       - name: Run Checks
         run: make check
