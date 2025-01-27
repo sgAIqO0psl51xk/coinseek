@@ -4,32 +4,18 @@ on:
   pull_request:
 
 jobs:
-  setup:
-    name: Setup Environment
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-
-      - uses: actions/setup-python@v4
-        with:
-          python-version: "3.10"
-
-      - name: Install UV
-        run: curl -LsSf https://astral.sh/uv/install.sh | sh
-
-      - name: Sync Dependencies
-        run: make sync
-
   black:
     name: Run Black (Formatting)
     runs-on: ubuntu-latest
-    needs: setup  # Depends on the setup job
     steps:
       - uses: actions/checkout@v4
 
-      - uses: actions/setup-python@v4
+      - uses: astral-sh/setup-uv@v5
         with:
-          python-version: "3.10"
+          version: latest
+
+      - name: Sync Dependencies
+        run: make sync
 
       - name: Run Black
         run: make format_check
@@ -37,13 +23,15 @@ jobs:
   mypy:
     name: Run MyPy (Type Checking)
     runs-on: ubuntu-latest
-    needs: setup  # Depends on the setup job
     steps:
       - uses: actions/checkout@v4
 
-      - uses: actions/setup-python@v4
+      - uses: astral-sh/setup-uv@v5
         with:
-          python-version: "3.10"
+          version: latest
+
+      - name: Sync Dependencies
+        run: make sync
 
       - name: Run MyPy
         run: make mypy
@@ -51,13 +39,15 @@ jobs:
   flake8:
     name: Run Flake8 (Linting)
     runs-on: ubuntu-latest
-    needs: setup  # Depends on the setup job
     steps:
       - uses: actions/checkout@v4
 
-      - uses: actions/setup-python@v4
+      - uses: astral-sh/setup-uv@v5
         with:
-          python-version: "3.10"
+          version: latest
+
+      - name: Sync Dependencies
+        run: make sync
 
       - name: Run Flake8
         run: make flake8
