@@ -82,7 +82,7 @@ class GMGNWalletData:
         else:
             cur_score += 50
 
-        return cur_score / best_score
+        return cur_score / best_score if best_score != 0 else 0
 
 
 class GMGNTokenData:
