@@ -1,6 +1,28 @@
 import json
+import logging
+import time
 from typing import Any, Dict, List
 from curl_cffi import requests as c_requests
+
+logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
+
+
+def fetch_data_retry(headers: Dict[str, str], url: str, max_attempts: int = 5) -> Dict[str, Any]:
+    last_error = ""
+    for attempt in range(max_attempts):
+        try:
+            response = c_requests.get(url, headers=headers, impersonate="chrome110")
+            response.raise_for_status()
+            return response.json()
+        except Exception as e:
+            last_error = str(e)
+            wait_time = 2**attempt
+            logging.warning(f"Attempt {attempt + 1} failed: {e}. Retrying in {wait_time} seconds...")
+            if attempt + 1 != max_attempts:
+                time.sleep(wait_time)
+
+    logging.error(f"Exceeded max attempts: {last_error}")
+    return {}
 
 
 class GMGNWalletData:
@@ -18,22 +40,19 @@ class GMGNWalletData:
 
         url = f"https://gmgn.ai/defi/quotation/v1/smartmoney/sol/walletNew/{self.wallet}?app_lang=en&period=7d"
 
-        response = c_requests.get(url, headers=headers, impersonate="chrome110")
-        ret = response.json()
-
-        self.data = ret
+        self.data = fetch_data_retry(headers, url)
+        self.data = self.data.get("data", {})
 
     def get_holding_time(self) -> float:
         if self.data == {}:
             self._pull_data()
 
-        return self.data["data"]["avg_holding_peroid"]
+        return self.data.get("avg_holding_peroid", 0)
 
     def get_win_rate(self) -> float:
         if self.data == {}:
             self._pull_data()
-
-        wr = self.data["data"]["winrate"]
+        wr = self.data.get("winrate", 0)
         if wr is None:
             return 0
         return wr
@@ -42,13 +61,13 @@ class GMGNWalletData:
         if self.data == {}:
             self._pull_data()
 
-        return self.data["data"]["pnl_30d"]
+        return self.data.get("pnl_30d", 0)
 
     def average_trades_per_day(self) -> float:
         if self.data == {}:
             self._pull_data()
 
-        return (self.data["data"].get("buy_30d", 0) + self.data["data"].get("sell_30d", 0)) / 30
+        return (self.data.get("buy_30d", 0) + self.data.get("sell_30d", 0)) / 30
 
     def get_wallet_score(self) -> float:
         cur_score = 0
@@ -104,12 +123,11 @@ class GMGNTokenData:
             "app_lang=en&orderby=amount_percentage&direction=desc&limit=1000"
         )
 
-        response = c_requests.get(url, headers=headers, impersonate="chrome110")
-        return response.json()
+        return fetch_data_retry(headers, url).get("data", {})
 
     def get_top_wallets(self) -> List[GMGNWalletData]:
         if not self.top_wallets:
-            self.top_wallets = [GMGNWalletData(wallet["address"]) for wallet in self.top_holder_json["data"]]
+            self.top_wallets = [GMGNWalletData(wallet["address"]) for wallet in self.top_holder_json if "address" in wallet]
         return self.top_wallets
 
     def get_top_holder_average_holding_time(self, num_wallets: int = 4) -> float:
