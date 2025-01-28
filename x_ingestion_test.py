@@ -3,14 +3,15 @@ import json
 from dataclasses import asdict
 from ingestion import TwitterAnalyzer  # make sure the filename matches your saved file
 
+
 async def print_tweet_data(tweet_data):
     """Helper function to print tweet data in a readable format"""
-    print("\n" + "="*50)
+    print("\n" + "=" * 50)
     print("TWEET DETAILS")
-    print("="*50)
+    print("=" * 50)
     print(f"Content: {tweet_data.content}")
     print(f"Match Type: {tweet_data.search_match_type}")
-    
+
     print("\nAUTHOR INFO:")
     print(f"Username: @{tweet_data.user.screen_name}")
     print(f"Follower Count: {tweet_data.user.follower_count:,}")
@@ -41,20 +42,21 @@ async def print_tweet_data(tweet_data):
     print("\nMETRICS:")
     for key, value in tweet_data.metrics.items():
         print(f"- {key}: {value}")
-    print("="*50)
+    print("=" * 50)
+
 
 async def main():
     print("\nInitializing Twitter Analysis...")
-    
+
     # Initialize the analyzer
     analyzer = TwitterAnalyzer(
-        username='9fStays',
-        email='stays.tribute_9f@icloud.com',
-        password='Ay3IsFromBritain1!',
-        contract_address='0x6982508145454ce325ddbe47a25d4ec3d2311933',  # Replace with actual CA
-        ticker='$PEPE',              # Replace with actual ticker
+        username="9fStays",
+        email="stays.tribute_9f@icloud.com",
+        password="Ay3IsFromBritain1!",
+        contract_address="0x6982508145454ce325ddbe47a25d4ec3d2311933",  # Replace with actual CA
+        ticker="$PEPE",  # Replace with actual ticker
         large_account_threshold=10000,
-        affiliated_mention_threshold=5
+        affiliated_mention_threshold=5,
     )
 
     # Get tweet data
@@ -80,20 +82,18 @@ async def main():
     json_output = json.dumps(
         {
             "tweets": [asdict(tweet) for tweet in tweet_data_list],
-            "important_tweets": {
-                tweet_id: asdict(tweet_data) 
-                for tweet_id, tweet_data in analyzer.important_tweets_cache.items()
-            }
+            "important_tweets": {tweet_id: asdict(tweet_data) for tweet_id, tweet_data in analyzer.important_tweets_cache.items()},
         },
-        indent=2
+        indent=2,
     )
-    
-    with open('twitter_analysis_output.json', 'w') as f:
+
+    with open("twitter_analysis_output.json", "w") as f:
         f.write(json_output)
-    
+
     print("\nAnalysis complete! Results have been saved to 'twitter_analysis_output.json'")
     print(f"Total tweets analyzed: {len(tweet_data_list)}")
     print(f"Important tweets cached: {len(analyzer.important_tweets_cache)}")
+
 
 if __name__ == "__main__":
     asyncio.run(main())
