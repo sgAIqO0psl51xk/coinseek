@@ -1,71 +1,55 @@
-from typing import Dict
-from humanfriendly import parse_size
-from selenium import webdriver
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.common.exceptions import TimeoutException
+from curl_cffi import requests as c_requests
 
 
-def get_gmgn_info(token: str) -> Dict[str, int]:
-    options = webdriver.ChromeOptions()
-    options.add_argument("--headless=new")
-    options.add_argument("--disable-gpu")
-    options.add_argument("--no-sandbox")
-    options.add_argument("--disable-dev-shm-usage")
-    options.add_argument("--disable-blink-features=AutomationControlled")
-    options.add_argument(
-        "user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36"
-    )
+class GMGNTokenData:
+    def __init__(self, token: str):
+        self.token = token
+        self.top_holder_json = None
 
-    driver = webdriver.Chrome(options=options)
+    def _pull_top_holders(self):
+        headers = {
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36",
+            "Accept": "application/json",
+            "Accept-Language": "en-US,en;q=0.9",
+            "Referer": "https://gmgn.ai/",
+        }
 
-    try:
-        url = f"https://gmgn.ai/sol/token/{token}"
-        driver.get(url)
+        url = (
+            f"https://gmgn.ai/defi/quotation/v1/tokens/top_holders/sol/{self.token}?"
+            "app_lang=en&orderby=amount_percentage&direction=desc&limit=1000"
+        )
 
-        data = [
-            (
-                "Whale",
-                "/html/body/div[1]/div/div/main/div[2]/div[2]/div[2]/div[1]/div/div/div[2]/div/div[2]/div[2]/div[1]/div[1]/div/div[4]",
-            ),
-            (
-                "Holders",
-                "/html/body/div[1]/div/div/main/div[2]/div[2]/div[2]/div[1]/div/div/div[2]/div/div[2]/div[1]/button[3]/div",
-            ),
-            (
-                "Snipers",
-                "/html/body/div[1]/div/div/main/div[2]/div[2]/div[2]/div[1]/div/div/div[2]/div/div[2]/div[2]/div[1]/div[1]/div/div[6]",
-            ),
-            (
-                "KOL/VC",
-                "/html/body/div[1]/div/div/main/div[2]/div[2]/div[2]/div[1]/div/div/div[2]/div/div[2]/div[2]/div[1]/div[1]/div/div[3]",
-            ),
-        ]
-        res = {}
-        for name, xpath in data:
-            element = WebDriverWait(driver, 15).until(EC.visibility_of_element_located((By.XPATH, xpath)))
-            value_text = element.text.strip().replace(",", "").split(" ")[1]
-            if value_text == "":
-                value_text = "0"
-            res[name] = value_text
+        response = c_requests.get(url, headers=headers, impersonate="chrome110")
+        json = response.json()
+        self.top_holder_json = json
 
-        ret = {}
-        for key, value in res.items():
-            try:
-                ret[key] = parse_size(value)
-            except ValueError:
-                print(f"Error while parsing: {value}")
-        return ret
+    def get_top_wallets(self):
+        if self.top_holder_json is None:
+            self._pull_top_holders()
 
-    except TimeoutException:
-        print("Timed out waiting for element to load")
-        return {}
-    finally:
-        driver.quit()
+        return [wallet["address"] for wallet in self.top_holder_json["data"]]
+
+    def get_top_holder_average_holding_time(self, num_wallets=4):
+        wallets = self.get_top_wallets()[:num_wallets]
+        holding_times = []
+        for wallet in wallets:
+            headers = {
+                "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36",
+                "Accept": "application/json",
+                "Accept-Language": "en-US,en;q=0.9",
+                "Referer": "https://gmgn.ai/",
+            }
+
+            url = f"https://gmgn.ai/defi/quotation/v1/smartmoney/sol/walletNew/{wallet}?app_lang=en&period=7d"
+
+            response = c_requests.get(url, headers=headers, impersonate="chrome110")
+            json = response.json()
+            holding_times.append(json["data"]["avg_holding_peroid"])
+
+        return holding_times
 
 
 if __name__ == "__main__":
-    token = "9A2jUbgoDY97fruKHXvDd7eQiq4xvnW3By1BfH1Bwn9Y"
-    value = get_gmgn_info(token)
-    print(value)
+    data = GMGNTokenData("8FqXr6dw5NHA2TtwFeDz6q9p7y9uWyoEdZmpXqqUpump")
+    holding_times = data.get_top_holder_average_holding_time(5)
+    print(holding_times)
