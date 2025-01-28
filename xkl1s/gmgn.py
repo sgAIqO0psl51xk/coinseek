@@ -4,7 +4,8 @@ import time
 from typing import Any, Dict, List
 from curl_cffi import requests as c_requests
 
-logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
+
 
 def fetch_data_retry(headers: Dict[str, str], url: str, max_attempts: int = 5) -> Dict[str, Any]:
     last_error = ""
@@ -14,15 +15,14 @@ def fetch_data_retry(headers: Dict[str, str], url: str, max_attempts: int = 5) -
             response.raise_for_status()
             return response.json()
         except Exception as e:
-            last_error = e
-            wait_time = 2 ** attempt
+            last_error = str(e)
+            wait_time = 2**attempt
             logging.warning(f"Attempt {attempt + 1} failed: {e}. Retrying in {wait_time} seconds...")
             if attempt + 1 != max_attempts:
                 time.sleep(wait_time)
 
     logging.error(f"Exceeded max attempts: {last_error}")
     return {}
-    
 
 
 class GMGNWalletData:
