@@ -35,7 +35,7 @@ class TrenchBotFetcher:
     async def get_total_percent_bundled(self) -> Optional[float]:
         await self.fetch_task
         return self.data.get("total_percentage_bundled", None)
-    
+
     async def get_current_held_as_percent_of_total_bundle(self) -> Optional[float]:
         await self.fetch_task
         hold_perc = self.data.get("total_holding_percentage", None)
@@ -54,7 +54,6 @@ async def main():
     print(f"Total % Bundled: {total_percent}")
     percent_of_bundle = await fetcher.get_current_held_as_percent_of_total_bundle()
     print(f"Percent of Bundle Held: {percent_of_bundle}")
-
 
     await fetcher.fetch_task
     with open("data.json", "w") as f:
