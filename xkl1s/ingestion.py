@@ -1,6 +1,5 @@
 import logging
 import re
-import time
 from dataclasses import dataclass, field
 from typing import List, Optional, Dict
 
@@ -17,6 +16,7 @@ import datetime
 # Configure logging
 logging.basicConfig(level=logging.INFO)
 
+
 @dataclass
 class User:
     username: str
@@ -28,19 +28,22 @@ class User:
     def __post_init__(self):
         self.is_large = self.followers > 100_000
 
+
 @dataclass
 class Tweet:
     id: str
     url: str
     content: str
-    user: 'User'
+    user: "User"
     metrics: Dict[str, int]
-    replies: List['Tweet'] = field(default_factory=list)
+    replies: List["Tweet"] = field(default_factory=list)
     is_reply: bool = False
-    parent_user: Optional['User'] = None
+    parent_user: Optional["User"] = None
+
 
 # Global cache for user profiles
 user_cache: Dict[str, User] = {}
+
 
 def parse_followers(text: str) -> int:
     """
@@ -60,6 +63,7 @@ def parse_followers(text: str) -> int:
         return int(num * 1_000_000)
     return int(num)
 
+
 def get_user_profile(profile_driver: webdriver.Chrome, username: str) -> Optional[User]:
     """
     Get user profile from Nitter using the 'profile_driver'.
@@ -73,23 +77,14 @@ def get_user_profile(profile_driver: webdriver.Chrome, username: str) -> Optiona
         profile_driver.get(profile_url)
 
         # Wait for the profile's <nav> to load
-        WebDriverWait(profile_driver, 10).until(
-            EC.presence_of_element_located((By.TAG_NAME, "nav"))
-        )
+        WebDriverWait(profile_driver, 10).until(EC.presence_of_element_located((By.TAG_NAME, "nav")))
 
         # Extract profile info
         full_name = profile_driver.find_element(By.CSS_SELECTOR, ".profile-card-fullname").text
-        followers_text = profile_driver.find_element(
-            By.CSS_SELECTOR, "li.followers .profile-stat-num"
-        ).text
+        followers_text = profile_driver.find_element(By.CSS_SELECTOR, "li.followers .profile-stat-num").text
         verified = len(profile_driver.find_elements(By.CSS_SELECTOR, ".verified-icon")) > 0
 
-        user = User(
-            username=username,
-            full_name=full_name,
-            followers=parse_followers(followers_text),
-            verified=verified
-        )
+        user = User(username=username, full_name=full_name, followers=parse_followers(followers_text), verified=verified)
         user_cache[username] = user
         return user
 
@@ -97,11 +92,8 @@ def get_user_profile(profile_driver: webdriver.Chrome, username: str) -> Optiona
         logging.error(f"Failed to fetch user {username}: {e}")
         return None
 
-def process_tweet_element(
-    tweet_element,
-    ticker: str,
-    profile_driver: webdriver.Chrome
-) -> Optional[Tweet]:
+
+def process_tweet_element(tweet_element, ticker: str, profile_driver: webdriver.Chrome) -> Optional[Tweet]:
     """
     Process individual tweet element. Extracts main content, user info (via profile_driver),
     and basic engagement metrics.
@@ -124,12 +116,7 @@ def process_tweet_element(
         if not user:
             return None
 
-        metrics = {
-            "replies": 0,
-            "retweets": 0,
-            "quotes": 0,
-            "likes": 0
-        }
+        metrics = {"replies": 0, "retweets": 0, "quotes": 0, "likes": 0}
 
         for stat in tweet_element.find_elements(By.CSS_SELECTOR, ".tweet-stat"):
             stat_text = stat.text.strip()
@@ -149,21 +136,15 @@ def process_tweet_element(
             elif "icon-heart" in html_snippet:
                 metrics["likes"] = value
 
-        return Tweet(
-            id=tweet_id,
-            url=tweet_url,
-            content=content,
-            user=user,
-            metrics=metrics
-        )
+        return Tweet(id=tweet_id, url=tweet_url, content=content, user=user, metrics=metrics)
 
     except Exception as e:
         logging.error(f"Error processing tweet element: {e}")
         logging.error(tweet_element.get_attribute("outerHTML"))
         return None
 
-def search_tweets(search_driver: webdriver.Chrome, profile_driver: webdriver.Chrome, 
-                  ticker: str, max_tweets=10) -> List[Tweet]:
+
+def search_tweets(search_driver: webdriver.Chrome, profile_driver: webdriver.Chrome, ticker: str, max_tweets=10) -> List[Tweet]:
     """
     Main search function:
     - Navigates 'search_driver' to Nitter's search page.
@@ -175,11 +156,9 @@ def search_tweets(search_driver: webdriver.Chrome, profile_driver: webdriver.Chr
     search_driver.get(f"https://nitter.net/search?f=tweets&q={ticker}")
 
     # Wait until the <nav> is present to ensure page loaded
-    WebDriverWait(search_driver, 10).until(
-        EC.presence_of_element_located((By.TAG_NAME, "nav"))
-    )
+    WebDriverWait(search_driver, 10).until(EC.presence_of_element_located((By.TAG_NAME, "nav")))
 
-    collected_tweets = []
+    collected_tweets: List[Tweet] = []
 
     while len(collected_tweets) < max_tweets:
 
@@ -202,21 +181,16 @@ def search_tweets(search_driver: webdriver.Chrome, profile_driver: webdriver.Chr
             show_more_link.click()
 
             # Wait again for new tweets to load
-            WebDriverWait(search_driver, 10).until(
-                EC.presence_of_element_located((By.TAG_NAME, "nav"))
-            )
+            WebDriverWait(search_driver, 10).until(EC.presence_of_element_located((By.TAG_NAME, "nav")))
         except NoSuchElementException:
             logging.info("No more 'show more' link found. Pagination ended.")
             break
 
     return collected_tweets[:max_tweets]
 
+
 def fetch_one_level_replies(
-    search_driver: webdriver.Chrome,
-    profile_driver: webdriver.Chrome,
-    tweets: List[Tweet],
-    ticker: str,
-    max_replies: int = 10
+    search_driver: webdriver.Chrome, profile_driver: webdriver.Chrome, tweets: List[Tweet], ticker: str, max_replies: int = 10
 ) -> None:
     """
     For each tweet in 'tweets':
@@ -227,7 +201,7 @@ def fetch_one_level_replies(
     """
     for tweet in tweets:
         # If we know there are 0 replies, skip
-        if tweet.metrics.get('replies', 0) == 0:
+        if tweet.metrics.get("replies", 0) == 0:
             continue
 
         try:
@@ -235,9 +209,7 @@ def fetch_one_level_replies(
             search_driver.get(tweet.url)
 
             # Wait briefly for replies container to load (if any)
-            WebDriverWait(search_driver, 5).until(
-                EC.presence_of_element_located((By.CSS_SELECTOR, ".replies"))
-            )
+            WebDriverWait(search_driver, 5).until(EC.presence_of_element_located((By.CSS_SELECTOR, ".replies")))
         except TimeoutException:
             logging.info(f"No replies found or took too long for tweet {tweet.id}")
             continue
@@ -275,11 +247,9 @@ def fetch_one_level_replies(
             try:
                 show_more_link = search_driver.find_element(By.CSS_SELECTOR, ".replies .show-more a")
                 show_more_link.click()
-                
+
                 # Wait again for new replies (or a short time for next batch to appear)
-                WebDriverWait(search_driver, 2).until(
-                    EC.presence_of_element_located((By.CSS_SELECTOR, ".show-more"))
-                )
+                WebDriverWait(search_driver, 2).until(EC.presence_of_element_located((By.CSS_SELECTOR, ".show-more")))
             except NoSuchElementException:
                 # No more pagination link in replies
                 logging.info(f"No more 'show more' link for replies in tweet {tweet.id}.")
@@ -317,7 +287,7 @@ if __name__ == "__main__":
         time_difference = (end_time - start_time).total_seconds()
 
         print(f"Time difference in seconds: {time_difference}")
-              
+
         # Display final data
         for t in tweets:
             print("=== FINAL TWEET ===")
