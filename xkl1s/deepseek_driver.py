@@ -2,10 +2,10 @@ import asyncio
 import json
 from dataclasses import dataclass
 from typing import List, Dict, Any
-from trench_bot import TrenchBotFetcher
-from gmgn import GMGNTokenData
+from xkl1s.trench_bot import TrenchBotFetcher
+from xkl1s.gmgn import GMGNTokenData
 from openai import OpenAI
-from ingestion import TwitterAnalyzer
+from xkl1s.ingestion import TwitterAnalyzer
 import os
 from dotenv import load_dotenv
 
@@ -270,7 +270,7 @@ class DeepseekDriver:
             model=self.llm_config.model_name,
             messages=messages,
             stream=True,
-            temperature=0.75,  # can change depending on how excessive you want it
+            temperature=0.75,
         )
 
         reasoning_content = ""
@@ -285,34 +285,54 @@ class DeepseekDriver:
                     piece = chunk.choices[0].delta.reasoning_content
                     reasoning_content += piece
                     print(piece, end="", flush=True)
+                    yield {"type": "reasoning", "content": piece}
                 elif hasattr(chunk.choices[0].delta, "content"):
                     piece = chunk.choices[0].delta.content
                     if piece:
                         content += piece
+                        yield {"type": "analysis", "content": piece}
 
             print("\n\nFinal Analysis:")
-            print(content)
 
-            return {"reasoning": reasoning_content.strip(), "analysis": content.strip()}
+            yield {"type": "complete", "reasoning": reasoning_content.strip(), "analysis": content.strip()}
 
         except Exception as e:
             print(f"Debug - Exception occurred: {str(e)}")
+            yield {"type": "error", "message": str(e)}
             raise
+
+    async def stream_analysis(self):
+        """Stream the full analysis pipeline"""
+        analysis = await self.run_analysis()
+        messages = await self.generate_analysis_prompt(analysis)
+        
+        # Yield initial data
+        yield {"type": "metadata", "data": analysis.to_dict()}
+        
+        async for chunk in self.run_llm_analysis(messages):
+            yield chunk
 
     async def analyze_and_report(self) -> Dict[str, Any]:
         """Run full analysis pipeline and generate report"""
         analysis = await self.run_analysis()
-
         messages = await self.generate_analysis_prompt(analysis)
-
-        llm_output = await self.run_llm_analysis(messages)
-
-        return {
-            "raw_data": analysis.to_dict(),
-            "messages": messages,
-            "llm_analysis": llm_output["analysis"],
-            "llm_reasoning": llm_output["reasoning"],
-        }
+        
+        # Collect all chunks for backward compatibility
+        reasoning_content = ""
+        analysis_content = ""
+        
+        async for chunk in self.run_llm_analysis(messages):
+            if chunk["type"] == "reasoning":
+                reasoning_content += chunk["content"]
+            elif chunk["type"] == "analysis":
+                analysis_content += chunk["content"]
+            elif chunk["type"] == "complete":
+                return {
+                    "raw_data": analysis.to_dict(),
+                    "messages": messages,
+                    "llm_analysis": analysis_content.strip(),
+                    "llm_reasoning": reasoning_content.strip(),
+                }
 
 
 async def main():
