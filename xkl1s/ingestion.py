@@ -1,410 +1,337 @@
-import asyncio
-import os
-from dataclasses import dataclass, field
-from typing import List, Dict, Optional, Set, Any, Tuple
-from twikit import Client
-from dotenv import load_dotenv
-
-load_dotenv()
-from twikit.errors import TweetNotAvailable
-from tqdm.asyncio import tqdm
-import json
-from dataclasses import asdict
 import logging
+import re
+import time
+from dataclasses import dataclass, field
+from typing import List, Optional, Dict
+
+from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.common.by import By
+from selenium.common.exceptions import NoSuchElementException, TimeoutException
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+
+import datetime
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
-logger = logging.getLogger(__name__)
-
 
 @dataclass
-class UserInfo:
-    screen_name: str
-    follower_count: int
-    notable_followers: List[str] = field(default_factory=list)
-    ca_mention_count: int = 0
-    ticker_mention_count: int = 0
+class User:
+    username: str
+    full_name: str
+    followers: int
+    verified: bool
+    is_large: bool = field(init=False)
 
+    def __post_init__(self):
+        self.is_large = self.followers > 100_000
 
 @dataclass
-class TweetReply:
-    user: UserInfo
+class Tweet:
+    id: str
+    url: str
     content: str
+    user: 'User'
+    metrics: Dict[str, int]
+    replies: List['Tweet'] = field(default_factory=list)
+    is_reply: bool = False
+    parent_user: Optional['User'] = None
 
+# Global cache for user profiles
+user_cache: Dict[str, User] = {}
 
-@dataclass
-class ParentTweetInfo:
-    user: UserInfo
-    is_large_account: bool = False
-    is_affiliated: bool = False
+def parse_followers(text: str) -> int:
+    """
+    Convert follower text (e.g., "1.2K") to an integer.
+    Example: "1.2K" -> 1200, "2M" -> 2,000,000
+    """
+    text = text.replace(",", "").upper().strip()
+    match = re.match(r"([\d.]+)([KM]?)", text)
+    if not match:
+        return 0
 
+    value, unit = match.groups()
+    num = float(value)
+    if unit == "K":
+        return int(num * 1000)
+    elif unit == "M":
+        return int(num * 1_000_000)
+    return int(num)
 
-@dataclass
-class TweetData:
-    content: str
-    user: UserInfo
-    search_match_type: str
-    replies: List[TweetReply] = field(default_factory=list)
-    parent_tweet: Optional[ParentTweetInfo] = None
-    metrics: Dict[str, Any] = field(default_factory=dict)
+def get_user_profile(profile_driver: webdriver.Chrome, username: str) -> Optional[User]:
+    """
+    Get user profile from Nitter using the 'profile_driver'.
+    Uses a global cache to avoid multiple requests for the same user.
+    """
+    if username in user_cache:
+        return user_cache[username]
 
+    try:
+        profile_url = f"https://nitter.net/{username}"
+        profile_driver.get(profile_url)
 
-class TwitterAnalyzer:
-    def __init__(
-        self,
-        username: str,
-        email: str,
-        password: str,
-        contract_address: str,
-        ticker: str,
-        large_account_threshold: int = 10000,
-        affiliated_mention_threshold: int = 5,
-        rate_limit_delay: float = 5.0,
-        max_retries: int = 3,
-        max_history_tweets: int = 50,  # New parameter to limit history analysis
-        cookies_file: str = "twitter_cookies.json",
-    ) -> None:
-        self.username = username
-        self.email = email
-        self.password = password
-        self.contract_address = contract_address.lower()
-        self.ticker = ticker.lower()
-        self.large_account_threshold = large_account_threshold
-        self.affiliated_mention_threshold = affiliated_mention_threshold
-        self.rate_limit_delay = rate_limit_delay
-        self.max_retries = max_retries
-        self.max_history_tweets = max_history_tweets
-        self.client: Optional[Client] = None
-        self.important_tweets_cache: Dict[str, TweetData] = {}
-        self.processed_tweets: Set[str] = set()
-        self.user_cache: Dict[str, UserInfo] = {}  # User cache
-        self.parent_cache: Dict[str, ParentTweetInfo] = {}  # Parent tweet cache
-        self.cookies_file = cookies_file
-
-    async def initialize_client(self) -> None:
-        if not self.client:
-            self.client = Client("en-US")
-            if os.path.exists(self.cookies_file):
-                try:
-                    self.client.load_cookies(self.cookies_file)
-                    logger.info("Loaded cookies from file.")
-                    # Perform a simple operation to verify cookie validity
-                    await self.client.user()
-                    logger.info("Cookies are valid.")
-                    return
-                except Exception as e:
-                    logger.warning(f"Loaded cookies are invalid or expired: {e}")
-            # If cookies are not present or invalid, perform manual login
-            await self.manual_login()
-
-    async def manual_login(self) -> None:
-        try:
-            await self.client.login(auth_info_1=self.username, auth_info_2=self.email, password=self.password)
-            self.client.save_cookies(self.cookies_file)
-            logger.info("Logged in manually and saved cookies.")
-        except Exception as e:
-            logger.error(f"Manual login failed: {e}")
-            raise
-
-    async def with_retry(self, func: Any, *args: Any) -> Any:
-        """Wrapper to retry API calls on rate limit with exponential backoff"""
-        await self.initialize_client()
-
-        for attempt in range(self.max_retries + 1):
-            try:
-                return await func(*args)
-            except Exception as e:
-                # Check if error message contains rate limit info
-                if "rate limit" in str(e).lower() and attempt < self.max_retries:
-                    delay = self.rate_limit_delay * (2**attempt)
-                    logger.warning(f"Rate limit hit. Waiting {delay}s")
-                    await asyncio.sleep(delay)
-                    continue
-                elif attempt < self.max_retries:
-                    delay = self.rate_limit_delay * (2**attempt)
-                    logger.warning(f"Error ({str(e)}). Retrying in {delay:.1f}s")
-                    await asyncio.sleep(delay)
-                    continue
-                raise e
-        raise Exception("Max retries exceeded")
-
-    async def create_user_info(self, user: Any) -> UserInfo:
-        """User creation with cache support"""
-        if user.id in self.user_cache:
-            return self.user_cache[user.id]
-
-        user_info = UserInfo(
-            screen_name=user.screen_name,
-            follower_count=user.followers_count,
-            notable_followers=await self.get_notable_followers(user),
-            ca_mention_count=0,
-            ticker_mention_count=0,
+        # Wait for the profile's <nav> to load
+        WebDriverWait(profile_driver, 10).until(
+            EC.presence_of_element_located((By.TAG_NAME, "nav"))
         )
 
-        # Cache before history analysis to prevent redundant calls
-        self.user_cache[user.id] = user_info
+        # Extract profile info
+        full_name = profile_driver.find_element(By.CSS_SELECTOR, ".profile-card-fullname").text
+        followers_text = profile_driver.find_element(
+            By.CSS_SELECTOR, "li.followers .profile-stat-num"
+        ).text
+        verified = len(profile_driver.find_elements(By.CSS_SELECTOR, ".verified-icon")) > 0
 
-        # Only analyze history for users meeting certain criteria
-        if user.followers_count >= self.large_account_threshold:
-            ca, ticker = await self.analyze_user_history(user)
-            user_info.ca_mention_count = ca
-            user_info.ticker_mention_count = ticker
+        user = User(
+            username=username,
+            full_name=full_name,
+            followers=parse_followers(followers_text),
+            verified=verified
+        )
+        user_cache[username] = user
+        return user
 
-        return user_info
+    except Exception as e:
+        logging.error(f"Failed to fetch user {username}: {e}")
+        return None
 
-    async def get_notable_followers(self, user: Any) -> List[str]:
-        """Get notable followers with limit"""
-        try:
-            followers = await self.with_retry(user.get_followers_you_know, 25)
-            return [f.screen_name for f in followers][:10]  # Return top 10
-        except Exception as e:
-            logger.error(f"Error getting followers: {str(e)}")
-            return []
+def process_tweet_element(
+    tweet_element,
+    ticker: str,
+    profile_driver: webdriver.Chrome
+) -> Optional[Tweet]:
+    """
+    Process individual tweet element. Extracts main content, user info (via profile_driver),
+    and basic engagement metrics.
+    """
+    try:
+        content = tweet_element.find_element(By.CSS_SELECTOR, ".tweet-content").text
+        # If you only want tweets mentioning the ticker:
+        # TODO:Add a boolean or something to filter this its heavily reduces replies
+        # if ticker and (ticker.lower() not in content.lower()):
+        #     return None
 
-    async def analyze_user_history(self, user: Any) -> Tuple[int, int]:
-        """Optimized user history analysis with limited tweets"""
-        try:
-            ca_counter = 0
-            ticker_counter = 0
+        tweet_url = tweet_element.find_element(By.CSS_SELECTOR, ".tweet-link").get_attribute("href")
+        tweet_id = tweet_url.split("/")[-1].split("#")[0]
 
-            # Get combined tweets and replies with limit
-            tweets = await self.with_retry(user.get_tweets, "Tweets", self.max_history_tweets)
+        # Remove "@" from the username text
+        username = tweet_element.find_element(By.CSS_SELECTOR, ".username").text.lstrip("@")
 
-            # Process in batches if needed
-            for tweet in tweets[: self.max_history_tweets]:
-                text = tweet.full_text.lower()
-                ca_counter += text.count(self.contract_address)
-                ticker_counter += text.count(self.ticker)
-
-            return ca_counter, ticker_counter
-        except Exception as e:
-            logger.error(f"Error analyzing user history: {str(e)}")
-            return 0, 0
-
-    async def analyze_parent_tweet(self, tweet_id: str) -> Optional[ParentTweetInfo]:
-        if tweet_id in self.parent_cache:
-            return self.parent_cache[tweet_id]
-
-        try:
-            if not self.client:
-                await self.initialize_client()
-                if not self.client:  # Double check after initialization
-                    return None
-
-            parent_tweet = await self.with_retry(self.client.get_tweet_by_id, tweet_id)
-            if not parent_tweet:
-                return None
-
-            parent_user = await self.create_user_info(parent_tweet.user)
-            total_mentions = parent_user.ca_mention_count + parent_user.ticker_mention_count
-
-            parent_info = ParentTweetInfo(
-                user=parent_user,
-                is_large_account=parent_user.follower_count >= self.large_account_threshold,
-                is_affiliated=total_mentions >= self.affiliated_mention_threshold,
-            )
-
-            self.parent_cache[tweet_id] = parent_info
-            return parent_info
-        except TweetNotAvailable:
-            logger.warning("Parent tweet not available")
+        # Fetch user profile with the separate driver
+        user = get_user_profile(profile_driver, username)
+        if not user:
             return None
 
-    async def analyze_replies(self, tweet: Any) -> List[TweetReply]:
-        replies = []
-        seen_users: Set[str] = set()
+        metrics = {
+            "replies": 0,
+            "retweets": 0,
+            "quotes": 0,
+            "likes": 0
+        }
 
-        try:
-            # Combine native replies and search replies
-            reply_candidates = list(tweet.replies) if tweet.replies else []
+        for stat in tweet_element.find_elements(By.CSS_SELECTOR, ".tweet-stat"):
+            stat_text = stat.text.strip()
 
-            # Add search replies if needed
-            if len(reply_candidates) < 10 and self.client:
-                search_replies = await self.with_retry(self.client.search_tweet, f"conversation_id:{tweet.id}", "Latest", 15)
-                if search_replies:
-                    reply_candidates.extend(search_replies)
+            # Extract numeric value from text
+            match = re.search(r"\d+", stat_text.replace(",", ""))
+            value = int(match[0]) if match else 0
 
-            for reply in reply_candidates:
-                if reply.user.id in seen_users:
-                    continue
+            # Check icon type
+            html_snippet = stat.get_attribute("innerHTML")
+            if "icon-comment" in html_snippet:
+                metrics["replies"] = value
+            elif "icon-retweet" in html_snippet:
+                metrics["retweets"] = value
+            elif "icon-quote" in html_snippet:
+                metrics["quotes"] = value
+            elif "icon-heart" in html_snippet:
+                metrics["likes"] = value
 
-                user_info = await self.create_user_info(reply.user)
-                replies.append(TweetReply(user=user_info, content=reply.full_text[:280]))  # Store excerpt only
-                seen_users.add(reply.user.id)
+        return Tweet(
+            id=tweet_id,
+            url=tweet_url,
+            content=content,
+            user=user,
+            metrics=metrics
+        )
 
-                # Early exit if we have enough replies
-                if len(replies) >= 15:
+    except Exception as e:
+        logging.error(f"Error processing tweet element: {e}")
+        logging.error(tweet_element.get_attribute("outerHTML"))
+        return None
+
+def search_tweets(search_driver: webdriver.Chrome, profile_driver: webdriver.Chrome, 
+                  ticker: str, max_tweets=10) -> List[Tweet]:
+    """
+    Main search function:
+    - Navigates 'search_driver' to Nitter's search page.
+    - Collects tweets, extracts minimal data.
+    - Uses 'profile_driver' to fetch user info (inside process_tweet_element).
+    - Returns a list of Tweet objects up to 'max_tweets'.
+    """
+    # Navigate to the search URL
+    search_driver.get(f"https://nitter.net/search?f=tweets&q={ticker}")
+
+    # Wait until the <nav> is present to ensure page loaded
+    WebDriverWait(search_driver, 10).until(
+        EC.presence_of_element_located((By.TAG_NAME, "nav"))
+    )
+
+    collected_tweets = []
+
+    while len(collected_tweets) < max_tweets:
+
+        # Find visible tweets on the current page
+        tweet_elements = search_driver.find_elements(By.CSS_SELECTOR, ".timeline-item")
+
+        for tweet_element in tweet_elements:
+            tweet = process_tweet_element(tweet_element, ticker, profile_driver)
+            if tweet:
+                collected_tweets.append(tweet)
+                if len(collected_tweets) >= max_tweets:
                     break
 
-            return replies
-        except Exception as e:
-            logger.error(f"Error analyzing replies: {str(e)}")
-            return replies
+        if len(collected_tweets) >= max_tweets:
+            break
 
-    async def analyze_tweets(self, num_tweets: int = 15, search_type: str = "Top") -> List[TweetData]:
-        await self.initialize_client()
-        if not self.client:
-            raise RuntimeError("Failed to initialize Twitter client")
+        # Attempt pagination ("Show more")
+        try:
+            show_more_link = search_driver.find_element(By.CSS_SELECTOR, ".show-more a")
+            show_more_link.click()
 
-        # Combined search query
-        search_query = f"{self.contract_address} OR {self.ticker}"
-        logger.info(f"Searching with combined query: {search_query}")
+            # Wait again for new tweets to load
+            WebDriverWait(search_driver, 10).until(
+                EC.presence_of_element_located((By.TAG_NAME, "nav"))
+            )
+        except NoSuchElementException:
+            logging.info("No more 'show more' link found. Pagination ended.")
+            break
 
-        result = await self.with_retry(self.client.search_tweet, search_query, search_type, num_tweets * 2)
+    return collected_tweets[:max_tweets]
 
-        unique_tweets = []
-        seen_ids: Set[str] = set()
+def fetch_one_level_replies(
+    search_driver: webdriver.Chrome,
+    profile_driver: webdriver.Chrome,
+    tweets: List[Tweet],
+    ticker: str,
+    max_replies: int = 10
+) -> None:
+    """
+    For each tweet in 'tweets':
+      1) Navigate to the tweet's page in search_driver.
+      2) Find .replies, parse replies (up to max_replies).
+      3) If there is a "show more" link inside .replies, click it, wait, and parse again until
+         no more link or until we've collected max_replies replies.
+    """
+    for tweet in tweets:
+        # If we know there are 0 replies, skip
+        if tweet.metrics.get('replies', 0) == 0:
+            continue
 
-        for tweet in result:
-            if tweet.id not in seen_ids:
-                seen_ids.add(tweet.id)  # Don't use the return value
-                unique_tweets.append(tweet)
-            if len(unique_tweets) >= num_tweets:
+        try:
+            # Go to the tweet's permalink
+            search_driver.get(tweet.url)
+
+            # Wait briefly for replies container to load (if any)
+            WebDriverWait(search_driver, 5).until(
+                EC.presence_of_element_located((By.CSS_SELECTOR, ".replies"))
+            )
+        except TimeoutException:
+            logging.info(f"No replies found or took too long for tweet {tweet.id}")
+            continue
+
+        replies_collected = 0
+
+        while replies_collected < max_replies:
+            # Find all .reply containers
+            reply_containers = search_driver.find_elements(By.CSS_SELECTOR, ".replies .reply")
+
+            # Inside each .reply, there should be a .timeline-item
+            for container in reply_containers:
+                try:
+                    reply_element = container.find_element(By.CSS_SELECTOR, ".timeline-item")
+                except NoSuchElementException:
+                    # Sometimes a .reply might be malformed or missing .timeline-item
+                    continue
+
+                # Parse the reply tweet
+                reply_tweet = process_tweet_element(reply_element, ticker, profile_driver)
+                if reply_tweet:
+                    # Mark this tweet as a reply
+                    reply_tweet.is_reply = True
+                    tweet.replies.append(reply_tweet)
+                    replies_collected += 1
+
+                    if replies_collected >= max_replies:
+                        break
+
+            # If we've reached our limit, stop
+            if replies_collected >= max_replies:
                 break
 
-        logger.info(f"Processing {len(unique_tweets)} unique tweets")
-        tasks = [self.process_tweet(tweet) for tweet in unique_tweets]
-        return await tqdm.gather(*tasks, desc="Processing tweets")
-
-    async def process_tweet(self, tweet: Any) -> TweetData:
-        if tweet.id in self.processed_tweets:
-            cached_tweet = self.important_tweets_cache.get(tweet.id)
-            if cached_tweet:
-                return cached_tweet
-            raise ValueError(f"Tweet {tweet.id} marked as processed but not in cache")
-
-        user_info = await self.create_user_info(tweet.user)
-        search_match_type = self.determine_search_match_type(tweet.full_text)
-
-        # Parallelize reply and parent analysis
-        replies_task = self.analyze_replies(tweet)
-        parent_task = self.analyze_parent_tweet(tweet.in_reply_to) if tweet.in_reply_to else None
-
-        tweet_data = TweetData(
-            content=tweet.full_text,
-            user=user_info,
-            search_match_type=search_match_type,
-            replies=await replies_task,
-            parent_tweet=await parent_task if parent_task else None,
-            metrics={
-                "reply_count": 0,  # Updated after replies are processed
-                "is_reply": bool(tweet.in_reply_to),
-                "has_large_parent": False,
-                "has_affiliated_parent": False,
-            },
-        )
-
-        # Update metrics
-        tweet_data.metrics.update(
-            {
-                "reply_count": len(tweet_data.replies),
-                "has_large_parent": tweet_data.parent_tweet.is_large_account if tweet_data.parent_tweet else False,
-                "has_affiliated_parent": tweet_data.parent_tweet.is_affiliated if tweet_data.parent_tweet else False,
-            }
-        )
-
-        # Cache important tweets
-        if (
-            len(tweet_data.replies) > 2
-            or user_info.follower_count >= self.large_account_threshold
-            or (tweet_data.parent_tweet and tweet_data.parent_tweet.is_large_account)
-        ):
-            self.important_tweets_cache[tweet.id] = tweet_data
-
-        self.processed_tweets.add(tweet.id)
-        return tweet_data
-
-    def determine_search_match_type(self, text: str) -> str:
-        text = text.lower()
-        has_ca = self.contract_address in text
-        has_ticker = self.ticker in text
-        return "BOTH" if has_ca and has_ticker else "CA" if has_ca else "TICKER"
-
-async def print_tweet_data(tweet_data: TweetData) -> None:
-    """Helper function to print tweet data in a readable format"""
-    print("\n" + "=" * 50)
-    print("TWEET DETAILS")
-    print("=" * 50)
-    print(f"Content: {tweet_data.content}")
-    print(f"Match Type: {tweet_data.search_match_type}")
-
-    print("\nAUTHOR INFO:")
-    print(f"Username: @{tweet_data.user.screen_name}")
-    print(f"Follower Count: {tweet_data.user.follower_count:,}")
-    print(f"CA Mentions: {tweet_data.user.ca_mention_count}")
-    print(f"Ticker Mentions: {tweet_data.user.ticker_mention_count}")
-    if tweet_data.user.notable_followers:
-        print("\nNotable Followers:")
-        for follower in tweet_data.user.notable_followers:
-            print(f"- @{follower}")
-
-    if tweet_data.replies:
-        print("\nREPLIES:")
-        for i, reply in enumerate(tweet_data.replies, 1):
-            print(f"\n  Reply #{i}:")
-            print(f"  From: @{reply.user.screen_name} ({reply.user.follower_count:,} followers)")
-            print(f"  Content: {reply.content}")
-
-    if tweet_data.parent_tweet:
-        print("\nPARENT TWEET INFO:")
-        parent = tweet_data.parent_tweet
-        print(f"Author: @{parent.user.screen_name}")
-        print(f"Follower Count: {parent.user.follower_count:,}")
-        print(f"CA Mentions: {parent.user.ca_mention_count}")
-        print(f"Ticker Mentions: {parent.user.ticker_mention_count}")
-        print(f"Is Large Account: {'✓' if parent.is_large_account else '✗'}")
-        print(f"Is Affiliated: {'✓' if parent.is_affiliated else '✗'}")
-
-    print("\nMETRICS:")
-    for key, value in tweet_data.metrics.items():
-        print(f"- {key}: {value}")
-    print("=" * 50)
-
-
-async def main() -> None:
-    print("\nInitializing Twitter Analysis...")
-
-    analyzer = TwitterAnalyzer(
-        username=os.getenv("TWT_USERNAME"),
-        email=os.getenv("TWT_EMAIL"),
-        password=os.getenv("TWT_PASSWORD"),
-        contract_address="0x6982508145454ce325ddbe47a25d4ec3d2311933",
-        ticker="$PEPE",
-        large_account_threshold=10000,
-        affiliated_mention_threshold=5,
-    )
-
-    print("\nStarting tweet analysis...")
-    tweet_data_list = await analyzer.analyze_tweets(num_tweets=15)
-
-    print("\nPrinting detailed analysis for each tweet...")
-    for tweet_data in tweet_data_list:
-        await print_tweet_data(tweet_data)
-
-    if analyzer.important_tweets_cache:
-        print("\nIMPORTANT TWEETS IN CACHE:")
-        for tweet_id, tweet_data in analyzer.important_tweets_cache.items():
-            print(f"\nImportant Tweet ID: {tweet_id}")
-            await print_tweet_data(tweet_data)
-    else:
-        print("\nNo important tweets cached.")
-
-    print("\nSaving analysis to JSON file...")
-    json_output = json.dumps(
-        {
-            "tweets": [asdict(tweet) for tweet in tweet_data_list],
-            "important_tweets": {tweet_id: asdict(tweet_data) for tweet_id, tweet_data in analyzer.important_tweets_cache.items()},
-        },
-        indent=2,
-    )
-
-    with open("twitter_analysis_output.json", "w") as f:
-        f.write(json_output)
-
-    print("\nAnalysis complete! Results have been saved to 'twitter_analysis_output.json'")
-    print(f"Total tweets analyzed: {len(tweet_data_list)}")
-    print(f"Important tweets cached: {len(analyzer.important_tweets_cache)}")
+            # Attempt to find "Show more" within .replies to load more replies
+            try:
+                show_more_link = search_driver.find_element(By.CSS_SELECTOR, ".replies .show-more a")
+                show_more_link.click()
+                
+                # Wait again for new replies (or a short time for next batch to appear)
+                WebDriverWait(search_driver, 2).until(
+                    EC.presence_of_element_located((By.CSS_SELECTOR, ".show-more"))
+                )
+            except NoSuchElementException:
+                # No more pagination link in replies
+                logging.info(f"No more 'show more' link for replies in tweet {tweet.id}.")
+                break
+            except TimeoutException:
+                logging.info(f"Timeout waiting for next batch of replies in tweet {tweet.id}.")
+                break
 
 
 if __name__ == "__main__":
-    asyncio.run(main())
+    # 1) Set up Chrome options
+    chrome_options = Options()
+    chrome_options.add_argument("--headless")
+    chrome_options.add_argument("--disable-gpu")
+    chrome_options.add_argument("--window-size=1920,1080")
+
+    # 2) Create two separate drivers
+    #    - search_driver for scanning tweets & replies
+    #    - profile_driver for fetching user profiles
+    service = Service()
+    search_driver = webdriver.Chrome(service=service, options=chrome_options)
+    profile_driver = webdriver.Chrome(service=service, options=chrome_options)
+
+    try:
+        start_time = datetime.datetime.now()
+        ticker = "elon"  # Ticker or CA to search
+
+        # Step 1: Collect top-level tweets
+        tweets = search_tweets(search_driver, profile_driver, ticker, max_tweets=2)
+
+        # Step 2: For each top-level tweet, fetch replies one level deep
+        fetch_one_level_replies(search_driver, profile_driver, tweets, ticker, max_replies=10)
+        end_time = datetime.datetime.now()
+
+        time_difference = (end_time - start_time).total_seconds()
+
+        print(f"Time difference in seconds: {time_difference}")
+              
+        # Display final data
+        for t in tweets:
+            print("=== FINAL TWEET ===")
+            print(f"ID: {t.id}")
+            print(f"URL: {t.url}")
+            print(f"Content: {t.content}")
+            print(f"User: {t.user.username} ({t.user.full_name}) Followers: {t.user.followers}")
+            print(f"Metrics: {t.metrics}")
+            if t.replies:
+                print("  -- REPLIES --")
+                for r in t.replies:
+                    print(f"    [REPLY] ID: {r.id} by {r.user.username} Followers: {r.user.followers}, content: {r.content}")
+            print("---------------")
+
+    finally:
+        search_driver.quit()
+        profile_driver.quit()
