@@ -62,6 +62,7 @@ class TwitterAnalyzer:
         rate_limit_delay: float = 5.0,
         max_retries: int = 3,
         max_history_tweets: int = 50,  # New parameter to limit history analysis
+        cookies_file: str = "twitter_cookies.json",
     ) -> None:
         self.username = username
         self.email = email
@@ -78,11 +79,32 @@ class TwitterAnalyzer:
         self.processed_tweets: Set[str] = set()
         self.user_cache: Dict[str, UserInfo] = {}  # User cache
         self.parent_cache: Dict[str, ParentTweetInfo] = {}  # Parent tweet cache
+        self.cookies_file = cookies_file
 
     async def initialize_client(self) -> None:
         if not self.client:
             self.client = Client("en-US")
+            if os.path.exists(self.cookies_file):
+                try:
+                    self.client.load_cookies(self.cookies_file)
+                    logger.info("Loaded cookies from file.")
+                    # Perform a simple operation to verify cookie validity
+                    await self.client.user()
+                    logger.info("Cookies are valid.")
+                    return
+                except Exception as e:
+                    logger.warning(f"Loaded cookies are invalid or expired: {e}")
+            # If cookies are not present or invalid, perform manual login
+            await self.manual_login()
+
+    async def manual_login(self) -> None:
+        try:
             await self.client.login(auth_info_1=self.username, auth_info_2=self.email, password=self.password)
+            self.client.save_cookies(self.cookies_file)
+            logger.info("Logged in manually and saved cookies.")
+        except Exception as e:
+            logger.error(f"Manual login failed: {e}")
+            raise
 
     async def with_retry(self, func: Any, *args: Any) -> Any:
         """Wrapper to retry API calls on rate limit with exponential backoff"""
