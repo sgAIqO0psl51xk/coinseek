@@ -320,6 +320,7 @@ class TwitterAnalyzer:
         has_ticker = self.ticker in text
         return "BOTH" if has_ca and has_ticker else "CA" if has_ca else "TICKER"
 
+
 async def print_tweet_data(tweet_data: TweetData) -> None:
     """Helper function to print tweet data in a readable format"""
     print("\n" + "=" * 50)

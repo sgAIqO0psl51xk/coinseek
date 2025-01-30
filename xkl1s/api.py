@@ -9,6 +9,7 @@ load_dotenv()
 
 app = FastAPI()
 
+
 @app.get("/analyze/{contract_address}/{ticker}")
 async def analyze(contract_address: str, ticker: str):
     llm_config = LLMConfig(
@@ -45,5 +46,5 @@ async def analyze(contract_address: str, ticker: str):
         headers={
             "Cache-Control": "no-cache",
             "Connection": "keep-alive",
-        }
+        },
     )
