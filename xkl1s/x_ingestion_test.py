@@ -1,7 +1,7 @@
 import asyncio
 import json
 from dataclasses import asdict
-from ingestion import TwitterAnalyzer  # make sure the filename matches your saved file
+from xkl1s.ingestion import TwitterAnalyzer  # make sure the filename matches your saved file
 
 
 async def print_tweet_data(tweet_data):
@@ -92,7 +92,7 @@ async def main():
 
     print("\nAnalysis complete! Results have been saved to 'twitter_analysis_output.json'")
     print(f"Total tweets analyzed: {len(tweet_data_list)}")
-    print(f"Important tweets cached: {len(analyzer.important_tweets_cache)}")
+    (f"Important tweets cached: {len(analyzer.important_tweets_cache)}")
 
 
 if __name__ == "__main__":

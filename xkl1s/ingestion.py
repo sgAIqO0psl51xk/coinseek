@@ -1,7 +1,11 @@
 import asyncio
+import os
 from dataclasses import dataclass, field
 from typing import List, Dict, Optional, Set, Any, Tuple
 from twikit import Client
+from dotenv import load_dotenv
+
+load_dotenv()
 from twikit.errors import TweetNotAvailable
 from tqdm.asyncio import tqdm
 import json
@@ -294,65 +298,6 @@ class TwitterAnalyzer:
         has_ticker = self.ticker in text
         return "BOTH" if has_ca and has_ticker else "CA" if has_ca else "TICKER"
 
-    # async def analyze_tweets(self, num_tweets: int = 15, search_type: str = "Top") -> List[TweetData]:
-    #     print("\nInitializing Twitter client...")
-    #     self.client = Client("en-US")  # type: ignore
-    #     await self.client.login(
-    #         auth_info_1=self.username,
-    #         auth_info_2=self.email,
-    #         password=self.password,
-    #     )
-
-    #     print(f"\nSearching for tweets mentioning CA: {self.contract_address}")
-    #     ca_result = await self.with_retry(
-    #         self.client.search_tweet,  # type: ignore
-    #         self.contract_address,
-    #         search_type,
-    #         num_tweets,
-    #     )
-    #     ca_tweets = list(ca_result) if ca_result else []
-    #     print(f"Found {len(ca_tweets)} tweets for CA")
-
-    #     await asyncio.sleep(self.rate_limit_delay)
-
-    #     print(f"\nSearching for tweets mentioning ticker: {self.ticker}")
-    #     ticker_result = await self.with_retry(
-    #         self.client.search_tweet,  # type: ignore
-    #         self.ticker,
-    #         search_type,
-    #         num_tweets,
-    #     )
-    #     ticker_tweets = list(ticker_result) if ticker_result else []
-    #     print(f"Found {len(ticker_tweets)} tweets for ticker")
-
-    #     all_tweets = []
-    #     seen_ids: Set[str] = set()
-
-    #     for tweet in ca_tweets + ticker_tweets:
-    #         if tweet.id not in seen_ids:  # type: ignore
-    #             seen_ids.add(tweet.id)  # type: ignore
-    #             all_tweets.append(tweet)
-
-    #     print(f"\nProcessing {len(all_tweets)} unique tweets...")
-    #     tweet_data_list: List[TweetData] = []
-
-    #     async for tweet in tqdm(
-    #         asyncio.as_completed([self.process_tweet(tweet) for tweet in all_tweets]),
-    #         total=len(all_tweets),
-    #         desc="Processing tweets",
-    #         unit="tweet",
-    #     ):
-    #         try:
-    #             tweet_data = await tweet
-    #             tweet_data_list.append(tweet_data)
-    #             await asyncio.sleep(self.rate_limit_delay)
-    #         except Exception as e:
-    #             print(f"\nError processing tweet: {e}")
-    #             continue
-
-    #     return tweet_data_list
-
-
 async def print_tweet_data(tweet_data: TweetData) -> None:
     """Helper function to print tweet data in a readable format"""
     print("\n" + "=" * 50)
@@ -398,9 +343,9 @@ async def main() -> None:
     print("\nInitializing Twitter Analysis...")
 
     analyzer = TwitterAnalyzer(
-        username="9fStays",
-        email="stays.tribute_9f@icloud.com",
-        password="Ay3IsFromBritain1!",
+        username=os.getenv("TWT_USERNAME"),
+        email=os.getenv("TWT_EMAIL"),
+        password=os.getenv("TWT_PASSWORD"),
         contract_address="0x6982508145454ce325ddbe47a25d4ec3d2311933",
         ticker="$PEPE",
         large_account_threshold=10000,
