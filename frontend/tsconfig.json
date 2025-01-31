@@ -24,15 +24,15 @@
     ],
     "paths": {
       "@/*": [
-        "frontend/src/*"
+        "./src/*"
       ]
     }
   },
   "include": [
     "**/*.ts",
     "**/*.tsx",
-    "frontend/.next/types/**/*.ts",
-    "frontend/next-env.d.ts",
+    ".next/types/**/*.ts",
+    "next-env.d.ts",
     ".next/types/**/*.ts"
   ],
   "exclude": [
