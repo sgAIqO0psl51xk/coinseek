@@ -53,7 +53,7 @@ class DeepseekDriver:
         analyzer = ApifyTwitterAnalyzer(
             contract_address=self.contract_address, ticker=self.ticker, large_account_threshold=10000, affiliated_mention_threshold=5
         )
-        tweet_data = await analyzer.analyze_tweets(num_tweets=20)
+        tweet_data = await analyzer.analyze_tweets(num_tweets=50)
         print(f"Found {len(tweet_data)} tweets")
         return self._process_twitter_results(tweet_data, analyzer.important_tweets_cache)
 
