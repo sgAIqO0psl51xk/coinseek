@@ -2,9 +2,8 @@ import asyncio
 import os
 import json
 from dataclasses import dataclass, field
-from typing import List, Dict, Optional, Set, Any, Tuple
+from typing import List, Dict, Optional, Any, Tuple
 from apify_client import ApifyClient
-from tqdm.asyncio import tqdm
 import logging
 from dotenv import load_dotenv
 
@@ -170,6 +169,8 @@ class ApifyTwitterAnalyzer:
         run_input = {"searchTerms": [self.contract_address, self.ticker], "maxItems": num_tweets * 2, "sort": "Latest", "tweetLanguage": "en"}
 
         run = self.client.actor("apidojo/tweet-scraper").call(run_input=run_input)
+        if run is None:
+            return []
         dataset = self.client.dataset(run["defaultDatasetId"])
 
         processed_tweets: List[TweetData] = []
@@ -221,7 +222,6 @@ async def main():
     )
 
     print("Starting analysis...")
-    tweets = await analyzer.analyze_tweets(num_tweets=15)
 
     print("\nTop 5 Important Tweets:")
     for tweet_id, tweet in list(analyzer.important_tweets_cache.items())[:5]:
