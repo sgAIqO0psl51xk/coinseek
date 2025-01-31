@@ -1,6 +1,7 @@
 import { NextRequest } from 'next/server'
 
 export async function GET(request: NextRequest) {
+  console.log('Here');
   try {
     const { searchParams } = new URL(request.url)
     const contractAddress = searchParams.get('contractAddress')
@@ -22,7 +23,7 @@ export async function GET(request: NextRequest) {
     }
 
     const response = await fetch(
-      `${backendUrl}/analyze/${encodeURIComponent(contractAddress)}/${encodeURIComponent(ticker)}`,
+      `${backendUrl}/analyze?contract_address=${encodeURIComponent(contractAddress)}&ticker=${encodeURIComponent(ticker)}`,
       {
         method: 'GET',
         headers: {
