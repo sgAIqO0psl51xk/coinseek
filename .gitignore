@@ -10,3 +10,34 @@ node_modules/
 # Virtual environments
 .venv
 .env
+
+# Dependencies
+/node_modules
+/.pnp
+.pnp.js
+
+# Build outputs
+/.next/
+/out/
+/build
+/dist
+/.webpack/
+
+# Environment files
+.env*.local
+.env
+
+# Debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# IDE/Editor specific
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS specific
+.DS_Store
+Thumbs.db

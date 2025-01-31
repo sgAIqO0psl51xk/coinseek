@@ -2,6 +2,7 @@ import asyncio
 import json
 from typing import Any, Dict, Optional
 import aiohttp
+import ssl
 
 
 class TrenchBotFetcher:
@@ -14,23 +15,26 @@ class TrenchBotFetcher:
         self.token_address = token_address
         self.data: Dict[str, Any] = {}
         self.fetch_task = asyncio.create_task(self.fetch_data())
+        self.base_url = "https://trench.bot"
+        # Create SSL context that doesn't verify certificates
+        self.ssl_context = ssl.create_default_context()
+        self.ssl_context.check_hostname = False
+        self.ssl_context.verify_mode = ssl.CERT_NONE
 
     async def fetch_data(self) -> None:
         """Fetch data from Trench Bot API asynchronously"""
-        url = f"https://trench.bot/api/bundle/bundle_advanced/{self.token_address}"
-        headers = {
-            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:134.0) Gecko/20100101 Firefox/134.0",
-            "Accept": "*/*",
-            "Accept-Language": "en-CA,en-US;q=0.7,en;q=0.3",
-            "Accept-Encoding": "gzip, deflate, br, zstd",
-            "Referer": f"https://trench.bot/bundles/{self.token_address}?all=true",
-            "Priority": "u=4",
-        }
-        async with aiohttp.ClientSession(headers=headers) as session:
-            async with session.get(url) as response:
-                response.raise_for_status()
-                json = await response.json()
-                self.data = json if json else {}
+        try:
+            async with aiohttp.ClientSession() as session:
+                async with session.get(
+                    f"{self.base_url}/api/v1/token/{self.token_address}",
+                    ssl=self.ssl_context
+                ) as response:
+                    if response.status == 200:
+                        self.data = await response.json()
+                    else:
+                        self.data = {"error": f"Failed to fetch data: {response.status}"}
+        except Exception as e:
+            self.data = {"error": f"Error fetching data: {str(e)}"}
 
     async def get_total_percent_bundled(self) -> Optional[float]:
         await self.fetch_task
