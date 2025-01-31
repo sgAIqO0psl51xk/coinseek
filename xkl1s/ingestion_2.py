@@ -126,8 +126,8 @@ class ApifyTwitterAnalyzer:
         if item.get("replyCount", 0) > 0:
             replies = [
                 TweetReply(
-                    user=self._create_user_info(item["author"]), 
-                    content=f"Simulated reply to {item['id']}", 
+                    user=self._create_user_info(item["author"]),
+                    content=f"Simulated reply to {item['id']}",
                 )
             ][
                 :5
