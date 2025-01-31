@@ -274,14 +274,14 @@ class DeepseekDriver:
         try:
             for chunk in response:
                 chunk = cast(ChatCompletionChunk, chunk)
-                
+
                 delta: ChoiceDelta = chunk.choices[0].delta
                 if delta.content:
                     piece = delta.content
                     content += piece
                     print(piece, end="", flush=True)
                     yield {"type": "analysis", "content": piece}
-                
+
                 # If using a custom field for reasoning
                 if hasattr(delta, "reasoning_content"):  # Only if API actually returns this
                     piece = delta.reasoning_content
@@ -332,10 +332,7 @@ class DeepseekDriver:
                 elif chunk["type"] == "analysis":
                     analysis_content += chunk["content"]
                 elif chunk["type"] == "complete":
-                    result.update({
-                        "llm_analysis": analysis_content.strip(),
-                        "llm_reasoning": reasoning_content.strip()
-                    })
+                    result.update({"llm_analysis": analysis_content.strip(), "llm_reasoning": reasoning_content.strip()})
         except Exception as e:
             result["error"] = str(e)
 
