@@ -1,9 +1,10 @@
 import asyncio
+import datetime
 import os
 import json
 from dataclasses import dataclass, field
 from typing import List, Dict, Optional, Any, Tuple
-from apify_client import ApifyClient
+from apify_client import ApifyClientAsync
 import logging
 from dotenv import load_dotenv
 
@@ -47,6 +48,24 @@ class TweetData:
 
 
 class ApifyTwitterAnalyzer:
+    api_key_last_used: Dict[str, datetime.datetime] = {}
+    lock = asyncio.Lock()
+    MIN_DELAY = datetime.timedelta(seconds=5)
+
+    @staticmethod
+    async def get_next_api_key():
+        while True:
+            async with ApifyTwitterAnalyzer.lock:
+                current_time = datetime.datetime.now()
+                for key in os.getenv("APIFY_KEY", "").split(","):
+                    if (
+                        key not in ApifyTwitterAnalyzer.api_key_last_used
+                        or current_time - ApifyTwitterAnalyzer.api_key_last_used[key] >= ApifyTwitterAnalyzer.MIN_DELAY
+                    ):
+                        ApifyTwitterAnalyzer.api_key_last_used[key] = current_time
+                        return key
+            await asyncio.sleep(0.1)
+
     def __init__(
         self,
         contract_address: str,
@@ -60,7 +79,6 @@ class ApifyTwitterAnalyzer:
         self.large_account_threshold = large_account_threshold
         self.affiliated_mention_threshold = affiliated_mention_threshold
         self.max_history_tweets = max_history_tweets
-        self.client = ApifyClient(os.getenv("APIFY_KEY"))
         self.important_tweets_cache: Dict[str, TweetData] = {}
         self.processed_tweets: Dict[str, TweetData] = {}
         self.user_cache: Dict[str, UserInfo] = {}
@@ -166,15 +184,17 @@ class ApifyTwitterAnalyzer:
         return "BOTH" if has_ca and has_ticker else "CA" if has_ca else "TICKER"
 
     async def analyze_tweets(self, num_tweets: int = 15) -> List[TweetData]:
-        run_input = {"searchTerms": [self.contract_address, self.ticker], "maxItems": num_tweets * 2, "sort": "Latest", "tweetLanguage": "en"}
+        run_input = {"searchTerms": [self.contract_address, self.ticker], "max_posts": num_tweets * 2, "sort": "Latest", "tweetLanguage": "en"}
+        api_key = await ApifyTwitterAnalyzer.get_next_api_key()
+        client = ApifyClientAsync(api_key)
+        run = await client.actor("danek/twitter-scraper-ppr").call(run_input=run_input)
 
-        run = self.client.actor("apidojo/tweet-scraper").call(run_input=run_input)
         if run is None:
             return []
-        dataset = self.client.dataset(run["defaultDatasetId"])
+        dataset = client.dataset(run["defaultDatasetId"])
 
         processed_tweets: List[TweetData] = []
-        for item in dataset.iterate_items():
+        async for item in dataset.iterate_items():
             if len(processed_tweets) >= num_tweets:
                 break
             processed = await self._process_tweet(item)
@@ -213,7 +233,8 @@ class ApifyTwitterAnalyzer:
         }
 
 
-async def main():
+async def test():
+    await asyncio.sleep(1)
     analyzer = ApifyTwitterAnalyzer(
         contract_address="0x6982508145454ce325ddbe47a25d4ec3d2311933",
         ticker="$pepe",
@@ -221,17 +242,24 @@ async def main():
         affiliated_mention_threshold=5,
     )
 
-    print("Starting analysis...")
+    # # print("Starting analysis...")
+    _ = await analyzer.analyze_tweets(15)
+    logger.log(logging.INFO, "Starting")
 
-    print("\nTop 5 Important Tweets:")
-    for tweet_id, tweet in list(analyzer.important_tweets_cache.items())[:5]:
-        print(f"\nTweet ID: {tweet_id}")
-        print(f"Content: {tweet.content[:80]}...")
-        print(f"Author: @{tweet.user.screen_name} ({tweet.user.follower_count} followers)")
-        print(f"Replies: {tweet.metrics['reply_count']}")
+    # # print("\nTop 5 Important Tweets:")
+    # # for tweet_id, tweet in list(analyzer.important_tweets_cache.items())[:5]:
+    # #     print(f"\nTweet ID: {tweet_id}")
+    # #     print(f"Content: {tweet.content[:80]}...")
+    # #     print(f"Author: @{tweet.user.screen_name} ({tweet.user.follower_count} followers)")
+    # #     print(f"Replies: {tweet.metrics['reply_count']}")
 
-    analyzer.save_analysis()
-    print("\nAnalysis saved to twitter_analysis_1.json")
+    # analyzer.save_analysis()
+    # # print("\nAnalysis saved to twitter_analysis_1.json")
+
+
+async def main():
+    tasks = [test() for _ in range(3)]  # Runs 3 instances of test() in parallel
+    await asyncio.gather(*tasks)  # Ensures they execute concurrently
 
 
 if __name__ == "__main__":
