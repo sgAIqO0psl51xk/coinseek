@@ -1,5 +1,6 @@
 import asyncio
 import datetime
+import json
 from typing import cast
 from fastapi import FastAPI, HTTPException, Request
 from fastapi.responses import StreamingResponse
@@ -13,7 +14,7 @@ app = FastAPI()
 
 active_requests = {}
 active_requests_lock = asyncio.Lock()
-COOLDOWN_PERIOD = datetime.timedelta(seconds=60)
+COOLDOWN_PERIOD = datetime.timedelta(seconds=5)
 
 @app.get("/analyze/")
 async def analyze(request: Request, contract_address: str, ticker: str = ""):
@@ -61,7 +62,7 @@ async def analyze(request: Request, contract_address: str, ticker: str = ""):
     async def generate():
         try:
             async for chunk in driver.stream_analysis():
-                yield f"data: {chunk}\n\n"
+                yield f"data: {json.dumps(chunk)}\n\n"
         except Exception as e:
             yield f"data: {{'error': '{str(e)}'}}\n\n"
         finally:
@@ -71,7 +72,8 @@ async def analyze(request: Request, contract_address: str, ticker: str = ""):
                         "active": False,
                         "cooldown_until": datetime.datetime.now() + COOLDOWN_PERIOD
                     }
-            yield "data: [DONE]\n\n"
+            end = {'type': 'done'}
+            yield f"data: {end}\n\n"
 
     return StreamingResponse(
         generate(),

@@ -28,11 +28,12 @@ export default function AnalyzePage() {
 
     eventSource.onmessage = (event) => {
       try {
-        const data: AnalysisResponse & { done?: boolean } = JSON.parse(
+        const obj = JSON.parse(
           event.data
         );
+        const data = JSON.parse(obj.content);
 
-        if (data.done) {
+        if (data.type === "done") {
           setIsAnalyzing(false);
           eventSource.close();
           return;
@@ -45,7 +46,7 @@ export default function AnalyzePage() {
           return;
         }
 
-        if (data.content) {
+        if (data.type === "analysis") {
           setAnalysis((prev) => prev + data.content);
         }
       } catch (err) {
