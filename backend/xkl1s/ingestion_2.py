@@ -84,6 +84,24 @@ class ApifyTwitterAnalyzer:
         self.user_cache: Dict[str, UserInfo] = {}
         self.parent_cache: Dict[str, ParentTweetInfo] = {}
 
+    def _translate_item(self, item: Dict) -> Dict:
+        """Convert danek/scraper fields to our expected format"""
+        return {
+            "id": item["tweet_id"],
+            "author": {
+                "id": item["user_info"]["rest_id"],
+                "userName": item["screen_name"],
+                "followers": item["user_info"]["followers_count"],
+                "isVerified": item["user_info"]["verified"]
+            },
+            "text": item["text"],
+            "replyCount": item.get("replies", 0),
+            "retweetCount": item.get("retweets", 0),
+            "likeCount": item.get("favorites", 0),
+            "quoteCount": item.get("quotes", 0),
+            "quote": None  # Parent tweets not handled in this version
+        }
+
     def _create_user_info(self, user_data: Dict) -> UserInfo:
         cached_user = self.user_cache.get(user_data["id"])
         if cached_user:
@@ -105,77 +123,56 @@ class ApifyTwitterAnalyzer:
         return (text_lower.count(self.contract_address), text_lower.count(self.ticker))
 
     async def _process_parent_tweet(self, quote_data: Dict) -> ParentTweetInfo:
-        if quote_data["id"] in self.parent_cache:
-            return self.parent_cache[quote_data["id"]]
+        # Currently not implemented for new scraper format
+        return None
 
-        parent_user = self._create_user_info(quote_data["author"])
-        ca_mentions, ticker_mentions = self._analyze_text_mentions(quote_data["text"])
+    async def _process_tweet(self, raw_item: Dict) -> TweetData:
+        try:
+            item = self._translate_item(raw_item)
+            tweet_id = item["id"]
+            if tweet_id in self.processed_tweets:
+                return self.processed_tweets[tweet_id]
 
-        parent_user.ca_mention_count = ca_mentions
-        parent_user.ticker_mention_count = ticker_mentions
+            user_info = self._create_user_info(item["author"])
+            ca_mentions, ticker_mentions = self._analyze_text_mentions(item["text"])
+            user_info.ca_mention_count = ca_mentions
+            user_info.ticker_mention_count = ticker_mentions
 
-        parent_info = ParentTweetInfo(
-            user=parent_user,
-            is_large_account=parent_user.follower_count >= self.large_account_threshold,
-            is_affiliated=(ca_mentions + ticker_mentions) >= self.affiliated_mention_threshold,
-        )
-        self.parent_cache[quote_data["id"]] = parent_info
-        return parent_info
+            replies = []
+            if item.get("replyCount", 0) > 0:
+                replies = [
+                    TweetReply(
+                        user=self._create_user_info(item["author"]),
+                        content=f"Simulated reply to {item['id']}",
+                    )
+                ][:5]
 
-    async def _process_tweet(self, item: Dict) -> TweetData:
-        tweet_id = item["id"]
-        if tweet_id in self.processed_tweets:
-            return self.processed_tweets[tweet_id]
+            tweet_data = TweetData(
+                content=item["text"],
+                user=user_info,
+                search_match_type=self._determine_search_match_type(item["text"]),
+                replies=replies,
+                metrics={
+                    "reply_count": item.get("replyCount", 0),
+                    "retweet_count": item.get("retweetCount", 0),
+                    "like_count": item.get("likeCount", 0),
+                    "quote_count": item.get("quoteCount", 0),
+                    "has_large_parent": False,
+                    "has_affiliated_parent": False,
+                },
+            )
 
-        # Base user analysis
-        user_info = self._create_user_info(item["author"])
-        ca_mentions, ticker_mentions = self._analyze_text_mentions(item["text"])
-        user_info.ca_mention_count = ca_mentions
-        user_info.ticker_mention_count = ticker_mentions
+            if (
+                tweet_data.metrics["reply_count"] > 5
+                or user_info.follower_count >= self.large_account_threshold
+            ):
+                self.important_tweets_cache[tweet_id] = tweet_data
 
-        # Parent tweet analysis
-        parent_info = None
-        if item.get("quote"):
-            parent_info = await self._process_parent_tweet(item["quote"])
-
-        # Simulate reply analysis (Apify doesn't provide nested replies)
-        replies = []
-        if item.get("replyCount", 0) > 0:
-            replies = [
-                TweetReply(
-                    user=self._create_user_info(item["author"]),
-                    content=f"Simulated reply to {item['id']}",
-                )
-            ][
-                :5
-            ]  # Mock limited replies
-
-        tweet_data = TweetData(
-            content=item["text"],
-            user=user_info,
-            search_match_type=self._determine_search_match_type(item["text"]),
-            replies=replies,
-            parent_tweet=parent_info,
-            metrics={
-                "reply_count": item.get("replyCount", 0),
-                "retweet_count": item.get("retweetCount", 0),
-                "like_count": item.get("likeCount", 0),
-                "quote_count": item.get("quoteCount", 0),
-                "has_large_parent": parent_info.is_large_account if parent_info else False,
-                "has_affiliated_parent": parent_info.is_affiliated if parent_info else False,
-            },
-        )
-
-        # Cache important tweets
-        if (
-            tweet_data.metrics["reply_count"] > 5
-            or user_info.follower_count >= self.large_account_threshold
-            or (parent_info and parent_info.is_large_account)
-        ):
-            self.important_tweets_cache[item["id"]] = tweet_data
-
-        self.processed_tweets[tweet_id] = tweet_data
-        return tweet_data
+            self.processed_tweets[tweet_id] = tweet_data
+            return tweet_data
+        except KeyError as e:
+            logger.warning(f"Skipping item due to missing field {e}")
+            return None
 
     def _determine_search_match_type(self, text: str) -> str:
         text_lower = text.lower()
@@ -184,23 +181,43 @@ class ApifyTwitterAnalyzer:
         return "BOTH" if has_ca and has_ticker else "CA" if has_ca else "TICKER"
 
     async def analyze_tweets(self, num_tweets: int = 15) -> List[TweetData]:
-        run_input = {"searchTerms": [self.contract_address, self.ticker], "maxItems": num_tweets * 2, "sort": "Latest", "tweetLanguage": "en"}
+        queries = [
+            {"query": f'"{self.ticker}" lang:en', "max_posts": num_tweets, "sort": "recent"},
+            {"query": f'"{self.contract_address}" lang:en', "max_posts": num_tweets, "sort": "recent"}
+        ]
+
         api_key = await ApifyTwitterAnalyzer.get_next_api_key()
         client = ApifyClientAsync(api_key)
-        run = await client.actor("apidojo/tweet-scraper").call(run_input=run_input)
-
-        if run is None:
-            return []
-        dataset = client.dataset(run["defaultDatasetId"])
+        
+        # Run both scrapers concurrently
+        tasks = [client.actor("danek/twitter-scraper-ppr").call(run_input=query, max_items=128) for query in queries]
+        results = await asyncio.gather(*tasks)
 
         processed_tweets: List[TweetData] = []
-        async for item in dataset.iterate_items():
-            if len(processed_tweets) >= num_tweets:
-                break
-            processed = await self._process_tweet(item)
-            processed_tweets.append(processed)
-        logger.log(logging.INFO, "Done processing tweets")
-        return processed_tweets
+        
+        for run in results:
+            if not run:
+                logger.error("Scraper run failed")
+                continue
+                
+            dataset = client.dataset(run["defaultDatasetId"])
+            async for item in dataset.iterate_items():
+                if len(processed_tweets) >= num_tweets * 2:  # Double for both queries
+                    break
+                processed = await self._process_tweet(item)
+                if processed:
+                    processed_tweets.append(processed)
+
+        # Deduplicate while preserving order
+        seen = set()
+        deduped = []
+        for tweet in processed_tweets:
+            if tweet.content not in seen:
+                seen.add(tweet.content)
+                deduped.append(tweet)
+        
+        logger.info(f"Processed {len(deduped)} unique tweets")
+        return deduped[:num_tweets]
 
     def save_analysis(self, filename: str = "twitter_analysis.json") -> None:
         output = {
@@ -221,20 +238,11 @@ class ApifyTwitterAnalyzer:
                 "ticker_mentions": tweet.user.ticker_mention_count,
             },
             "metrics": tweet.metrics,
-            "parent_tweet": (
-                {
-                    "screen_name": tweet.parent_tweet.user.screen_name,
-                    "followers": tweet.parent_tweet.user.follower_count,
-                    "is_affiliated": tweet.parent_tweet.is_affiliated,
-                }
-                if tweet.parent_tweet
-                else None
-            ),
+            "parent_tweet": None  # Removed for simplicity
         }
 
 
-async def test():
-    await asyncio.sleep(1)
+async def main():
     analyzer = ApifyTwitterAnalyzer(
         contract_address="0x6982508145454ce325ddbe47a25d4ec3d2311933",
         ticker="$pepe",
@@ -242,25 +250,9 @@ async def test():
         affiliated_mention_threshold=5,
     )
 
-    # # print("Starting analysis...")
-    _ = await analyzer.analyze_tweets(15)
-    logger.log(logging.INFO, "Starting")
-
-    # # print("\nTop 5 Important Tweets:")
-    # # for tweet_id, tweet in list(analyzer.important_tweets_cache.items())[:5]:
-    # #     print(f"\nTweet ID: {tweet_id}")
-    # #     print(f"Content: {tweet.content[:80]}...")
-    # #     print(f"Author: @{tweet.user.screen_name} ({tweet.user.follower_count} followers)")
-    # #     print(f"Replies: {tweet.metrics['reply_count']}")
-
-    # analyzer.save_analysis()
-    # # print("\nAnalysis saved to twitter_analysis_1.json")
-
-
-async def main():
-    tasks = [test() for _ in range(3)]  # Runs 3 instances of test() in parallel
-    await asyncio.gather(*tasks)  # Ensures they execute concurrently
-
+    tweets = await analyzer.analyze_tweets(15)
+    analyzer.save_analysis()
+    logger.info(f"Saved analysis with {len(tweets)} tweets")
 
 if __name__ == "__main__":
     asyncio.run(main())
