@@ -1,13 +1,15 @@
 import asyncio
 import json
 from dataclasses import dataclass
-from typing import List, Dict, Any
+from typing import AsyncGenerator, List, Dict, Any, cast
 from xkl1s.trench_bot import TrenchBotFetcher
 from xkl1s.gmgn import GMGNTokenData
 from openai import OpenAI
-from xkl1s.ingestion import TwitterAnalyzer
+from xkl1s.ingestion_2 import ApifyTwitterAnalyzer
 import os
 from dotenv import load_dotenv
+from openai.types.chat import ChatCompletionMessageParam, ChatCompletionChunk
+from openai.types.chat.chat_completion_chunk import ChoiceDelta
 
 load_dotenv()
 
@@ -39,28 +41,23 @@ class TokenAnalysis:
 
 
 class DeepseekDriver:
-    def __init__(self, contract_address: str, ticker: str, llm_config: LLMConfig, twitter_creds: Dict[str, str]):
+    def __init__(self, contract_address: str, ticker: str, llm_config: LLMConfig):
         self.contract_address = contract_address
         self.ticker = ticker
         self.llm_config = llm_config
-        self.twitter_creds = twitter_creds
         self.client = OpenAI(api_key=llm_config.api_key, base_url=llm_config.base_url)
 
-    async def analyze_twitter_direct(self) -> Dict[str, Any]:
-        """Gather Twitter analysis data directly from Twitter API"""
-        print("\nStarting direct Twitter analysis...")
-        analyzer = TwitterAnalyzer(
-            username=self.twitter_creds["username"],
-            email=self.twitter_creds["email"],
-            password=self.twitter_creds["password"],
-            contract_address=self.contract_address,
-            ticker=self.ticker,
-            large_account_threshold=10000,
-            affiliated_mention_threshold=5,
+    async def analyze_twitter(self) -> Dict[str, Any]:
+        """Twitter analysis using Apify"""
+        print("\nStarting Twitter analysis with Apify...")
+        analyzer = ApifyTwitterAnalyzer(
+            contract_address=self.contract_address, ticker=self.ticker, large_account_threshold=10000, affiliated_mention_threshold=5
         )
-
         tweet_data = await analyzer.analyze_tweets(num_tweets=20)
+        return self._process_twitter_results(tweet_data, analyzer.important_tweets_cache)
 
+    def _process_twitter_results(self, tweet_data: List[Any], important_tweets_cache: Dict) -> Dict[str, Any]:
+        """Process Twitter results from Apify"""
         analyzed_tweets = []
         for tweet in tweet_data:
             tweet_dict = {
@@ -104,9 +101,8 @@ class DeepseekDriver:
 
             analyzed_tweets.append(tweet_dict)
 
-        important_tweets = {}
-        for tweet_id, tweet in analyzer.important_tweets_cache.items():
-            important_tweets[tweet_id] = {
+        important_tweets = {
+            tweet_id: {
                 "content": tweet.content,
                 "user": {
                     "screen_name": tweet.user.screen_name,
@@ -118,24 +114,23 @@ class DeepseekDriver:
                 "search_match_type": tweet.search_match_type,
                 "metrics": tweet.metrics,
             }
+            for tweet_id, tweet in important_tweets_cache.items()
+        }
 
-        twitter_data = {"analyzed_tweets": analyzed_tweets, "important_tweets": important_tweets}
-
-        return twitter_data
+        return {"analyzed_tweets": analyzed_tweets, "important_tweets": important_tweets}
 
     async def analyze_trenchbot(self) -> Dict[str, Any]:
         """Gather TrenchBot analysis data"""
         print("\nStarting TrenchBot analysis...")
         fetcher = TrenchBotFetcher(self.contract_address)
         percent_bundled = await fetcher.get_total_percent_bundled()
-
-        return {"percent_bundled": percent_bundled, "raw_data": fetcher.data}
+        percent_held = await fetcher.get_current_held_as_percent_of_total_bundle()
+        return {"percent_bundled": percent_bundled, "percent_held": percent_held, "raw_data": fetcher.data}
 
     def analyze_gmgn(self) -> Dict[str, Any]:
         """Gather GMGN analysis data"""
         print("\nStarting GMGN analysis...")
         token_data = GMGNTokenData(self.contract_address)
-
         return {
             "top_holder_avg_holding_time": token_data.get_top_holder_average_holding_time(10),
             "top_holder_avg_score": token_data.get_average_wallet_score(10),
@@ -154,24 +149,21 @@ class DeepseekDriver:
 
     async def run_analysis(self) -> TokenAnalysis:
         """Run all analyses and combine results"""
-        twitter_task = asyncio.create_task(self.analyze_twitter_direct())
+        twitter_task = asyncio.create_task(self.analyze_twitter())
         trenchbot_task = asyncio.create_task(self.analyze_trenchbot())
         gmgn_data = self.analyze_gmgn()
-
-        twitter_data = await twitter_task
-        trenchbot_data = await trenchbot_task
 
         return TokenAnalysis(
             contract_address=self.contract_address,
             ticker=self.ticker,
-            twitter_data=twitter_data,
-            trenchbot_data=trenchbot_data,
+            twitter_data=await twitter_task,
+            trenchbot_data=await trenchbot_task,
             gmgn_data=gmgn_data,
         )
 
-    async def generate_analysis_prompt(self, analysis: TokenAnalysis) -> List[Dict[str, str]]:
+    async def generate_analysis_prompt(self, analysis: TokenAnalysis) -> List[ChatCompletionMessageParam]:
         """Generate the conversation structure for the LLM"""
-        system_message = {
+        system_message: ChatCompletionMessageParam = {
             "role": "system",
             "content": """You are a battle-hardened crypto analyst with the mouth of a sailor and the instincts of a wolf.
             Your thinking process should reflect these traits:
@@ -186,7 +178,7 @@ class DeepseekDriver:
             Think through the lens of a cynical trader who's seen 100 rugs.""",
         }
 
-        user_message = {
+        user_message: ChatCompletionMessageParam = {
             "role": "user",
             "content": f"""You will ingests data and scores based off the following parameters given to you.
 
@@ -264,7 +256,7 @@ class DeepseekDriver:
 
         return [system_message, user_message]
 
-    async def run_llm_analysis(self, messages: List[Dict[str, str]]) -> Dict[str, str]:
+    async def run_llm_analysis(self, messages: List[ChatCompletionMessageParam]) -> AsyncGenerator[Dict[str, Any], None]:
         """Run the LLM analysis using DeepSeek API"""
         response = self.client.chat.completions.create(
             model=self.llm_config.model_name,
@@ -281,18 +273,25 @@ class DeepseekDriver:
 
         try:
             for chunk in response:
-                if chunk.choices[0].delta.reasoning_content:
-                    piece = chunk.choices[0].delta.reasoning_content
+                chunk = cast(ChatCompletionChunk, chunk)
+
+                delta: ChoiceDelta = chunk.choices[0].delta
+                if delta.content:
+                    piece = delta.content
+                    content += piece
+                    print(piece, end="", flush=True)
+                    yield {"type": "analysis", "content": piece}
+
+                # If using a custom field for reasoning
+                if hasattr(delta, "reasoning_content"):  # Only if API actually returns this
+                    piece = delta.reasoning_content
                     reasoning_content += piece
                     print(piece, end="", flush=True)
                     yield {"type": "reasoning", "content": piece}
-                elif hasattr(chunk.choices[0].delta, "content"):
-                    piece = chunk.choices[0].delta.content
-                    if piece:
-                        content += piece
-                        yield {"type": "analysis", "content": piece}
 
             print("\n\nFinal Analysis:")
+            # Print the complete analysis content to the terminal
+            print(content.strip())
 
             yield {"type": "complete", "reasoning": reasoning_content.strip(), "analysis": content.strip()}
 
@@ -305,10 +304,10 @@ class DeepseekDriver:
         """Stream the full analysis pipeline"""
         analysis = await self.run_analysis()
         messages = await self.generate_analysis_prompt(analysis)
-        
+
         # Yield initial data
         yield {"type": "metadata", "data": analysis.to_dict()}
-        
+
         async for chunk in self.run_llm_analysis(messages):
             yield chunk
 
@@ -316,23 +315,28 @@ class DeepseekDriver:
         """Run full analysis pipeline and generate report"""
         analysis = await self.run_analysis()
         messages = await self.generate_analysis_prompt(analysis)
-        
-        # Collect all chunks for backward compatibility
+
         reasoning_content = ""
         analysis_content = ""
-        
-        async for chunk in self.run_llm_analysis(messages):
-            if chunk["type"] == "reasoning":
-                reasoning_content += chunk["content"]
-            elif chunk["type"] == "analysis":
-                analysis_content += chunk["content"]
-            elif chunk["type"] == "complete":
-                return {
-                    "raw_data": analysis.to_dict(),
-                    "messages": messages,
-                    "llm_analysis": analysis_content.strip(),
-                    "llm_reasoning": reasoning_content.strip(),
-                }
+        result: Dict[str, Any] = {
+            "raw_data": analysis.to_dict(),
+            "messages": messages,
+            "llm_analysis": "",
+            "llm_reasoning": "",
+        }
+
+        try:
+            async for chunk in self.run_llm_analysis(messages):
+                if chunk["type"] == "reasoning":
+                    reasoning_content += chunk["content"]
+                elif chunk["type"] == "analysis":
+                    analysis_content += chunk["content"]
+                elif chunk["type"] == "complete":
+                    result.update({"llm_analysis": analysis_content.strip(), "llm_reasoning": reasoning_content.strip()})
+        except Exception as e:
+            result["error"] = str(e)
+
+        return result
 
 
 async def main():
@@ -342,17 +346,10 @@ async def main():
         base_url="https://api.deepseek.com",
     )
 
-    twitter_creds = {
-        "username": os.getenv("TWT_USERNAME"),
-        "email": os.getenv("TWT_EMAIL"),
-        "password": os.getenv("TWT_PASSWORD"),
-    }
-
     driver = DeepseekDriver(
-        contract_address="GkyZ3xtwoA35nTXE1t26uKGL6jjiC6zM9pGjvdtpump",
-        ticker="$seek16z",
+        contract_address="7E448GypzBbahPkoUaATMBdYpeycnzyZ1g43myWogxAd",
+        ticker="$xyz",
         llm_config=llm_config,
-        twitter_creds=twitter_creds,
     )
 
     report = await driver.analyze_and_report()
