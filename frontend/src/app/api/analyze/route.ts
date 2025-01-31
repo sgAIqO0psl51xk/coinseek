@@ -95,7 +95,7 @@ export async function GET(request: NextRequest) {
     console.error('Analysis error:', error)
     return new Response(
       JSON.stringify({ 
-        error: error instanceof Error ? error.message : 'An unexpected error occurred' 
+        error: error instanceof Error ? `Error get: ${error.message}` : 'An unexpected error occurred' 
       }),
       {
         status: 500,

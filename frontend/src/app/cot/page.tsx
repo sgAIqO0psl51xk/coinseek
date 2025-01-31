@@ -23,7 +23,7 @@ export default function AnalyzePage() {
 
     let url = `/api/analyze?contractAddress=${encodeURIComponent(contractAddress)}`;
     if (ticker === "")
-        url = `&ticker=${encodeURIComponent(ticker)}`
+        url += `&ticker=${encodeURIComponent(ticker)}`
     const eventSource = new EventSource(url);
 
     eventSource.onmessage = (event) => {
