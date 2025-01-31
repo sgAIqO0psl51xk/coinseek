@@ -21,11 +21,10 @@ export default function AnalyzePage() {
   useEffect(() => {
     if (!isAnalyzing) return;
 
-    const eventSource = new EventSource(
-      `/api/analyze?contractAddress=${encodeURIComponent(
-        contractAddress
-      )}&ticker=${encodeURIComponent(ticker)}`
-    );
+    let url = `/api/analyze?contractAddress=${encodeURIComponent(contractAddress)}`;
+    if (ticker === "")
+        url = `&ticker=${encodeURIComponent(ticker)}`
+    const eventSource = new EventSource(url);
 
     eventSource.onmessage = (event) => {
       try {
