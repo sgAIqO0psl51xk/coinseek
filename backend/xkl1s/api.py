@@ -1,6 +1,6 @@
 import asyncio
 import datetime
-from typing import cast
+from typing import Any, Dict, cast
 from fastapi import FastAPI, HTTPException, Request
 from fastapi.responses import StreamingResponse
 from xkl1s.deepseek_driver import DeepseekDriver, LLMConfig
@@ -11,40 +11,32 @@ load_dotenv()
 
 app = FastAPI()
 
-active_requests = {}
+active_requests: Dict[str, Any] = {}
 active_requests_lock = asyncio.Lock()
 COOLDOWN_PERIOD = datetime.timedelta(seconds=60)
+
 
 @app.get("/analyze/{contract_address}/")
 @app.get("/analyze/{contract_address}/{ticker}")
 async def analyze(request: Request, contract_address: str, ticker: str = ""):
-    client_ip = request.client.host
+    client_ip: str = request.client.host if request.client else ""
     current_time = datetime.datetime.now()
 
     async with active_requests_lock:
         if client_ip in active_requests:
             entry = active_requests[client_ip]
-            
+
             if entry["active"]:
-                raise HTTPException(
-                    status_code=429,
-                    detail="Another request is already in progress"
-                )
-                
+                raise HTTPException(status_code=429, detail="Another request is already in progress")
+
             if entry["cooldown_until"] and current_time < entry["cooldown_until"]:
                 remaining = (entry["cooldown_until"] - current_time).total_seconds()
-                raise HTTPException(
-                    status_code=429,
-                    detail=f"Wait {int(remaining)} seconds before requesting again"
-                )
+                raise HTTPException(status_code=429, detail=f"Wait {int(remaining)} seconds before requesting again")
 
             # Update entry for new request
             entry["active"] = True
         else:
-            active_requests[client_ip] = {
-                "active": True,
-                "cooldown_until": datetime.datetime.now()
-            }
+            active_requests[client_ip] = {"active": True, "cooldown_until": datetime.datetime.now()}
 
     assert os.getenv("DEEPSEEK_API_KEY"), "APIkey for DEEPSEEK_API_KEY is not specified"
     llm_config = LLMConfig(
@@ -74,10 +66,7 @@ async def analyze(request: Request, contract_address: str, ticker: str = ""):
         finally:
             async with active_requests_lock:
                 if client_ip in active_requests:
-                    active_requests[client_ip] = {
-                        "active": False,
-                        "cooldown_until": datetime.datetime.now() + COOLDOWN_PERIOD
-                    }
+                    active_requests[client_ip] = {"active": False, "cooldown_until": datetime.datetime.now() + COOLDOWN_PERIOD}
             yield "data: [DONE]\n\n"
 
     return StreamingResponse(
