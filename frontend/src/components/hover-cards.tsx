@@ -1,5 +1,5 @@
 "use client";
-import { HoverEffect } from "../components/ui/card-hover-effect";
+import { HoverEffect } from "./ui/card-hover-effect";
 
 export function CardHoverEffectDemo() {
   return (
