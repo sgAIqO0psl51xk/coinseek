@@ -184,7 +184,7 @@ class ApifyTwitterAnalyzer:
         return "BOTH" if has_ca and has_ticker else "CA" if has_ca else "TICKER"
 
     async def analyze_tweets(self, num_tweets: int = 15) -> List[TweetData]:
-        run_input = {"query": self.contract_address, "max_posts": num_tweets * 2, "sort": "Latest", "tweetLanguage": "en"}
+        run_input = {"searchTerms": [self.contract_address, self.ticker], "maxItems": num_tweets * 2, "sort": "Latest", "tweetLanguage": "en"}
         api_key = await ApifyTwitterAnalyzer.get_next_api_key()
         client = ApifyClientAsync(api_key)
         run = await client.actor("apidojo/tweet-scraper").call(run_input=run_input)
