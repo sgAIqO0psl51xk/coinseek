@@ -26,7 +26,7 @@ class TrenchBotFetcher:
         try:
             async with aiohttp.ClientSession() as session:
                 async with session.get(
-                    f"{self.base_url}/api/v1/token/{self.token_address}",
+                    f"{self.base_url}/api/bundle/bundle_advanced/{self.token_address}",
                     ssl=self.ssl_context
                 ) as response:
                     if response.status == 200:
@@ -48,6 +48,14 @@ class TrenchBotFetcher:
         if hold_perc is None or total_per is None:
             return None
         return 0 if total_per == 0 else hold_perc / total_per
+    
+    async def get_ticker(self) -> str:
+        await self.fetch_task
+        return self.data.get("ticker", "")
+    
+    async def get_creator_analysis(self) -> Dict[str, Any]:
+        await self.fetch_task
+        return self.data.get("creator_analysis", {})
 
 
 async def main():

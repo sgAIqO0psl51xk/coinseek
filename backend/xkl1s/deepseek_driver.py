@@ -125,7 +125,10 @@ class DeepseekDriver:
         fetcher = TrenchBotFetcher(self.contract_address)
         percent_bundled = await fetcher.get_total_percent_bundled()
         percent_held = await fetcher.get_current_held_as_percent_of_total_bundle()
-        return {"percent_bundled": percent_bundled, "percent_held": percent_held, "raw_data": fetcher.data}
+        creator_analysis = json.dumps(await fetcher.get_creator_analysis())
+        if self.ticker == "":
+            self.ticker = await fetcher.get_ticker()
+        return {"percent_bundled": percent_bundled, "percent_held": percent_held, "raw_data": fetcher.data, "creator_analysis": creator_analysis}
 
     def analyze_gmgn(self) -> Dict[str, Any]:
         """Gather GMGN analysis data"""

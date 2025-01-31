@@ -9,9 +9,9 @@ load_dotenv()
 
 app = FastAPI()
 
-
+@app.get("/analyze/{contract_address}/")
 @app.get("/analyze/{contract_address}/{ticker}")
-async def analyze(contract_address: str, ticker: str):
+async def analyze(contract_address: str, ticker: str = ""):
     assert os.getenv("DEEPSEEK_API_KEY"), "APIkey for DEEPSEEK_API_KEY is not specified"
     llm_config = LLMConfig(
         api_key=cast(str, os.getenv("DEEPSEEK_API_KEY")),
