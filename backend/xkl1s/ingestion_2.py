@@ -180,7 +180,7 @@ class ApifyTwitterAnalyzer:
         has_ticker = self.ticker in text_lower
         return "BOTH" if has_ca and has_ticker else "CA" if has_ca else "TICKER"
 
-    async def analyze_tweets(self, num_tweets: int = 15) -> List[TweetData]:
+    async def analyze_tweets(self, num_tweets: int = 50) -> List[TweetData]:
         queries = [
             {"query": f'"{self.ticker}" lang:en', "max_posts": num_tweets, "sort": "recent"},
             {"query": f'"{self.contract_address}" lang:en', "max_posts": num_tweets, "sort": "recent"}
@@ -190,7 +190,7 @@ class ApifyTwitterAnalyzer:
         client = ApifyClientAsync(api_key)
         
         # Run both scrapers concurrently
-        tasks = [client.actor("danek/twitter-scraper-ppr").call(run_input=query, max_items=128) for query in queries]
+        tasks = [client.actor("danek/twitter-scraper-ppr").call(run_input=query, max_items=num_tweets//2) for query in queries]
         results = await asyncio.gather(*tasks)
 
         processed_tweets: List[TweetData] = []
