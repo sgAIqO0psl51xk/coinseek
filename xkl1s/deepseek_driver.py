@@ -278,16 +278,17 @@ class DeepseekDriver:
                 delta: ChoiceDelta = chunk.choices[0].delta
                 if delta.content:
                     piece = delta.content
-                    content += piece
-                    print(piece, end="", flush=True)
-                    yield {"type": "analysis", "content": piece}
+                    if piece:
+                        content += piece
+                        print(piece, end="", flush=True)
+                        yield {"type": "analysis", "content": piece}
 
-                # If using a custom field for reasoning
-                if hasattr(delta, "reasoning_content"):  # Only if API actually returns this
+                if hasattr(delta, "reasoning_content"):
                     piece = delta.reasoning_content
-                    reasoning_content += piece
-                    print(piece, end="", flush=True)
-                    yield {"type": "reasoning", "content": piece}
+                    if piece:
+                        reasoning_content += piece
+                        print(piece, end="", flush=True)
+                        yield {"type": "reasoning", "content": piece}
 
             print("\n\nFinal Analysis:")
             # Print the complete analysis content to the terminal

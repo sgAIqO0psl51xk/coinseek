@@ -3,643 +3,8 @@
     "contract_address": "7E448GypzBbahPkoUaATMBdYpeycnzyZ1g43myWogxAd",
     "ticker": "$xyz",
     "twitter_analysis": {
-      "analyzed_tweets": [
-        {
-          "content": "\ud83d\udca1 Analysis Report for $XYZ \n\ud83c\udf96 CA: 7E448GypzBbahPkoUaATMBdYpeycnzyZ1g43myWogxAd\n\n\ud83d\udcc8 Price Analysis:\nThe XYZ/SOL pair is currently priced at 0.000504289208899561 USD, with a 24-hour trading volume of 88,144,502.32. The price has decreased by 0.29% in the last hour and 0.95% over the past 24 hours, indicating a short-term bearish trend.\n\n\ud83d\udc8e Technical Analysis:\nThe RSI has been fluctuating between 0 and 100, indicating extreme volatility and potential overbought or oversold conditions. The MACD is consistently negative, suggesting a bearish trend, while the Stochastic Oscillator shows mixed signals, indicating potential short-term reversals.\n\n\ud83c\udf0f Social Media:\nNot enough data for social media analysis.\n\n\ud83d\udc8a Summary:\nThe XYZ/SOL pair is showing a short-term bearish trend with a decrease in price over the last hour and 24 hours. The technical indicators, including the negative MACD and mixed Stochastic Oscillator signals, suggest continued bearish pressure, making it a less favorable time to hold or buy.",
-          "user": {
-            "screen_name": "orion_agent",
-            "follower_count": 2947,
-            "notable_followers": [],
-            "ca_mention_count": 1,
-            "ticker_mention_count": 1
-          },
-          "search_match_type": "BOTH",
-          "replies": [],
-          "metrics": {
-            "reply_count": 0,
-            "retweet_count": 0,
-            "like_count": 1,
-            "quote_count": 0,
-            "has_large_parent": false,
-            "has_affiliated_parent": false
-          }
-        },
-        {
-          "content": "So since @jack dropped a mic should we do a CTO on $xyz just let me know i feel confident after the x i made with it and just want a vibe check\n\nspread the word Follow an RT if you are up for it.\n\nca \n\n7E448GypzBbahPkoUaATMBdYpeycnzyZ1g43myWogxAd",
-          "user": {
-            "screen_name": "aivecryp",
-            "follower_count": 129,
-            "notable_followers": [],
-            "ca_mention_count": 1,
-            "ticker_mention_count": 1
-          },
-          "search_match_type": "BOTH",
-          "replies": [
-            {
-              "content": "Simulated reply to 1885016930983027001",
-              "user": {
-                "screen_name": "aivecryp",
-                "follower_count": 129,
-                "notable_followers": [],
-                "ca_mention_count": 1,
-                "ticker_mention_count": 1
-              }
-            }
-          ],
-          "metrics": {
-            "reply_count": 3,
-            "retweet_count": 2,
-            "like_count": 17,
-            "quote_count": 0,
-            "has_large_parent": false,
-            "has_affiliated_parent": false
-          }
-        },
-        {
-          "content": "now just waiting for those big hearted KOLs bringing it back \ud83e\udd70 \n\n$xyz @jack\n\nca\n7E448GypzBbahPkoUaATMBdYpeycnzyZ1g43myWogxAd",
-          "user": {
-            "screen_name": "aivecryp",
-            "follower_count": 129,
-            "notable_followers": [],
-            "ca_mention_count": 1,
-            "ticker_mention_count": 1
-          },
-          "search_match_type": "BOTH",
-          "replies": [],
-          "metrics": {
-            "reply_count": 0,
-            "retweet_count": 1,
-            "like_count": 9,
-            "quote_count": 0,
-            "has_large_parent": false,
-            "has_affiliated_parent": false
-          }
-        },
-        {
-          "content": "$XYZ CTO let\u2019s send it to the moooon today \ud83d\ude80 let\u2019s show everyone how big our community is, green candles is what we ALL want to see. Rally everyone and let\u2019s collect our bags together \ud83d\udcb0\n\nCA - 7E448GypzBbahPkoUaATMBdYpeycnzyZ1g43myWogxAd",
-          "user": {
-            "screen_name": "sirhcblurp",
-            "follower_count": 75,
-            "notable_followers": [],
-            "ca_mention_count": 1,
-            "ticker_mention_count": 1
-          },
-          "search_match_type": "BOTH",
-          "replies": [
-            {
-              "content": "Simulated reply to 1885000299980403011",
-              "user": {
-                "screen_name": "sirhcblurp",
-                "follower_count": 75,
-                "notable_followers": [],
-                "ca_mention_count": 1,
-                "ticker_mention_count": 1
-              }
-            }
-          ],
-          "metrics": {
-            "reply_count": 6,
-            "retweet_count": 1,
-            "like_count": 9,
-            "quote_count": 0,
-            "has_large_parent": false,
-            "has_affiliated_parent": false
-          }
-        },
-        {
-          "content": "Think about it @jack invented X, he well knows posting a $XYZ ticker would amass a cult following from the crypto community. He hasn\u2019t denied the coin, and there\u2019s only one OG \n\nLet it fly \ud83d\ude80\n\n7E448GypzBbahPkoUaATMBdYpeycnzyZ1g43myWogxAd",
-          "user": {
-            "screen_name": "Ainichesite",
-            "follower_count": 57,
-            "notable_followers": [],
-            "ca_mention_count": 1,
-            "ticker_mention_count": 1
-          },
-          "search_match_type": "BOTH",
-          "replies": [
-            {
-              "content": "Simulated reply to 1884982970882097166",
-              "user": {
-                "screen_name": "Ainichesite",
-                "follower_count": 57,
-                "notable_followers": [],
-                "ca_mention_count": 1,
-                "ticker_mention_count": 1
-              }
-            }
-          ],
-          "metrics": {
-            "reply_count": 5,
-            "retweet_count": 7,
-            "like_count": 22,
-            "quote_count": 0,
-            "has_large_parent": false,
-            "has_affiliated_parent": false
-          }
-        },
-        {
-          "content": "@jack @pmarca Why don't you take a look at how crazy the torrents of tokens that people are issuing for you are?ca:7E448GypzBbahPkoUaATMBdYpeycnzyZ1g43myWogxAd",
-          "user": {
-            "screen_name": "2919991730Alan",
-            "follower_count": 110,
-            "notable_followers": [],
-            "ca_mention_count": 1,
-            "ticker_mention_count": 0
-          },
-          "search_match_type": "CA",
-          "replies": [
-            {
-              "content": "Simulated reply to 1884975148480286931",
-              "user": {
-                "screen_name": "2919991730Alan",
-                "follower_count": 110,
-                "notable_followers": [],
-                "ca_mention_count": 1,
-                "ticker_mention_count": 0
-              }
-            }
-          ],
-          "metrics": {
-            "reply_count": 1,
-            "retweet_count": 0,
-            "like_count": 1,
-            "quote_count": 0,
-            "has_large_parent": false,
-            "has_affiliated_parent": false
-          }
-        },
-        {
-          "content": "@kwantxbt Hello, brother, can you take a look at $xyz for me?7E448GypzBbahPkoUaATMBdYpeycnzyZ1g43myWogxAd",
-          "user": {
-            "screen_name": "weigao348769074",
-            "follower_count": 77,
-            "notable_followers": [],
-            "ca_mention_count": 1,
-            "ticker_mention_count": 1
-          },
-          "search_match_type": "BOTH",
-          "replies": [
-            {
-              "content": "Simulated reply to 1884967195207463276",
-              "user": {
-                "screen_name": "weigao348769074",
-                "follower_count": 77,
-                "notable_followers": [],
-                "ca_mention_count": 1,
-                "ticker_mention_count": 1
-              }
-            }
-          ],
-          "metrics": {
-            "reply_count": 1,
-            "retweet_count": 0,
-            "like_count": 0,
-            "quote_count": 0,
-            "has_large_parent": false,
-            "has_affiliated_parent": false
-          }
-        },
-        {
-          "content": "$XYZ\n7E448GypzBbahPkoUaATMBdYpeycnzyZ1g43myWogxAd\n\u25ab\ufe0f Momentum: 21 post/5 minutes\n\u25ab\ufe0f New Posts in past hour: 35\n\u25ab\ufe0f New Views in past hour: 7290 \n\u25ab\ufe0f Last Post: 1 second ago\n\u25ab\ufe0f Age: 19 hours ago\n\u25ab\ufe0f Market Cap: $2.1M",
-          "user": {
-            "screen_name": "hollyaibot",
-            "follower_count": 320,
-            "notable_followers": [],
-            "ca_mention_count": 1,
-            "ticker_mention_count": 1
-          },
-          "search_match_type": "BOTH",
-          "replies": [],
-          "metrics": {
-            "reply_count": 0,
-            "retweet_count": 0,
-            "like_count": 0,
-            "quote_count": 0,
-            "has_large_parent": false,
-            "has_affiliated_parent": false
-          }
-        },
-        {
-          "content": "$xyz alpha wallets aping.. might be something..ez 2x from here.\n\n7E448GypzBbahPkoUaATMBdYpeycnzyZ1g43myWogxAd",
-          "user": {
-            "screen_name": "SaddyXBear",
-            "follower_count": 245,
-            "notable_followers": [],
-            "ca_mention_count": 1,
-            "ticker_mention_count": 1
-          },
-          "search_match_type": "BOTH",
-          "replies": [
-            {
-              "content": "Simulated reply to 1884933423145370112",
-              "user": {
-                "screen_name": "SaddyXBear",
-                "follower_count": 245,
-                "notable_followers": [],
-                "ca_mention_count": 1,
-                "ticker_mention_count": 1
-              }
-            }
-          ],
-          "metrics": {
-            "reply_count": 1,
-            "retweet_count": 0,
-            "like_count": 1,
-            "quote_count": 0,
-            "has_large_parent": false,
-            "has_affiliated_parent": false
-          }
-        },
-        {
-          "content": "Spotted $XYZ at $14k and now it\u2019s trading at $3.2m, that\u2019s a staggering 220x+ growth, not a bad day at all\ud83d\ude01\ud83c\udf89\ud83d\udd25\n\nMy calls are neat\u2705\nmy cabals are eating\ud83d\ude01\n\nCA:\n7E448GypzBbahPkoUaATMBdYpeycnzyZ1g43myWogxAd https://t.co/x3fVC92Mni",
-          "user": {
-            "screen_name": "_tuureel98",
-            "follower_count": 187,
-            "notable_followers": [],
-            "ca_mention_count": 1,
-            "ticker_mention_count": 1
-          },
-          "search_match_type": "BOTH",
-          "replies": [
-            {
-              "content": "Simulated reply to 1884903287792562310",
-              "user": {
-                "screen_name": "_tuureel98",
-                "follower_count": 187,
-                "notable_followers": [],
-                "ca_mention_count": 1,
-                "ticker_mention_count": 1
-              }
-            }
-          ],
-          "metrics": {
-            "reply_count": 1,
-            "retweet_count": 0,
-            "like_count": 1,
-            "quote_count": 0,
-            "has_large_parent": false,
-            "has_affiliated_parent": false
-          }
-        },
-        {
-          "content": "do you think he'll be able to upgrade his ath or is this the end?\n\n$XYZ\n7E448GypzBbahPkoUaATMBdYpeycnzyZ1g43myWogxAd https://t.co/rWe3jZkA4o",
-          "user": {
-            "screen_name": "alasmeyyeaydn",
-            "follower_count": 19,
-            "notable_followers": [],
-            "ca_mention_count": 1,
-            "ticker_mention_count": 1
-          },
-          "search_match_type": "BOTH",
-          "replies": [
-            {
-              "content": "Simulated reply to 1884898102827532518",
-              "user": {
-                "screen_name": "alasmeyyeaydn",
-                "follower_count": 19,
-                "notable_followers": [],
-                "ca_mention_count": 1,
-                "ticker_mention_count": 1
-              }
-            }
-          ],
-          "metrics": {
-            "reply_count": 3,
-            "retweet_count": 0,
-            "like_count": 3,
-            "quote_count": 0,
-            "has_large_parent": false,
-            "has_affiliated_parent": false
-          }
-        },
-        {
-          "content": "$XYZ leverages its Twitter association to engage communities in rivaling top meme tokens. CA: 7E448GYPZBBAHPKOUAATMBDYPEYCNZYZ1G43MYWOGXAD\n\nBuy: https://t.co/0XcbRhk6va https://t.co/jxmbWbboU6",
-          "user": {
-            "screen_name": "pvpai_agent",
-            "follower_count": 1459,
-            "notable_followers": [],
-            "ca_mention_count": 1,
-            "ticker_mention_count": 1
-          },
-          "search_match_type": "BOTH",
-          "replies": [
-            {
-              "content": "Simulated reply to 1884893222708854820",
-              "user": {
-                "screen_name": "pvpai_agent",
-                "follower_count": 1459,
-                "notable_followers": [],
-                "ca_mention_count": 1,
-                "ticker_mention_count": 1
-              }
-            }
-          ],
-          "metrics": {
-            "reply_count": 1,
-            "retweet_count": 0,
-            "like_count": 4,
-            "quote_count": 0,
-            "has_large_parent": false,
-            "has_affiliated_parent": false
-          }
-        },
-        {
-          "content": "Picked up a bag of $XYZ at these levels... @Jack is soft shilling. OKX interacted with post. ATH was $25M. I think this might be something \n\n$3.5M current MCAP\n\n7E448GypzBbahPkoUaATMBdYpeycnzyZ1g43myWogxAd https://t.co/dyA7Z5PjiM",
-          "user": {
-            "screen_name": "HouseMaya5770",
-            "follower_count": 61,
-            "notable_followers": [],
-            "ca_mention_count": 1,
-            "ticker_mention_count": 1
-          },
-          "search_match_type": "BOTH",
-          "replies": [
-            {
-              "content": "Simulated reply to 1884888813832401324",
-              "user": {
-                "screen_name": "HouseMaya5770",
-                "follower_count": 61,
-                "notable_followers": [],
-                "ca_mention_count": 1,
-                "ticker_mention_count": 1
-              }
-            }
-          ],
-          "metrics": {
-            "reply_count": 2,
-            "retweet_count": 1,
-            "like_count": 6,
-            "quote_count": 0,
-            "has_large_parent": false,
-            "has_affiliated_parent": false
-          }
-        },
-        {
-          "content": "$XYZ\n7E448GypzBbahPkoUaATMBdYpeycnzyZ1g43myWogxAd\n\u25ab\ufe0f Momentum: 22 post/5 minutes\n\u25ab\ufe0f New Posts in past hour: 36\n\u25ab\ufe0f New Views in past hour: 16424 \n\u25ab\ufe0f Last Post: 1 minute ago\n\u25ab\ufe0f Age: 16 hours ago\n\u25ab\ufe0f Market Cap: $3.7M",
-          "user": {
-            "screen_name": "hollyaibot",
-            "follower_count": 320,
-            "notable_followers": [],
-            "ca_mention_count": 1,
-            "ticker_mention_count": 1
-          },
-          "search_match_type": "BOTH",
-          "replies": [
-            {
-              "content": "Simulated reply to 1884887850765746254",
-              "user": {
-                "screen_name": "hollyaibot",
-                "follower_count": 320,
-                "notable_followers": [],
-                "ca_mention_count": 1,
-                "ticker_mention_count": 1
-              }
-            }
-          ],
-          "metrics": {
-            "reply_count": 2,
-            "retweet_count": 0,
-            "like_count": 1,
-            "quote_count": 0,
-            "has_large_parent": false,
-            "has_affiliated_parent": false
-          }
-        },
-        {
-          "content": "chief, the safety score for 7e448gypzbbahpkouaatmbdypeycnzyz1g43mywogxad is 60/100. red flags include its newness at just 16 hours old and a low liquidity to market cap ratio of 12.14%, indicating potential liquidity issues. however, the green flags are strong, with a low top 10 holder concentration of 10.43%, reducing the risk of centralization.",
-          "user": {
-            "screen_name": "gemxbt_agent",
-            "follower_count": 35756,
-            "notable_followers": [],
-            "ca_mention_count": 1,
-            "ticker_mention_count": 0
-          },
-          "search_match_type": "CA",
-          "replies": [
-            {
-              "content": "Simulated reply to 1884885628736930069",
-              "user": {
-                "screen_name": "gemxbt_agent",
-                "follower_count": 35756,
-                "notable_followers": [],
-                "ca_mention_count": 1,
-                "ticker_mention_count": 0
-              }
-            }
-          ],
-          "metrics": {
-            "reply_count": 2,
-            "retweet_count": 0,
-            "like_count": 2,
-            "quote_count": 0,
-            "has_large_parent": false,
-            "has_affiliated_parent": false
-          }
-        },
-        {
-          "content": "$XYZ\n7E448GypzBbahPkoUaATMBdYpeycnzyZ1g43myWogxAd\n\u25ab\ufe0f Momentum: 6 post/5 minutes\n\u25ab\ufe0f New Posts in past hour: 20\n\u25ab\ufe0f New Views in past hour: 1797 \n\u25ab\ufe0f Last Post: 1 second ago\n\u25ab\ufe0f Age: 15 hours ago\n\u25ab\ufe0f Market Cap: $3.7M",
-          "user": {
-            "screen_name": "hollyaibot",
-            "follower_count": 320,
-            "notable_followers": [],
-            "ca_mention_count": 1,
-            "ticker_mention_count": 1
-          },
-          "search_match_type": "BOTH",
-          "replies": [
-            {
-              "content": "Simulated reply to 1884881238521000034",
-              "user": {
-                "screen_name": "hollyaibot",
-                "follower_count": 320,
-                "notable_followers": [],
-                "ca_mention_count": 1,
-                "ticker_mention_count": 1
-              }
-            }
-          ],
-          "metrics": {
-            "reply_count": 1,
-            "retweet_count": 0,
-            "like_count": 1,
-            "quote_count": 0,
-            "has_large_parent": false,
-            "has_affiliated_parent": false
-          }
-        },
-        {
-          "content": "$XYZ\n7E448GypzBbahPkoUaATMBdYpeycnzyZ1g43myWogxAd\n\u25ab\ufe0f Momentum: 24 post/5 minutes\n\u25ab\ufe0f New Posts in past hour: 38\n\u25ab\ufe0f New Views in past hour: 4533 \n\u25ab\ufe0f Last Post: 1 second ago\n\u25ab\ufe0f Age: 15 hours ago\n\u25ab\ufe0f Market Cap: $4M",
-          "user": {
-            "screen_name": "hollyaibot",
-            "follower_count": 320,
-            "notable_followers": [],
-            "ca_mention_count": 1,
-            "ticker_mention_count": 1
-          },
-          "search_match_type": "BOTH",
-          "replies": [
-            {
-              "content": "Simulated reply to 1884876202839519339",
-              "user": {
-                "screen_name": "hollyaibot",
-                "follower_count": 320,
-                "notable_followers": [],
-                "ca_mention_count": 1,
-                "ticker_mention_count": 1
-              }
-            }
-          ],
-          "metrics": {
-            "reply_count": 2,
-            "retweet_count": 0,
-            "like_count": 1,
-            "quote_count": 0,
-            "has_large_parent": false,
-            "has_affiliated_parent": false
-          }
-        },
-        {
-          "content": "Yo, frens! Here's what's hot from 06:30 to 06:45 UTC:\n\n1\ufe0f\u20e3 $XYZ (7E448GypzBbahPkoUaATMBdYpeycnzyZ1g43myWogxAd) Market cap at $3.8M  \n- Price up 23% in 1h; strong momentum  \n- New pair launched hours ago; liquidity at $468K\u2014solid for its age  \n- 311 unique buyers, early interest rising  \n- No description; stealthy vibe  \n<> Score: 131  \n----------------------------  \n2\ufe0f\u20e3 $Venmo (J6AdhkdgF4C2c3C5dZc6B6ibhkXrmwXSjBtc2sJVpump) Market cap at $2.6M  \n- Price up 23.7% in 1h; gaining traction  \n- Liquidity at $256K  \n- 150 unique buyers; moderate engagement  \n- No description; limited info\u2014stay cautious  \n<> Score: 31  \n----------------------------  \n3\ufe0f\u20e3 $vol (EawiFZ9DK3ueBC6UPGvqF4wYkkvk2NYwcCHRfRAJpump) Market cap at $774K  \n- Price down 39% in 1h; significant drop  \n- Liquidity at $153K  \n- 356 unique buyers; possible sell-off  \n- Project to track fitness on-chain  \n<> Score: 64  \n----------------------------  \n4\ufe0f\u20e3 $.fun (3ot2hj73j8mzSaeWrxocaXvyTwy2PDjuSxu3UQ8Kpump) Market cap at $120K  \n- Price up 86% in 1h; potential pump  \n- Liquidity at $46K\u2014low liquidity, watch for volatility  \n- 506 unique buyers; interest spiking  \n- Aims to define a new era of the internet and economy  \n<> Score: 56",
-          "user": {
-            "screen_name": "B4g1T",
-            "follower_count": 564,
-            "notable_followers": [],
-            "ca_mention_count": 1,
-            "ticker_mention_count": 1
-          },
-          "search_match_type": "BOTH",
-          "replies": [
-            {
-              "content": "Simulated reply to 1884875283800395825",
-              "user": {
-                "screen_name": "B4g1T",
-                "follower_count": 564,
-                "notable_followers": [],
-                "ca_mention_count": 1,
-                "ticker_mention_count": 1
-              }
-            }
-          ],
-          "metrics": {
-            "reply_count": 1,
-            "retweet_count": 1,
-            "like_count": 3,
-            "quote_count": 0,
-            "has_large_parent": false,
-            "has_affiliated_parent": false
-          }
-        },
-        {
-          "content": "\ud83d\udd25XYZ(Solana) \nTrading signal: 3m ago, Smart money buyers +1(Total 3)\n\n\ud83c\udf10Mainnet: Solana\n\u26f3\ufe0fContract address: 7E448GypzBbahPkoUaATMBdYpeycnzyZ1g43myWogxAd\n\n\u2523 Price: $0.003540\n\u2523 Market cap: $3.54M\n\u2523 24h change: +672.02% \n\u2523 24h volume: $54.37M\n\u2523 No. of holding addresses: 20930",
-          "user": {
-            "screen_name": "fugatecorey22",
-            "follower_count": 70,
-            "notable_followers": [],
-            "ca_mention_count": 1,
-            "ticker_mention_count": 0
-          },
-          "search_match_type": "CA",
-          "replies": [],
-          "metrics": {
-            "reply_count": 0,
-            "retweet_count": 0,
-            "like_count": 0,
-            "quote_count": 0,
-            "has_large_parent": false,
-            "has_affiliated_parent": false
-          }
-        },
-        {
-          "content": "Such an interesting moment in crypto, where\n1. Trump gets elected\n2. He deregulates crypto\n3. Then crowns Solana as the US chain\n\nAnd within weeks you got $trump, $jellyjelly, $xyz and now maybe even $JRE \n\nIt's not just deregulation anymore, its like the whole promise of the \"ownership economy\" is taking life.",
-          "user": {
-            "screen_name": "AlbertoFromPye",
-            "follower_count": 48,
-            "notable_followers": [],
-            "ca_mention_count": 0,
-            "ticker_mention_count": 1
-          },
-          "search_match_type": "TICKER",
-          "replies": [],
-          "metrics": {
-            "reply_count": 0,
-            "retweet_count": 0,
-            "like_count": 0,
-            "quote_count": 0,
-            "has_large_parent": true,
-            "has_affiliated_parent": false
-          },
-          "parent_tweet": {
-            "user": {
-              "screen_name": "blocknewsdotcom",
-              "follower_count": 48805,
-              "notable_followers": [],
-              "ca_mention_count": 0,
-              "ticker_mention_count": 0
-            },
-            "is_large_account": true,
-            "is_affiliated": false
-          }
-        }
-      ],
-      "important_tweets": {
-        "1885000299980403011": {
-          "content": "$XYZ CTO let\u2019s send it to the moooon today \ud83d\ude80 let\u2019s show everyone how big our community is, green candles is what we ALL want to see. Rally everyone and let\u2019s collect our bags together \ud83d\udcb0\n\nCA - 7E448GypzBbahPkoUaATMBdYpeycnzyZ1g43myWogxAd",
-          "user": {
-            "screen_name": "sirhcblurp",
-            "follower_count": 75,
-            "notable_followers": [],
-            "ca_mention_count": 1,
-            "ticker_mention_count": 1
-          },
-          "search_match_type": "BOTH",
-          "metrics": {
-            "reply_count": 6,
-            "retweet_count": 1,
-            "like_count": 9,
-            "quote_count": 0,
-            "has_large_parent": false,
-            "has_affiliated_parent": false
-          }
-        },
-        "1884885628736930069": {
-          "content": "chief, the safety score for 7e448gypzbbahpkouaatmbdypeycnzyz1g43mywogxad is 60/100. red flags include its newness at just 16 hours old and a low liquidity to market cap ratio of 12.14%, indicating potential liquidity issues. however, the green flags are strong, with a low top 10 holder concentration of 10.43%, reducing the risk of centralization.",
-          "user": {
-            "screen_name": "gemxbt_agent",
-            "follower_count": 35756,
-            "notable_followers": [],
-            "ca_mention_count": 1,
-            "ticker_mention_count": 0
-          },
-          "search_match_type": "CA",
-          "metrics": {
-            "reply_count": 2,
-            "retweet_count": 0,
-            "like_count": 2,
-            "quote_count": 0,
-            "has_large_parent": false,
-            "has_affiliated_parent": false
-          }
-        },
-        "1885125360594948118": {
-          "content": "Such an interesting moment in crypto, where\n1. Trump gets elected\n2. He deregulates crypto\n3. Then crowns Solana as the US chain\n\nAnd within weeks you got $trump, $jellyjelly, $xyz and now maybe even $JRE \n\nIt's not just deregulation anymore, its like the whole promise of the \"ownership economy\" is taking life.",
-          "user": {
-            "screen_name": "AlbertoFromPye",
-            "follower_count": 48,
-            "notable_followers": [],
-            "ca_mention_count": 0,
-            "ticker_mention_count": 1
-          },
-          "search_match_type": "TICKER",
-          "metrics": {
-            "reply_count": 0,
-            "retweet_count": 0,
-            "like_count": 0,
-            "quote_count": 0,
-            "has_large_parent": true,
-            "has_affiliated_parent": false
-          }
-        }
-      }
+      "analyzed_tweets": [],
+      "important_tweets": {}
     },
     "trenchbot_analysis": {
       "percent_bundled": 83.75751768487511,
@@ -1334,13 +699,13 @@
           "address": "EVGVwvzF9ivY7xd7PSUYL1tjB9hUG4MPHZRQv54bed5Y",
           "current_holdings": 0,
           "history": {
-            "average_market_cap": 1542.0,
+            "average_market_cap": 1014.0,
             "high_risk": false,
             "previous_coins": [
               {
                 "created_at": 1738169956922,
                 "is_rug": false,
-                "market_cap": 1542,
+                "market_cap": 1014,
                 "mint": "7E448GypzBbahPkoUaATMBdYpeycnzyZ1g43myWogxAd",
                 "symbol": "XYZ"
               }
@@ -1359,8 +724,8 @@
             null
           ]
         },
-        "distributed_amount": 58432090693833,
-        "distributed_percentage": 5.8432090693833,
+        "distributed_amount": 59850724814302,
+        "distributed_percentage": 5.9850724814302,
         "distributed_wallets": 999,
         "ticker": "XYZ",
         "total_bundles": 13,
@@ -1372,8 +737,8 @@
       }
     },
     "gmgn_analysis": {
-      "top_holder_avg_holding_time": 199232.55468578736,
-      "top_holder_avg_score": 0.185,
+      "top_holder_avg_holding_time": 1192755.27214334,
+      "top_holder_avg_score": 0.14833333333333332,
       "top_wallets": [
         {
           "address": "5Q544fKrFoe6tsEbD7S8EmxGTJYAKtTVhAW5Q5pge4j1",
@@ -1389,7 +754,15 @@
           "win_rate": 0,
           "holding_time": null,
           "pct_change_30d": -0.20697047222632922,
-          "avg_trades_per_day": 5.7
+          "avg_trades_per_day": 5.766666666666667
+        },
+        {
+          "address": "9UDkZu5UkfDUJFWgivBzFYMSK5jMFdvxxujjs9v4NAoZ",
+          "score": 0.08333333333333333,
+          "win_rate": 0,
+          "holding_time": null,
+          "pct_change_30d": -0.3314454397390486,
+          "avg_trades_per_day": 38.2
         },
         {
           "address": "FZEYvZyT1HenRGcWqYaGtPfMsGNJwk3F4iGzr8gMzLTR",
@@ -1403,17 +776,17 @@
           "address": "J54MVaWjYcgJ4TeqjskpdyKuFnmJajxm1jvkSPwHeinX",
           "score": 0.16666666666666666,
           "win_rate": 0.4,
-          "holding_time": 289072.7,
-          "pct_change_30d": -0.03314466256573423,
-          "avg_trades_per_day": 78.83333333333333
+          "holding_time": 285930.5517241379,
+          "pct_change_30d": -0.0343860349182587,
+          "avg_trades_per_day": 79.7
         },
         {
-          "address": "9UDkZu5UkfDUJFWgivBzFYMSK5jMFdvxxujjs9v4NAoZ",
+          "address": "HXxU27xCtdFpAhzk9LmgKVd6pwjCXc1bQiVnTnYns7xn",
           "score": 0.08333333333333333,
           "win_rate": 0,
           "holding_time": null,
-          "pct_change_30d": -0.33224423844760403,
-          "avg_trades_per_day": 38.0
+          "pct_change_30d": -0.01870653902259953,
+          "avg_trades_per_day": 20.9
         },
         {
           "address": "HpJ6bsNhW4ftV1E1KtSwvr9yQ55ZbHaxMVvgney6gpoY",
@@ -1424,36 +797,28 @@
           "avg_trades_per_day": 11.5
         },
         {
-          "address": "HXxU27xCtdFpAhzk9LmgKVd6pwjCXc1bQiVnTnYns7xn",
-          "score": 0.08333333333333333,
+          "address": "CCH9vdhrvS9Rr5YcHmnRNdEGbE7Ecz57JnLc2AYhQNJS",
+          "score": 0.13333333333333333,
           "win_rate": 0,
           "holding_time": null,
-          "pct_change_30d": -0.011037681726766755,
-          "avg_trades_per_day": 20.566666666666666
+          "pct_change_30d": -0.15077855212166916,
+          "avg_trades_per_day": 8.566666666666666
         },
         {
-          "address": "AE63pthLkcvPrWPodM2u1NNkxXQdQDxwWGN8DrHcdvig",
-          "score": 0.5833333333333334,
-          "win_rate": 0.7192982456140351,
-          "holding_time": 14309.182608695652,
-          "pct_change_30d": 0.010247734502494641,
-          "avg_trades_per_day": 214.36666666666667
+          "address": "5d2GwkSe9VtWMZEQzuqGcjmLvfRvpWMcRUvQQ2WE6Rje",
+          "score": 0.16666666666666666,
+          "win_rate": 0.07142857142857142,
+          "holding_time": 2853490.5,
+          "pct_change_30d": -0.716422056573412,
+          "avg_trades_per_day": 1.8
         },
         {
           "address": "8c6GGRFdexDcTRMWUkVMH1rpwRzLzdeE7QuqqHoUQP1f",
           "score": 0.13333333333333333,
           "win_rate": 0,
           "holding_time": null,
-          "pct_change_30d": -0.04869695363120453,
-          "avg_trades_per_day": 9.333333333333334
-        },
-        {
-          "address": "7vWxJ1cFZYKdtnwgcfworJSA281wQN6jcDh6wwabWqi2",
-          "score": 0.08333333333333333,
-          "win_rate": 0.15384615384615385,
-          "holding_time": 54703.57142857143,
-          "pct_change_30d": -0.0444146572888932,
-          "avg_trades_per_day": 22.333333333333332
+          "pct_change_30d": -0.04688860713682224,
+          "avg_trades_per_day": 9.466666666666667
         }
       ]
     }
@@ -1465,10 +830,9 @@
     },
     {
       "role": "user",
-      "content": "You will ingests data and scores based off the following parameters given to you.\n\n            Now, I explain each of the datapoins you will receive and how you're supposed to interpret and analyze them.\n\n            firstly, we will scrape twitter for a multitude of different signals.\n\n            twitter\n            top tweets that mention the ticker or CA\n            tweet content\n            tweeters / users\n            # of followers\n            if any notable accounts follow them\n            tweet metrics (replies)\n            if tweet is a reply, is it a reply to a large account\n            if tweet is a reply, does the parent mention the CA / Ticker often [specific # of mentions] (affiliated acc)\n            does the parent have any notable followers\n            cache tweets we find multiple replies to deem them important\n\n            the tweet content should primarily be used for determining the sentiment/narrative of a token.\n            higher numbers in metrics like replies, number of followers, notable people follow, should all be seen as positive\n            signals in a token and this should be mentioned to the user.\n            moreover, a big point that should be analyzed is if you notice that many replies mentioning the ticker/contract\n            address are in response to a tweet by a user with a very large number of followers. in this case,\n            it's possible that the parent tweet content is either related or has something to do with the narrative/reason behind the token.\n            lastly, if we find that an account that has mentioned a ticker many times and has tweets generally explaining\n            functionality or launches, you should try to determine if that's the account for the token and the details to the user.\n\n            generally, these datapoints should be used to determine: credibility of those pushing the token, possible narratives around it,\n            and important accounts or tweets that may provide more context.\n\n            telegram\n            searches telegram for the token telegram if not already added - example: token name is Bane, searches telegram for suffixes like\n            baneportal, onsol, entry, prefixes like entry\n\n            if a telegram portal exists for the coin, that's usually a positive signal, though it's also not too much of an issue if it doesn't\n\n            Solscan\n            looks at solscan for first block transaction, sees first block tx for how much been picked up from dev/sniper\n\n            this should give information on how much of supply was bundled by the launcher of the coin which\n            basically means how much they were able to purchase at a low price.\n            we will also look at the amount the currently have left. obviously, the more they have left,\n            the higher risk the coin would be as there's the eminent risk of the chart beind dumped\n\n            holder ratings\n            information regarding the average hold times of the top holders\n\n            what this essentially means is that the top X amount of holders will be examined to see the\n            average amount of time they hold coins. for reference, 20-30minutes could be considered 5/10, 30-40 as 6/10 etc.\n            obviously this isn't a clear heuristic that you need to follow but just to give you a rough idea of how we should treat the times.\n            just generally take a look and provide the average as well as a brief analysis\n\n            Analyze this token like your bags depend on it:\n\n            Contract: 7E448GypzBbahPkoUaATMBdYpeycnzyZ1g43myWogxAd\n            Ticker: $xyz\n\n            Twitter Analysis:\n            {\n  \"analyzed_tweets\": [\n    {\n      \"content\": \"\\ud83d\\udca1 Analysis Report for $XYZ \\n\\ud83c\\udf96 CA: 7E448GypzBbahPkoUaATMBdYpeycnzyZ1g43myWogxAd\\n\\n\\ud83d\\udcc8 Price Analysis:\\nThe XYZ/SOL pair is currently priced at 0.000504289208899561 USD, with a 24-hour trading volume of 88,144,502.32. The price has decreased by 0.29% in the last hour and 0.95% over the past 24 hours, indicating a short-term bearish trend.\\n\\n\\ud83d\\udc8e Technical Analysis:\\nThe RSI has been fluctuating between 0 and 100, indicating extreme volatility and potential overbought or oversold conditions. The MACD is consistently negative, suggesting a bearish trend, while the Stochastic Oscillator shows mixed signals, indicating potential short-term reversals.\\n\\n\\ud83c\\udf0f Social Media:\\nNot enough data for social media analysis.\\n\\n\\ud83d\\udc8a Summary:\\nThe XYZ/SOL pair is showing a short-term bearish trend with a decrease in price over the last hour and 24 hours. The technical indicators, including the negative MACD and mixed Stochastic Oscillator signals, suggest continued bearish pressure, making it a less favorable time to hold or buy.\",\n      \"user\": {\n        \"screen_name\": \"orion_agent\",\n        \"follower_count\": 2947,\n        \"notable_followers\": [],\n        \"ca_mention_count\": 1,\n        \"ticker_mention_count\": 1\n      },\n      \"search_match_type\": \"BOTH\",\n      \"replies\": [],\n      \"metrics\": {\n        \"reply_count\": 0,\n        \"retweet_count\": 0,\n        \"like_count\": 1,\n        \"quote_count\": 0,\n        \"has_large_parent\": false,\n        \"has_affiliated_parent\": false\n      }\n    },\n    {\n      \"content\": \"So since @jack dropped a mic should we do a CTO on $xyz just let me know i feel confident after the x i made with it and just want a vibe check\\n\\nspread the word Follow an RT if you are up for it.\\n\\nca \\n\\n7E448GypzBbahPkoUaATMBdYpeycnzyZ1g43myWogxAd\",\n      \"user\": {\n        \"screen_name\": \"aivecryp\",\n        \"follower_count\": 129,\n        \"notable_followers\": [],\n        \"ca_mention_count\": 1,\n        \"ticker_mention_count\": 1\n      },\n      \"search_match_type\": \"BOTH\",\n      \"replies\": [\n        {\n          \"content\": \"Simulated reply to 1885016930983027001\",\n          \"user\": {\n            \"screen_name\": \"aivecryp\",\n            \"follower_count\": 129,\n            \"notable_followers\": [],\n            \"ca_mention_count\": 1,\n            \"ticker_mention_count\": 1\n          }\n        }\n      ],\n      \"metrics\": {\n        \"reply_count\": 3,\n        \"retweet_count\": 2,\n        \"like_count\": 17,\n        \"quote_count\": 0,\n        \"has_large_parent\": false,\n        \"has_affiliated_parent\": false\n      }\n    },\n    {\n      \"content\": \"now just waiting for those big hearted KOLs bringing it back \\ud83e\\udd70 \\n\\n$xyz @jack\\n\\nca\\n7E448GypzBbahPkoUaATMBdYpeycnzyZ1g43myWogxAd\",\n      \"user\": {\n        \"screen_name\": \"aivecryp\",\n        \"follower_count\": 129,\n        \"notable_followers\": [],\n        \"ca_mention_count\": 1,\n        \"ticker_mention_count\": 1\n      },\n      \"search_match_type\": \"BOTH\",\n      \"replies\": [],\n      \"metrics\": {\n        \"reply_count\": 0,\n        \"retweet_count\": 1,\n        \"like_count\": 9,\n        \"quote_count\": 0,\n        \"has_large_parent\": false,\n        \"has_affiliated_parent\": false\n      }\n    },\n    {\n      \"content\": \"$XYZ CTO let\\u2019s send it to the moooon today \\ud83d\\ude80 let\\u2019s show everyone how big our community is, green candles is what we ALL want to see. Rally everyone and let\\u2019s collect our bags together \\ud83d\\udcb0\\n\\nCA - 7E448GypzBbahPkoUaATMBdYpeycnzyZ1g43myWogxAd\",\n      \"user\": {\n        \"screen_name\": \"sirhcblurp\",\n        \"follower_count\": 75,\n        \"notable_followers\": [],\n        \"ca_mention_count\": 1,\n        \"ticker_mention_count\": 1\n      },\n      \"search_match_type\": \"BOTH\",\n      \"replies\": [\n        {\n          \"content\": \"Simulated reply to 1885000299980403011\",\n          \"user\": {\n            \"screen_name\": \"sirhcblurp\",\n            \"follower_count\": 75,\n            \"notable_followers\": [],\n            \"ca_mention_count\": 1,\n            \"ticker_mention_count\": 1\n          }\n        }\n      ],\n      \"metrics\": {\n        \"reply_count\": 6,\n        \"retweet_count\": 1,\n        \"like_count\": 9,\n        \"quote_count\": 0,\n        \"has_large_parent\": false,\n        \"has_affiliated_parent\": false\n      }\n    },\n    {\n      \"content\": \"Think about it @jack invented X, he well knows posting a $XYZ ticker would amass a cult following from the crypto community. He hasn\\u2019t denied the coin, and there\\u2019s only one OG \\n\\nLet it fly \\ud83d\\ude80\\n\\n7E448GypzBbahPkoUaATMBdYpeycnzyZ1g43myWogxAd\",\n      \"user\": {\n        \"screen_name\": \"Ainichesite\",\n        \"follower_count\": 57,\n        \"notable_followers\": [],\n        \"ca_mention_count\": 1,\n        \"ticker_mention_count\": 1\n      },\n      \"search_match_type\": \"BOTH\",\n      \"replies\": [\n        {\n          \"content\": \"Simulated reply to 1884982970882097166\",\n          \"user\": {\n            \"screen_name\": \"Ainichesite\",\n            \"follower_count\": 57,\n            \"notable_followers\": [],\n            \"ca_mention_count\": 1,\n            \"ticker_mention_count\": 1\n          }\n        }\n      ],\n      \"metrics\": {\n        \"reply_count\": 5,\n        \"retweet_count\": 7,\n        \"like_count\": 22,\n        \"quote_count\": 0,\n        \"has_large_parent\": false,\n        \"has_affiliated_parent\": false\n      }\n    },\n    {\n      \"content\": \"@jack @pmarca Why don't you take a look at how crazy the torrents of tokens that people are issuing for you are?ca:7E448GypzBbahPkoUaATMBdYpeycnzyZ1g43myWogxAd\",\n      \"user\": {\n        \"screen_name\": \"2919991730Alan\",\n        \"follower_count\": 110,\n        \"notable_followers\": [],\n        \"ca_mention_count\": 1,\n        \"ticker_mention_count\": 0\n      },\n      \"search_match_type\": \"CA\",\n      \"replies\": [\n        {\n          \"content\": \"Simulated reply to 1884975148480286931\",\n          \"user\": {\n            \"screen_name\": \"2919991730Alan\",\n            \"follower_count\": 110,\n            \"notable_followers\": [],\n            \"ca_mention_count\": 1,\n            \"ticker_mention_count\": 0\n          }\n        }\n      ],\n      \"metrics\": {\n        \"reply_count\": 1,\n        \"retweet_count\": 0,\n        \"like_count\": 1,\n        \"quote_count\": 0,\n        \"has_large_parent\": false,\n        \"has_affiliated_parent\": false\n      }\n    },\n    {\n      \"content\": \"@kwantxbt Hello, brother, can you take a look at $xyz for me?7E448GypzBbahPkoUaATMBdYpeycnzyZ1g43myWogxAd\",\n      \"user\": {\n        \"screen_name\": \"weigao348769074\",\n        \"follower_count\": 77,\n        \"notable_followers\": [],\n        \"ca_mention_count\": 1,\n        \"ticker_mention_count\": 1\n      },\n      \"search_match_type\": \"BOTH\",\n      \"replies\": [\n        {\n          \"content\": \"Simulated reply to 1884967195207463276\",\n          \"user\": {\n            \"screen_name\": \"weigao348769074\",\n            \"follower_count\": 77,\n            \"notable_followers\": [],\n            \"ca_mention_count\": 1,\n            \"ticker_mention_count\": 1\n          }\n        }\n      ],\n      \"metrics\": {\n        \"reply_count\": 1,\n        \"retweet_count\": 0,\n        \"like_count\": 0,\n        \"quote_count\": 0,\n        \"has_large_parent\": false,\n        \"has_affiliated_parent\": false\n      }\n    },\n    {\n      \"content\": \"$XYZ\\n7E448GypzBbahPkoUaATMBdYpeycnzyZ1g43myWogxAd\\n\\u25ab\\ufe0f Momentum: 21 post/5 minutes\\n\\u25ab\\ufe0f New Posts in past hour: 35\\n\\u25ab\\ufe0f New Views in past hour: 7290 \\n\\u25ab\\ufe0f Last Post: 1 second ago\\n\\u25ab\\ufe0f Age: 19 hours ago\\n\\u25ab\\ufe0f Market Cap: $2.1M\",\n      \"user\": {\n        \"screen_name\": \"hollyaibot\",\n        \"follower_count\": 320,\n        \"notable_followers\": [],\n        \"ca_mention_count\": 1,\n        \"ticker_mention_count\": 1\n      },\n      \"search_match_type\": \"BOTH\",\n      \"replies\": [],\n      \"metrics\": {\n        \"reply_count\": 0,\n        \"retweet_count\": 0,\n        \"like_count\": 0,\n        \"quote_count\": 0,\n        \"has_large_parent\": false,\n        \"has_affiliated_parent\": false\n      }\n    },\n    {\n      \"content\": \"$xyz alpha wallets aping.. might be something..ez 2x from here.\\n\\n7E448GypzBbahPkoUaATMBdYpeycnzyZ1g43myWogxAd\",\n      \"user\": {\n        \"screen_name\": \"SaddyXBear\",\n        \"follower_count\": 245,\n        \"notable_followers\": [],\n        \"ca_mention_count\": 1,\n        \"ticker_mention_count\": 1\n      },\n      \"search_match_type\": \"BOTH\",\n      \"replies\": [\n        {\n          \"content\": \"Simulated reply to 1884933423145370112\",\n          \"user\": {\n            \"screen_name\": \"SaddyXBear\",\n            \"follower_count\": 245,\n            \"notable_followers\": [],\n            \"ca_mention_count\": 1,\n            \"ticker_mention_count\": 1\n          }\n        }\n      ],\n      \"metrics\": {\n        \"reply_count\": 1,\n        \"retweet_count\": 0,\n        \"like_count\": 1,\n        \"quote_count\": 0,\n        \"has_large_parent\": false,\n        \"has_affiliated_parent\": false\n      }\n    },\n    {\n      \"content\": \"Spotted $XYZ at $14k and now it\\u2019s trading at $3.2m, that\\u2019s a staggering 220x+ growth, not a bad day at all\\ud83d\\ude01\\ud83c\\udf89\\ud83d\\udd25\\n\\nMy calls are neat\\u2705\\nmy cabals are eating\\ud83d\\ude01\\n\\nCA:\\n7E448GypzBbahPkoUaATMBdYpeycnzyZ1g43myWogxAd https://t.co/x3fVC92Mni\",\n      \"user\": {\n        \"screen_name\": \"_tuureel98\",\n        \"follower_count\": 187,\n        \"notable_followers\": [],\n        \"ca_mention_count\": 1,\n        \"ticker_mention_count\": 1\n      },\n      \"search_match_type\": \"BOTH\",\n      \"replies\": [\n        {\n          \"content\": \"Simulated reply to 1884903287792562310\",\n          \"user\": {\n            \"screen_name\": \"_tuureel98\",\n            \"follower_count\": 187,\n            \"notable_followers\": [],\n            \"ca_mention_count\": 1,\n            \"ticker_mention_count\": 1\n          }\n        }\n      ],\n      \"metrics\": {\n        \"reply_count\": 1,\n        \"retweet_count\": 0,\n        \"like_count\": 1,\n        \"quote_count\": 0,\n        \"has_large_parent\": false,\n        \"has_affiliated_parent\": false\n      }\n    },\n    {\n      \"content\": \"do you think he'll be able to upgrade his ath or is this the end?\\n\\n$XYZ\\n7E448GypzBbahPkoUaATMBdYpeycnzyZ1g43myWogxAd https://t.co/rWe3jZkA4o\",\n      \"user\": {\n        \"screen_name\": \"alasmeyyeaydn\",\n        \"follower_count\": 19,\n        \"notable_followers\": [],\n        \"ca_mention_count\": 1,\n        \"ticker_mention_count\": 1\n      },\n      \"search_match_type\": \"BOTH\",\n      \"replies\": [\n        {\n          \"content\": \"Simulated reply to 1884898102827532518\",\n          \"user\": {\n            \"screen_name\": \"alasmeyyeaydn\",\n            \"follower_count\": 19,\n            \"notable_followers\": [],\n            \"ca_mention_count\": 1,\n            \"ticker_mention_count\": 1\n          }\n        }\n      ],\n      \"metrics\": {\n        \"reply_count\": 3,\n        \"retweet_count\": 0,\n        \"like_count\": 3,\n        \"quote_count\": 0,\n        \"has_large_parent\": false,\n        \"has_affiliated_parent\": false\n      }\n    },\n    {\n      \"content\": \"$XYZ leverages its Twitter association to engage communities in rivaling top meme tokens. CA: 7E448GYPZBBAHPKOUAATMBDYPEYCNZYZ1G43MYWOGXAD\\n\\nBuy: https://t.co/0XcbRhk6va https://t.co/jxmbWbboU6\",\n      \"user\": {\n        \"screen_name\": \"pvpai_agent\",\n        \"follower_count\": 1459,\n        \"notable_followers\": [],\n        \"ca_mention_count\": 1,\n        \"ticker_mention_count\": 1\n      },\n      \"search_match_type\": \"BOTH\",\n      \"replies\": [\n        {\n          \"content\": \"Simulated reply to 1884893222708854820\",\n          \"user\": {\n            \"screen_name\": \"pvpai_agent\",\n            \"follower_count\": 1459,\n            \"notable_followers\": [],\n            \"ca_mention_count\": 1,\n            \"ticker_mention_count\": 1\n          }\n        }\n      ],\n      \"metrics\": {\n        \"reply_count\": 1,\n        \"retweet_count\": 0,\n        \"like_count\": 4,\n        \"quote_count\": 0,\n        \"has_large_parent\": false,\n        \"has_affiliated_parent\": false\n      }\n    },\n    {\n      \"content\": \"Picked up a bag of $XYZ at these levels... @Jack is soft shilling. OKX interacted with post. ATH was $25M. I think this might be something \\n\\n$3.5M current MCAP\\n\\n7E448GypzBbahPkoUaATMBdYpeycnzyZ1g43myWogxAd https://t.co/dyA7Z5PjiM\",\n      \"user\": {\n        \"screen_name\": \"HouseMaya5770\",\n        \"follower_count\": 61,\n        \"notable_followers\": [],\n        \"ca_mention_count\": 1,\n        \"ticker_mention_count\": 1\n      },\n      \"search_match_type\": \"BOTH\",\n      \"replies\": [\n        {\n          \"content\": \"Simulated reply to 1884888813832401324\",\n          \"user\": {\n            \"screen_name\": \"HouseMaya5770\",\n            \"follower_count\": 61,\n            \"notable_followers\": [],\n            \"ca_mention_count\": 1,\n            \"ticker_mention_count\": 1\n          }\n        }\n      ],\n      \"metrics\": {\n        \"reply_count\": 2,\n        \"retweet_count\": 1,\n        \"like_count\": 6,\n        \"quote_count\": 0,\n        \"has_large_parent\": false,\n        \"has_affiliated_parent\": false\n      }\n    },\n    {\n      \"content\": \"$XYZ\\n7E448GypzBbahPkoUaATMBdYpeycnzyZ1g43myWogxAd\\n\\u25ab\\ufe0f Momentum: 22 post/5 minutes\\n\\u25ab\\ufe0f New Posts in past hour: 36\\n\\u25ab\\ufe0f New Views in past hour: 16424 \\n\\u25ab\\ufe0f Last Post: 1 minute ago\\n\\u25ab\\ufe0f Age: 16 hours ago\\n\\u25ab\\ufe0f Market Cap: $3.7M\",\n      \"user\": {\n        \"screen_name\": \"hollyaibot\",\n        \"follower_count\": 320,\n        \"notable_followers\": [],\n        \"ca_mention_count\": 1,\n        \"ticker_mention_count\": 1\n      },\n      \"search_match_type\": \"BOTH\",\n      \"replies\": [\n        {\n          \"content\": \"Simulated reply to 1884887850765746254\",\n          \"user\": {\n            \"screen_name\": \"hollyaibot\",\n            \"follower_count\": 320,\n            \"notable_followers\": [],\n            \"ca_mention_count\": 1,\n            \"ticker_mention_count\": 1\n          }\n        }\n      ],\n      \"metrics\": {\n        \"reply_count\": 2,\n        \"retweet_count\": 0,\n        \"like_count\": 1,\n        \"quote_count\": 0,\n        \"has_large_parent\": false,\n        \"has_affiliated_parent\": false\n      }\n    },\n    {\n      \"content\": \"chief, the safety score for 7e448gypzbbahpkouaatmbdypeycnzyz1g43mywogxad is 60/100. red flags include its newness at just 16 hours old and a low liquidity to market cap ratio of 12.14%, indicating potential liquidity issues. however, the green flags are strong, with a low top 10 holder concentration of 10.43%, reducing the risk of centralization.\",\n      \"user\": {\n        \"screen_name\": \"gemxbt_agent\",\n        \"follower_count\": 35756,\n        \"notable_followers\": [],\n        \"ca_mention_count\": 1,\n        \"ticker_mention_count\": 0\n      },\n      \"search_match_type\": \"CA\",\n      \"replies\": [\n        {\n          \"content\": \"Simulated reply to 1884885628736930069\",\n          \"user\": {\n            \"screen_name\": \"gemxbt_agent\",\n            \"follower_count\": 35756,\n            \"notable_followers\": [],\n            \"ca_mention_count\": 1,\n            \"ticker_mention_count\": 0\n          }\n        }\n      ],\n      \"metrics\": {\n        \"reply_count\": 2,\n        \"retweet_count\": 0,\n        \"like_count\": 2,\n        \"quote_count\": 0,\n        \"has_large_parent\": false,\n        \"has_affiliated_parent\": false\n      }\n    },\n    {\n      \"content\": \"$XYZ\\n7E448GypzBbahPkoUaATMBdYpeycnzyZ1g43myWogxAd\\n\\u25ab\\ufe0f Momentum: 6 post/5 minutes\\n\\u25ab\\ufe0f New Posts in past hour: 20\\n\\u25ab\\ufe0f New Views in past hour: 1797 \\n\\u25ab\\ufe0f Last Post: 1 second ago\\n\\u25ab\\ufe0f Age: 15 hours ago\\n\\u25ab\\ufe0f Market Cap: $3.7M\",\n      \"user\": {\n        \"screen_name\": \"hollyaibot\",\n        \"follower_count\": 320,\n        \"notable_followers\": [],\n        \"ca_mention_count\": 1,\n        \"ticker_mention_count\": 1\n      },\n      \"search_match_type\": \"BOTH\",\n      \"replies\": [\n        {\n          \"content\": \"Simulated reply to 1884881238521000034\",\n          \"user\": {\n            \"screen_name\": \"hollyaibot\",\n            \"follower_count\": 320,\n            \"notable_followers\": [],\n            \"ca_mention_count\": 1,\n            \"ticker_mention_count\": 1\n          }\n        }\n      ],\n      \"metrics\": {\n        \"reply_count\": 1,\n        \"retweet_count\": 0,\n        \"like_count\": 1,\n        \"quote_count\": 0,\n        \"has_large_parent\": false,\n        \"has_affiliated_parent\": false\n      }\n    },\n    {\n      \"content\": \"$XYZ\\n7E448GypzBbahPkoUaATMBdYpeycnzyZ1g43myWogxAd\\n\\u25ab\\ufe0f Momentum: 24 post/5 minutes\\n\\u25ab\\ufe0f New Posts in past hour: 38\\n\\u25ab\\ufe0f New Views in past hour: 4533 \\n\\u25ab\\ufe0f Last Post: 1 second ago\\n\\u25ab\\ufe0f Age: 15 hours ago\\n\\u25ab\\ufe0f Market Cap: $4M\",\n      \"user\": {\n        \"screen_name\": \"hollyaibot\",\n        \"follower_count\": 320,\n        \"notable_followers\": [],\n        \"ca_mention_count\": 1,\n        \"ticker_mention_count\": 1\n      },\n      \"search_match_type\": \"BOTH\",\n      \"replies\": [\n        {\n          \"content\": \"Simulated reply to 1884876202839519339\",\n          \"user\": {\n            \"screen_name\": \"hollyaibot\",\n            \"follower_count\": 320,\n            \"notable_followers\": [],\n            \"ca_mention_count\": 1,\n            \"ticker_mention_count\": 1\n          }\n        }\n      ],\n      \"metrics\": {\n        \"reply_count\": 2,\n        \"retweet_count\": 0,\n        \"like_count\": 1,\n        \"quote_count\": 0,\n        \"has_large_parent\": false,\n        \"has_affiliated_parent\": false\n      }\n    },\n    {\n      \"content\": \"Yo, frens! Here's what's hot from 06:30 to 06:45 UTC:\\n\\n1\\ufe0f\\u20e3 $XYZ (7E448GypzBbahPkoUaATMBdYpeycnzyZ1g43myWogxAd) Market cap at $3.8M  \\n- Price up 23% in 1h; strong momentum  \\n- New pair launched hours ago; liquidity at $468K\\u2014solid for its age  \\n- 311 unique buyers, early interest rising  \\n- No description; stealthy vibe  \\n<> Score: 131  \\n----------------------------  \\n2\\ufe0f\\u20e3 $Venmo (J6AdhkdgF4C2c3C5dZc6B6ibhkXrmwXSjBtc2sJVpump) Market cap at $2.6M  \\n- Price up 23.7% in 1h; gaining traction  \\n- Liquidity at $256K  \\n- 150 unique buyers; moderate engagement  \\n- No description; limited info\\u2014stay cautious  \\n<> Score: 31  \\n----------------------------  \\n3\\ufe0f\\u20e3 $vol (EawiFZ9DK3ueBC6UPGvqF4wYkkvk2NYwcCHRfRAJpump) Market cap at $774K  \\n- Price down 39% in 1h; significant drop  \\n- Liquidity at $153K  \\n- 356 unique buyers; possible sell-off  \\n- Project to track fitness on-chain  \\n<> Score: 64  \\n----------------------------  \\n4\\ufe0f\\u20e3 $.fun (3ot2hj73j8mzSaeWrxocaXvyTwy2PDjuSxu3UQ8Kpump) Market cap at $120K  \\n- Price up 86% in 1h; potential pump  \\n- Liquidity at $46K\\u2014low liquidity, watch for volatility  \\n- 506 unique buyers; interest spiking  \\n- Aims to define a new era of the internet and economy  \\n<> Score: 56\",\n      \"user\": {\n        \"screen_name\": \"B4g1T\",\n        \"follower_count\": 564,\n        \"notable_followers\": [],\n        \"ca_mention_count\": 1,\n        \"ticker_mention_count\": 1\n      },\n      \"search_match_type\": \"BOTH\",\n      \"replies\": [\n        {\n          \"content\": \"Simulated reply to 1884875283800395825\",\n          \"user\": {\n            \"screen_name\": \"B4g1T\",\n            \"follower_count\": 564,\n            \"notable_followers\": [],\n            \"ca_mention_count\": 1,\n            \"ticker_mention_count\": 1\n          }\n        }\n      ],\n      \"metrics\": {\n        \"reply_count\": 1,\n        \"retweet_count\": 1,\n        \"like_count\": 3,\n        \"quote_count\": 0,\n        \"has_large_parent\": false,\n        \"has_affiliated_parent\": false\n      }\n    },\n    {\n      \"content\": \"\\ud83d\\udd25XYZ(Solana) \\nTrading signal: 3m ago, Smart money buyers +1(Total 3)\\n\\n\\ud83c\\udf10Mainnet: Solana\\n\\u26f3\\ufe0fContract address: 7E448GypzBbahPkoUaATMBdYpeycnzyZ1g43myWogxAd\\n\\n\\u2523 Price: $0.003540\\n\\u2523 Market cap: $3.54M\\n\\u2523 24h change: +672.02% \\n\\u2523 24h volume: $54.37M\\n\\u2523 No. of holding addresses: 20930\",\n      \"user\": {\n        \"screen_name\": \"fugatecorey22\",\n        \"follower_count\": 70,\n        \"notable_followers\": [],\n        \"ca_mention_count\": 1,\n        \"ticker_mention_count\": 0\n      },\n      \"search_match_type\": \"CA\",\n      \"replies\": [],\n      \"metrics\": {\n        \"reply_count\": 0,\n        \"retweet_count\": 0,\n        \"like_count\": 0,\n        \"quote_count\": 0,\n        \"has_large_parent\": false,\n        \"has_affiliated_parent\": false\n      }\n    },\n    {\n      \"content\": \"Such an interesting moment in crypto, where\\n1. Trump gets elected\\n2. He deregulates crypto\\n3. Then crowns Solana as the US chain\\n\\nAnd within weeks you got $trump, $jellyjelly, $xyz and now maybe even $JRE \\n\\nIt's not just deregulation anymore, its like the whole promise of the \\\"ownership economy\\\" is taking life.\",\n      \"user\": {\n        \"screen_name\": \"AlbertoFromPye\",\n        \"follower_count\": 48,\n        \"notable_followers\": [],\n        \"ca_mention_count\": 0,\n        \"ticker_mention_count\": 1\n      },\n      \"search_match_type\": \"TICKER\",\n      \"replies\": [],\n      \"metrics\": {\n        \"reply_count\": 0,\n        \"retweet_count\": 0,\n        \"like_count\": 0,\n        \"quote_count\": 0,\n        \"has_large_parent\": true,\n        \"has_affiliated_parent\": false\n      },\n      \"parent_tweet\": {\n        \"user\": {\n          \"screen_name\": \"blocknewsdotcom\",\n          \"follower_count\": 48805,\n          \"notable_followers\": [],\n          \"ca_mention_count\": 0,\n          \"ticker_mention_count\": 0\n        },\n        \"is_large_account\": true,\n        \"is_affiliated\": false\n      }\n    }\n  ],\n  \"important_tweets\": {\n    \"1885000299980403011\": {\n      \"content\": \"$XYZ CTO let\\u2019s send it to the moooon today \\ud83d\\ude80 let\\u2019s show everyone how big our community is, green candles is what we ALL want to see. Rally everyone and let\\u2019s collect our bags together \\ud83d\\udcb0\\n\\nCA - 7E448GypzBbahPkoUaATMBdYpeycnzyZ1g43myWogxAd\",\n      \"user\": {\n        \"screen_name\": \"sirhcblurp\",\n        \"follower_count\": 75,\n        \"notable_followers\": [],\n        \"ca_mention_count\": 1,\n        \"ticker_mention_count\": 1\n      },\n      \"search_match_type\": \"BOTH\",\n      \"metrics\": {\n        \"reply_count\": 6,\n        \"retweet_count\": 1,\n        \"like_count\": 9,\n        \"quote_count\": 0,\n        \"has_large_parent\": false,\n        \"has_affiliated_parent\": false\n      }\n    },\n    \"1884885628736930069\": {\n      \"content\": \"chief, the safety score for 7e448gypzbbahpkouaatmbdypeycnzyz1g43mywogxad is 60/100. red flags include its newness at just 16 hours old and a low liquidity to market cap ratio of 12.14%, indicating potential liquidity issues. however, the green flags are strong, with a low top 10 holder concentration of 10.43%, reducing the risk of centralization.\",\n      \"user\": {\n        \"screen_name\": \"gemxbt_agent\",\n        \"follower_count\": 35756,\n        \"notable_followers\": [],\n        \"ca_mention_count\": 1,\n        \"ticker_mention_count\": 0\n      },\n      \"search_match_type\": \"CA\",\n      \"metrics\": {\n        \"reply_count\": 2,\n        \"retweet_count\": 0,\n        \"like_count\": 2,\n        \"quote_count\": 0,\n        \"has_large_parent\": false,\n        \"has_affiliated_parent\": false\n      }\n    },\n    \"1885125360594948118\": {\n      \"content\": \"Such an interesting moment in crypto, where\\n1. Trump gets elected\\n2. He deregulates crypto\\n3. Then crowns Solana as the US chain\\n\\nAnd within weeks you got $trump, $jellyjelly, $xyz and now maybe even $JRE \\n\\nIt's not just deregulation anymore, its like the whole promise of the \\\"ownership economy\\\" is taking life.\",\n      \"user\": {\n        \"screen_name\": \"AlbertoFromPye\",\n        \"follower_count\": 48,\n        \"notable_followers\": [],\n        \"ca_mention_count\": 0,\n        \"ticker_mention_count\": 1\n      },\n      \"search_match_type\": \"TICKER\",\n      \"metrics\": {\n        \"reply_count\": 0,\n        \"retweet_count\": 0,\n        \"like_count\": 0,\n        \"quote_count\": 0,\n        \"has_large_parent\": true,\n        \"has_affiliated_parent\": false\n      }\n    }\n  }\n}\n\n            TrenchBot Analysis:\n            {\n  \"percent_bundled\": 83.75751768487511,\n  \"percent_held\": 0.0,\n  \"raw_data\": {\n    \"bonded\": true,\n    \"bundles\": {\n      \"317171332\": {\n        \"bundle_analysis\": {\n          \"category_breakdown\": {\n            \"new_wallet\": 0,\n            \"regular\": 1,\n            \"sniper\": 3\n          },\n          \"copytrading_groups\": {\n            \"7tQfpMCM8bPWgfLGaQ2G3RQ5gAgQneqHbtgAn4FdN2m1\": \"group_0\",\n            \"8PLVmQGVmuj9mtsRA1KCiLPQL2xzBMFy8ujRPJeLEkgF\": \"group_0\",\n            \"DdofLJ4SCBdHN3BzEwmxLRjDTScgJ9Pwyvp5PoSSpKC3\": \"group_0\"\n          },\n          \"is_likely_bundle\": false,\n          \"primary_category\": \"regular\"\n        },\n        \"holding_amount\": 0,\n        \"holding_percentage\": 0.0,\n        \"token_percentage\": 16.971877084791302,\n        \"total_sol\": 9.582909221000001,\n        \"total_tokens\": 169718770847913,\n        \"unique_wallets\": 4,\n        \"wallet_categories\": {\n          \"5VkscnLqjzKAVDdNQytbeTLdrRCz2xuwGCbGEBx4w9p4\": \"regular\",\n          \"7tQfpMCM8bPWgfLGaQ2G3RQ5gAgQneqHbtgAn4FdN2m1\": \"sniper\",\n          \"8PLVmQGVmuj9mtsRA1KCiLPQL2xzBMFy8ujRPJeLEkgF\": \"sniper\",\n          \"DdofLJ4SCBdHN3BzEwmxLRjDTScgJ9Pwyvp5PoSSpKC3\": \"sniper\"\n        },\n        \"wallet_info\": {\n          \"5VkscnLqjzKAVDdNQytbeTLdrRCz2xuwGCbGEBx4w9p4\": {\n            \"sol\": 5.0,\n            \"sol_percentage\": 52.176222112623094,\n            \"token_percentage\": 52.51101088091749,\n            \"tokens\": 89121042226907\n          },\n          \"7tQfpMCM8bPWgfLGaQ2G3RQ5gAgQneqHbtgAn4FdN2m1\": {\n            \"sol\": 1.960396039,\n            \"sol_percentage\": 20.457211831914105,\n            \"token_percentage\": 24.348767611846725,\n            \"tokens\": 41324429107441\n          },\n          \"8PLVmQGVmuj9mtsRA1KCiLPQL2xzBMFy8ujRPJeLEkgF\": {\n            \"sol\": 0.3964,\n            \"sol_percentage\": 4.136530889088759,\n            \"token_percentage\": 3.333079473356651,\n            \"tokens\": 5656861513565\n          },\n          \"DdofLJ4SCBdHN3BzEwmxLRjDTScgJ9Pwyvp5PoSSpKC3\": {\n            \"sol\": 2.226113182,\n            \"sol_percentage\": 23.230035166374034,\n            \"token_percentage\": 19.807142033879146,\n            \"tokens\": 33616438000000\n          }\n        }\n      },\n      \"317171335\": {\n        \"bundle_analysis\": {\n          \"category_breakdown\": {\n            \"new_wallet\": 0,\n            \"regular\": 0,\n            \"sniper\": 3\n          },\n          \"copytrading_groups\": {},\n          \"is_likely_bundle\": false,\n          \"primary_category\": \"sniper\"\n        },\n        \"holding_amount\": 0,\n        \"holding_percentage\": 0.0,\n        \"token_percentage\": 1.8633497061787,\n        \"total_sol\": 1.2258813499999999,\n        \"total_tokens\": 18633497061787,\n        \"unique_wallets\": 3,\n        \"wallet_categories\": {\n          \"696969Y6orZEjp4gZtwcCZS7TNVuhMVE6G5mFvdJ4mYq\": \"sniper\",\n          \"Hvqzpsoe8XPEw2Xp4JCCXNTNVTX19pkw5aGFeqxxXhas\": \"sniper\",\n          \"nya666pQkP3PzWxi7JngU3rRMHuc7zbLK8c8wxQ4qpT\": \"sniper\"\n        },\n        \"wallet_info\": {\n          \"696969Y6orZEjp4gZtwcCZS7TNVuhMVE6G5mFvdJ4mYq\": {\n            \"sol\": 0.743435496,\n            \"sol_percentage\": 60.64497971194358,\n            \"token_percentage\": 60.007449886079876,\n            \"tokens\": 11181486411376\n          },\n          \"Hvqzpsoe8XPEw2Xp4JCCXNTNVTX19pkw5aGFeqxxXhas\": {\n            \"sol\": 0.219616288,\n            \"sol_percentage\": 17.9149709717013,\n            \"token_percentage\": 18.100420305347374,\n            \"tokens\": 3372741285768\n          },\n          \"nya666pQkP3PzWxi7JngU3rRMHuc7zbLK8c8wxQ4qpT\": {\n            \"sol\": 0.262829566,\n            \"sol_percentage\": 21.440049316355132,\n            \"token_percentage\": 21.89212980857275,\n            \"tokens\": 4079269364643\n          }\n        }\n      },\n      \"317171336\": {\n        \"bundle_analysis\": {\n          \"category_breakdown\": {\n            \"new_wallet\": 0,\n            \"regular\": 4,\n            \"sniper\": 1\n          },\n          \"copytrading_groups\": {\n            \"6suZeJJ77Wt4M5XPHrUmhcNk67kxRhBf18rgsuXVRaTG\": \"group_0\",\n            \"AEqMvMdgVKeuakhBBuUrBKNDgm5bEzfjtZFncjwbyzDG\": \"group_0\",\n            \"AkonYr2j3bAEYysT3G3cX7k6h4tKce6faAj4pJPfD7Q7\": \"group_0\",\n            \"Ax5r3aepC6QEh9DzuVjFtzCwCtfzUq9JXjjvTNLiYDRu\": \"group_0\"\n          },\n          \"is_likely_bundle\": false,\n          \"primary_category\": \"regular\"\n        },\n        \"holding_amount\": 0,\n        \"holding_percentage\": 0.0,\n        \"token_percentage\": 16.5450206633867,\n        \"total_sol\": 14.702970295,\n        \"total_tokens\": 165450206633867,\n        \"unique_wallets\": 5,\n        \"wallet_categories\": {\n          \"2Fyqokdqbfes79vDFM699yTT1WjY8YBQ1Ms7QjqmRfQa\": \"sniper\",\n          \"6suZeJJ77Wt4M5XPHrUmhcNk67kxRhBf18rgsuXVRaTG\": \"regular\",\n          \"AEqMvMdgVKeuakhBBuUrBKNDgm5bEzfjtZFncjwbyzDG\": \"regular\",\n          \"AkonYr2j3bAEYysT3G3cX7k6h4tKce6faAj4pJPfD7Q7\": \"regular\",\n          \"Ax5r3aepC6QEh9DzuVjFtzCwCtfzUq9JXjjvTNLiYDRu\": \"regular\"\n        },\n        \"wallet_info\": {\n          \"2Fyqokdqbfes79vDFM699yTT1WjY8YBQ1Ms7QjqmRfQa\": {\n            \"sol\": 2.940594059,\n            \"sol_percentage\": 20.0,\n            \"token_percentage\": 24.745127192042183,\n            \"tokens\": 40940864071047\n          },\n          \"6suZeJJ77Wt4M5XPHrUmhcNk67kxRhBf18rgsuXVRaTG\": {\n            \"sol\": 2.940594059,\n            \"sol_percentage\": 20.0,\n            \"token_percentage\": 17.66544441058815,\n            \"tokens\": 29227514280109\n          },\n          \"AEqMvMdgVKeuakhBBuUrBKNDgm5bEzfjtZFncjwbyzDG\": {\n            \"sol\": 2.940594059,\n            \"sol_percentage\": 20.0,\n            \"token_percentage\": 19.64372406889171,\n            \"tokens\": 32500582062568\n          },\n          \"AkonYr2j3bAEYysT3G3cX7k6h4tKce6faAj4pJPfD7Q7\": {\n            \"sol\": 2.940594059,\n            \"sol_percentage\": 20.0,\n            \"token_percentage\": 21.974023299698956,\n            \"tokens\": 36356066955126\n          },\n          \"Ax5r3aepC6QEh9DzuVjFtzCwCtfzUq9JXjjvTNLiYDRu\": {\n            \"sol\": 2.940594059,\n            \"sol_percentage\": 20.0,\n            \"token_percentage\": 15.971681028779006,\n            \"tokens\": 26425179265017\n          }\n        }\n      },\n      \"317171337\": {\n        \"bundle_analysis\": {\n          \"category_breakdown\": {\n            \"new_wallet\": 0,\n            \"regular\": 1,\n            \"sniper\": 4\n          },\n          \"copytrading_groups\": {\n            \"7KiNrHFUk2GRif6sQJiTrTDMikxo4jNxCotvqq1fTCdJ\": \"group_2\",\n            \"BA25YP9PMQ22eLYcsA3zTKJ5jwxnEikmv67c9n55T4dd\": \"group_0\",\n            \"CU35ZDB4JptaBVQWiq1gZsR8kso6dz1bQj8uR3xGn2kK\": \"group_2\",\n            \"FgfzLpCJhHYZVji6Sw7omJDEdTq5C12FrV72HzDtwvb5\": \"group_0\"\n          },\n          \"is_likely_bundle\": false,\n          \"primary_category\": \"sniper\"\n        },\n        \"holding_amount\": 0,\n        \"holding_percentage\": 0.0,\n        \"token_percentage\": 11.9683544448497,\n        \"total_sol\": 18.121914886,\n        \"total_tokens\": 119683544448497,\n        \"unique_wallets\": 5,\n        \"wallet_categories\": {\n          \"7KiNrHFUk2GRif6sQJiTrTDMikxo4jNxCotvqq1fTCdJ\": \"sniper\",\n          \"BA25YP9PMQ22eLYcsA3zTKJ5jwxnEikmv67c9n55T4dd\": \"regular\",\n          \"BoBo4vtoR9mnCBjcbxNiEkwC24oUv3XyqbHi95cPkgzU\": \"sniper\",\n          \"CU35ZDB4JptaBVQWiq1gZsR8kso6dz1bQj8uR3xGn2kK\": \"sniper\",\n          \"FgfzLpCJhHYZVji6Sw7omJDEdTq5C12FrV72HzDtwvb5\": \"sniper\"\n        },\n        \"wallet_info\": {\n          \"7KiNrHFUk2GRif6sQJiTrTDMikxo4jNxCotvqq1fTCdJ\": {\n            \"sol\": 1.0,\n            \"sol_percentage\": 5.518180646420237,\n            \"token_percentage\": 5.9763140565434885,\n            \"tokens\": 7152664490245\n          },\n          \"BA25YP9PMQ22eLYcsA3zTKJ5jwxnEikmv67c9n55T4dd\": {\n            \"sol\": 2.973,\n            \"sol_percentage\": 16.405551061807365,\n            \"token_percentage\": 14.61815046362099,\n            \"tokens\": 17495520607676\n          },\n          \"BoBo4vtoR9mnCBjcbxNiEkwC24oUv3XyqbHi95cPkgzU\": {\n            \"sol\": 3.999915086,\n            \"sol_percentage\": 22.07225401488954,\n            \"token_percentage\": 17.94158722473452,\n            \"tokens\": 21473127520881\n          },\n          \"CU35ZDB4JptaBVQWiq1gZsR8kso6dz1bQj8uR3xGn2kK\": {\n            \"sol\": 4.900990197,\n            \"sol_percentage\": 27.044549253380705,\n            \"token_percentage\": 26.905474538963148,\n            \"tokens\": 32201425578919\n          },\n          \"FgfzLpCJhHYZVji6Sw7omJDEdTq5C12FrV72HzDtwvb5\": {\n            \"sol\": 5.248009603,\n            \"sol_percentage\": 28.95946502350215,\n            \"token_percentage\": 34.558473716137854,\n            \"tokens\": 41360806250776\n          }\n        }\n      },\n      \"317171338\": {\n        \"bundle_analysis\": {\n          \"category_breakdown\": {\n            \"new_wallet\": 1,\n            \"regular\": 2,\n            \"sniper\": 0\n          },\n          \"copytrading_groups\": {},\n          \"is_likely_bundle\": false,\n          \"primary_category\": \"new_wallet\"\n        },\n        \"holding_amount\": 0,\n        \"holding_percentage\": 0.0,\n        \"token_percentage\": 0.5567648386102,\n        \"total_sol\": 1.1073081310000001,\n        \"total_tokens\": 5567648386102,\n        \"unique_wallets\": 3,\n        \"wallet_categories\": {\n          \"7Q5Crnq21EPqU1cbYLad8umVCXgZfxfHTQrwd68ze5Qb\": \"new_wallet\",\n          \"Fdxy5QwhsEkEYCQB5eazYMWSzDaQy3FC6HbdK8LW1g6g\": \"regular\",\n          \"Fp3buGZrQpbGD2wqtaAzPWqHTHtjUkoE2ChQvPL1Vm6q\": \"regular\"\n        },\n        \"wallet_info\": {\n          \"7Q5Crnq21EPqU1cbYLad8umVCXgZfxfHTQrwd68ze5Qb\": {\n            \"sol\": 0.649656823,\n            \"sol_percentage\": 58.669922563767386,\n            \"token_percentage\": 59.005088852513154,\n            \"tokens\": 3285195877215\n          },\n          \"Fdxy5QwhsEkEYCQB5eazYMWSzDaQy3FC6HbdK8LW1g6g\": {\n            \"sol\": 0.115183015,\n            \"sol_percentage\": 10.40207434365891,\n            \"token_percentage\": 10.361763019735188,\n            \"tokens\": 576906531540\n          },\n          \"Fp3buGZrQpbGD2wqtaAzPWqHTHtjUkoE2ChQvPL1Vm6q\": {\n            \"sol\": 0.342468293,\n            \"sol_percentage\": 30.928003092573693,\n            \"token_percentage\": 30.633148127751653,\n            \"tokens\": 1705545977347\n          }\n        }\n      },\n      \"317171340\": {\n        \"bundle_analysis\": {\n          \"category_breakdown\": {\n            \"new_wallet\": 1,\n            \"regular\": 1,\n            \"sniper\": 1\n          },\n          \"copytrading_groups\": {},\n          \"is_likely_bundle\": false,\n          \"primary_category\": \"sniper\"\n        },\n        \"holding_amount\": 0,\n        \"holding_percentage\": 0.0,\n        \"token_percentage\": 6.9458182940155,\n        \"total_sol\": 8.671842035,\n        \"total_tokens\": 69458182940155,\n        \"unique_wallets\": 3,\n        \"wallet_categories\": {\n          \"8CZjFG1EV3FduGV918QWUh7fevUoZSTffVY8bK6M3wbu\": \"sniper\",\n          \"9PSYK9RCiSuXarCPz2gGK9reFWSZqhfDhoUcAHVw53H8\": \"new_wallet\",\n          \"CwhYTCaXCy1CEbmzUgoWdy9jbEK2MJHL11iHySXVyRSX\": \"regular\"\n        },\n        \"wallet_info\": {\n          \"8CZjFG1EV3FduGV918QWUh7fevUoZSTffVY8bK6M3wbu\": {\n            \"sol\": 6.982779416,\n            \"sol_percentage\": 80.52244710889732,\n            \"token_percentage\": 78.5359552861048,\n            \"tokens\": 54549647496421\n          },\n          \"9PSYK9RCiSuXarCPz2gGK9reFWSZqhfDhoUcAHVw53H8\": {\n            \"sol\": 0.105062618,\n            \"sol_percentage\": 1.211537497753786,\n            \"token_percentage\": 1.058269768049247,\n            \"tokens\": 735054951492\n          },\n          \"CwhYTCaXCy1CEbmzUgoWdy9jbEK2MJHL11iHySXVyRSX\": {\n            \"sol\": 1.584000001,\n            \"sol_percentage\": 18.266015393348894,\n            \"token_percentage\": 20.40577494584596,\n            \"tokens\": 14173480492242\n          }\n        }\n      },\n      \"317171343\": {\n        \"bundle_analysis\": {\n          \"category_breakdown\": {\n            \"new_wallet\": 0,\n            \"regular\": 2,\n            \"sniper\": 1\n          },\n          \"copytrading_groups\": {},\n          \"is_likely_bundle\": false,\n          \"primary_category\": \"regular\"\n        },\n        \"holding_amount\": 0,\n        \"holding_percentage\": 0.0,\n        \"token_percentage\": 6.3150979873504,\n        \"total_sol\": 10.324793813,\n        \"total_tokens\": 63150979873504,\n        \"unique_wallets\": 3,\n        \"wallet_categories\": {\n          \"4p9VRBpktcnxERSMytjSKaRdxYxngBS9MyEjihYFYLE1\": \"sniper\",\n          \"8ez46NCNdyp9y1hvdtTP9S1mriNE6MDdeTux3NcHh6hC\": \"regular\",\n          \"EXQtriyTG6PnFLGHQkviPX9oLAPRPPMSjomX86Bn4uMd\": \"regular\"\n        },\n        \"wallet_info\": {\n          \"4p9VRBpktcnxERSMytjSKaRdxYxngBS9MyEjihYFYLE1\": {\n            \"sol\": 2.141997343,\n            \"sol_percentage\": 20.746151272318876,\n            \"token_percentage\": 18.505058865924422,\n            \"tokens\": 11686126000000\n          },\n          \"8ez46NCNdyp9y1hvdtTP9S1mriNE6MDdeTux3NcHh6hC\": {\n            \"sol\": 5.663366336,\n            \"sol_percentage\": 54.85210105473707,\n            \"token_percentage\": 58.34368915773347,\n            \"tokens\": 36844611397460\n          },\n          \"EXQtriyTG6PnFLGHQkviPX9oLAPRPPMSjomX86Bn4uMd\": {\n            \"sol\": 2.519430134,\n            \"sol_percentage\": 24.40174767294406,\n            \"token_percentage\": 23.151251976342106,\n            \"tokens\": 14620242476044\n          }\n        }\n      },\n      \"317171344\": {\n        \"bundle_analysis\": {\n          \"category_breakdown\": {\n            \"new_wallet\": 1,\n            \"regular\": 1,\n            \"sniper\": 0\n          },\n          \"copytrading_groups\": {},\n          \"is_likely_bundle\": false,\n          \"primary_category\": \"regular\"\n        },\n        \"holding_amount\": 0,\n        \"holding_percentage\": 0.0,\n        \"token_percentage\": 2.8987233949907,\n        \"total_sol\": 5.871053756,\n        \"total_tokens\": 28987233949907,\n        \"unique_wallets\": 2,\n        \"wallet_categories\": {\n          \"8ez46NCNdyp9y1hvdtTP9S1mriNE6MDdeTux3NcHh6hC\": \"regular\",\n          \"C3maCqK24JHcbUJR84hQkk1zGRmc6LcdAdiyjY5ERXcj\": \"new_wallet\"\n        },\n        \"wallet_info\": {\n          \"8ez46NCNdyp9y1hvdtTP9S1mriNE6MDdeTux3NcHh6hC\": {\n            \"sol\": 5.663366336,\n            \"sol_percentage\": 96.46251884872028,\n            \"token_percentage\": 96.63345976860917,\n            \"tokens\": 28011367057016\n          },\n          \"C3maCqK24JHcbUJR84hQkk1zGRmc6LcdAdiyjY5ERXcj\": {\n            \"sol\": 0.20768742,\n            \"sol_percentage\": 3.537481151279719,\n            \"token_percentage\": 3.3665402313908284,\n            \"tokens\": 975866892891\n          }\n        }\n      },\n      \"317171345\": {\n        \"bundle_analysis\": {\n          \"category_breakdown\": {\n            \"new_wallet\": 1,\n            \"regular\": 3,\n            \"sniper\": 1\n          },\n          \"copytrading_groups\": {\n            \"47cebbaYbJKKeHjrh18r9UMdWiumvyZWiAAvvpmVb3uo\": \"group_0\",\n            \"ecLCLMsqpkM86YyMLzrBAmHeT76Ug5vVEzzHJ1XxnHZ\": \"group_0\"\n          },\n          \"is_likely_bundle\": false,\n          \"primary_category\": \"regular\"\n        },\n        \"holding_amount\": 0,\n        \"holding_percentage\": 0.0,\n        \"token_percentage\": 5.1926693148349,\n        \"total_sol\": 12.78864456,\n        \"total_tokens\": 51926693148349,\n        \"unique_wallets\": 5,\n        \"wallet_categories\": {\n          \"47cebbaYbJKKeHjrh18r9UMdWiumvyZWiAAvvpmVb3uo\": \"regular\",\n          \"5Shsj5Wpur3hgKrhJQQRf3A7aBvSQwLfwagiCtKhT43T\": \"regular\",\n          \"C7akxSngiGgTqFkDcXoeXWhd114UPkPBV77prZxJzjAm\": \"new_wallet\",\n          \"FmG1iDYxPboiu6GZnaE3rx8svX73N76fXPLsR2C4wEX5\": \"sniper\",\n          \"ecLCLMsqpkM86YyMLzrBAmHeT76Ug5vVEzzHJ1XxnHZ\": \"regular\"\n        },\n        \"wallet_info\": {\n          \"47cebbaYbJKKeHjrh18r9UMdWiumvyZWiAAvvpmVb3uo\": {\n            \"sol\": 1.960396048,\n            \"sol_percentage\": 15.329193323049084,\n            \"token_percentage\": 15.09399721102826,\n            \"tokens\": 7837813615591\n          },\n          \"5Shsj5Wpur3hgKrhJQQRf3A7aBvSQwLfwagiCtKhT43T\": {\n            \"sol\": 2.940594059,\n            \"sol_percentage\": 22.993789882920947,\n            \"token_percentage\": 25.6325669635506,\n            \"tokens\": 13310144393208\n          },\n          \"C7akxSngiGgTqFkDcXoeXWhd114UPkPBV77prZxJzjAm\": {\n            \"sol\": 2.940595039,\n            \"sol_percentage\": 22.993797545969173,\n            \"token_percentage\": 23.934071540689185,\n            \"tokens\": 12428171886840\n          },\n          \"FmG1iDYxPboiu6GZnaE3rx8svX73N76fXPLsR2C4wEX5\": {\n            \"sol\": 2.986663366,\n            \"sol_percentage\": 23.354025925011715,\n            \"token_percentage\": 20.883944691746258,\n            \"tokens\": 10844341877354\n          },\n          \"ecLCLMsqpkM86YyMLzrBAmHeT76Ug5vVEzzHJ1XxnHZ\": {\n            \"sol\": 1.960396048,\n            \"sol_percentage\": 15.329193323049084,\n            \"token_percentage\": 14.455419592985692,\n            \"tokens\": 7506221375356\n          }\n        }\n      },\n      \"317171346\": {\n        \"bundle_analysis\": {\n          \"category_breakdown\": {\n            \"new_wallet\": 1,\n            \"regular\": 3,\n            \"sniper\": 3\n          },\n          \"copytrading_groups\": {\n            \"4Bxf1mCFoaQmCxxB7obV4hjfYJqkCXVQVCTRkjT1YQuL\": \"group_2\",\n            \"6ocX9nqdTLjm99HXXFVfucshcvWVo7h8BFQDwk9R12xu\": \"group_0\",\n            \"9peW76TTRt5dp4wiQid8dw2pmxpwpN5eXZ15bmLBNCsx\": \"group_2\",\n            \"EqTZYhm3RqGbtSXwQLA6P8ttZDyJ7nCn2T9n8nK7YQiM\": \"group_0\"\n          },\n          \"is_likely_bundle\": false,\n          \"primary_category\": \"sniper\"\n        },\n        \"holding_amount\": 0,\n        \"holding_percentage\": 0.0,\n        \"token_percentage\": 5.3195571531547,\n        \"total_sol\": 17.689643636,\n        \"total_tokens\": 53195571531547,\n        \"unique_wallets\": 7,\n        \"wallet_categories\": {\n          \"4Bxf1mCFoaQmCxxB7obV4hjfYJqkCXVQVCTRkjT1YQuL\": \"sniper\",\n          \"5sUiYqaezSkXhTHqqyB8qhxNaKhZfKV5PcgHyLdB8S5o\": \"regular\",\n          \"6ocX9nqdTLjm99HXXFVfucshcvWVo7h8BFQDwk9R12xu\": \"regular\",\n          \"9peW76TTRt5dp4wiQid8dw2pmxpwpN5eXZ15bmLBNCsx\": \"sniper\",\n          \"EqTZYhm3RqGbtSXwQLA6P8ttZDyJ7nCn2T9n8nK7YQiM\": \"regular\",\n          \"FmG1iDYxPboiu6GZnaE3rx8svX73N76fXPLsR2C4wEX5\": \"sniper\",\n          \"ForfWbraxPCTaKMQR8BBKWHPbQkTGX2czF4otdsgoYyB\": \"new_wallet\"\n        },\n        \"wallet_info\": {\n          \"4Bxf1mCFoaQmCxxB7obV4hjfYJqkCXVQVCTRkjT1YQuL\": {\n            \"sol\": 2.940594088,\n            \"sol_percentage\": 16.623252274091204,\n            \"token_percentage\": 16.571591826656398,\n            \"tokens\": 8815352984065\n          },\n          \"5sUiYqaezSkXhTHqqyB8qhxNaKhZfKV5PcgHyLdB8S5o\": {\n            \"sol\": 2.940603959,\n            \"sol_percentage\": 16.623308075102255,\n            \"token_percentage\": 18.86486861426933,\n            \"tokens\": 10035274678036\n          },\n          \"6ocX9nqdTLjm99HXXFVfucshcvWVo7h8BFQDwk9R12xu\": {\n            \"sol\": 1.960396048,\n            \"sol_percentage\": 11.082168122428534,\n            \"token_percentage\": 9.972527692089871,\n            \"tokens\": 5304943101949\n          },\n          \"9peW76TTRt5dp4wiQid8dw2pmxpwpN5eXZ15bmLBNCsx\": {\n            \"sol\": 2.940594088,\n            \"sol_percentage\": 16.623252274091204,\n            \"token_percentage\": 17.772190439947444,\n            \"tokens\": 9454018278205\n          },\n          \"EqTZYhm3RqGbtSXwQLA6P8ttZDyJ7nCn2T9n8nK7YQiM\": {\n            \"sol\": 1.960396048,\n            \"sol_percentage\": 11.082168122428534,\n            \"token_percentage\": 9.623455045456348,\n            \"tokens\": 5119251912512\n          },\n          \"FmG1iDYxPboiu6GZnaE3rx8svX73N76fXPLsR2C4wEX5\": {\n            \"sol\": 2.986663366,\n            \"sol_percentage\": 16.88368306030696,\n            \"token_percentage\": 15.90825896683603,\n            \"tokens\": 8462489278127\n          },\n          \"ForfWbraxPCTaKMQR8BBKWHPbQkTGX2czF4otdsgoYyB\": {\n            \"sol\": 1.960396039,\n            \"sol_percentage\": 11.082168071551308,\n            \"token_percentage\": 11.287107414744584,\n            \"tokens\": 6004241298653\n          }\n        }\n      },\n      \"317171347\": {\n        \"bundle_analysis\": {\n          \"category_breakdown\": {\n            \"new_wallet\": 2,\n            \"regular\": 1,\n            \"sniper\": 3\n          },\n          \"copytrading_groups\": {\n            \"4Bxf1mCFoaQmCxxB7obV4hjfYJqkCXVQVCTRkjT1YQuL\": \"group_0\",\n            \"9peW76TTRt5dp4wiQid8dw2pmxpwpN5eXZ15bmLBNCsx\": \"group_0\"\n          },\n          \"is_likely_bundle\": false,\n          \"primary_category\": \"sniper\"\n        },\n        \"holding_amount\": 0,\n        \"holding_percentage\": 0.0,\n        \"token_percentage\": 2.8593571296405997,\n        \"total_sol\": 9.093561973,\n        \"total_tokens\": 28593571296406,\n        \"unique_wallets\": 6,\n        \"wallet_categories\": {\n          \"4Bxf1mCFoaQmCxxB7obV4hjfYJqkCXVQVCTRkjT1YQuL\": \"sniper\",\n          \"5Mi1Rene5WKZKxXanVhLBeo5hLxQ2JVEBUY9xZS5PfTh\": \"regular\",\n          \"9PSYK9RCiSuXarCPz2gGK9reFWSZqhfDhoUcAHVw53H8\": \"new_wallet\",\n          \"9peW76TTRt5dp4wiQid8dw2pmxpwpN5eXZ15bmLBNCsx\": \"sniper\",\n          \"9qot1CgPxe67tq65fMoSRs76vTix7FrC2TmpDfJq5dyn\": \"new_wallet\",\n          \"FmG1iDYxPboiu6GZnaE3rx8svX73N76fXPLsR2C4wEX5\": \"sniper\"\n        },\n        \"wallet_info\": {\n          \"4Bxf1mCFoaQmCxxB7obV4hjfYJqkCXVQVCTRkjT1YQuL\": {\n            \"sol\": 2.940594088,\n            \"sol_percentage\": 32.33709845197093,\n            \"token_percentage\": 29.03566620687057,\n            \"tokens\": 8302333918248\n          },\n          \"5Mi1Rene5WKZKxXanVhLBeo5hLxQ2JVEBUY9xZS5PfTh\": {\n            \"sol\": 0.090498838,\n            \"sol_percentage\": 0.9951968026247926,\n            \"token_percentage\": 1.1935052262005992,\n            \"tokens\": 341265767780\n          },\n          \"9PSYK9RCiSuXarCPz2gGK9reFWSZqhfDhoUcAHVw53H8\": {\n            \"sol\": 0.072761705,\n            \"sol_percentage\": 0.8001452589869538,\n            \"token_percentage\": 0.9578931749264447,\n            \"tokens\": 273895867916\n          },\n          \"9peW76TTRt5dp4wiQid8dw2pmxpwpN5eXZ15bmLBNCsx\": {\n            \"sol\": 2.940594088,\n            \"sol_percentage\": 32.33709845197093,\n            \"token_percentage\": 27.499990072227703,\n            \"tokens\": 7863229267807\n          },\n          \"9qot1CgPxe67tq65fMoSRs76vTix7FrC2TmpDfJq5dyn\": {\n            \"sol\": 0.062449888,\n            \"sol_percentage\": 0.6867483631323135,\n            \"token_percentage\": 0.5682584829318722,\n            \"tokens\": 162485394465\n          },\n          \"FmG1iDYxPboiu6GZnaE3rx8svX73N76fXPLsR2C4wEX5\": {\n            \"sol\": 2.986663366,\n            \"sol_percentage\": 32.84371267131409,\n            \"token_percentage\": 40.74468683684282,\n            \"tokens\": 11650361080190\n          }\n        }\n      },\n      \"317171349\": {\n        \"bundle_analysis\": {\n          \"category_breakdown\": {\n            \"new_wallet\": 0,\n            \"regular\": 2,\n            \"sniper\": 2\n          },\n          \"copytrading_groups\": {},\n          \"is_likely_bundle\": false,\n          \"primary_category\": \"sniper\"\n        },\n        \"holding_amount\": 0,\n        \"holding_percentage\": 0.0,\n        \"token_percentage\": 2.5479735030906,\n        \"total_sol\": 7.471341103,\n        \"total_tokens\": 25479735030906,\n        \"unique_wallets\": 4,\n        \"wallet_categories\": {\n          \"2LU9UqRvp3iZt8VwukxEQLdvYdQ54t2ZUGuVmzxBi94k\": \"regular\",\n          \"2pJDqPVNEuTVzFi1qpDg69yq5eF3brbPXctmVPSMKXyh\": \"regular\",\n          \"51brYGcTZJpPUxpMsQPGgEubBQUKkpjnp9xAzVnDN5mF\": \"sniper\",\n          \"Cyd41su1nvqsLu8SVLbF6vo4cmNid455iro9NzVZGAjX\": \"sniper\"\n        },\n        \"wallet_info\": {\n          \"2LU9UqRvp3iZt8VwukxEQLdvYdQ54t2ZUGuVmzxBi94k\": {\n            \"sol\": 0.131179251,\n            \"sol_percentage\": 1.7557657881170359,\n            \"token_percentage\": 1.6279514251693172,\n            \"tokens\": 414797709565\n          },\n          \"2pJDqPVNEuTVzFi1qpDg69yq5eF3brbPXctmVPSMKXyh\": {\n            \"sol\": 1.00059562,\n            \"sol_percentage\": 13.392449979271143,\n            \"token_percentage\": 14.30956440041659,\n            \"tokens\": 3646039093303\n          },\n          \"51brYGcTZJpPUxpMsQPGgEubBQUKkpjnp9xAzVnDN5mF\": {\n            \"sol\": 0.458378105,\n            \"sol_percentage\": 6.135151623795431,\n            \"token_percentage\": 5.72194417255743,\n            \"tokens\": 1457936213784\n          },\n          \"Cyd41su1nvqsLu8SVLbF6vo4cmNid455iro9NzVZGAjX\": {\n            \"sol\": 5.881188127,\n            \"sol_percentage\": 78.71663260881638,\n            \"token_percentage\": 78.34054000185667,\n            \"tokens\": 19960962014254\n          }\n        }\n      },\n      \"317171350\": {\n        \"bundle_analysis\": {\n          \"category_breakdown\": {\n            \"new_wallet\": 0,\n            \"regular\": 2,\n            \"sniper\": 1\n          },\n          \"copytrading_groups\": {},\n          \"is_likely_bundle\": false,\n          \"primary_category\": \"regular\"\n        },\n        \"holding_amount\": 0,\n        \"holding_percentage\": 0.0,\n        \"token_percentage\": 3.7729541699811,\n        \"total_sol\": 13.551019801,\n        \"total_tokens\": 37729541699811,\n        \"unique_wallets\": 3,\n        \"wallet_categories\": {\n          \"8TVSq63yNeBboseHwWAyXfRUZDcH6GrMrKsXbGckX9fT\": \"regular\",\n          \"8ez46NCNdyp9y1hvdtTP9S1mriNE6MDdeTux3NcHh6hC\": \"regular\",\n          \"FmG1iDYxPboiu6GZnaE3rx8svX73N76fXPLsR2C4wEX5\": \"sniper\"\n        },\n        \"wallet_info\": {\n          \"8TVSq63yNeBboseHwWAyXfRUZDcH6GrMrKsXbGckX9fT\": {\n            \"sol\": 4.900990099,\n            \"sol_percentage\": 36.16694662816691,\n            \"token_percentage\": 39.12214058439766,\n            \"tokens\": 14760604345649\n          },\n          \"8ez46NCNdyp9y1hvdtTP9S1mriNE6MDdeTux3NcHh6hC\": {\n            \"sol\": 5.663366336,\n            \"sol_percentage\": 41.79291609906784,\n            \"token_percentage\": 38.764440146237625,\n            \"tokens\": 14625645609673\n          },\n          \"FmG1iDYxPboiu6GZnaE3rx8svX73N76fXPLsR2C4wEX5\": {\n            \"sol\": 2.986663366,\n            \"sol_percentage\": 22.040137272765246,\n            \"token_percentage\": 22.113419269364712,\n            \"tokens\": 8343291744489\n          }\n        }\n      }\n    },\n    \"creator_analysis\": {\n      \"address\": \"EVGVwvzF9ivY7xd7PSUYL1tjB9hUG4MPHZRQv54bed5Y\",\n      \"current_holdings\": 0,\n      \"history\": {\n        \"average_market_cap\": 1542.0,\n        \"high_risk\": false,\n        \"previous_coins\": [\n          {\n            \"created_at\": 1738169956922,\n            \"is_rug\": false,\n            \"market_cap\": 1542,\n            \"mint\": \"7E448GypzBbahPkoUaATMBdYpeycnzyZ1g43myWogxAd\",\n            \"symbol\": \"XYZ\"\n          }\n        ],\n        \"recent_rugs\": 0,\n        \"rug_count\": 0,\n        \"rug_percentage\": 0.0,\n        \"total_coins_created\": 1\n      },\n      \"holding_percentage\": 0.0,\n      \"risk_level\": \"LOW\",\n      \"warning_flags\": [\n        null,\n        null,\n        null,\n        null\n      ]\n    },\n    \"distributed_amount\": 58432090693833,\n    \"distributed_percentage\": 5.8432090693833,\n    \"distributed_wallets\": 999,\n    \"ticker\": \"XYZ\",\n    \"total_bundles\": 13,\n    \"total_holding_amount\": 0,\n    \"total_holding_percentage\": 0.0,\n    \"total_percentage_bundled\": 83.75751768487511,\n    \"total_sol_spent\": 130.20288456,\n    \"total_tokens_bundled\": 837575176848751\n  }\n}\n\n            GMGN Analysis:\n            {\n  \"top_holder_avg_holding_time\": 199232.55468578736,\n  \"top_holder_avg_score\": 0.185,\n  \"top_wallets\": [\n    {\n      \"address\": \"5Q544fKrFoe6tsEbD7S8EmxGTJYAKtTVhAW5Q5pge4j1\",\n      \"score\": 0.16666666666666666,\n      \"win_rate\": 0,\n      \"holding_time\": 0,\n      \"pct_change_30d\": 0,\n      \"avg_trades_per_day\": 0.0\n    },\n    {\n      \"address\": \"CK11K5de3uEmP4E3TruRjFzYCei34TCPaZoL1BRf87jf\",\n      \"score\": 0.13333333333333333,\n      \"win_rate\": 0,\n      \"holding_time\": null,\n      \"pct_change_30d\": -0.20697047222632922,\n      \"avg_trades_per_day\": 5.7\n    },\n    {\n      \"address\": \"FZEYvZyT1HenRGcWqYaGtPfMsGNJwk3F4iGzr8gMzLTR\",\n      \"score\": 0.16666666666666666,\n      \"win_rate\": 0,\n      \"holding_time\": 0,\n      \"pct_change_30d\": 0,\n      \"avg_trades_per_day\": 0.0\n    },\n    {\n      \"address\": \"J54MVaWjYcgJ4TeqjskpdyKuFnmJajxm1jvkSPwHeinX\",\n      \"score\": 0.16666666666666666,\n      \"win_rate\": 0.4,\n      \"holding_time\": 289072.7,\n      \"pct_change_30d\": -0.03314466256573423,\n      \"avg_trades_per_day\": 78.83333333333333\n    },\n    {\n      \"address\": \"9UDkZu5UkfDUJFWgivBzFYMSK5jMFdvxxujjs9v4NAoZ\",\n      \"score\": 0.08333333333333333,\n      \"win_rate\": 0,\n      \"holding_time\": null,\n      \"pct_change_30d\": -0.33224423844760403,\n      \"avg_trades_per_day\": 38.0\n    },\n    {\n      \"address\": \"HpJ6bsNhW4ftV1E1KtSwvr9yQ55ZbHaxMVvgney6gpoY\",\n      \"score\": 0.25,\n      \"win_rate\": 0.3333333333333333,\n      \"holding_time\": 438844.76470588235,\n      \"pct_change_30d\": 0.29640173992806973,\n      \"avg_trades_per_day\": 11.5\n    },\n    {\n      \"address\": \"HXxU27xCtdFpAhzk9LmgKVd6pwjCXc1bQiVnTnYns7xn\",\n      \"score\": 0.08333333333333333,\n      \"win_rate\": 0,\n      \"holding_time\": null,\n      \"pct_change_30d\": -0.011037681726766755,\n      \"avg_trades_per_day\": 20.566666666666666\n    },\n    {\n      \"address\": \"AE63pthLkcvPrWPodM2u1NNkxXQdQDxwWGN8DrHcdvig\",\n      \"score\": 0.5833333333333334,\n      \"win_rate\": 0.7192982456140351,\n      \"holding_time\": 14309.182608695652,\n      \"pct_change_30d\": 0.010247734502494641,\n      \"avg_trades_per_day\": 214.36666666666667\n    },\n    {\n      \"address\": \"8c6GGRFdexDcTRMWUkVMH1rpwRzLzdeE7QuqqHoUQP1f\",\n      \"score\": 0.13333333333333333,\n      \"win_rate\": 0,\n      \"holding_time\": null,\n      \"pct_change_30d\": -0.04869695363120453,\n      \"avg_trades_per_day\": 9.333333333333334\n    },\n    {\n      \"address\": \"7vWxJ1cFZYKdtnwgcfworJSA281wQN6jcDh6wwabWqi2\",\n      \"score\": 0.08333333333333333,\n      \"win_rate\": 0.15384615384615385,\n      \"holding_time\": 54703.57142857143,\n      \"pct_change_30d\": -0.0444146572888932,\n      \"avg_trades_per_day\": 22.333333333333332\n    }\n  ]\n}\n\n            Break down your analysis into:\n            1. Overall sentiment (bullish/bearish/neutral with colorful metaphors)\n            2. Key metrics evaluation (translate numbers to street terms)\n            3. Risk assessment (using crime analogies)\n            4. Notable patterns or concerns (what's making your degen senses tingle)\n            5. Final recommendation (full send, avoid like herpes, or cautious degen play)"
+      "content": "You will ingests data and scores based off the following parameters given to you.\n\n            Now, I explain each of the datapoins you will receive and how you're supposed to interpret and analyze them.\n\n            firstly, we will scrape twitter for a multitude of different signals.\n\n            twitter\n            top tweets that mention the ticker or CA\n            tweet content\n            tweeters / users\n            # of followers\n            if any notable accounts follow them\n            tweet metrics (replies)\n            if tweet is a reply, is it a reply to a large account\n            if tweet is a reply, does the parent mention the CA / Ticker often [specific # of mentions] (affiliated acc)\n            does the parent have any notable followers\n            cache tweets we find multiple replies to deem them important\n\n            the tweet content should primarily be used for determining the sentiment/narrative of a token.\n            higher numbers in metrics like replies, number of followers, notable people follow, should all be seen as positive\n            signals in a token and this should be mentioned to the user.\n            moreover, a big point that should be analyzed is if you notice that many replies mentioning the ticker/contract\n            address are in response to a tweet by a user with a very large number of followers. in this case,\n            it's possible that the parent tweet content is either related or has something to do with the narrative/reason behind the token.\n            lastly, if we find that an account that has mentioned a ticker many times and has tweets generally explaining\n            functionality or launches, you should try to determine if that's the account for the token and the details to the user.\n\n            generally, these datapoints should be used to determine: credibility of those pushing the token, possible narratives around it,\n            and important accounts or tweets that may provide more context.\n\n            telegram\n            searches telegram for the token telegram if not already added - example: token name is Bane, searches telegram for suffixes like\n            baneportal, onsol, entry, prefixes like entry\n\n            if a telegram portal exists for the coin, that's usually a positive signal, though it's also not too much of an issue if it doesn't\n\n            Solscan\n            looks at solscan for first block transaction, sees first block tx for how much been picked up from dev/sniper\n\n            this should give information on how much of supply was bundled by the launcher of the coin which\n            basically means how much they were able to purchase at a low price.\n            we will also look at the amount the currently have left. obviously, the more they have left,\n            the higher risk the coin would be as there's the eminent risk of the chart beind dumped\n\n            holder ratings\n            information regarding the average hold times of the top holders\n\n            what this essentially means is that the top X amount of holders will be examined to see the\n            average amount of time they hold coins. for reference, 20-30minutes could be considered 5/10, 30-40 as 6/10 etc.\n            obviously this isn't a clear heuristic that you need to follow but just to give you a rough idea of how we should treat the times.\n            just generally take a look and provide the average as well as a brief analysis\n\n            Analyze this token like your bags depend on it:\n\n            Contract: 7E448GypzBbahPkoUaATMBdYpeycnzyZ1g43myWogxAd\n            Ticker: $xyz\n\n            Twitter Analysis:\n            {\n  \"analyzed_tweets\": [],\n  \"important_tweets\": {}\n}\n\n            TrenchBot Analysis:\n            {\n  \"percent_bundled\": 83.75751768487511,\n  \"percent_held\": 0.0,\n  \"raw_data\": {\n    \"bonded\": true,\n    \"bundles\": {\n      \"317171332\": {\n        \"bundle_analysis\": {\n          \"category_breakdown\": {\n            \"new_wallet\": 0,\n            \"regular\": 1,\n            \"sniper\": 3\n          },\n          \"copytrading_groups\": {\n            \"7tQfpMCM8bPWgfLGaQ2G3RQ5gAgQneqHbtgAn4FdN2m1\": \"group_0\",\n            \"8PLVmQGVmuj9mtsRA1KCiLPQL2xzBMFy8ujRPJeLEkgF\": \"group_0\",\n            \"DdofLJ4SCBdHN3BzEwmxLRjDTScgJ9Pwyvp5PoSSpKC3\": \"group_0\"\n          },\n          \"is_likely_bundle\": false,\n          \"primary_category\": \"regular\"\n        },\n        \"holding_amount\": 0,\n        \"holding_percentage\": 0.0,\n        \"token_percentage\": 16.971877084791302,\n        \"total_sol\": 9.582909221000001,\n        \"total_tokens\": 169718770847913,\n        \"unique_wallets\": 4,\n        \"wallet_categories\": {\n          \"5VkscnLqjzKAVDdNQytbeTLdrRCz2xuwGCbGEBx4w9p4\": \"regular\",\n          \"7tQfpMCM8bPWgfLGaQ2G3RQ5gAgQneqHbtgAn4FdN2m1\": \"sniper\",\n          \"8PLVmQGVmuj9mtsRA1KCiLPQL2xzBMFy8ujRPJeLEkgF\": \"sniper\",\n          \"DdofLJ4SCBdHN3BzEwmxLRjDTScgJ9Pwyvp5PoSSpKC3\": \"sniper\"\n        },\n        \"wallet_info\": {\n          \"5VkscnLqjzKAVDdNQytbeTLdrRCz2xuwGCbGEBx4w9p4\": {\n            \"sol\": 5.0,\n            \"sol_percentage\": 52.176222112623094,\n            \"token_percentage\": 52.51101088091749,\n            \"tokens\": 89121042226907\n          },\n          \"7tQfpMCM8bPWgfLGaQ2G3RQ5gAgQneqHbtgAn4FdN2m1\": {\n            \"sol\": 1.960396039,\n            \"sol_percentage\": 20.457211831914105,\n            \"token_percentage\": 24.348767611846725,\n            \"tokens\": 41324429107441\n          },\n          \"8PLVmQGVmuj9mtsRA1KCiLPQL2xzBMFy8ujRPJeLEkgF\": {\n            \"sol\": 0.3964,\n            \"sol_percentage\": 4.136530889088759,\n            \"token_percentage\": 3.333079473356651,\n            \"tokens\": 5656861513565\n          },\n          \"DdofLJ4SCBdHN3BzEwmxLRjDTScgJ9Pwyvp5PoSSpKC3\": {\n            \"sol\": 2.226113182,\n            \"sol_percentage\": 23.230035166374034,\n            \"token_percentage\": 19.807142033879146,\n            \"tokens\": 33616438000000\n          }\n        }\n      },\n      \"317171335\": {\n        \"bundle_analysis\": {\n          \"category_breakdown\": {\n            \"new_wallet\": 0,\n            \"regular\": 0,\n            \"sniper\": 3\n          },\n          \"copytrading_groups\": {},\n          \"is_likely_bundle\": false,\n          \"primary_category\": \"sniper\"\n        },\n        \"holding_amount\": 0,\n        \"holding_percentage\": 0.0,\n        \"token_percentage\": 1.8633497061787,\n        \"total_sol\": 1.2258813499999999,\n        \"total_tokens\": 18633497061787,\n        \"unique_wallets\": 3,\n        \"wallet_categories\": {\n          \"696969Y6orZEjp4gZtwcCZS7TNVuhMVE6G5mFvdJ4mYq\": \"sniper\",\n          \"Hvqzpsoe8XPEw2Xp4JCCXNTNVTX19pkw5aGFeqxxXhas\": \"sniper\",\n          \"nya666pQkP3PzWxi7JngU3rRMHuc7zbLK8c8wxQ4qpT\": \"sniper\"\n        },\n        \"wallet_info\": {\n          \"696969Y6orZEjp4gZtwcCZS7TNVuhMVE6G5mFvdJ4mYq\": {\n            \"sol\": 0.743435496,\n            \"sol_percentage\": 60.64497971194358,\n            \"token_percentage\": 60.007449886079876,\n            \"tokens\": 11181486411376\n          },\n          \"Hvqzpsoe8XPEw2Xp4JCCXNTNVTX19pkw5aGFeqxxXhas\": {\n            \"sol\": 0.219616288,\n            \"sol_percentage\": 17.9149709717013,\n            \"token_percentage\": 18.100420305347374,\n            \"tokens\": 3372741285768\n          },\n          \"nya666pQkP3PzWxi7JngU3rRMHuc7zbLK8c8wxQ4qpT\": {\n            \"sol\": 0.262829566,\n            \"sol_percentage\": 21.440049316355132,\n            \"token_percentage\": 21.89212980857275,\n            \"tokens\": 4079269364643\n          }\n        }\n      },\n      \"317171336\": {\n        \"bundle_analysis\": {\n          \"category_breakdown\": {\n            \"new_wallet\": 0,\n            \"regular\": 4,\n            \"sniper\": 1\n          },\n          \"copytrading_groups\": {\n            \"6suZeJJ77Wt4M5XPHrUmhcNk67kxRhBf18rgsuXVRaTG\": \"group_0\",\n            \"AEqMvMdgVKeuakhBBuUrBKNDgm5bEzfjtZFncjwbyzDG\": \"group_0\",\n            \"AkonYr2j3bAEYysT3G3cX7k6h4tKce6faAj4pJPfD7Q7\": \"group_0\",\n            \"Ax5r3aepC6QEh9DzuVjFtzCwCtfzUq9JXjjvTNLiYDRu\": \"group_0\"\n          },\n          \"is_likely_bundle\": false,\n          \"primary_category\": \"regular\"\n        },\n        \"holding_amount\": 0,\n        \"holding_percentage\": 0.0,\n        \"token_percentage\": 16.5450206633867,\n        \"total_sol\": 14.702970295,\n        \"total_tokens\": 165450206633867,\n        \"unique_wallets\": 5,\n        \"wallet_categories\": {\n          \"2Fyqokdqbfes79vDFM699yTT1WjY8YBQ1Ms7QjqmRfQa\": \"sniper\",\n          \"6suZeJJ77Wt4M5XPHrUmhcNk67kxRhBf18rgsuXVRaTG\": \"regular\",\n          \"AEqMvMdgVKeuakhBBuUrBKNDgm5bEzfjtZFncjwbyzDG\": \"regular\",\n          \"AkonYr2j3bAEYysT3G3cX7k6h4tKce6faAj4pJPfD7Q7\": \"regular\",\n          \"Ax5r3aepC6QEh9DzuVjFtzCwCtfzUq9JXjjvTNLiYDRu\": \"regular\"\n        },\n        \"wallet_info\": {\n          \"2Fyqokdqbfes79vDFM699yTT1WjY8YBQ1Ms7QjqmRfQa\": {\n            \"sol\": 2.940594059,\n            \"sol_percentage\": 20.0,\n            \"token_percentage\": 24.745127192042183,\n            \"tokens\": 40940864071047\n          },\n          \"6suZeJJ77Wt4M5XPHrUmhcNk67kxRhBf18rgsuXVRaTG\": {\n            \"sol\": 2.940594059,\n            \"sol_percentage\": 20.0,\n            \"token_percentage\": 17.66544441058815,\n            \"tokens\": 29227514280109\n          },\n          \"AEqMvMdgVKeuakhBBuUrBKNDgm5bEzfjtZFncjwbyzDG\": {\n            \"sol\": 2.940594059,\n            \"sol_percentage\": 20.0,\n            \"token_percentage\": 19.64372406889171,\n            \"tokens\": 32500582062568\n          },\n          \"AkonYr2j3bAEYysT3G3cX7k6h4tKce6faAj4pJPfD7Q7\": {\n            \"sol\": 2.940594059,\n            \"sol_percentage\": 20.0,\n            \"token_percentage\": 21.974023299698956,\n            \"tokens\": 36356066955126\n          },\n          \"Ax5r3aepC6QEh9DzuVjFtzCwCtfzUq9JXjjvTNLiYDRu\": {\n            \"sol\": 2.940594059,\n            \"sol_percentage\": 20.0,\n            \"token_percentage\": 15.971681028779006,\n            \"tokens\": 26425179265017\n          }\n        }\n      },\n      \"317171337\": {\n        \"bundle_analysis\": {\n          \"category_breakdown\": {\n            \"new_wallet\": 0,\n            \"regular\": 1,\n            \"sniper\": 4\n          },\n          \"copytrading_groups\": {\n            \"7KiNrHFUk2GRif6sQJiTrTDMikxo4jNxCotvqq1fTCdJ\": \"group_2\",\n            \"BA25YP9PMQ22eLYcsA3zTKJ5jwxnEikmv67c9n55T4dd\": \"group_0\",\n            \"CU35ZDB4JptaBVQWiq1gZsR8kso6dz1bQj8uR3xGn2kK\": \"group_2\",\n            \"FgfzLpCJhHYZVji6Sw7omJDEdTq5C12FrV72HzDtwvb5\": \"group_0\"\n          },\n          \"is_likely_bundle\": false,\n          \"primary_category\": \"sniper\"\n        },\n        \"holding_amount\": 0,\n        \"holding_percentage\": 0.0,\n        \"token_percentage\": 11.9683544448497,\n        \"total_sol\": 18.121914886,\n        \"total_tokens\": 119683544448497,\n        \"unique_wallets\": 5,\n        \"wallet_categories\": {\n          \"7KiNrHFUk2GRif6sQJiTrTDMikxo4jNxCotvqq1fTCdJ\": \"sniper\",\n          \"BA25YP9PMQ22eLYcsA3zTKJ5jwxnEikmv67c9n55T4dd\": \"regular\",\n          \"BoBo4vtoR9mnCBjcbxNiEkwC24oUv3XyqbHi95cPkgzU\": \"sniper\",\n          \"CU35ZDB4JptaBVQWiq1gZsR8kso6dz1bQj8uR3xGn2kK\": \"sniper\",\n          \"FgfzLpCJhHYZVji6Sw7omJDEdTq5C12FrV72HzDtwvb5\": \"sniper\"\n        },\n        \"wallet_info\": {\n          \"7KiNrHFUk2GRif6sQJiTrTDMikxo4jNxCotvqq1fTCdJ\": {\n            \"sol\": 1.0,\n            \"sol_percentage\": 5.518180646420237,\n            \"token_percentage\": 5.9763140565434885,\n            \"tokens\": 7152664490245\n          },\n          \"BA25YP9PMQ22eLYcsA3zTKJ5jwxnEikmv67c9n55T4dd\": {\n            \"sol\": 2.973,\n            \"sol_percentage\": 16.405551061807365,\n            \"token_percentage\": 14.61815046362099,\n            \"tokens\": 17495520607676\n          },\n          \"BoBo4vtoR9mnCBjcbxNiEkwC24oUv3XyqbHi95cPkgzU\": {\n            \"sol\": 3.999915086,\n            \"sol_percentage\": 22.07225401488954,\n            \"token_percentage\": 17.94158722473452,\n            \"tokens\": 21473127520881\n          },\n          \"CU35ZDB4JptaBVQWiq1gZsR8kso6dz1bQj8uR3xGn2kK\": {\n            \"sol\": 4.900990197,\n            \"sol_percentage\": 27.044549253380705,\n            \"token_percentage\": 26.905474538963148,\n            \"tokens\": 32201425578919\n          },\n          \"FgfzLpCJhHYZVji6Sw7omJDEdTq5C12FrV72HzDtwvb5\": {\n            \"sol\": 5.248009603,\n            \"sol_percentage\": 28.95946502350215,\n            \"token_percentage\": 34.558473716137854,\n            \"tokens\": 41360806250776\n          }\n        }\n      },\n      \"317171338\": {\n        \"bundle_analysis\": {\n          \"category_breakdown\": {\n            \"new_wallet\": 1,\n            \"regular\": 2,\n            \"sniper\": 0\n          },\n          \"copytrading_groups\": {},\n          \"is_likely_bundle\": false,\n          \"primary_category\": \"new_wallet\"\n        },\n        \"holding_amount\": 0,\n        \"holding_percentage\": 0.0,\n        \"token_percentage\": 0.5567648386102,\n        \"total_sol\": 1.1073081310000001,\n        \"total_tokens\": 5567648386102,\n        \"unique_wallets\": 3,\n        \"wallet_categories\": {\n          \"7Q5Crnq21EPqU1cbYLad8umVCXgZfxfHTQrwd68ze5Qb\": \"new_wallet\",\n          \"Fdxy5QwhsEkEYCQB5eazYMWSzDaQy3FC6HbdK8LW1g6g\": \"regular\",\n          \"Fp3buGZrQpbGD2wqtaAzPWqHTHtjUkoE2ChQvPL1Vm6q\": \"regular\"\n        },\n        \"wallet_info\": {\n          \"7Q5Crnq21EPqU1cbYLad8umVCXgZfxfHTQrwd68ze5Qb\": {\n            \"sol\": 0.649656823,\n            \"sol_percentage\": 58.669922563767386,\n            \"token_percentage\": 59.005088852513154,\n            \"tokens\": 3285195877215\n          },\n          \"Fdxy5QwhsEkEYCQB5eazYMWSzDaQy3FC6HbdK8LW1g6g\": {\n            \"sol\": 0.115183015,\n            \"sol_percentage\": 10.40207434365891,\n            \"token_percentage\": 10.361763019735188,\n            \"tokens\": 576906531540\n          },\n          \"Fp3buGZrQpbGD2wqtaAzPWqHTHtjUkoE2ChQvPL1Vm6q\": {\n            \"sol\": 0.342468293,\n            \"sol_percentage\": 30.928003092573693,\n            \"token_percentage\": 30.633148127751653,\n            \"tokens\": 1705545977347\n          }\n        }\n      },\n      \"317171340\": {\n        \"bundle_analysis\": {\n          \"category_breakdown\": {\n            \"new_wallet\": 1,\n            \"regular\": 1,\n            \"sniper\": 1\n          },\n          \"copytrading_groups\": {},\n          \"is_likely_bundle\": false,\n          \"primary_category\": \"sniper\"\n        },\n        \"holding_amount\": 0,\n        \"holding_percentage\": 0.0,\n        \"token_percentage\": 6.9458182940155,\n        \"total_sol\": 8.671842035,\n        \"total_tokens\": 69458182940155,\n        \"unique_wallets\": 3,\n        \"wallet_categories\": {\n          \"8CZjFG1EV3FduGV918QWUh7fevUoZSTffVY8bK6M3wbu\": \"sniper\",\n          \"9PSYK9RCiSuXarCPz2gGK9reFWSZqhfDhoUcAHVw53H8\": \"new_wallet\",\n          \"CwhYTCaXCy1CEbmzUgoWdy9jbEK2MJHL11iHySXVyRSX\": \"regular\"\n        },\n        \"wallet_info\": {\n          \"8CZjFG1EV3FduGV918QWUh7fevUoZSTffVY8bK6M3wbu\": {\n            \"sol\": 6.982779416,\n            \"sol_percentage\": 80.52244710889732,\n            \"token_percentage\": 78.5359552861048,\n            \"tokens\": 54549647496421\n          },\n          \"9PSYK9RCiSuXarCPz2gGK9reFWSZqhfDhoUcAHVw53H8\": {\n            \"sol\": 0.105062618,\n            \"sol_percentage\": 1.211537497753786,\n            \"token_percentage\": 1.058269768049247,\n            \"tokens\": 735054951492\n          },\n          \"CwhYTCaXCy1CEbmzUgoWdy9jbEK2MJHL11iHySXVyRSX\": {\n            \"sol\": 1.584000001,\n            \"sol_percentage\": 18.266015393348894,\n            \"token_percentage\": 20.40577494584596,\n            \"tokens\": 14173480492242\n          }\n        }\n      },\n      \"317171343\": {\n        \"bundle_analysis\": {\n          \"category_breakdown\": {\n            \"new_wallet\": 0,\n            \"regular\": 2,\n            \"sniper\": 1\n          },\n          \"copytrading_groups\": {},\n          \"is_likely_bundle\": false,\n          \"primary_category\": \"regular\"\n        },\n        \"holding_amount\": 0,\n        \"holding_percentage\": 0.0,\n        \"token_percentage\": 6.3150979873504,\n        \"total_sol\": 10.324793813,\n        \"total_tokens\": 63150979873504,\n        \"unique_wallets\": 3,\n        \"wallet_categories\": {\n          \"4p9VRBpktcnxERSMytjSKaRdxYxngBS9MyEjihYFYLE1\": \"sniper\",\n          \"8ez46NCNdyp9y1hvdtTP9S1mriNE6MDdeTux3NcHh6hC\": \"regular\",\n          \"EXQtriyTG6PnFLGHQkviPX9oLAPRPPMSjomX86Bn4uMd\": \"regular\"\n        },\n        \"wallet_info\": {\n          \"4p9VRBpktcnxERSMytjSKaRdxYxngBS9MyEjihYFYLE1\": {\n            \"sol\": 2.141997343,\n            \"sol_percentage\": 20.746151272318876,\n            \"token_percentage\": 18.505058865924422,\n            \"tokens\": 11686126000000\n          },\n          \"8ez46NCNdyp9y1hvdtTP9S1mriNE6MDdeTux3NcHh6hC\": {\n            \"sol\": 5.663366336,\n            \"sol_percentage\": 54.85210105473707,\n            \"token_percentage\": 58.34368915773347,\n            \"tokens\": 36844611397460\n          },\n          \"EXQtriyTG6PnFLGHQkviPX9oLAPRPPMSjomX86Bn4uMd\": {\n            \"sol\": 2.519430134,\n            \"sol_percentage\": 24.40174767294406,\n            \"token_percentage\": 23.151251976342106,\n            \"tokens\": 14620242476044\n          }\n        }\n      },\n      \"317171344\": {\n        \"bundle_analysis\": {\n          \"category_breakdown\": {\n            \"new_wallet\": 1,\n            \"regular\": 1,\n            \"sniper\": 0\n          },\n          \"copytrading_groups\": {},\n          \"is_likely_bundle\": false,\n          \"primary_category\": \"regular\"\n        },\n        \"holding_amount\": 0,\n        \"holding_percentage\": 0.0,\n        \"token_percentage\": 2.8987233949907,\n        \"total_sol\": 5.871053756,\n        \"total_tokens\": 28987233949907,\n        \"unique_wallets\": 2,\n        \"wallet_categories\": {\n          \"8ez46NCNdyp9y1hvdtTP9S1mriNE6MDdeTux3NcHh6hC\": \"regular\",\n          \"C3maCqK24JHcbUJR84hQkk1zGRmc6LcdAdiyjY5ERXcj\": \"new_wallet\"\n        },\n        \"wallet_info\": {\n          \"8ez46NCNdyp9y1hvdtTP9S1mriNE6MDdeTux3NcHh6hC\": {\n            \"sol\": 5.663366336,\n            \"sol_percentage\": 96.46251884872028,\n            \"token_percentage\": 96.63345976860917,\n            \"tokens\": 28011367057016\n          },\n          \"C3maCqK24JHcbUJR84hQkk1zGRmc6LcdAdiyjY5ERXcj\": {\n            \"sol\": 0.20768742,\n            \"sol_percentage\": 3.537481151279719,\n            \"token_percentage\": 3.3665402313908284,\n            \"tokens\": 975866892891\n          }\n        }\n      },\n      \"317171345\": {\n        \"bundle_analysis\": {\n          \"category_breakdown\": {\n            \"new_wallet\": 1,\n            \"regular\": 3,\n            \"sniper\": 1\n          },\n          \"copytrading_groups\": {\n            \"47cebbaYbJKKeHjrh18r9UMdWiumvyZWiAAvvpmVb3uo\": \"group_0\",\n            \"ecLCLMsqpkM86YyMLzrBAmHeT76Ug5vVEzzHJ1XxnHZ\": \"group_0\"\n          },\n          \"is_likely_bundle\": false,\n          \"primary_category\": \"regular\"\n        },\n        \"holding_amount\": 0,\n        \"holding_percentage\": 0.0,\n        \"token_percentage\": 5.1926693148349,\n        \"total_sol\": 12.78864456,\n        \"total_tokens\": 51926693148349,\n        \"unique_wallets\": 5,\n        \"wallet_categories\": {\n          \"47cebbaYbJKKeHjrh18r9UMdWiumvyZWiAAvvpmVb3uo\": \"regular\",\n          \"5Shsj5Wpur3hgKrhJQQRf3A7aBvSQwLfwagiCtKhT43T\": \"regular\",\n          \"C7akxSngiGgTqFkDcXoeXWhd114UPkPBV77prZxJzjAm\": \"new_wallet\",\n          \"FmG1iDYxPboiu6GZnaE3rx8svX73N76fXPLsR2C4wEX5\": \"sniper\",\n          \"ecLCLMsqpkM86YyMLzrBAmHeT76Ug5vVEzzHJ1XxnHZ\": \"regular\"\n        },\n        \"wallet_info\": {\n          \"47cebbaYbJKKeHjrh18r9UMdWiumvyZWiAAvvpmVb3uo\": {\n            \"sol\": 1.960396048,\n            \"sol_percentage\": 15.329193323049084,\n            \"token_percentage\": 15.09399721102826,\n            \"tokens\": 7837813615591\n          },\n          \"5Shsj5Wpur3hgKrhJQQRf3A7aBvSQwLfwagiCtKhT43T\": {\n            \"sol\": 2.940594059,\n            \"sol_percentage\": 22.993789882920947,\n            \"token_percentage\": 25.6325669635506,\n            \"tokens\": 13310144393208\n          },\n          \"C7akxSngiGgTqFkDcXoeXWhd114UPkPBV77prZxJzjAm\": {\n            \"sol\": 2.940595039,\n            \"sol_percentage\": 22.993797545969173,\n            \"token_percentage\": 23.934071540689185,\n            \"tokens\": 12428171886840\n          },\n          \"FmG1iDYxPboiu6GZnaE3rx8svX73N76fXPLsR2C4wEX5\": {\n            \"sol\": 2.986663366,\n            \"sol_percentage\": 23.354025925011715,\n            \"token_percentage\": 20.883944691746258,\n            \"tokens\": 10844341877354\n          },\n          \"ecLCLMsqpkM86YyMLzrBAmHeT76Ug5vVEzzHJ1XxnHZ\": {\n            \"sol\": 1.960396048,\n            \"sol_percentage\": 15.329193323049084,\n            \"token_percentage\": 14.455419592985692,\n            \"tokens\": 7506221375356\n          }\n        }\n      },\n      \"317171346\": {\n        \"bundle_analysis\": {\n          \"category_breakdown\": {\n            \"new_wallet\": 1,\n            \"regular\": 3,\n            \"sniper\": 3\n          },\n          \"copytrading_groups\": {\n            \"4Bxf1mCFoaQmCxxB7obV4hjfYJqkCXVQVCTRkjT1YQuL\": \"group_2\",\n            \"6ocX9nqdTLjm99HXXFVfucshcvWVo7h8BFQDwk9R12xu\": \"group_0\",\n            \"9peW76TTRt5dp4wiQid8dw2pmxpwpN5eXZ15bmLBNCsx\": \"group_2\",\n            \"EqTZYhm3RqGbtSXwQLA6P8ttZDyJ7nCn2T9n8nK7YQiM\": \"group_0\"\n          },\n          \"is_likely_bundle\": false,\n          \"primary_category\": \"sniper\"\n        },\n        \"holding_amount\": 0,\n        \"holding_percentage\": 0.0,\n        \"token_percentage\": 5.3195571531547,\n        \"total_sol\": 17.689643636,\n        \"total_tokens\": 53195571531547,\n        \"unique_wallets\": 7,\n        \"wallet_categories\": {\n          \"4Bxf1mCFoaQmCxxB7obV4hjfYJqkCXVQVCTRkjT1YQuL\": \"sniper\",\n          \"5sUiYqaezSkXhTHqqyB8qhxNaKhZfKV5PcgHyLdB8S5o\": \"regular\",\n          \"6ocX9nqdTLjm99HXXFVfucshcvWVo7h8BFQDwk9R12xu\": \"regular\",\n          \"9peW76TTRt5dp4wiQid8dw2pmxpwpN5eXZ15bmLBNCsx\": \"sniper\",\n          \"EqTZYhm3RqGbtSXwQLA6P8ttZDyJ7nCn2T9n8nK7YQiM\": \"regular\",\n          \"FmG1iDYxPboiu6GZnaE3rx8svX73N76fXPLsR2C4wEX5\": \"sniper\",\n          \"ForfWbraxPCTaKMQR8BBKWHPbQkTGX2czF4otdsgoYyB\": \"new_wallet\"\n        },\n        \"wallet_info\": {\n          \"4Bxf1mCFoaQmCxxB7obV4hjfYJqkCXVQVCTRkjT1YQuL\": {\n            \"sol\": 2.940594088,\n            \"sol_percentage\": 16.623252274091204,\n            \"token_percentage\": 16.571591826656398,\n            \"tokens\": 8815352984065\n          },\n          \"5sUiYqaezSkXhTHqqyB8qhxNaKhZfKV5PcgHyLdB8S5o\": {\n            \"sol\": 2.940603959,\n            \"sol_percentage\": 16.623308075102255,\n            \"token_percentage\": 18.86486861426933,\n            \"tokens\": 10035274678036\n          },\n          \"6ocX9nqdTLjm99HXXFVfucshcvWVo7h8BFQDwk9R12xu\": {\n            \"sol\": 1.960396048,\n            \"sol_percentage\": 11.082168122428534,\n            \"token_percentage\": 9.972527692089871,\n            \"tokens\": 5304943101949\n          },\n          \"9peW76TTRt5dp4wiQid8dw2pmxpwpN5eXZ15bmLBNCsx\": {\n            \"sol\": 2.940594088,\n            \"sol_percentage\": 16.623252274091204,\n            \"token_percentage\": 17.772190439947444,\n            \"tokens\": 9454018278205\n          },\n          \"EqTZYhm3RqGbtSXwQLA6P8ttZDyJ7nCn2T9n8nK7YQiM\": {\n            \"sol\": 1.960396048,\n            \"sol_percentage\": 11.082168122428534,\n            \"token_percentage\": 9.623455045456348,\n            \"tokens\": 5119251912512\n          },\n          \"FmG1iDYxPboiu6GZnaE3rx8svX73N76fXPLsR2C4wEX5\": {\n            \"sol\": 2.986663366,\n            \"sol_percentage\": 16.88368306030696,\n            \"token_percentage\": 15.90825896683603,\n            \"tokens\": 8462489278127\n          },\n          \"ForfWbraxPCTaKMQR8BBKWHPbQkTGX2czF4otdsgoYyB\": {\n            \"sol\": 1.960396039,\n            \"sol_percentage\": 11.082168071551308,\n            \"token_percentage\": 11.287107414744584,\n            \"tokens\": 6004241298653\n          }\n        }\n      },\n      \"317171347\": {\n        \"bundle_analysis\": {\n          \"category_breakdown\": {\n            \"new_wallet\": 2,\n            \"regular\": 1,\n            \"sniper\": 3\n          },\n          \"copytrading_groups\": {\n            \"4Bxf1mCFoaQmCxxB7obV4hjfYJqkCXVQVCTRkjT1YQuL\": \"group_0\",\n            \"9peW76TTRt5dp4wiQid8dw2pmxpwpN5eXZ15bmLBNCsx\": \"group_0\"\n          },\n          \"is_likely_bundle\": false,\n          \"primary_category\": \"sniper\"\n        },\n        \"holding_amount\": 0,\n        \"holding_percentage\": 0.0,\n        \"token_percentage\": 2.8593571296405997,\n        \"total_sol\": 9.093561973,\n        \"total_tokens\": 28593571296406,\n        \"unique_wallets\": 6,\n        \"wallet_categories\": {\n          \"4Bxf1mCFoaQmCxxB7obV4hjfYJqkCXVQVCTRkjT1YQuL\": \"sniper\",\n          \"5Mi1Rene5WKZKxXanVhLBeo5hLxQ2JVEBUY9xZS5PfTh\": \"regular\",\n          \"9PSYK9RCiSuXarCPz2gGK9reFWSZqhfDhoUcAHVw53H8\": \"new_wallet\",\n          \"9peW76TTRt5dp4wiQid8dw2pmxpwpN5eXZ15bmLBNCsx\": \"sniper\",\n          \"9qot1CgPxe67tq65fMoSRs76vTix7FrC2TmpDfJq5dyn\": \"new_wallet\",\n          \"FmG1iDYxPboiu6GZnaE3rx8svX73N76fXPLsR2C4wEX5\": \"sniper\"\n        },\n        \"wallet_info\": {\n          \"4Bxf1mCFoaQmCxxB7obV4hjfYJqkCXVQVCTRkjT1YQuL\": {\n            \"sol\": 2.940594088,\n            \"sol_percentage\": 32.33709845197093,\n            \"token_percentage\": 29.03566620687057,\n            \"tokens\": 8302333918248\n          },\n          \"5Mi1Rene5WKZKxXanVhLBeo5hLxQ2JVEBUY9xZS5PfTh\": {\n            \"sol\": 0.090498838,\n            \"sol_percentage\": 0.9951968026247926,\n            \"token_percentage\": 1.1935052262005992,\n            \"tokens\": 341265767780\n          },\n          \"9PSYK9RCiSuXarCPz2gGK9reFWSZqhfDhoUcAHVw53H8\": {\n            \"sol\": 0.072761705,\n            \"sol_percentage\": 0.8001452589869538,\n            \"token_percentage\": 0.9578931749264447,\n            \"tokens\": 273895867916\n          },\n          \"9peW76TTRt5dp4wiQid8dw2pmxpwpN5eXZ15bmLBNCsx\": {\n            \"sol\": 2.940594088,\n            \"sol_percentage\": 32.33709845197093,\n            \"token_percentage\": 27.499990072227703,\n            \"tokens\": 7863229267807\n          },\n          \"9qot1CgPxe67tq65fMoSRs76vTix7FrC2TmpDfJq5dyn\": {\n            \"sol\": 0.062449888,\n            \"sol_percentage\": 0.6867483631323135,\n            \"token_percentage\": 0.5682584829318722,\n            \"tokens\": 162485394465\n          },\n          \"FmG1iDYxPboiu6GZnaE3rx8svX73N76fXPLsR2C4wEX5\": {\n            \"sol\": 2.986663366,\n            \"sol_percentage\": 32.84371267131409,\n            \"token_percentage\": 40.74468683684282,\n            \"tokens\": 11650361080190\n          }\n        }\n      },\n      \"317171349\": {\n        \"bundle_analysis\": {\n          \"category_breakdown\": {\n            \"new_wallet\": 0,\n            \"regular\": 2,\n            \"sniper\": 2\n          },\n          \"copytrading_groups\": {},\n          \"is_likely_bundle\": false,\n          \"primary_category\": \"sniper\"\n        },\n        \"holding_amount\": 0,\n        \"holding_percentage\": 0.0,\n        \"token_percentage\": 2.5479735030906,\n        \"total_sol\": 7.471341103,\n        \"total_tokens\": 25479735030906,\n        \"unique_wallets\": 4,\n        \"wallet_categories\": {\n          \"2LU9UqRvp3iZt8VwukxEQLdvYdQ54t2ZUGuVmzxBi94k\": \"regular\",\n          \"2pJDqPVNEuTVzFi1qpDg69yq5eF3brbPXctmVPSMKXyh\": \"regular\",\n          \"51brYGcTZJpPUxpMsQPGgEubBQUKkpjnp9xAzVnDN5mF\": \"sniper\",\n          \"Cyd41su1nvqsLu8SVLbF6vo4cmNid455iro9NzVZGAjX\": \"sniper\"\n        },\n        \"wallet_info\": {\n          \"2LU9UqRvp3iZt8VwukxEQLdvYdQ54t2ZUGuVmzxBi94k\": {\n            \"sol\": 0.131179251,\n            \"sol_percentage\": 1.7557657881170359,\n            \"token_percentage\": 1.6279514251693172,\n            \"tokens\": 414797709565\n          },\n          \"2pJDqPVNEuTVzFi1qpDg69yq5eF3brbPXctmVPSMKXyh\": {\n            \"sol\": 1.00059562,\n            \"sol_percentage\": 13.392449979271143,\n            \"token_percentage\": 14.30956440041659,\n            \"tokens\": 3646039093303\n          },\n          \"51brYGcTZJpPUxpMsQPGgEubBQUKkpjnp9xAzVnDN5mF\": {\n            \"sol\": 0.458378105,\n            \"sol_percentage\": 6.135151623795431,\n            \"token_percentage\": 5.72194417255743,\n            \"tokens\": 1457936213784\n          },\n          \"Cyd41su1nvqsLu8SVLbF6vo4cmNid455iro9NzVZGAjX\": {\n            \"sol\": 5.881188127,\n            \"sol_percentage\": 78.71663260881638,\n            \"token_percentage\": 78.34054000185667,\n            \"tokens\": 19960962014254\n          }\n        }\n      },\n      \"317171350\": {\n        \"bundle_analysis\": {\n          \"category_breakdown\": {\n            \"new_wallet\": 0,\n            \"regular\": 2,\n            \"sniper\": 1\n          },\n          \"copytrading_groups\": {},\n          \"is_likely_bundle\": false,\n          \"primary_category\": \"regular\"\n        },\n        \"holding_amount\": 0,\n        \"holding_percentage\": 0.0,\n        \"token_percentage\": 3.7729541699811,\n        \"total_sol\": 13.551019801,\n        \"total_tokens\": 37729541699811,\n        \"unique_wallets\": 3,\n        \"wallet_categories\": {\n          \"8TVSq63yNeBboseHwWAyXfRUZDcH6GrMrKsXbGckX9fT\": \"regular\",\n          \"8ez46NCNdyp9y1hvdtTP9S1mriNE6MDdeTux3NcHh6hC\": \"regular\",\n          \"FmG1iDYxPboiu6GZnaE3rx8svX73N76fXPLsR2C4wEX5\": \"sniper\"\n        },\n        \"wallet_info\": {\n          \"8TVSq63yNeBboseHwWAyXfRUZDcH6GrMrKsXbGckX9fT\": {\n            \"sol\": 4.900990099,\n            \"sol_percentage\": 36.16694662816691,\n            \"token_percentage\": 39.12214058439766,\n            \"tokens\": 14760604345649\n          },\n          \"8ez46NCNdyp9y1hvdtTP9S1mriNE6MDdeTux3NcHh6hC\": {\n            \"sol\": 5.663366336,\n            \"sol_percentage\": 41.79291609906784,\n            \"token_percentage\": 38.764440146237625,\n            \"tokens\": 14625645609673\n          },\n          \"FmG1iDYxPboiu6GZnaE3rx8svX73N76fXPLsR2C4wEX5\": {\n            \"sol\": 2.986663366,\n            \"sol_percentage\": 22.040137272765246,\n            \"token_percentage\": 22.113419269364712,\n            \"tokens\": 8343291744489\n          }\n        }\n      }\n    },\n    \"creator_analysis\": {\n      \"address\": \"EVGVwvzF9ivY7xd7PSUYL1tjB9hUG4MPHZRQv54bed5Y\",\n      \"current_holdings\": 0,\n      \"history\": {\n        \"average_market_cap\": 1014.0,\n        \"high_risk\": false,\n        \"previous_coins\": [\n          {\n            \"created_at\": 1738169956922,\n            \"is_rug\": false,\n            \"market_cap\": 1014,\n            \"mint\": \"7E448GypzBbahPkoUaATMBdYpeycnzyZ1g43myWogxAd\",\n            \"symbol\": \"XYZ\"\n          }\n        ],\n        \"recent_rugs\": 0,\n        \"rug_count\": 0,\n        \"rug_percentage\": 0.0,\n        \"total_coins_created\": 1\n      },\n      \"holding_percentage\": 0.0,\n      \"risk_level\": \"LOW\",\n      \"warning_flags\": [\n        null,\n        null,\n        null,\n        null\n      ]\n    },\n    \"distributed_amount\": 59850724814302,\n    \"distributed_percentage\": 5.9850724814302,\n    \"distributed_wallets\": 999,\n    \"ticker\": \"XYZ\",\n    \"total_bundles\": 13,\n    \"total_holding_amount\": 0,\n    \"total_holding_percentage\": 0.0,\n    \"total_percentage_bundled\": 83.75751768487511,\n    \"total_sol_spent\": 130.20288456,\n    \"total_tokens_bundled\": 837575176848751\n  }\n}\n\n            GMGN Analysis:\n            {\n  \"top_holder_avg_holding_time\": 1192755.27214334,\n  \"top_holder_avg_score\": 0.14833333333333332,\n  \"top_wallets\": [\n    {\n      \"address\": \"5Q544fKrFoe6tsEbD7S8EmxGTJYAKtTVhAW5Q5pge4j1\",\n      \"score\": 0.16666666666666666,\n      \"win_rate\": 0,\n      \"holding_time\": 0,\n      \"pct_change_30d\": 0,\n      \"avg_trades_per_day\": 0.0\n    },\n    {\n      \"address\": \"CK11K5de3uEmP4E3TruRjFzYCei34TCPaZoL1BRf87jf\",\n      \"score\": 0.13333333333333333,\n      \"win_rate\": 0,\n      \"holding_time\": null,\n      \"pct_change_30d\": -0.20697047222632922,\n      \"avg_trades_per_day\": 5.766666666666667\n    },\n    {\n      \"address\": \"9UDkZu5UkfDUJFWgivBzFYMSK5jMFdvxxujjs9v4NAoZ\",\n      \"score\": 0.08333333333333333,\n      \"win_rate\": 0,\n      \"holding_time\": null,\n      \"pct_change_30d\": -0.3314454397390486,\n      \"avg_trades_per_day\": 38.2\n    },\n    {\n      \"address\": \"FZEYvZyT1HenRGcWqYaGtPfMsGNJwk3F4iGzr8gMzLTR\",\n      \"score\": 0.16666666666666666,\n      \"win_rate\": 0,\n      \"holding_time\": 0,\n      \"pct_change_30d\": 0,\n      \"avg_trades_per_day\": 0.0\n    },\n    {\n      \"address\": \"J54MVaWjYcgJ4TeqjskpdyKuFnmJajxm1jvkSPwHeinX\",\n      \"score\": 0.16666666666666666,\n      \"win_rate\": 0.4,\n      \"holding_time\": 285930.5517241379,\n      \"pct_change_30d\": -0.0343860349182587,\n      \"avg_trades_per_day\": 79.7\n    },\n    {\n      \"address\": \"HXxU27xCtdFpAhzk9LmgKVd6pwjCXc1bQiVnTnYns7xn\",\n      \"score\": 0.08333333333333333,\n      \"win_rate\": 0,\n      \"holding_time\": null,\n      \"pct_change_30d\": -0.01870653902259953,\n      \"avg_trades_per_day\": 20.9\n    },\n    {\n      \"address\": \"HpJ6bsNhW4ftV1E1KtSwvr9yQ55ZbHaxMVvgney6gpoY\",\n      \"score\": 0.25,\n      \"win_rate\": 0.3333333333333333,\n      \"holding_time\": 438844.76470588235,\n      \"pct_change_30d\": 0.29640173992806973,\n      \"avg_trades_per_day\": 11.5\n    },\n    {\n      \"address\": \"CCH9vdhrvS9Rr5YcHmnRNdEGbE7Ecz57JnLc2AYhQNJS\",\n      \"score\": 0.13333333333333333,\n      \"win_rate\": 0,\n      \"holding_time\": null,\n      \"pct_change_30d\": -0.15077855212166916,\n      \"avg_trades_per_day\": 8.566666666666666\n    },\n    {\n      \"address\": \"5d2GwkSe9VtWMZEQzuqGcjmLvfRvpWMcRUvQQ2WE6Rje\",\n      \"score\": 0.16666666666666666,\n      \"win_rate\": 0.07142857142857142,\n      \"holding_time\": 2853490.5,\n      \"pct_change_30d\": -0.716422056573412,\n      \"avg_trades_per_day\": 1.8\n    },\n    {\n      \"address\": \"8c6GGRFdexDcTRMWUkVMH1rpwRzLzdeE7QuqqHoUQP1f\",\n      \"score\": 0.13333333333333333,\n      \"win_rate\": 0,\n      \"holding_time\": null,\n      \"pct_change_30d\": -0.04688860713682224,\n      \"avg_trades_per_day\": 9.466666666666667\n    }\n  ]\n}\n\n            Break down your analysis into:\n            1. Overall sentiment (bullish/bearish/neutral with colorful metaphors)\n            2. Key metrics evaluation (translate numbers to street terms)\n            3. Risk assessment (using crime analogies)\n            4. Notable patterns or concerns (what's making your degen senses tingle)\n            5. Final recommendation (full send, avoid like herpes, or cautious degen play)"
     }
   ],
-  "llm_analysis": "",
-  "llm_reasoning": "",
-  "error": "can only concatenate str (not \"NoneType\") to str"
+  "llm_analysis": "**1. Overall Sentiment:**  \nBearish as a coked-up grizzly in a honey drought. This shit's got more red flags than a Chinese military parade. Twitter's drier than my ex's panties - zero chatter, no hype trains, not even a fucking meme. If this was a party, the DJ just died.\n\n**2. Key Metrics Evaluation:**  \n- **83.75% BUNDLED:** Devs/snipers vacuumed up supply like a crackhead finding loose change. But they've already DUMPED 100% - either genius exit or they're ghosts now.  \n- **Top Holders' Avg Hold Time:** ~13.8 days (1.19M sec). Not instant paper hands, but not diamond dicks either.  \n- **GMGN Scores:** 0.14/1 across top wallets - these fuckers trade like they've got ADHD. One wallet's down 71.6% last month - bagholder alert.  \n- **Creator History:** 1 coin launched, 0 rugs. Either virgin builder or sleeper cell rugger.  \n\n**3. Risk Assessment:**  \nRiskier than rawdogging a Tinder date in Venezuela:  \n- 999 wallets holding 5.98% - could be community... or bot army waiting to carpet bomb the chart  \n- 0% dev holdings left - no imminent dump, but why'd they bail completely? Sus.  \n- Multiple sniper clusters (group_0 repeating) - coordinated wolves circling  \n\n**4. Notable Patterns/Concerns:**  \n- **Distribution Dementia:** 5% spread thin across 1k wallets screams \"fake decentralization\"  \n- **CopyTrade Cliques:** Groups like group_0 reappearing across bundles - bot farms or insider circlejerks  \n- **Schizo Holder Stats:** Mix of 13-day holders and -70% ROI traders - no united front  \n\n**5. Final Recommendation:**  \n**Avoid like a gloryhole at a feminist convention.**  \nUnless you've got:  \n- Insider info about imminent marketing nuke  \n- A fetish for chart patterns that look like dying EKG readings  \n- Spare SOL you want to convert into a cautionary tale  \n\nWait for Twitter volume or TG group to materialize. Current state = ghost chain with better tech than a Ouija board.",
+  "llm_reasoning": "Alright, let's dive into this $XYZ token. First off, the Twitter analysis is a ghost town\u2014no tweets, no hype, nada. That's a red flag. If there's no chatter, how the hell is this supposed to moon? Even the \"important tweets\" section is empty, so no influencers or big accounts pumping it. Feels like shouting into a void.\n\nNow, looking at the TrenchBot data: over 83% of the supply was bundled by the devs or snipers. That's a massive chunk. And they've already dumped all their holdings? Zero percent left. So, no immediate dump risk, but why the fuck did they hold so much and then bail? Smells like a quick cash grab. The creator's history shows no previous rugs, but with 1 coin created, they're still green. Could go either way\u2014maybe a one-hit wonder or a future rugger in the making.\n\nGMGN's top holders have an average hold time of around 1.19 million seconds\u2014what's that, like 13 days? Not terrible, but the scores are abysmal, averaging 0.14 out of 1. These guys are probably paper-handed degenerates. Some wallets have negative 30d changes, like down 70%? Ouch. If the big players are bleeding, why should I trust their bags?\n\nThe distribution is sketchy too. Over 5% distributed to 999 wallets. That's either a community play or a bot army. Without Twitter hype, leaning towards bots. Plus, the top wallets are a mix of snipers and regulars, but no clear leader. Feels disorganized.\n\nRisk-wise, the creator's holding 0% now, so no immediate dump, but the high initial bundling suggests they made their money already. If there's no community or narrative, this token's a sitting duck. The lack of Telegram adds to the suspicion\u2014no comms, no trust.\n\nFinal call? This could either be a dead cat bounce or a slow bleed. Without social proof and with shaky holder stats, it's a gamble. Not worth the SOL unless you're feeling lucky. Maybe a small play if you're a degen, but expect to get rekt."
 }
