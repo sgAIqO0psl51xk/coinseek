@@ -1,5 +1,6 @@
 import React from "react";
 import { Button } from "./ui/button";
+import Link from "next/link";
 
 function HeroSection() {
   return (
@@ -15,8 +16,8 @@ function HeroSection() {
             minus, beatae placeat illum reprehenderit quaerat tenetur itaque
             praesentium. Beatae repellendus dolore voluptates.
           </p>
-          <Button size="lg" className="w-full sm:w-auto">
-            Get Started
+          <Button size="lg" className="w-full sm:w-auto" asChild>
+            <Link href="/cot">Get Started</Link>
           </Button>
         </div>
       </div>
