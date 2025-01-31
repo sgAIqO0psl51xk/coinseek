@@ -72,7 +72,7 @@ async def analyze(request: Request, contract_address: str, ticker: str = ""):
                         "active": False,
                         "cooldown_until": datetime.datetime.now() + COOLDOWN_PERIOD
                     }
-            end = {'type': 'done'}
+            end = json.dumps({'type': 'done'})
             yield f"data: {end}\n\n"
 
     return StreamingResponse(
