@@ -1,7 +1,6 @@
 import { NextRequest } from 'next/server'
 
 export async function GET(request: NextRequest) {
-  console.log('Here');
   try {
     const { searchParams } = new URL(request.url)
     const contractAddress = searchParams.get('contractAddress')
@@ -17,7 +16,7 @@ export async function GET(request: NextRequest) {
       )
     }
 
-    const backendUrl = process.env.BACKEND_URL
+    const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL
     if (!backendUrl) {
       throw new Error('BACKEND_URL environment variable is not set')
     }
@@ -43,24 +42,49 @@ export async function GET(request: NextRequest) {
 
     const transformStream = new TransformStream({
       transform(chunk, controller) {
-        const text = new TextDecoder().decode(chunk)
-        const lines = text.split('\n')
-        
-        for (const line of lines) {
-          if (line.trim()) {  
-            if (line === 'data: [DONE]') {
-              controller.enqueue(`data: ${JSON.stringify({ done: true })}\n\n`)
-            } else {
-              // Remove 'data: ' prefix if it exists
-              const content = line.startsWith('data: ') ? line.slice(6) : line
-              controller.enqueue(`data: ${JSON.stringify({ content })}\n\n`)
+        try {
+          const text = new TextDecoder().decode(chunk)
+          const lines = text.split('\n')
+          
+          for (const line of lines) {
+            if (line.trim()) {
+              if (line === 'data: [DONE]') {
+                controller.enqueue(`data: ${JSON.stringify({ done: true })}\n\n`)
+              } else {
+                // Remove 'data: ' prefix if it exists
+                const content = line.startsWith('data: ') ? line.slice(6) : line
+                controller.enqueue(`data: ${JSON.stringify({ content })}\n\n`)
+              }
             }
           }
+        } catch (error) {
+          console.error('Stream transform error:', error)
+          controller.enqueue(`data: ${JSON.stringify({
+            error: 'Stream processing failed',
+            message: error instanceof Error ? error.message : 'Unknown error'
+          })}\n\n`)
+          controller.terminate()
         }
       },
+      flush(controller) {
+        controller.terminate()
+      }
     })
 
-    return new Response(response.body?.pipeThrough(transformStream), {
+    const stream = response.body?.pipeThrough(transformStream)
+    if (!stream) {
+      throw new Error('Failed to create response stream')
+    }
+
+    // Add error handler for the stream
+    const [streamForResponse, streamForErrorHandling] = stream.tee()
+    
+    const reader = streamForErrorHandling.getReader()
+    reader.read().catch(error => {
+      console.error('Stream read error:', error)
+    })
+
+    return new Response(streamForResponse, {
       headers: {
         'Content-Type': 'text/event-stream',
         'Cache-Control': 'no-cache, no-transform',
