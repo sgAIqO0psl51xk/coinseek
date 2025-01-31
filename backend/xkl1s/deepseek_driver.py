@@ -54,6 +54,7 @@ class DeepseekDriver:
             contract_address=self.contract_address, ticker=self.ticker, large_account_threshold=10000, affiliated_mention_threshold=5
         )
         tweet_data = await analyzer.analyze_tweets(num_tweets=20)
+        print(f"Found {len(tweet_data)} tweets")
         return self._process_twitter_results(tweet_data, analyzer.important_tweets_cache)
 
     def _process_twitter_results(self, tweet_data: List[Any], important_tweets_cache: Dict) -> Dict[str, Any]:
@@ -310,7 +311,7 @@ class DeepseekDriver:
         messages = await self.generate_analysis_prompt(analysis)
 
         # Yield initial data
-        yield {"type": "metadata", "data": analysis.to_dict()}
+        yield {"type": "metadata", "data": json.dumps(analysis.to_dict())}
 
         async for chunk in self.run_llm_analysis(messages):
             yield chunk
