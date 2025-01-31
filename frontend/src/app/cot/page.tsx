@@ -46,7 +46,7 @@ export default function AnalyzePage() {
           return;
         }
 
-        if (data.type === "analysis") {
+        if (data.type === "analysis" || data.type === "reasoning") {
           setAnalysis((prev) => prev + data.content);
         }
       } catch (err) {
