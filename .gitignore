@@ -9,6 +9,7 @@ node_modules/
 
 # Virtual environments
 .venv
+/xkl1s/.venv
 .env
 
 # Dependencies
