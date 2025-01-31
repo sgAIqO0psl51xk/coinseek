@@ -172,7 +172,7 @@ class ApifyTwitterAnalyzer:
         run = self.client.actor("apidojo/tweet-scraper").call(run_input=run_input)
         dataset = self.client.dataset(run["defaultDatasetId"])
 
-        processed_tweets = []
+        processed_tweets: List[TweetData] = []
         for item in dataset.iterate_items():
             if len(processed_tweets) >= num_tweets:
                 break

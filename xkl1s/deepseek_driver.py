@@ -1,16 +1,15 @@
 import asyncio
 import json
 from dataclasses import dataclass
-from typing import List, Dict, Any
+from typing import AsyncGenerator, List, Dict, Any, cast
 from xkl1s.trench_bot import TrenchBotFetcher
 from xkl1s.gmgn import GMGNTokenData
 from openai import OpenAI
 from xkl1s.ingestion_2 import ApifyTwitterAnalyzer
 import os
 from dotenv import load_dotenv
-from pathlib import Path
-import time
-
+from openai.types.chat import ChatCompletionMessageParam, ChatCompletionChunk
+from openai.types.chat.chat_completion_chunk import ChoiceDelta
 
 load_dotenv()
 
@@ -162,9 +161,9 @@ class DeepseekDriver:
             gmgn_data=gmgn_data,
         )
 
-    async def generate_analysis_prompt(self, analysis: TokenAnalysis) -> List[Dict[str, str]]:
+    async def generate_analysis_prompt(self, analysis: TokenAnalysis) -> List[ChatCompletionMessageParam]:
         """Generate the conversation structure for the LLM"""
-        system_message = {
+        system_message: ChatCompletionMessageParam = {
             "role": "system",
             "content": """You are a battle-hardened crypto analyst with the mouth of a sailor and the instincts of a wolf.
             Your thinking process should reflect these traits:
@@ -179,7 +178,7 @@ class DeepseekDriver:
             Think through the lens of a cynical trader who's seen 100 rugs.""",
         }
 
-        user_message = {
+        user_message: ChatCompletionMessageParam = {
             "role": "user",
             "content": f"""You will ingests data and scores based off the following parameters given to you.
 
@@ -257,7 +256,7 @@ class DeepseekDriver:
 
         return [system_message, user_message]
 
-    async def run_llm_analysis(self, messages: List[Dict[str, str]]) -> Dict[str, str]:
+    async def run_llm_analysis(self, messages: List[ChatCompletionMessageParam]) -> AsyncGenerator[Dict[str, Any], None]:
         """Run the LLM analysis using DeepSeek API"""
         response = self.client.chat.completions.create(
             model=self.llm_config.model_name,
@@ -274,18 +273,21 @@ class DeepseekDriver:
 
         try:
             for chunk in response:
-                if chunk.choices[0].delta.reasoning_content:
-                    piece = chunk.choices[0].delta.reasoning_content
+                chunk = cast(ChatCompletionChunk, chunk)
+                
+                delta: ChoiceDelta = chunk.choices[0].delta
+                if delta.content:
+                    piece = delta.content
+                    content += piece
+                    print(piece, end="", flush=True)
+                    yield {"type": "analysis", "content": piece}
+                
+                # If using a custom field for reasoning
+                if hasattr(delta, "reasoning_content"):  # Only if API actually returns this
+                    piece = delta.reasoning_content
                     reasoning_content += piece
                     print(piece, end="", flush=True)
                     yield {"type": "reasoning", "content": piece}
-                elif hasattr(chunk.choices[0].delta, "content"):
-                    piece = chunk.choices[0].delta.content
-                    if piece:
-                        content += piece
-                        # Print the analysis content to the terminal
-                        print(piece, end="", flush=True)
-                        yield {"type": "analysis", "content": piece}
 
             print("\n\nFinal Analysis:")
             # Print the complete analysis content to the terminal
@@ -314,22 +316,30 @@ class DeepseekDriver:
         analysis = await self.run_analysis()
         messages = await self.generate_analysis_prompt(analysis)
 
-        # Collect all chunks for backward compatibility
         reasoning_content = ""
         analysis_content = ""
+        result: Dict[str, Any] = {
+            "raw_data": analysis.to_dict(),
+            "messages": messages,
+            "llm_analysis": "",
+            "llm_reasoning": "",
+        }
 
-        async for chunk in self.run_llm_analysis(messages):
-            if chunk["type"] == "reasoning":
-                reasoning_content += chunk["content"]
-            elif chunk["type"] == "analysis":
-                analysis_content += chunk["content"]
-            elif chunk["type"] == "complete":
-                return {
-                    "raw_data": analysis.to_dict(),
-                    "messages": messages,
-                    "llm_analysis": analysis_content.strip(),
-                    "llm_reasoning": reasoning_content.strip(),
-                }
+        try:
+            async for chunk in self.run_llm_analysis(messages):
+                if chunk["type"] == "reasoning":
+                    reasoning_content += chunk["content"]
+                elif chunk["type"] == "analysis":
+                    analysis_content += chunk["content"]
+                elif chunk["type"] == "complete":
+                    result.update({
+                        "llm_analysis": analysis_content.strip(),
+                        "llm_reasoning": reasoning_content.strip()
+                    })
+        except Exception as e:
+            result["error"] = str(e)
+
+        return result
 
 
 async def main():
