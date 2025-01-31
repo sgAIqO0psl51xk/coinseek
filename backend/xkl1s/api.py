@@ -15,8 +15,7 @@ active_requests = {}
 active_requests_lock = asyncio.Lock()
 COOLDOWN_PERIOD = datetime.timedelta(seconds=60)
 
-@app.get("/analyze/{contract_address}/")
-@app.get("/analyze/{contract_address}/{ticker}")
+@app.get("/analyze/")
 async def analyze(request: Request, contract_address: str, ticker: str = ""):
     client_ip = request.client.host
     current_time = datetime.datetime.now()
@@ -52,12 +51,6 @@ async def analyze(request: Request, contract_address: str, ticker: str = ""):
         model_name="deepseek-reasoner",
         base_url="https://api.deepseek.com",
     )
-
-    # twitter_creds = {
-    #     "username": os.getenv("TWT_USERNAME"),
-    #     "email": os.getenv("TWT_EMAIL"),
-    #     "password": os.getenv("TWT_PASSWORD"),
-    # }
 
     driver = DeepseekDriver(
         contract_address=contract_address,
