@@ -7,7 +7,7 @@ export async function GET(request: NextRequest) {
     const contractAddress = searchParams.get('contractAddress')
     const ticker = searchParams.get('ticker')
 
-    if (!contractAddress || !ticker) {
+    if (!contractAddress) {
       return new Response(
         JSON.stringify({ error: 'Contract address and ticker are required' }),
         {
@@ -21,9 +21,11 @@ export async function GET(request: NextRequest) {
     if (!backendUrl) {
       throw new Error('BACKEND_URL environment variable is not set')
     }
-
+    let url = `${backendUrl}/analyze?contract_address=${encodeURIComponent(contractAddress)}`
+    if (ticker) 
+      url += `&ticker=${encodeURIComponent(ticker)}`
     const response = await fetch(
-      `${backendUrl}/analyze?contract_address=${encodeURIComponent(contractAddress)}&ticker=${encodeURIComponent(ticker)}`,
+      url,
       {
         method: 'GET',
         headers: {

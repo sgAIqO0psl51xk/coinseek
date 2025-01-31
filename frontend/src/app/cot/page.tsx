@@ -103,8 +103,7 @@ export default function AnalyzePage() {
               id="ticker"
               value={ticker}
               onChange={(e) => setTicker(e.target.value)}
-              placeholder="Enter ticker (e.g. $BTC)"
-              required
+              placeholder="(Optional) Enter ticker (e.g. $BTC)"
             />
           </div>
 
