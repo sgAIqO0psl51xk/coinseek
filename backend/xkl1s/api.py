@@ -62,9 +62,9 @@ async def analyze(request: Request, contract_address: str, ticker: str = ""):
     async def generate():
         try:
             async for chunk in driver.stream_analysis():
-                yield f"data: {json.dumps(chunk)}\n\n"
+                yield f"data: {json.dumps(chunk)}"
         except Exception as e:
-            yield f"data: {{'error': '{str(e)}'}}\n\n"
+            yield f"data: {{'error': '{str(e)}'}}"
         finally:
             async with active_requests_lock:
                 if client_ip in active_requests:
@@ -73,7 +73,7 @@ async def analyze(request: Request, contract_address: str, ticker: str = ""):
                         "cooldown_until": datetime.datetime.now() + COOLDOWN_PERIOD
                     }
             end = json.dumps({'type': 'done'})
-            yield f"data: {end}\n\n"
+            yield f"data: {end}"
 
     return StreamingResponse(
         generate(),

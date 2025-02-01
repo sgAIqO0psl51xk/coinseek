@@ -310,8 +310,11 @@ class DeepseekDriver:
         analysis = await self.run_analysis()
         messages = await self.generate_analysis_prompt(analysis)
 
+        dict = analysis.to_dict()
+        del dict["twitter_analysis"]
+
         # Yield initial data
-        yield {"type": "metadata", "data": json.dumps(analysis.to_dict())}
+        yield {"type": "metadata", "data": dict}
 
         async for chunk in self.run_llm_analysis(messages):
             yield chunk
