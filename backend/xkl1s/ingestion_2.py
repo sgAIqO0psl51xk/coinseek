@@ -92,14 +92,14 @@ class ApifyTwitterAnalyzer:
                 "id": item["user_info"]["rest_id"],
                 "userName": item["screen_name"],
                 "followers": item["user_info"]["followers_count"],
-                "isVerified": item["user_info"]["verified"]
+                "isVerified": item["user_info"]["verified"],
             },
             "text": item["text"],
             "replyCount": item.get("replies", 0),
             "retweetCount": item.get("retweets", 0),
             "likeCount": item.get("favorites", 0),
             "quoteCount": item.get("quotes", 0),
-            "quote": None  # Parent tweets not handled in this version
+            "quote": None,  # Parent tweets not handled in this version
         }
 
     def _create_user_info(self, user_data: Dict) -> UserInfo:
@@ -122,11 +122,11 @@ class ApifyTwitterAnalyzer:
         text_lower = text.lower()
         return (text_lower.count(self.contract_address), text_lower.count(self.ticker))
 
-    async def _process_parent_tweet(self, quote_data: Dict) -> ParentTweetInfo:
+    async def _process_parent_tweet(self, quote_data: Dict) -> Optional[ParentTweetInfo]:
         # Currently not implemented for new scraper format
         return None
 
-    async def _process_tweet(self, raw_item: Dict) -> TweetData:
+    async def _process_tweet(self, raw_item: Dict) -> Optional[TweetData]:
         try:
             item = self._translate_item(raw_item)
             tweet_id = item["id"]
@@ -162,10 +162,7 @@ class ApifyTwitterAnalyzer:
                 },
             )
 
-            if (
-                tweet_data.metrics["reply_count"] > 5
-                or user_info.follower_count >= self.large_account_threshold
-            ):
+            if tweet_data.metrics["reply_count"] > 5 or user_info.follower_count >= self.large_account_threshold:
                 self.important_tweets_cache[tweet_id] = tweet_data
 
             self.processed_tweets[tweet_id] = tweet_data
@@ -183,23 +180,23 @@ class ApifyTwitterAnalyzer:
     async def analyze_tweets(self, num_tweets: int = 50) -> List[TweetData]:
         queries = [
             {"query": f'"{self.ticker}" lang:en', "max_posts": num_tweets, "sort": "recent"},
-            {"query": f'"{self.contract_address}" lang:en', "max_posts": num_tweets, "sort": "recent"}
+            {"query": f'"{self.contract_address}" lang:en', "max_posts": num_tweets, "sort": "recent"},
         ]
 
         api_key = await ApifyTwitterAnalyzer.get_next_api_key()
         client = ApifyClientAsync(api_key)
-        
+
         # Run both scrapers concurrently
-        tasks = [client.actor("danek/twitter-scraper-ppr").call(run_input=query, max_items=num_tweets//2) for query in queries]
+        tasks = [client.actor("danek/twitter-scraper-ppr").call(run_input=query, max_items=num_tweets // 2) for query in queries]
         results = await asyncio.gather(*tasks)
 
         processed_tweets: List[TweetData] = []
-        
+
         for run in results:
             if not run:
                 logger.error("Scraper run failed")
                 continue
-                
+
             dataset = client.dataset(run["defaultDatasetId"])
             async for item in dataset.iterate_items():
                 if len(processed_tweets) >= num_tweets * 2:  # Double for both queries
@@ -215,7 +212,7 @@ class ApifyTwitterAnalyzer:
             if tweet.content not in seen:
                 seen.add(tweet.content)
                 deduped.append(tweet)
-        
+
         logger.info(f"Processed {len(deduped)} unique tweets")
         return deduped[:num_tweets]
 
@@ -238,7 +235,7 @@ class ApifyTwitterAnalyzer:
                 "ticker_mentions": tweet.user.ticker_mention_count,
             },
             "metrics": tweet.metrics,
-            "parent_tweet": None  # Removed for simplicity
+            "parent_tweet": None,  # Removed for simplicity
         }
 
 
@@ -253,6 +250,7 @@ async def main():
     tweets = await analyzer.analyze_tweets(15)
     analyzer.save_analysis()
     logger.info(f"Saved analysis with {len(tweets)} tweets")
+
 
 if __name__ == "__main__":
     asyncio.run(main())
