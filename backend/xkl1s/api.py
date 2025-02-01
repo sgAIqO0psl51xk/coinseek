@@ -39,19 +39,28 @@ async def analyze(request: Request, contract_address: str, ticker: str = ""):
         else:
             active_requests[client_ip] = {"active": True, "cooldown_until": datetime.datetime.now()}
 
-    assert os.getenv("OPENROUTER_API_KEY"), "APIkey for DEEPSEEK_API_KEY is not specified"
+    assert os.getenv("OPENROUTER_API_KEY"), "APIkey for OPENROUTER_API_KEY is not specified"
+    assert os.getenv("DEEPSEEK_API_KEY"), "APIkey for DEEPSEEK_API_KEY is not specified"
     # llm_config = LLMConfig(
     #     api_key=cast(str, os.getenv("DEEPSEEK_API_KEY")),
     #     model_name="deepseek-reasoner",
     #     base_url="https://api.deepseek.com",
     # )
-    model = "deepseek/deepseek-r1"
+    
+    # Open Router
+    # model = "deepseek/deepseek-r1"
     # model = "deepseek/deepseek-r1:nitro"
     # model = "deepseek/deepseek-r1:free"
+    # base_url = "https://openrouter.ai/api/v1/chat/completions"
+
+    # Deepseek
+    model = "deepseek-reasoner"
+    base_url = "https://api.deepseek.com/chat/completions"
+
     llm_config = LLMConfig(
-        api_key=os.getenv("OPENROUTER_API_KEY", ""),  # Ensure this is set in your environment
+        api_key=os.getenv("DEEPSEEK_API_KEY", ""),  # Ensure this is set in your environment
         model_name=model, # OpenRouter model name
-        base_url="https://openrouter.ai/api/v1/chat/completions",  # OpenRouter's API endpoint
+        base_url=base_url,  # OpenRouter's API endpoint
     )
 
     driver = DeepseekDriver(
