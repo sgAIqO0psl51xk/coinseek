@@ -20,7 +20,12 @@ COOLDOWN_PERIOD = datetime.timedelta(seconds=5)
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # In production, replace with your frontend domain
+    allow_origins=[
+        "https://www.coinseek.fun",
+        "http://www.coinseek.fun",
+        "https://coinseek.fun",
+        "http://coinseek.fun"
+    ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
