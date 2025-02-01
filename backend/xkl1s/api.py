@@ -21,11 +21,10 @@ COOLDOWN_PERIOD = datetime.timedelta(seconds=30)
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
-        # "https://www.coinseek.fun",
-        # "http://www.coinseek.fun",
-        # "https://coinseek.fun",
-        # "http://coinseek.fun",
-        "*"
+        "https://www.coinseek.fun",
+        "http://www.coinseek.fun",
+        "https://coinseek.fun",
+        "http://coinseek.fun",
     ],
     allow_credentials=True,
     allow_methods=["*"],
