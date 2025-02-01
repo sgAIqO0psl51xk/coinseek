@@ -12,6 +12,7 @@ dependencies = [
     "fastapi>=0.115.7",
     "flake8-pyproject>=1.2.3",
     "humanfriendly>=10.0",
+    "hypercorn>=0.17.3",
     "mypy>=1.14.1",
     "openai>=1.60.2",
     "python-dotenv>=1.0.1",
