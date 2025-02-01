@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     default: "CoinSeek",
   },
   description: "on-chain due dilegence",
-  metadataBase: new URL("www.coinseek.fun"),
+  metadataBase: new URL("https://www.coinseek.fun"),
   icons: {
     icon: [{ url: "/mario.png" }],
     apple: [{ url: "/mario.png" }],
