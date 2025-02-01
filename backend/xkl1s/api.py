@@ -16,7 +16,7 @@ app = FastAPI()
 
 active_requests: Dict[str, Any] = {}
 active_requests_lock = asyncio.Lock()
-COOLDOWN_PERIOD = datetime.timedelta(seconds=5)
+COOLDOWN_PERIOD = datetime.timedelta(seconds=30)
 
 app.add_middleware(
     CORSMiddleware,
@@ -39,6 +39,20 @@ async def analyze(request: Request, contract_address: str, ticker: str = ""):
     current_time = datetime.datetime.now()
     logging.info(f"Client IP: {client_ip}")
 
+    async def error_response(message: str, status_code: int = 429):
+        # Format error as SSE event with both type and message
+        error_data = f"event: error\ndata: {json.dumps({'type': 'error', 'message': message, 'status': status_code})}\n\n"
+        return StreamingResponse(
+            iter([error_data]),
+            media_type="text/event-stream",
+            headers={
+                "Cache-Control": "no-cache",
+                "Connection": "keep-alive",
+                "Content-Type": "text/event-stream",
+                "Access-Control-Allow-Origin": "*",
+            },
+        )
+
     try:
         async with active_requests_lock:
             if client_ip in active_requests:
@@ -47,12 +61,13 @@ async def analyze(request: Request, contract_address: str, ticker: str = ""):
 
                 if entry["active"]:
                     logging.warning("Request rejected: Another request is already in progress")
-                    raise HTTPException(status_code=429, detail="Another request is already in progress")
+                    return await error_response("Another request is already in progress")
 
                 if entry["cooldown_until"] and current_time < entry["cooldown_until"]:
                     remaining = (entry["cooldown_until"] - current_time).total_seconds()
                     logging.warning(f"Request rejected: In cooldown period ({remaining} seconds remaining)")
-                    raise HTTPException(status_code=429, detail=f"Wait {int(remaining)} seconds before requesting again")
+                    return await error_response(f"Wait {int(remaining)} seconds before requesting again")
+
 
                 # Update entry for new request
                 entry["active"] = True
@@ -64,8 +79,10 @@ async def analyze(request: Request, contract_address: str, ticker: str = ""):
         logging.info("Checking API keys...")
         if not os.getenv("OPENROUTER_API_KEY"):
             logging.error("OPENROUTER_API_KEY not found")
+            return await error_response("Backend service configuration error: OPENROUTER_API_KEY missing", 500)
         if not os.getenv("DEEPSEEK_API_KEY"):
             logging.error("DEEPSEEK_API_KEY not found")
+            return await error_response("Backend service configuration error: DEEPSEEK_API_KEY missing", 500)
 
         assert os.getenv("OPENROUTER_API_KEY"), "APIkey for OPENROUTER_API_KEY is not specified"
         assert os.getenv("DEEPSEEK_API_KEY"), "APIkey for DEEPSEEK_API_KEY is not specified"
@@ -141,4 +158,4 @@ async def analyze(request: Request, contract_address: str, ticker: str = ""):
 
     except Exception as e:
         logging.error(f"Unexpected error in analyze endpoint: {str(e)}", exc_info=True)
-        raise
+        return await error_response(f"An unexpected error occurred: {str(e)}", 500)

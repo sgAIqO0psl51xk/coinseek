@@ -64,25 +64,43 @@ export default function AnalyzePage() {
       eventSource.close();
     });
 
-    eventSource.addEventListener('error', (event: MessageEvent) => {
+    eventSource.addEventListener('error', (event: Event) => {
       console.error('SSE Error event:', event);
-      try {
-        const { message } = JSON.parse(event.data);
-        setError(message);
-      } catch (error) {
-        setError('Connection error occurred');
+      
+      // Check if it's an EventSource error or a server-sent error
+      if (event instanceof MessageEvent && event.data) {
+        try {
+          const { message } = JSON.parse(event.data);
+          // Handle specific error cases
+          if (message.includes('Wait') && message.includes('seconds')) {
+            setError(`Rate limit reached. ${message}`);
+          } else if (message.includes('Another request is already in progress')) {
+            setError('You already have an analysis in progress. Please wait for it to complete.');
+          } else if (message.includes('API key')) {
+            setError('Backend service configuration error. Please try again later.');
+          } else if (message.includes('All providers failed')) {
+            setError('Analysis services are currently unavailable. Please try again later.');
+          } else {
+            setError(message || 'An unexpected error occurred');
+          }
+        } catch (error) {
+          setError('Failed to parse error message from server');
+        }
+      } else {
+        // // Handle connection errors
+        // const eventSource = event.target as EventSource;
+        // if (eventSource.readyState === EventSource.CLOSED) {
+        //   setError('Connection to analysis server was closed');
+        // } else if (eventSource.readyState === EventSource.CONNECTING) {
+        //   setError('Unable to connect to analysis server. Please try again later.');
+        // } else {
+        //   setError('Connection error occurred. Please try again.');
+        // }
       }
+      
       setIsAnalyzing(false);
-      eventSource.close();
+      (event.target as EventSource).close();
     });
-
-    // General error handling
-    eventSource.onerror = (error) => {
-      console.error('EventSource error:', error);
-      setError('Connection to analysis server failed');
-      setIsAnalyzing(false);
-      eventSource.close();
-    };
 
     return () => {
       eventSource.close();
