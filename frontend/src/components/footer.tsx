@@ -6,7 +6,7 @@ function Footer() {
     <footer className="fixed bottom-4 right-4">
       <div className="flex items-center gap-4">
         <Link
-          href="https://twitter.com/yourhandle"
+          href="https://x.com/CoinseekAI"
           target="_blank"
           className="text-muted-foreground hover:text-primary"
           aria-label="Twitter"
