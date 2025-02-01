@@ -257,6 +257,9 @@ class DeepseekDriver:
             GMGN Analysis:
             {json.dumps(analysis.gmgn_data, indent=2)}
 
+            DO NOT output json or any data format that you have received above. You will use this data to generate your analysis.
+            You may and should quote information from the data above to help you generate your analysis. But do not output the data itself.
+
             Break down your analysis into:
             1. Overall sentiment (bullish/bearish/neutral with colorful metaphors)
             2. Key metrics evaluation (translate numbers to street terms)
