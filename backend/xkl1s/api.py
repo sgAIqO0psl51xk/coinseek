@@ -51,7 +51,7 @@ async def analyze(request: Request, contract_address: str, ticker: str = ""):
     llm_config = LLMConfig(
         api_key=os.getenv("OPENROUTER_API_KEY", ""),  # Ensure this is set in your environment
         model_name=model, # OpenRouter model name
-        base_url="https://openrouter.ai/api/v1",  # OpenRouter's API endpoint
+        base_url="https://openrouter.ai/api/v1/chat/completions",  # OpenRouter's API endpoint
     )
 
     driver = DeepseekDriver(
