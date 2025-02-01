@@ -90,9 +90,3 @@ body {
 html {
   scroll-behavior: smooth;
 }
-
-@layer utilities {
-  .animation-delay-500 {
-    animation-delay: 5s;
-  }
-}
