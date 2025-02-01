@@ -1,7 +1,7 @@
 import asyncio
 import datetime
 import json
-from typing import Any, Dict, cast
+from typing import Any, Dict
 from fastapi import FastAPI, HTTPException, Request
 from fastapi.responses import StreamingResponse
 from xkl1s.deepseek_driver import DeepseekDriver, LLMConfig
@@ -39,11 +39,16 @@ async def analyze(request: Request, contract_address: str, ticker: str = ""):
         else:
             active_requests[client_ip] = {"active": True, "cooldown_until": datetime.datetime.now()}
 
-    assert os.getenv("DEEPSEEK_API_KEY"), "APIkey for DEEPSEEK_API_KEY is not specified"
+    assert os.getenv("OPENROUTER_API_KEY"), "APIkey for DEEPSEEK_API_KEY is not specified"
+    # llm_config = LLMConfig(
+    #     api_key=cast(str, os.getenv("DEEPSEEK_API_KEY")),
+    #     model_name="deepseek-reasoner",
+    #     base_url="https://api.deepseek.com",
+    # )
     llm_config = LLMConfig(
-        api_key=cast(str, os.getenv("DEEPSEEK_API_KEY")),
-        model_name="deepseek-reasoner",
-        base_url="https://api.deepseek.com",
+        api_key=os.getenv("OPENROUTER_API_KEY", ""),  # Ensure this is set in your environment
+        model_name="deepseek/deepseek-r1-distill-qwen-32b",  # OpenRouter model name
+        base_url="https://openrouter.ai/api/v1",  # OpenRouter's API endpoint
     )
 
     driver = DeepseekDriver(
@@ -57,7 +62,7 @@ async def analyze(request: Request, contract_address: str, ticker: str = ""):
             async for chunk in driver.stream_analysis():
                 yield f"data: {json.dumps(chunk)}\n\n"
         except Exception as e:
-            yield f"data: {{'error': '{str(e)}'}}\n\n"
+            yield f"data: {{'type': 'error', 'error': '{str(e)}'}}\n\n"
         finally:
             async with active_requests_lock:
                 if client_ip in active_requests:
