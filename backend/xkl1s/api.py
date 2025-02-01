@@ -45,9 +45,12 @@ async def analyze(request: Request, contract_address: str, ticker: str = ""):
     #     model_name="deepseek-reasoner",
     #     base_url="https://api.deepseek.com",
     # )
+    model = "deepseek/deepseek-r1"
+    # model = "deepseek/deepseek-r1:nitro"
+    # model = "deepseek/deepseek-r1:free"
     llm_config = LLMConfig(
         api_key=os.getenv("OPENROUTER_API_KEY", ""),  # Ensure this is set in your environment
-        model_name="deepseek/deepseek-r1-distill-qwen-32b",  # OpenRouter model name
+        model_name=model, # OpenRouter model name
         base_url="https://openrouter.ai/api/v1",  # OpenRouter's API endpoint
     )
 
