@@ -1,15 +1,17 @@
 import asyncio
 import json
 from dataclasses import dataclass
-from typing import AsyncGenerator, List, Dict, Any, cast
+from typing import AsyncGenerator, List, Dict, Any
+
+import aiohttp
+
 from xkl1s.trench_bot import TrenchBotFetcher
 from xkl1s.gmgn import GMGNTokenData
 from openai import OpenAI
 from xkl1s.ingestion_2 import ApifyTwitterAnalyzer
 import os
 from dotenv import load_dotenv
-from openai.types.chat import ChatCompletionMessageParam, ChatCompletionChunk
-from openai.types.chat.chat_completion_chunk import ChoiceDelta
+from openai.types.chat import ChatCompletionMessageParam
 
 load_dotenv()
 
@@ -267,59 +269,102 @@ class DeepseekDriver:
 
     async def run_llm_analysis(self, messages: List[ChatCompletionMessageParam]) -> AsyncGenerator[Dict[str, Any], None]:
         """Run the LLM analysis using DeepSeek API"""
-        response = self.client.chat.completions.create(
-            model=self.llm_config.model_name,
-            messages=messages,
-            stream=True,
-            temperature=0.75,
-        )
+        # response = self.client.chat.completions.create(
+        #     model=self.llm_config.model_name,
+        #     messages=messages,
+        #     stream=True,
+        #     temperature=0.75,
+        #     include_reasoning=True,
+        # )
 
-        reasoning_content = ""
-        content = ""
+        # reasoning_content = ""
+        # content = ""
+
+        # print("\nAnalyzing data...")
+        # print("\nChain of Thought:")
+
+        # try:
+        #     for chunk in response:
+        #         chunk = cast(ChatCompletionChunk, chunk)
+
+        #         delta: ChoiceDelta = chunk.choices[0].delta
+        #         if delta.content:
+        #             piece = delta.content
+        #             if piece:
+        #                 content += piece
+        #                 print(piece, end="", flush=True)
+        #                 yield {"type": "analysis", "content": piece}
+
+        #         if hasattr(delta, "reasoning_content"):
+        #             piece = delta.reasoning_content
+        #             if piece:
+        #                 reasoning_content += piece
+        #                 print(piece, end="", flush=True)
+        #                 yield {"type": "reasoning", "content": piece}
+
+        #     print("\n\nFinal Analysis:")
+        #     # Print the complete analysis content to the terminal
+        #     print(content.strip())
+
+        #     yield {"type": "complete", "reasoning": reasoning_content.strip(), "analysis": content.strip()}
+
+        # except Exception as e:
+        #     print(f"Debug - Exception occurred: {str(e)}")
+        #     yield {"type": "error", "message": str(e)}
+        #     raise
+        headers = {"Authorization": f"Bearer {self.llm_config.api_key}", "Content-Type": "application/json"}
+
+        payload = {"model": self.llm_config.model_name, "messages": messages, "temperature": 0.75, "stream": True, "include_reasoning": True}
 
         print("\nAnalyzing data...")
         print("\nChain of Thought:")
 
-        try:
-            for chunk in response:
-                chunk = cast(ChatCompletionChunk, chunk)
+        async with aiohttp.ClientSession() as session:
+            try:
+                async with session.post(
+                    f"{self.llm_config.base_url}/chat/completions",
+                    headers=headers,
+                    json=payload,
+                ) as response:
+                    if response.status != 200:
+                        error_message = await response.text()
+                        yield {"type": "error", "message": f"API error: {error_message}"}
+                        return
 
-                delta: ChoiceDelta = chunk.choices[0].delta
-                if delta.content:
-                    piece = delta.content
-                    if piece:
-                        content += piece
-                        print(piece, end="", flush=True)
-                        yield {"type": "analysis", "content": piece}
+                    async for line in response.content:
+                        if line:
+                            decoded_line = line.decode("utf-8").strip()
+                            if decoded_line.startswith("data:"):
+                                json_str = decoded_line[5:].strip()
+                                if json_str == "[DONE]":
+                                    continue
 
-                if hasattr(delta, "reasoning_content"):
-                    piece = delta.reasoning_content
-                    if piece:
-                        reasoning_content += piece
-                        print(piece, end="", flush=True)
-                        yield {"type": "reasoning", "content": piece}
+                                try:
+                                    chunk = json.loads(json_str)
+                                    if "choices" in chunk and chunk["choices"]:
+                                        delta = chunk["choices"][0].get("delta", {})
+                                        if "content" in delta and delta["content"]:
+                                            yield {"type": "analysis", "content": delta["content"]}
+                                        if "reasoning" in delta and delta["reasoning"]:
+                                            yield {"type": "reasoning", "content": delta["reasoning"]}
+                                except json.JSONDecodeError:
+                                    yield {"type": "error", "message": "Failed to parse JSON chunk"}
+                                    continue
 
-            print("\n\nFinal Analysis:")
-            # Print the complete analysis content to the terminal
-            print(content.strip())
-
-            yield {"type": "complete", "reasoning": reasoning_content.strip(), "analysis": content.strip()}
-
-        except Exception as e:
-            print(f"Debug - Exception occurred: {str(e)}")
-            yield {"type": "error", "message": str(e)}
-            raise
+            except Exception as e:
+                yield {"type": "error", "message": str(e)}
+                raise
 
     async def stream_analysis(self):
         """Stream the full analysis pipeline"""
         analysis = await self.run_analysis()
         messages = await self.generate_analysis_prompt(analysis)
 
-        dict = analysis.to_dict()
-        del dict["twitter_analysis"]
+        # dict = analysis.to_dict()
+        # del dict["twitter_analysis"]
 
         # Yield initial data
-        yield {"type": "metadata", "data": dict}
+        yield {"type": "metadata", "data": {}}
 
         async for chunk in self.run_llm_analysis(messages):
             yield chunk
