@@ -59,14 +59,16 @@ async def main():
     token = "4eyTLdUxbAecMWCGHNfS8QnL4Bwv7b6G37oz7rrf5bVy"
     fetcher = TrenchBotFetcher(token)
 
-    total_percent = await fetcher.get_total_percent_bundled()
-    print(f"Total % Bundled: {total_percent}")
-    percent_of_bundle = await fetcher.get_current_held_as_percent_of_total_bundle()
-    print(f"Percent of Bundle Held: {percent_of_bundle}")
+    print(await fetcher.get_creator_analysis())
 
-    await fetcher.fetch_task
-    with open("data.json", "w") as f:
-        json.dump(fetcher.data, f, indent=4)
+    # total_percent = await fetcher.get_total_percent_bundled()
+    # print(f"Total % Bundled: {total_percent}")
+    # percent_of_bundle = await fetcher.get_current_held_as_percent_of_total_bundle()
+    # print(f"Percent of Bundle Held: {percent_of_bundle}")
+
+    # await fetcher.fetch_task
+    # with open("data.json", "w") as f:
+    #     json.dump(fetcher.data, f, indent=4)
 
 
 if __name__ == "__main__":
