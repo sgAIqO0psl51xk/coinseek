@@ -5,6 +5,7 @@ import { Button } from "../../components/ui/button";
 import { Input } from "../../components/ui/input";
 import { Card } from "../../components/ui/card";
 import { Loader2 } from "lucide-react";
+import ReactMarkdown from "react-markdown";
 
 interface AnalysisResponse {
   content?: string;
@@ -129,7 +130,7 @@ export default function AnalyzePage() {
           <Card className="p-6 space-y-4">
             <h2 className="text-2xl font-semibold">Analysis Results</h2>
             <div className="whitespace-pre-wrap p-4 font-mono text-sm leading-relaxed rounded-lg">
-              {analysis}
+              <ReactMarkdown>{analysis}</ReactMarkdown>
             </div>
           </Card>
         )}
