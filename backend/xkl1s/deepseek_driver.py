@@ -1,15 +1,14 @@
 import asyncio
 import json
 from dataclasses import dataclass
+import logging
 from typing import AsyncGenerator, List, Dict, Any
 
 import aiohttp
 
 from xkl1s.trench_bot import TrenchBotFetcher
 from xkl1s.gmgn import GMGNTokenData
-from openai import OpenAI
 from xkl1s.ingestion_2 import ApifyTwitterAnalyzer
-import os
 from dotenv import load_dotenv
 from openai.types.chat import ChatCompletionMessageParam
 
@@ -17,11 +16,13 @@ load_dotenv()
 
 
 @dataclass
-class LLMConfig:
+class LLMProvider:
     api_key: str
-    model_name: str = "deepseek-reasoner"
-    base_url: str = "https://api.deepseek.com"
+    model_name: str
+    base_url: str
     max_tokens: int = 2000
+    priority: int = 1  # Lower numbers get tried first
+    provider_type: str = "deepseek"  # deepseek|openrouter
 
 
 @dataclass
@@ -43,11 +44,10 @@ class TokenAnalysis:
 
 
 class DeepseekDriver:
-    def __init__(self, contract_address: str, ticker: str, llm_config: LLMConfig):
+    def __init__(self, contract_address: str, ticker: str, llm_providers: list[LLMProvider]):
         self.contract_address = contract_address
         self.ticker = ticker
-        self.llm_config = llm_config
-        self.client = OpenAI(api_key=llm_config.api_key, base_url=llm_config.base_url)
+        self.llm_providers = sorted(llm_providers, key=lambda x: x.priority)
 
     async def analyze_twitter(self) -> Dict[str, Any]:
         """Twitter analysis using Apify"""
@@ -268,35 +268,37 @@ class DeepseekDriver:
         return [system_message, user_message]
 
     async def run_llm_analysis(self, messages: List[ChatCompletionMessageParam]) -> AsyncGenerator[Dict[str, Any], None]:
-        """Run the LLM analysis using either DeepSeek or OpenRouter API"""
-        headers = {
-            "Authorization": f"Bearer {self.llm_config.api_key}",
-            "Content-Type": "application/json",
-        }
+        """Run the LLM analysis with automatic fallback between providers"""
+        for provider in self.llm_providers:
+            got_data = False
+            logging.log(logging.INFO, f"\nAttempting analysis with {provider.provider_type}:{provider.model_name}...")
+            headers = {
+                "Authorization": f"Bearer {provider.api_key}",
+                "Content-Type": "application/json",
+            }
 
-        payload = {
-            "model": self.llm_config.model_name,
-            "messages": messages,
-            "temperature": 0.75,
-            "stream": True,
-            "include_reasoning": True  # DeepSeek-specific param, OpenRouter will ignore
-        }
+            payload = {
+                "model": provider.model_name,
+                "messages": messages,
+                "temperature": 0.75,
+                "stream": True,
+            }
 
-        print("\nAnalyzing data...")
-        print("\nChain of Thought:")
+            if provider.provider_type == "openrouter":
+                payload["include_reasoning"] = True
 
-        async with aiohttp.ClientSession() as session:
-            try:
-                async with session.post(
-                    self.llm_config.base_url,
-                    headers=headers,
-                    json=payload,
-                ) as response:
+            async with aiohttp.ClientSession() as session:
+                try:
+                    response = await session.post(
+                        provider.base_url,
+                        headers=headers,
+                        json=payload,
+                    )
                     if response.status != 200:
                         error_message = await response.text()
-                        yield {"type": "error", "message": f"API error: {error_message}"}
-                        return
+                        raise Exception(f"API error: {error_message}")
 
+                    # Process the response stream
                     async for line in response.content:
                         if line:
                             decoded_line = line.decode("utf-8").strip()
@@ -304,31 +306,42 @@ class DeepseekDriver:
                                 json_str = decoded_line[5:].strip()
                                 if json_str == "[DONE]":
                                     continue
-
                                 try:
                                     chunk = json.loads(json_str)
-                                    if "choices" in chunk and chunk["choices"]:
-                                        delta = chunk["choices"][0].get("delta", {})
-                                        
-                                        # Handle content
-                                        if delta.get("content"):
-                                            yield {"type": "analysis", "content": delta["content"]}
-                                        
-                                        # Handle reasoning content (DeepSeek) or assistant feedback
-                                        reasoning_content = delta.get("reasoning_content") or delta.get("assistant_feedback")
-                                        if reasoning_content:
-                                            yield {"type": "reasoning", "content": reasoning_content}
+                                except json.JSONDecodeError as e:
+                                    raise Exception(f"Invalid JSON chunk: {e}")
 
-                                except json.JSONDecodeError:
-                                    yield {"type": "error", "message": "Failed to parse JSON chunk"}
-                                    continue
+                                if "choices" not in chunk or not chunk["choices"]:
+                                    raise Exception("Response missing 'choices' field")
 
-                    # Final completion
+                                delta = chunk["choices"][0].get("delta", {})
+                                content = delta.get("content")
+                                if content:
+                                    got_data = True
+                                    yield {"type": "analysis", "content": content}
+                                reasoning_content = delta.get("reasoning_content") or delta.get("assistant_feedback") or delta.get("reasoning")
+                                if reasoning_content:
+                                    got_data = True
+                                    yield {"type": "reasoning", "content": reasoning_content}
+
+                    # Stream completed successfully
+                    if not got_data:
+                        raise Exception("No data recieved from llm")
+                    logging.log(logging.INFO, f"Finished sucessfully with {provider.model_name}")
                     yield {"type": "complete"}
+                    return  # Success exit
 
-            except Exception as e:
-                yield {"type": "error", "message": str(e)}
-                raise
+                except Exception as e:
+                    if got_data:
+                        yield {"type": "complete"}
+                        return
+                    last_error = str(e)
+                    yield {"type": "error", "message": f"{provider.provider_type} error: {last_error}"}
+                    continue  # Proceed to next provider
+
+        # All providers failed
+        logging.log(logging.INFO, "All providers failed")
+        yield {"type": "error", "message": f"All providers failed. Last error: {last_error}"}
 
     async def stream_analysis(self):
         """Stream the full analysis pipeline"""
@@ -372,26 +385,26 @@ class DeepseekDriver:
         return result
 
 
-async def main():
-    llm_config = LLMConfig(
-        api_key=os.getenv("DEEPSEEK_API_KEY"),
-        model_name="deepseek-reasoner",
-        base_url="https://api.deepseek.com",
-    )
+# async def main():
+#     llm_config = LLMConfig(
+#         api_key=os.getenv("DEEPSEEK_API_KEY"),
+#         model_name="deepseek-reasoner",
+#         base_url="https://api.deepseek.com",
+#     )
 
-    driver = DeepseekDriver(
-        contract_address="7E448GypzBbahPkoUaATMBdYpeycnzyZ1g43myWogxAd",
-        ticker="$xyz",
-        llm_config=llm_config,
-    )
+#     driver = DeepseekDriver(
+#         contract_address="7E448GypzBbahPkoUaATMBdYpeycnzyZ1g43myWogxAd",
+#         ticker="$xyz",
+#         llm_config=llm_config,
+#     )
 
-    report = await driver.analyze_and_report()
+#     report = await driver.analyze_and_report()
 
-    with open("full_analysis_report.json", "w") as f:
-        json.dump(report, f, indent=2)
+#     with open("full_analysis_report.json", "w") as f:
+#         json.dump(report, f, indent=2)
 
-    print("\nAnalysis complete! Results saved to 'full_analysis_report.json'")
+#     print("\nAnalysis complete! Results saved to 'full_analysis_report.json'")
 
 
-if __name__ == "__main__":
-    asyncio.run(main())
+# if __name__ == "__main__":
+#     asyncio.run(main())
