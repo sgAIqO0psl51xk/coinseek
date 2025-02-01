@@ -22,45 +22,66 @@ export default function AnalyzePage() {
   useEffect(() => {
     if (!isAnalyzing) return;
 
-    let url = `/api/analyze?contractAddress=${encodeURIComponent(contractAddress)}`;
-    if (ticker !== "")
-        url += `&ticker=${encodeURIComponent(ticker)}`
+    const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL;
+    if (!backendUrl) {
+      setError('Backend URL is not configured');
+      setIsAnalyzing(false);
+      return;
+    }
+
+    console.log(`Starting analysis for ${contractAddress}`);
+    const url = `${backendUrl}/analyze?contract_address=${encodeURIComponent(contractAddress)}${ticker ? `&ticker=${encodeURIComponent(ticker)}` : ''}`;
     const eventSource = new EventSource(url);
 
-    eventSource.onmessage = (event) => {
+    // Add event listeners for specific event types
+    eventSource.addEventListener('reasoning', (event: MessageEvent) => {
+      console.log('Reasoning event received:', event.data);
       try {
-        const obj = JSON.parse(
-          event.data
-        );
-        const data = JSON.parse(obj.content);
-
-        if (data.type === "done") {
-          setIsAnalyzing(false);
-          eventSource.close();
-          return;
-        }
-
-        if (data.error) {
-          setError(data.error);
-          setIsAnalyzing(false);
-          eventSource.close();
-          return;
-        }
-
-        if (data.type === "analysis" || data.type === "reasoning") {
-          setAnalysis((prev) => prev + data.content);
-        }
-      } catch (err) {
-        console.error("Error parsing SSE data:", err);
-        setError("Error parsing analysis data");
-        setIsAnalyzing(false);
-        eventSource.close();
+        const { content } = JSON.parse(event.data);
+        setAnalysis(prev => prev + content);
+      } catch (error) {
+        console.error('Failed to parse reasoning event:', error);
       }
-    };
+    });
 
-    eventSource.onerror = (err) => {
-      console.error("SSE Error:", err);
-      setError("Connection error occurred");
+    eventSource.addEventListener('analysis', (event: MessageEvent) => {
+      console.log('Analysis event received:', event.data);
+      try {
+        const { content } = JSON.parse(event.data);
+        setAnalysis(prev => prev + content);
+      } catch (error) {
+        console.error('Failed to parse analysis event:', error);
+      }
+    });
+
+    eventSource.addEventListener('complete', (event: MessageEvent) => {
+      console.log('Analysis completed');
+      setIsAnalyzing(false);
+      eventSource.close();
+    });
+
+    eventSource.addEventListener('done', (event: MessageEvent) => {
+      console.log('Analysis done');
+      setIsAnalyzing(false);
+      eventSource.close();
+    });
+
+    eventSource.addEventListener('error', (event: MessageEvent) => {
+      console.error('SSE Error event:', event);
+      try {
+        const { message } = JSON.parse(event.data);
+        setError(message);
+      } catch (error) {
+        setError('Connection error occurred');
+      }
+      setIsAnalyzing(false);
+      eventSource.close();
+    });
+
+    // General error handling
+    eventSource.onerror = (error) => {
+      console.error('EventSource error:', error);
+      setError('Connection to analysis server failed');
       setIsAnalyzing(false);
       eventSource.close();
     };

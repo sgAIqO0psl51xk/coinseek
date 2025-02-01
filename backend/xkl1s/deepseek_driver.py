@@ -271,7 +271,7 @@ class DeepseekDriver:
         """Run the LLM analysis with automatic fallback between providers"""
         for provider in self.llm_providers:
             got_data = False
-            logging.log(logging.INFO, f"\nAttempting analysis with {provider.provider_type}:{provider.model_name}...")
+            logging.info(f"Attempting analysis with {provider.provider_type}:{provider.model_name}...")
             headers = {
                 "Authorization": f"Bearer {provider.api_key}",
                 "Content-Type": "application/json",
@@ -296,6 +296,7 @@ class DeepseekDriver:
                     )
                     if response.status != 200:
                         error_message = await response.text()
+                        logging.error(f"API error: {error_message}")
                         raise Exception(f"API error: {error_message}")
 
                     # Process the response stream
@@ -309,38 +310,43 @@ class DeepseekDriver:
                                 try:
                                     chunk = json.loads(json_str)
                                 except json.JSONDecodeError as e:
-                                    raise Exception(f"Invalid JSON chunk: {e}")
+                                    logging.error(f"JSON decode error: {e} | Data: {json_str}")
+                                    raise
 
                                 if "choices" not in chunk or not chunk["choices"]:
+                                    logging.error("Invalid response chunk missing choices")
                                     raise Exception("Response missing 'choices' field")
 
                                 delta = chunk["choices"][0].get("delta", {})
                                 content = delta.get("content")
                                 if content:
                                     got_data = True
+                                    # logging.info(f"Analysis content: {content}")
                                     yield {"type": "analysis", "content": content}
                                 reasoning_content = delta.get("reasoning_content") or delta.get("assistant_feedback") or delta.get("reasoning")
                                 if reasoning_content:
                                     got_data = True
+                                    # logging.info(f"Reasoning content: {reasoning_content}")
                                     yield {"type": "reasoning", "content": reasoning_content}
 
                     # Stream completed successfully
                     if not got_data:
-                        raise Exception("No data recieved from llm")
-                    logging.log(logging.INFO, f"Finished sucessfully with {provider.model_name}")
+                        logging.error("No data received from LLM stream")
+                        raise Exception("No data received from llm")
+                    logging.info(f"Successfully completed analysis with {provider.model_name}")
                     yield {"type": "complete"}
-                    return  # Success exit
+                    return
 
                 except Exception as e:
+                    logging.error(f"Provider {provider.provider_type} error: {str(e)}")
                     if got_data:
-                        yield {"type": "complete"}
+                        yield {"type": "error", "message": f"Stream interrupted: {str(e)}"}
                         return
                     last_error = str(e)
-                    yield {"type": "error", "message": f"{provider.provider_type} error: {last_error}"}
                     continue  # Proceed to next provider
 
         # All providers failed
-        logging.log(logging.INFO, "All providers failed")
+        logging.error("All LLM providers failed")
         yield {"type": "error", "message": f"All providers failed. Last error: {last_error}"}
 
     async def stream_analysis(self):
