@@ -15,7 +15,7 @@ interface AnalysisResponse {
 export default function AnalyzePage() {
   const [contractAddress, setContractAddress] = useState("");
   const [ticker, setTicker] = useState("");
-  const [analysis, setAnalysis] = useState<string>("");
+  const [ analysis, setAnalysis] = useState<string>("");
   const [error, setError] = useState<string | null>(null);
   const [isAnalyzing, setIsAnalyzing] = useState(false);
 

@@ -1,5 +1,5 @@
 import type { NextConfig } from "next";
-import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+import MiniCssExtractPlugin from "mini-css-extract-plugin";
 
 const nextConfig: NextConfig = {
   webpack: (config) => {
@@ -8,6 +8,24 @@ const nextConfig: NextConfig = {
   },
   env: {
     NEXT_PUBLIC_BACKEND_URL: process.env.NEXT_PUBLIC_BACKEND_URL,
+  },
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "artificialanalysis.ai",
+        port: "",
+        pathname: "/**/**",
+        search: "",
+      },
+      {
+        protocol: "https",
+        hostname: "custom.typingmind.com",
+        port: "",
+        pathname: "/**/**/**",
+        search: "",
+      },
+    ],
   },
 };
 
