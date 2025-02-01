@@ -83,21 +83,87 @@ export default {
             height: "0",
           },
         },
-        fadeIn: {
-          "0%": { opacity: "0", transform: "translateY(10px)" },
-          "100%": { opacity: "1", transform: "translateY(0)" },
+        loading: {
+          to: {
+            transform: "rotate(360deg)",
+          },
+        },
+        flip: {
+          to: {
+            transform: "rotate(360deg)",
+          },
+        },
+        rotate: {
+          to: {
+            transform: "rotate(90deg)",
+          },
+        },
+        orbit: {
+          "0%": {
+            transform:
+              "rotate(calc(var(--angle) * 1deg)) translateY(calc(var(--radius) * 1px)) rotate(calc(var(--angle) * -1deg))",
+          },
+          "100%": {
+            transform:
+              "rotate(calc(var(--angle) * 1deg + 360deg)) translateY(calc(var(--radius) * 1px)) rotate(calc((var(--angle) * -1deg) - 360deg))",
+          },
+        },
+        ripple: {
+          "0%, 100%": {
+            transform: "translate(-50%, -50%) scale(1)",
+          },
+          "50%": {
+            transform: "translate(-50%, -50%) scale(0.9)",
+          },
+        },
+        blob: {
+          "0%": {
+            transform: "translate(-50%, -50%) rotate(0deg) scale(1)",
+          },
+          "33%": {
+            transform: "translate(-50%, -50%) rotate(120deg) scale(1.1)",
+          },
+          "66%": {
+            transform: "translate(-50%, -50%) rotate(240deg) scale(0.9)",
+          },
+          "100%": {
+            transform: "translate(-50%, -50%) rotate(360deg) scale(1)",
+          },
+        },
+        "image-glow": {
+          "0%": {
+            opacity: "0",
+            "animation-timing-function": "cubic-bezier(.74, .25, .76, 1)",
+          },
+          "10%": {
+            opacity: "0.5",
+            "animation-timing-function": "cubic-bezier(.12, .01, .08, .99)",
+          },
+          "100%": {
+            opacity: "1",
+          },
         },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
-        "fade-in": "fadeIn 2s ease-out forwards",
+        loading: "loading 0.6s linear infinite",
+        flip: "flip 6s infinite steps(2, end)",
+        rotate: "rotate 3s linear infinite both",
+        orbit: "orbit calc(var(--duration)*1s) linear infinite",
+        ripple: "ripple var(--duration,2s) ease calc(var(--i, 0)*.2s) infinite",
+        blob: "blob 7s infinite",
+        "image-glow": "image-glow 6s ease-out 0.6s forwards",
       },
     },
   },
   plugins: [
     require("tailwindcss-animate"),
-    function ({ addUtilities }) {
+    function ({
+      addUtilities,
+    }: {
+      addUtilities: (utilities: Record<string, any>) => void;
+    }) {
       const newUtilities = {
         ".animation-delay-100": {
           "animation-delay": "100ms",
