@@ -35,7 +35,6 @@ export default function AnalyzePage() {
 
     // Add event listeners for specific event types
     eventSource.addEventListener('reasoning', (event: MessageEvent) => {
-      console.log('Reasoning event received:', event.data);
       try {
         const { content } = JSON.parse(event.data);
         setAnalysis(prev => prev + content);
@@ -45,7 +44,6 @@ export default function AnalyzePage() {
     });
 
     eventSource.addEventListener('analysis', (event: MessageEvent) => {
-      console.log('Analysis event received:', event.data);
       try {
         const { content } = JSON.parse(event.data);
         setAnalysis(prev => prev + content);
