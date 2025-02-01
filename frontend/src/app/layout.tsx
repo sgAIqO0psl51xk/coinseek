@@ -3,7 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "../components/theme-provider";
 import { MouseBlob } from "../components/mouse-blob";
-import { Navbar } from "../components/navbar";
+import Navbar from "@/components/navbar";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -17,15 +17,19 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: {
-    template: "%s | Your App Name",
-    default: "Your App Name",
+    template: "%s | CoinSeek",
+    default: "CoinSeek",
   },
-  description: "Your app description here",
-  metadataBase: new URL("https://your-domain.com"),
+  description: "on-chain due dilegence",
+  metadataBase: new URL("www.coinseek.fun"),
+  icons: {
+    icon: [{ url: "/mario.png" }],
+    apple: [{ url: "/mario.png" }],
+  },
   openGraph: {
     type: "website",
     locale: "en_US",
-    siteName: "Your App Name",
+    siteName: "CoinSeek",
   },
 };
 
@@ -39,13 +43,13 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <MouseBlob />
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"
           enableSystem
           disableTransitionOnChange
         >
+          <Navbar />
           {children}
         </ThemeProvider>
       </body>
