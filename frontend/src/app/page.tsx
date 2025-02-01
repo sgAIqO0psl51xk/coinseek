@@ -38,7 +38,7 @@ export default function Home() {
       <div className="relative">
         <HeroSection />
         <IconSection />
-        <BentoGridDemo />
+        {/* <BentoGridDemo /> */}
         {/* <CardHoverEffectDemo /> */}
         <AccordionSection />
         <Footer />
