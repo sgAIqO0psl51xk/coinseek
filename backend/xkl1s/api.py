@@ -28,7 +28,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-@app.get("/analyze/")
+@app.get("/analyze")
 async def analyze(request: Request, contract_address: str, ticker: str = ""):
     logging.info(f"Received analyze request for contract: {contract_address}, ticker: {ticker}")
     
