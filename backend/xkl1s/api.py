@@ -3,45 +3,90 @@ import datetime
 import json
 import logging
 from typing import Any, Dict
-from fastapi import FastAPI, HTTPException, Request
+from fastapi import FastAPI, HTTPException, Request, Response
 from fastapi.responses import StreamingResponse
 from fastapi.middleware.cors import CORSMiddleware
 from xkl1s.deepseek_driver import DeepseekDriver, LLMProvider
 import os
 from dotenv import load_dotenv
+from starlette.middleware.base import BaseHTTPMiddleware
+from collections import defaultdict
 
 load_dotenv()
 
 app = FastAPI()
 
-active_requests: Dict[str, Any] = {}
-active_requests_lock = asyncio.Lock()
 COOLDOWN_PERIOD = datetime.timedelta(seconds=30)
 
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
-        "https://www.coinseek.fun",
-        "http://www.coinseek.fun",
-        "https://coinseek.fun",
-        "http://coinseek.fun"
+        # "https://www.coinseek.fun",
+        # "http://www.coinseek.fun",
+        # "https://coinseek.fun",
+        # "http://coinseek.fun",
+        "*"
     ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
+class RateLimiter:
+    def __init__(self):
+        self.active_requests = {}
+        self.lock = asyncio.Lock()
+
+    async def check_rate_limit(self, ip: str) -> tuple[bool, str]:
+        async with self.lock:
+            current_time = datetime.datetime.now()
+            
+            if ip in self.active_requests:
+                entry = self.active_requests[ip]
+                
+                # Check if request is active
+                if entry["active"]:
+                    return False, "Another request is already in progress"
+                
+                # Check cooldown period
+                if entry["cooldown_until"] and current_time < entry["cooldown_until"]:
+                    remaining = (entry["cooldown_until"] - current_time).total_seconds()
+                    return False, f"Wait {int(remaining)} seconds before requesting again"
+            
+            # Either new IP or passed all checks - set active state
+            self.active_requests[ip] = {
+                "active": True,
+                "cooldown_until": None,
+                "last_request": current_time
+            }
+            return True, ""
+
+    async def release_ip(self, ip: str):
+        async with self.lock:
+            if ip in self.active_requests:
+                self.active_requests[ip] = {
+                    "active": False,
+                    "cooldown_until": datetime.datetime.now() + COOLDOWN_PERIOD,
+                    "last_request": datetime.datetime.now()
+                }
+
+# Create global rate limiter instance
+rate_limiter = RateLimiter()
+
 @app.get("/analyze")
 async def analyze(request: Request, contract_address: str, ticker: str = ""):
     logging.info(f"Received analyze request for contract: {contract_address}, ticker: {ticker}")
     
-    client_ip = "" if request.client is None else request.client.host
-    current_time = datetime.datetime.now()
+    client_ip = (
+        request.headers.get("x-forwarded-for", "").split(",")[0].strip() or
+        request.headers.get("x-real-ip", "") or
+        request.client.host if request.client else ""
+    )
     logging.info(f"Client IP: {client_ip}")
 
-    async def error_response(message: str, status_code: int = 429):
+    async def error_response(message: str):
         # Format error as SSE event with both type and message
-        error_data = f"event: error\ndata: {json.dumps({'type': 'error', 'message': message, 'status': status_code})}\n\n"
+        error_data = f"event: error\ndata: {json.dumps({'type': 'error', 'message': message})}\n\n"
         return StreamingResponse(
             iter([error_data]),
             media_type="text/event-stream",
@@ -49,32 +94,17 @@ async def analyze(request: Request, contract_address: str, ticker: str = ""):
                 "Cache-Control": "no-cache",
                 "Connection": "keep-alive",
                 "Content-Type": "text/event-stream",
-                "Access-Control-Allow-Origin": "*",
+                "Access-Control-Allow-Origin": request.headers.get("origin", "*"),
+                "Access-Control-Allow-Credentials": "true",
             },
         )
 
+    # Check rate limit
+    is_allowed, error_message = await rate_limiter.check_rate_limit(client_ip)
+    if not is_allowed:
+        return await error_response(error_message)
+
     try:
-        async with active_requests_lock:
-            if client_ip in active_requests:
-                entry = active_requests[client_ip]
-                logging.info(f"Existing request found for IP: {client_ip}")
-
-                if entry["active"]:
-                    logging.warning("Request rejected: Another request is already in progress")
-                    return await error_response("Another request is already in progress")
-
-                if entry["cooldown_until"] and current_time < entry["cooldown_until"]:
-                    remaining = (entry["cooldown_until"] - current_time).total_seconds()
-                    logging.warning(f"Request rejected: In cooldown period ({remaining} seconds remaining)")
-                    return await error_response(f"Wait {int(remaining)} seconds before requesting again")
-
-
-                # Update entry for new request
-                entry["active"] = True
-            else:
-                logging.info(f"New request entry created for IP: {client_ip}")
-                active_requests[client_ip] = {"active": True, "cooldown_until": datetime.datetime.now()}
-
         # Add logging for environment variables
         logging.info("Checking API keys...")
         if not os.getenv("OPENROUTER_API_KEY"):
@@ -133,14 +163,8 @@ async def analyze(request: Request, contract_address: str, ticker: str = ""):
                 error_data = f"event: error\ndata: {json.dumps({'type': 'error', 'message': str(e)})}\n\n"
                 yield error_data
             finally:
-                async with active_requests_lock:
-                    if client_ip in active_requests:
-                        active_requests[client_ip] = {
-                            "active": False, 
-                            "cooldown_until": datetime.datetime.now() + COOLDOWN_PERIOD,
-                            "last_address": contract_address
-                        }
-                        logging.info(f"Request completed for IP: {client_ip}")
+                # Release the rate limit when done
+                await rate_limiter.release_ip(client_ip)
                 done_data = f"event: done\ndata: {{}}\n\n"
                 yield done_data
 
@@ -157,5 +181,7 @@ async def analyze(request: Request, contract_address: str, ticker: str = ""):
         return response
 
     except Exception as e:
+        # Make sure to release the rate limit on error
+        await rate_limiter.release_ip(client_ip)
         logging.error(f"Unexpected error in analyze endpoint: {str(e)}", exc_info=True)
-        return await error_response(f"An unexpected error occurred: {str(e)}", 500)
+        return await error_response(f"An unexpected error occurred: {str(e)}")
