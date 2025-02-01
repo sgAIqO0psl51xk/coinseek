@@ -1,10 +1,11 @@
 import asyncio
 import datetime
 import json
+import logging
 from typing import Any, Dict
 from fastapi import FastAPI, HTTPException, Request
 from fastapi.responses import StreamingResponse
-from xkl1s.deepseek_driver import DeepseekDriver, LLMConfig
+from xkl1s.deepseek_driver import DeepseekDriver, LLMProvider
 import os
 from dotenv import load_dotenv
 
@@ -46,28 +47,38 @@ async def analyze(request: Request, contract_address: str, ticker: str = ""):
     #     model_name="deepseek-reasoner",
     #     base_url="https://api.deepseek.com",
     # )
-    
+
     # Open Router
     # model = "deepseek/deepseek-r1"
     # model = "deepseek/deepseek-r1:nitro"
     # model = "deepseek/deepseek-r1:free"
     # base_url = "https://openrouter.ai/api/v1/chat/completions"
 
-    # Deepseek
-    model = "deepseek-reasoner"
-    base_url = "https://api.deepseek.com/chat/completions"
+    llm_providers = [
+        LLMProvider(
+            api_key=os.getenv("DEEPSEEK_API_KEY", ""),  # Ensure this is set in your environment
+            model_name="deepseek-reasoner",  # OpenRouter model name
+            base_url="https://api.deepseek.com/chat/completions",  # OpenRouter's API endpoint
+            provider_type="deepseek",
+            priority=1,
+        ),
+        LLMProvider(
+            api_key=os.getenv("OPENROUTER_API_KEY", ""),  # Ensure this is set in your environment
+            model_name="deepseek/deepseek-r1:free",  # OpenRouter model name
+            base_url="https://openrouter.ai/api/v1/chat/completions",  # OpenRouter's API endpoint
+            provider_type="openrouter",
+            priority=2,
+        ),
+        LLMProvider(
+            api_key=os.getenv("OPENROUTER_API_KEY", ""),  # Ensure this is set in your environment
+            model_name="deepseek/deepseek-r1:nitro",  # OpenRouter model name
+            base_url="https://openrouter.ai/api/v1/chat/completions",  # OpenRouter's API endpoint
+            provider_type="openrouter",
+            priority=0,
+        ),
+    ]
 
-    llm_config = LLMConfig(
-        api_key=os.getenv("DEEPSEEK_API_KEY", ""),  # Ensure this is set in your environment
-        model_name=model, # OpenRouter model name
-        base_url=base_url,  # OpenRouter's API endpoint
-    )
-
-    driver = DeepseekDriver(
-        contract_address=contract_address,
-        ticker=ticker,
-        llm_config=llm_config,
-    )
+    driver = DeepseekDriver(contract_address=contract_address, ticker=ticker, llm_providers=llm_providers)
 
     async def generate():
         try:
@@ -80,6 +91,7 @@ async def analyze(request: Request, contract_address: str, ticker: str = ""):
                 if client_ip in active_requests:
                     active_requests[client_ip] = {"active": False, "cooldown_until": datetime.datetime.now() + COOLDOWN_PERIOD}
             end = json.dumps({"type": "done"})
+            logging.log(logging.INFO, "Finished with request")
             yield f"data: {end}\n\n"
 
     return StreamingResponse(
