@@ -268,53 +268,19 @@ class DeepseekDriver:
         return [system_message, user_message]
 
     async def run_llm_analysis(self, messages: List[ChatCompletionMessageParam]) -> AsyncGenerator[Dict[str, Any], None]:
-        """Run the LLM analysis using DeepSeek API"""
-        # response = self.client.chat.completions.create(
-        #     model=self.llm_config.model_name,
-        #     messages=messages,
-        #     stream=True,
-        #     temperature=0.75,
-        #     include_reasoning=True,
-        # )
+        """Run the LLM analysis using either DeepSeek or OpenRouter API"""
+        headers = {
+            "Authorization": f"Bearer {self.llm_config.api_key}",
+            "Content-Type": "application/json",
+        }
 
-        # reasoning_content = ""
-        # content = ""
-
-        # print("\nAnalyzing data...")
-        # print("\nChain of Thought:")
-
-        # try:
-        #     for chunk in response:
-        #         chunk = cast(ChatCompletionChunk, chunk)
-
-        #         delta: ChoiceDelta = chunk.choices[0].delta
-        #         if delta.content:
-        #             piece = delta.content
-        #             if piece:
-        #                 content += piece
-        #                 print(piece, end="", flush=True)
-        #                 yield {"type": "analysis", "content": piece}
-
-        #         if hasattr(delta, "reasoning_content"):
-        #             piece = delta.reasoning_content
-        #             if piece:
-        #                 reasoning_content += piece
-        #                 print(piece, end="", flush=True)
-        #                 yield {"type": "reasoning", "content": piece}
-
-        #     print("\n\nFinal Analysis:")
-        #     # Print the complete analysis content to the terminal
-        #     print(content.strip())
-
-        #     yield {"type": "complete", "reasoning": reasoning_content.strip(), "analysis": content.strip()}
-
-        # except Exception as e:
-        #     print(f"Debug - Exception occurred: {str(e)}")
-        #     yield {"type": "error", "message": str(e)}
-        #     raise
-        headers = {"Authorization": f"Bearer {self.llm_config.api_key}", "Content-Type": "application/json"}
-
-        payload = {"model": self.llm_config.model_name, "messages": messages, "temperature": 0.75, "stream": True, "include_reasoning": True}
+        payload = {
+            "model": self.llm_config.model_name,
+            "messages": messages,
+            "temperature": 0.75,
+            "stream": True,
+            "include_reasoning": True  # DeepSeek-specific param, OpenRouter will ignore
+        }
 
         print("\nAnalyzing data...")
         print("\nChain of Thought:")
@@ -343,13 +309,22 @@ class DeepseekDriver:
                                     chunk = json.loads(json_str)
                                     if "choices" in chunk and chunk["choices"]:
                                         delta = chunk["choices"][0].get("delta", {})
-                                        if "content" in delta and delta["content"]:
+                                        
+                                        # Handle content
+                                        if delta.get("content"):
                                             yield {"type": "analysis", "content": delta["content"]}
-                                        if "reasoning" in delta and delta["reasoning"]:
-                                            yield {"type": "reasoning", "content": delta["reasoning"]}
+                                        
+                                        # Handle reasoning content (DeepSeek) or assistant feedback
+                                        reasoning_content = delta.get("reasoning_content") or delta.get("assistant_feedback")
+                                        if reasoning_content:
+                                            yield {"type": "reasoning", "content": reasoning_content}
+
                                 except json.JSONDecodeError:
                                     yield {"type": "error", "message": "Failed to parse JSON chunk"}
                                     continue
+
+                    # Final completion
+                    yield {"type": "complete"}
 
             except Exception as e:
                 yield {"type": "error", "message": str(e)}
