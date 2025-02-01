@@ -288,7 +288,7 @@ class DeepseekDriver:
         async with aiohttp.ClientSession() as session:
             try:
                 async with session.post(
-                    f"{self.llm_config.base_url}/chat/completions",
+                    self.llm_config.base_url,
                     headers=headers,
                     json=payload,
                 ) as response:
