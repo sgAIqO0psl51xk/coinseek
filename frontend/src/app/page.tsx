@@ -1,6 +1,5 @@
 import Image from "next/image";
 import { Spotlight } from "../components/ui/spotlight-new";
-import { Navbar } from "@/components/navbar";
 
 import { Card } from "../components/ui/card-hover-effect";
 import { CardHoverEffectDemo } from "../components/hover-cards";
@@ -9,11 +8,15 @@ import HeroSection from "../components/hero-section";
 import IconSection from "../components/icon-section";
 import AccordionSection from "../components/accordion-section";
 import { Footer } from "../components/footer";
+import Hero from "@/components/hero";
+import Capabilities from "../components/capabilities";
+import Integration from "@/components/the-model";
+import CTA from "@/components/cta";
+import Wrapper from "@/components/global/wrapper";
 
 export default function Home() {
   return (
     <div className="min-w-screen bg-white dark:bg-black relative overflow-hidden">
-      <Navbar />
       {/* Static grid */}
       <div
         className="absolute inset-0 
@@ -36,12 +39,13 @@ export default function Home() {
       />
 
       <div className="relative">
-        <HeroSection />
-        <IconSection />
-        {/* <BentoGridDemo /> */}
-        {/* <CardHoverEffectDemo /> */}
-        <AccordionSection />
-        <Footer />
+        <Wrapper className="py-20 relative">
+          <Hero />
+          <Capabilities />
+          <Integration />
+          <CTA />
+          <Footer />
+        </Wrapper>
       </div>
     </div>
   );
