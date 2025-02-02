@@ -2,15 +2,12 @@ import asyncio
 import datetime
 import json
 import logging
-from typing import Any, Dict
-from fastapi import FastAPI, HTTPException, Request, Response
+from fastapi import FastAPI, Request
 from fastapi.responses import StreamingResponse
 from fastapi.middleware.cors import CORSMiddleware
 from xkl1s.deepseek_driver import DeepseekDriver, LLMProvider
 import os
 from dotenv import load_dotenv
-from starlette.middleware.base import BaseHTTPMiddleware
-from collections import defaultdict
 
 load_dotenv()
 
@@ -31,6 +28,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+
 class RateLimiter:
     def __init__(self):
         self.active_requests = {}
@@ -39,25 +37,21 @@ class RateLimiter:
     async def check_rate_limit(self, ip: str) -> tuple[bool, str]:
         async with self.lock:
             current_time = datetime.datetime.now()
-            
+
             if ip in self.active_requests:
                 entry = self.active_requests[ip]
-                
+
                 # Check if request is active
                 if entry["active"]:
                     return False, "Another request is already in progress"
-                
+
                 # Check cooldown period
                 if entry["cooldown_until"] and current_time < entry["cooldown_until"]:
                     remaining = (entry["cooldown_until"] - current_time).total_seconds()
                     return False, f"Wait {int(remaining)} seconds before requesting again"
-            
+
             # Either new IP or passed all checks - set active state
-            self.active_requests[ip] = {
-                "active": True,
-                "cooldown_until": None,
-                "last_request": current_time
-            }
+            self.active_requests[ip] = {"active": True, "cooldown_until": None, "last_request": current_time}
             return True, ""
 
     async def release_ip(self, ip: str):
@@ -66,20 +60,22 @@ class RateLimiter:
                 self.active_requests[ip] = {
                     "active": False,
                     "cooldown_until": datetime.datetime.now() + COOLDOWN_PERIOD,
-                    "last_request": datetime.datetime.now()
+                    "last_request": datetime.datetime.now(),
                 }
+
 
 # Create global rate limiter instance
 rate_limiter = RateLimiter()
 
+
 @app.get("/analyze")
 async def analyze(request: Request, contract_address: str, ticker: str = ""):
     logging.info(f"Received analyze request for contract: {contract_address}, ticker: {ticker}")
-    
+
     client_ip = (
-        request.headers.get("x-forwarded-for", "").split(",")[0].strip() or
-        request.headers.get("x-real-ip", "") or
-        request.client.host if request.client else ""
+        request.headers.get("x-forwarded-for", "").split(",")[0].strip() or request.headers.get("x-real-ip", "") or request.client.host
+        if request.client
+        else ""
     )
     logging.info(f"Client IP: {client_ip}")
 
@@ -108,10 +104,10 @@ async def analyze(request: Request, contract_address: str, ticker: str = ""):
         logging.info("Checking API keys...")
         if not os.getenv("OPENROUTER_API_KEY"):
             logging.error("OPENROUTER_API_KEY not found")
-            return await error_response("Backend service configuration error: OPENROUTER_API_KEY missing", 500)
+            return await error_response("Backend service configuration error: OPENROUTER_API_KEY missing")
         if not os.getenv("DEEPSEEK_API_KEY"):
             logging.error("DEEPSEEK_API_KEY not found")
-            return await error_response("Backend service configuration error: DEEPSEEK_API_KEY missing", 500)
+            return await error_response("Backend service configuration error: DEEPSEEK_API_KEY missing")
 
         assert os.getenv("OPENROUTER_API_KEY"), "APIkey for OPENROUTER_API_KEY is not specified"
         assert os.getenv("DEEPSEEK_API_KEY"), "APIkey for DEEPSEEK_API_KEY is not specified"
@@ -123,28 +119,21 @@ async def analyze(request: Request, contract_address: str, ticker: str = ""):
                 model_name="deepseek-reasoner",  # OpenRouter model name
                 base_url="https://api.deepseek.com/chat/completions",  # OpenRouter's API endpoint
                 provider_type="deepseek",
-                priority=1,
+                priority=0,
             ),
             LLMProvider(
                 api_key=os.getenv("OPENROUTER_API_KEY", ""),  # Ensure this is set in your environment
                 model_name="deepseek/deepseek-r1",  # OpenRouter model name
                 base_url="https://openrouter.ai/api/v1/chat/completions",  # OpenRouter's API endpoint
                 provider_type="openrouter",
-                priority=2,
+                priority=1,
             ),
             LLMProvider(
                 api_key=os.getenv("OPENROUTER_API_KEY", ""),  # Ensure this is set in your environment
                 model_name="deepseek/deepseek-r1:nitro",  # OpenRouter model name
                 base_url="https://openrouter.ai/api/v1/chat/completions",  # OpenRouter's API endpoint
                 provider_type="openrouter",
-                priority=0,
-            ),
-            LLMProvider(
-                api_key=os.getenv("OPENROUTER_API_KEY", ""),  # Ensure this is set in your environment
-                model_name="deepseek/deepseek-r1-distill-qwen-1.5b",  # OpenRouter model name
-                base_url="https://openrouter.ai/api/v1/chat/completions",  # OpenRouter's API endpoint
-                provider_type="openrouter",
-                priority=3,
+                priority=2,
             ),
         ]
         driver = DeepseekDriver(contract_address=contract_address, ticker=ticker, llm_providers=llm_providers)
@@ -164,7 +153,8 @@ async def analyze(request: Request, contract_address: str, ticker: str = ""):
             finally:
                 # Release the rate limit when done
                 await rate_limiter.release_ip(client_ip)
-                done_data = f"event: done\ndata: {{}}\n\n"
+                empty = {}
+                done_data = f"event: done\ndata: {empty}\n\n"
                 yield done_data
 
         response = StreamingResponse(

@@ -7,6 +7,9 @@ jobs:
   black:
     name: Run Black (Formatting)
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./backend
     steps:
       - uses: actions/checkout@v4
 
@@ -23,6 +26,9 @@ jobs:
   mypy:
     name: Run MyPy (Type Checking)
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./backend
     steps:
       - uses: actions/checkout@v4
 
@@ -39,6 +45,9 @@ jobs:
   flake8:
     name: Run Flake8 (Linting)
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./backend
     steps:
       - uses: actions/checkout@v4
 
