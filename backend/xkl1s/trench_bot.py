@@ -52,14 +52,25 @@ class TrenchBotFetcher:
 
     async def get_creator_analysis(self) -> Dict[str, Any]:
         await self.fetch_task
-        return self.data.get("creator_analysis", {})
+        creator_analysis = self.data.get("creator_analysis", {})
+        # From the creator_analysis, count the number of 'is_rugs'
+        is_rugs_count = sum(1 for coin in creator_analysis.get("history", {}).get("previous_coins", []) if coin.get("is_rugs", False))
+        total_coins = len(creator_analysis.get("history", {}).get("previous_coins", []))
+        is_high_risk = creator_analysis.get("high_risk", False)
+        
+
+        return {
+            "number_of_rugs": is_rugs_count,
+            "total_coins": total_coins,
+            "is_high_risk": is_high_risk,
+        }
 
 
 async def main():
     token = "4eyTLdUxbAecMWCGHNfS8QnL4Bwv7b6G37oz7rrf5bVy"
     fetcher = TrenchBotFetcher(token)
 
-    print(await fetcher.get_creator_analysis())
+    await fetcher.get_creator_analysis()
 
     # total_percent = await fetcher.get_total_percent_bundled()
     # print(f"Total % Bundled: {total_percent}")
