@@ -6,11 +6,13 @@ from typing import AsyncGenerator, List, Dict, Any
 
 import aiohttp
 
+from xkl1s.dexscreener import DexScreenerTokenData, get_token_mcap_volume
 from xkl1s.trench_bot import TrenchBotFetcher
 from xkl1s.gmgn import GMGNTokenData
 from xkl1s.ingestion_2 import ApifyTwitterAnalyzer
 from dotenv import load_dotenv
 from openai.types.chat import ChatCompletionMessageParam
+import tiktoken
 
 load_dotenv()
 
@@ -32,6 +34,7 @@ class TokenAnalysis:
     twitter_data: Dict[str, Any]
     trenchbot_data: Dict[str, Any]
     gmgn_data: Dict[str, Any]
+    dexscreener_data: DexScreenerTokenData
 
     def to_dict(self) -> Dict[str, Any]:
         return {
@@ -57,7 +60,13 @@ class DeepseekDriver:
         )
         tweet_data = await analyzer.analyze_tweets(num_tweets=50)
         print(f"Found {len(tweet_data)} tweets")
-        return self._process_twitter_results(tweet_data, analyzer.important_tweets_cache)
+        # Filter tweets by follower count, but ensure at least 10 tweets are kept
+        tweet_data = sorted(tweet_data, key=lambda x: x.user.follower_count, reverse=True)[:5]
+
+        important_tweets = dict(sorted(analyzer.important_tweets_cache.items(), key=lambda item: item[1].user.follower_count, reverse=True)[:5])
+        logging.info(f"Important tweets: {len(important_tweets)}")
+        logging.info(f"Tweet data: {len(tweet_data)}")
+        return self._process_twitter_results(tweet_data, important_tweets)
 
     def _process_twitter_results(self, tweet_data: List[Any], important_tweets_cache: Dict) -> Dict[str, Any]:
         """Process Twitter results from Apify"""
@@ -134,7 +143,6 @@ class DeepseekDriver:
         return {
             "percent_bundled": percent_bundled,
             "percent_held": percent_held,
-            "raw_data": fetcher.data,
             "creator_analysis": creator_analysis,
         }
 
@@ -163,12 +171,14 @@ class DeepseekDriver:
         twitter_task = asyncio.create_task(self.analyze_twitter())
         trenchbot_task = asyncio.create_task(self.analyze_trenchbot())
         gmgn_data = self.analyze_gmgn()
+        dexscreener_data = asyncio.create_task(get_token_mcap_volume(self.contract_address))
 
         return TokenAnalysis(
             contract_address=self.contract_address,
             ticker=self.ticker,
             twitter_data=await twitter_task,
             trenchbot_data=await trenchbot_task,
+            dexscreener_data=await dexscreener_data,
             gmgn_data=gmgn_data,
         )
 
@@ -262,6 +272,9 @@ class DeepseekDriver:
 
             GMGN Analysis:
             {json.dumps(analysis.gmgn_data, indent=2)}
+
+            Dexscreener Analysis:
+            {str(analysis.dexscreener_data)}
 
             DO NOT output json or any data format that you have received above. You will use this data to generate your analysis.
             You may and should quote information from the data above to help you generate your analysis. But do not output the data itself.
@@ -363,6 +376,16 @@ class DeepseekDriver:
         """Stream the full analysis pipeline"""
         analysis = await self.run_analysis()
         messages = await self.generate_analysis_prompt(analysis)
+
+
+        # save entire prompt to a file
+        with open("prompt.txt", "w") as f:
+            for message in messages:
+                f.write(message["content"] + "\n")
+
+        # log tokens used in the prompt using tiktoken
+        enc = tiktoken.encoding_for_model("gpt-4o")
+        logging.info(f"Tokens used in prompt: {sum([len(enc.encode(m['content'])) for m in messages])}")
 
         # dict = analysis.to_dict()
         # del dict["twitter_analysis"]
