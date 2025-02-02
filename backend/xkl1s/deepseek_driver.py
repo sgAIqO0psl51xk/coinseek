@@ -221,6 +221,12 @@ class DeepseekDriver:
             generally, these datapoints should be used to determine: credibility of those pushing the token, possible narratives around it,
             and important accounts or tweets that may provide more context.
 
+            token metrics
+            you will also receive some data like price, 24h change, 24h volume, FDV etc. this will be good for giving context, 
+            but it's considerably subjective to determine the quality of a token from these stats alone but you can do some 
+            analysis on it and generally try to provide some further contex to the user and explain what they should care about
+            from here and how it POTENTIALLY may be a risk but i want you to weigh this less due to how arbitrary it can be.
+
             telegram
             searches telegram for the token telegram if not already added - example: token name is Bane, searches telegram for suffixes like
             baneportal, onsol, entry, prefixes like entry
