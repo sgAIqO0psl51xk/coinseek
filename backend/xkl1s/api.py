@@ -127,7 +127,7 @@ async def analyze(request: Request, contract_address: str, ticker: str = ""):
             ),
             LLMProvider(
                 api_key=os.getenv("OPENROUTER_API_KEY", ""),  # Ensure this is set in your environment
-                model_name="deepseek/deepseek-r1:free",  # OpenRouter model name
+                model_name="deepseek/deepseek-r1",  # OpenRouter model name
                 base_url="https://openrouter.ai/api/v1/chat/completions",  # OpenRouter's API endpoint
                 provider_type="openrouter",
                 priority=2,
@@ -144,7 +144,7 @@ async def analyze(request: Request, contract_address: str, ticker: str = ""):
                 model_name="deepseek/deepseek-r1-distill-qwen-1.5b",  # OpenRouter model name
                 base_url="https://openrouter.ai/api/v1/chat/completions",  # OpenRouter's API endpoint
                 provider_type="openrouter",
-                priority=4,
+                priority=3,
             ),
         ]
         driver = DeepseekDriver(contract_address=contract_address, ticker=ticker, llm_providers=llm_providers)

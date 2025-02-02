@@ -259,6 +259,7 @@ class DeepseekDriver:
 
             DO NOT output json or any data format that you have received above. You will use this data to generate your analysis.
             You may and should quote information from the data above to help you generate your analysis. But do not output the data itself.
+            In general, you should lean skeptical, but if a token's fundamentals look good and the narrative seems strong, you don't need to be excessively negative.
 
             Break down your analysis into:
             1. Overall sentiment (bullish/bearish/neutral with colorful metaphors)
