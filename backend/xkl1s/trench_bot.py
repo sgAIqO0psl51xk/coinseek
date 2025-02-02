@@ -1,5 +1,4 @@
 import asyncio
-import json
 from typing import Any, Dict, Optional
 import aiohttp
 import ssl
@@ -57,7 +56,6 @@ class TrenchBotFetcher:
         is_rugs_count = sum(1 for coin in creator_analysis.get("history", {}).get("previous_coins", []) if coin.get("is_rugs", False))
         total_coins = len(creator_analysis.get("history", {}).get("previous_coins", []))
         is_high_risk = creator_analysis.get("high_risk", False)
-        
 
         return {
             "number_of_rugs": is_rugs_count,
