@@ -63,7 +63,9 @@ class DeepseekDriver:
         # Filter tweets by follower count, but ensure at least 10 tweets are kept
         tweet_data = sorted(tweet_data, key=lambda x: x.user.follower_count, reverse=True)[:10]
 
-        important_tweets = dict(sorted(analyzer.important_tweets_cache.items(), key=lambda item: item[1].user.follower_count, reverse=True)[:10])
+        important_tweets = dict(
+            sorted(analyzer.important_tweets_cache.items(), key=lambda item: item[1].user.follower_count, reverse=True)[:10]
+        )
         logging.info(f"Important tweets: {len(important_tweets)}")
         logging.info(f"Tweet data: {len(tweet_data)}")
         return self._process_twitter_results(tweet_data, important_tweets)
