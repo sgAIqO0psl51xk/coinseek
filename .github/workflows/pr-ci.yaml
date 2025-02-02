@@ -21,7 +21,7 @@ jobs:
     needs: setup
     steps:
       - name: Run Black
-        run: cd backend && make format_check
+        run: make format_check
 
   mypy:
     name: Run MyPy (Type Checking)
@@ -29,7 +29,7 @@ jobs:
     needs: setup
     steps:
       - name: Run MyPy
-        run: cd backend && make mypy
+        run: make mypy
 
   flake8:
     name: Run Flake8 (Linting)
@@ -37,4 +37,4 @@ jobs:
     needs: setup
     steps:
       - name: Run Flake8
-        run: cd backend && make flake8
+        run: make flake8
