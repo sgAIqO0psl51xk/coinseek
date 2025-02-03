@@ -301,6 +301,7 @@ Break down your analysis into:
         INITIAL_TIMEOUT = 5  # 5 seconds timeout for initial response
 
         for provider in self.llm_providers:
+            yield {"type": "start", "message": f"Attempting analysis with {provider.provider_type}:{provider.model_name}..."}
             logging.info(f"Attempting analysis with {provider.provider_type}:{provider.model_name}...")
 
             # Prepare request parameters
