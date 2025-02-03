@@ -43,7 +43,7 @@ const CTA = () => {
                     <h2 className="text-3xl md:text-5xl lg:text-6xl font-heading font-medium !leading-snug">
                         Ready to experience the <br /> <span className="font-subheading italic">model of the future</span> ?
                     </h2>
-                    <p className="text-sm md:text-lg text-center text-accent-foreground/80 max-w-2xl mx-auto mt-4">
+                    <p className="text-sm md:text-lg text-center text-accent-foreground/80 max-w-2xl mx-auto mt-4 px-4 lg:px-0">
                         Join the revolution where AI is open source, with reasoning that will blow you away. <span className="hidden lg:inline">No servers, no tracking, just limitless intelligence running locally.</span>
                     </p>
                     <Link href="/cot" className="mt-8">
