@@ -25,7 +25,7 @@ const MobileMenu = () => {
           <SheetTitle className="text-left">Menu</SheetTitle>
         </SheetHeader>
         <nav className="flex flex-col space-y-4">
-          {NAV_LINKS.map((link, index) => (
+          {/* {NAV_LINKS.map((link, index) => (
             <Link
               key={index}
               href={link.href}
@@ -33,7 +33,7 @@ const MobileMenu = () => {
             >
               {link.name}
             </Link>
-          ))}
+          ))} */}
           <div className="pt-4 mt-4 border-t border-border">
             <Link
               href="https://x.com/CoinseekAI"
