@@ -154,6 +154,7 @@ export default {
         ripple: "ripple var(--duration,2s) ease calc(var(--i, 0)*.2s) infinite",
         blob: "blob 7s infinite",
         "image-glow": "image-glow 6s ease-out 0.6s forwards",
+        "spin-slow": "spin 3s linear infinite",
       },
     },
   },

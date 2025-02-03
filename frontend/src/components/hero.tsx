@@ -30,21 +30,21 @@ const Hero = () => {
         <div className="flex flex-col items-center justify-center text-center gap-y-4 bg-background/0">
           <Container delay={0.15}>
             <h1 className="text-4xl md:text-4xl lg:text-7xl font-bold text-center !leading-tight max-w-4xl mx-auto">
-              Due diligence {"\n"}
-              <span className="text-blue-500">on-chain</span> powered by{" "}
-              <span className="text-blue-500">AGI.</span>
+              Chain of Thought {"\n"}
+              <span className="text-blue-500">AI Analysis</span> for{" "}
+              <span className="text-blue-500">Solana</span>
             </h1>
           </Container>
           <Container delay={0.2}>
             <p className="max-w-xl mx-auto mt-2 text-base lg:text-lg text-center text-muted-foreground">
-              Your AI-powered trading companion. Deep analysis of social
-              signals, holder behavior, and community metrics for better trading
-              decisions.
+              Experience AI that thinks like a veteran trader. Get deep insights into 
+              social signals, holder behavior, and market sentiment through transparent 
+              chain-of-thought analysis, the modern iteration closest to AGI.
             </p>
           </Container>
           <Container delay={0.25} className="z-20">
             <div className="flex items-center justify-center mt-6 gap-x-4">
-              <Link href="#cta" className="flex items-center gap-2 group">
+              <Link href="/cot" className="flex items-center gap-2 group">
                 <Button size="lg">
                   Try It Now
                   <ArrowRightIcon className="size-4 group-hover:translate-x-1 transition-all duration-300" />
