@@ -298,16 +298,17 @@ Break down your analysis into:
         """Run the LLM analysis with automatic fallback between providers"""
         last_error = None
         TIMEOUT = 5  # 5 seconds timeout
+        INITIAL_TIMEOUT = 5  # 5 seconds timeout for initial response
 
         for provider in self.llm_providers:
             logging.info(f"Attempting analysis with {provider.provider_type}:{provider.model_name}...")
-            
+
             # Prepare request parameters
             headers = {
                 "Authorization": f"Bearer {provider.api_key}",
                 "Content-Type": "application/json",
             }
-            
+
             payload = {
                 "model": provider.model_name,
                 "messages": messages,
@@ -320,13 +321,17 @@ Break down your analysis into:
             try:
                 async with aiohttp.ClientSession() as session:
                     # Make API request with timeout
+                    start_time = asyncio.get_event_loop().time()
                     async with asyncio.timeout(TIMEOUT):
                         response = await session.post(
                             provider.base_url,
                             headers=headers,
                             json=payload,
                         )
-                    
+                    end_time = asyncio.get_event_loop().time()
+                    if end_time - start_time > TIMEOUT:
+                        logging.warning(f"Request took longer than {TIMEOUT} seconds")
+
                     if response.status != 200:
                         error_message = await response.text()
                         logging.error(f"API error: {error_message}")
@@ -335,16 +340,22 @@ Break down your analysis into:
                     # Process streaming response
                     got_data = False
                     last_data_time = asyncio.get_event_loop().time()
+                    start_time = last_data_time
 
                     async for line in response.content:
-                        # Check if we've exceeded timeout since last data
                         current_time = asyncio.get_event_loop().time()
-                        if current_time - last_data_time > TIMEOUT:
-                            raise asyncio.TimeoutError("No data received for 5 seconds")
-                        
+
+                        # Use longer timeout for initial response
+                        if not got_data:
+                            if current_time - start_time > INITIAL_TIMEOUT:
+                                raise asyncio.TimeoutError(f"No initial response received after {INITIAL_TIMEOUT} seconds")
+                        # Use shorter timeout between chunks once streaming starts
+                        elif current_time - last_data_time > TIMEOUT:
+                            raise asyncio.TimeoutError(f"No data received for {TIMEOUT} seconds")
+
                         if not line:
                             continue
-                            
+
                         # Update last data time
                         last_data_time = current_time
 
@@ -352,7 +363,7 @@ Break down your analysis into:
                         decoded_line = line.decode("utf-8").strip()
                         if not decoded_line.startswith("data:"):
                             continue
-                            
+
                         json_str = decoded_line[5:].strip()
                         if json_str == "[DONE]":
                             continue
@@ -369,18 +380,14 @@ Break down your analysis into:
 
                         # Extract content from delta
                         delta = chunk["choices"][0].get("delta", {})
-                        
+
                         # Handle main content
                         if content := delta.get("content"):
                             got_data = True
                             yield {"type": "analysis", "content": content}
-                        
+
                         # Handle reasoning content (multiple possible field names)
-                        reasoning_content = (
-                            delta.get("reasoning_content") or 
-                            delta.get("assistant_feedback") or 
-                            delta.get("reasoning")
-                        )
+                        reasoning_content = delta.get("reasoning_content") or delta.get("assistant_feedback") or delta.get("reasoning")
                         if reasoning_content:
                             got_data = True
                             yield {"type": "reasoning", "content": reasoning_content}
@@ -388,7 +395,7 @@ Break down your analysis into:
                     # Verify we got data and complete
                     if not got_data:
                         raise Exception("No data received from LLM stream")
-                        
+
                     logging.info(f"Successfully completed analysis with {provider.model_name}")
                     yield {"type": "complete"}
                     return
