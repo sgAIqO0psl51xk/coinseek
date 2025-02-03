@@ -14,6 +14,18 @@ import {
 } from "@/components/ui/collapsible";
 import { ChevronDown } from "lucide-react";
 import Image from "next/image";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { AlertCircle } from "lucide-react";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from "@/components/ui/alert-dialog";
+import { X } from "lucide-react";
 
 interface AnalysisResponse {
   content?: string;
@@ -33,6 +45,7 @@ export default function AnalyzePage() {
   const [loadingStage, setLoadingStage] = useState(0);
   const reasoningRef = useRef<HTMLDivElement>(null);
   const analysisRef = useRef<HTMLDivElement>(null);
+  const [loadingDots, setLoadingDots] = useState('.');
 
   const loadingMessages = [
     "Checking onchain",
@@ -176,6 +189,16 @@ export default function AnalyzePage() {
     }
   }, [analysis]);
 
+  useEffect(() => {
+    if (!isAnalyzing) return;
+
+    const interval = setInterval(() => {
+      setLoadingDots(dots => dots.length >= 3 ? '.' : dots + '.');
+    }, 500);
+
+    return () => clearInterval(interval);
+  }, [isAnalyzing]);
+
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     setError(null);
@@ -189,16 +212,43 @@ export default function AnalyzePage() {
   const buttonContent = isAnalyzing ? (
     <>
       <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-      {loadingMessages[loadingStage]}
+      {loadingMessages[loadingStage]}{loadingDots}
     </>
   ) : (
     "Analyze"
   );
 
+  // Add function to clear error
+  const clearError = () => setError(null);
+
   return (
     <main className="flex-1 flex flex-col overflow-hidden">
+      {/* Error Alert Dialog */}
+      <AlertDialog open={!!error} onOpenChange={clearError}>
+        <AlertDialogContent className="max-w-[400px]">
+          <AlertDialogHeader>
+            <AlertDialogTitle className="flex items-center gap-2">
+              <AlertCircle className="h-5 w-5 text-destructive" />
+              Error
+            </AlertDialogTitle>
+            <AlertDialogDescription className="text-base">
+              {error}
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogAction 
+              className="w-full bg-primary hover:bg-primary/90"
+              onClick={clearError}
+            >
+              <X className="h-4 w-4 mr-2" />
+              Close
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
+
       {/* Analysis Results */}
-      {(reasoning || error) && (
+      {reasoning && (
         <div className="flex-1 overflow-y-auto pb-24 transition-opacity duration-500 ease-in-out">
           <div className="container mx-auto px-4 py-8">
             <div className="max-w-7xl mx-auto space-y-8 mb-20 md:mb-0">
@@ -226,11 +276,6 @@ export default function AnalyzePage() {
                 <MagicCard className="h-fit max-h-[calc(100vh-16rem)]">
                   <div className="p-6 space-y-4 h-full flex flex-col">
                     <h2 className="text-2xl font-semibold mx-auto">Result</h2>
-                    {error && (
-                      <Card className="bg-destructive/10 text-destructive p-4">
-                        {error}
-                      </Card>
-                    )}
                     <div className="prose prose-invert max-w-none flex-1 min-h-0">
                       <div
                         ref={analysisRef}
@@ -261,25 +306,25 @@ export default function AnalyzePage() {
       {/* Single Form with Dynamic Positioning */}
       <div
         className={`transition-all duration-500 ease-in-out ${
-          !reasoning && !error
-            ? "relative flex-1 grid place-items-center p-4" // Centered position
-            : "fixed bottom-0 left-0 right-0 bg-background/80 backdrop-blur-sm border-t z-50" // Bottom position
+          !reasoning && !isAnalyzing
+            ? "relative flex-1 grid place-items-center p-4"
+            : "fixed bottom-0 left-0 right-0 bg-background/80 backdrop-blur-sm border-t z-50"
         }`}
         style={{
-          transform: reasoning || error ? "none" : "translateY(0)",
+          transform: reasoning || isAnalyzing ? "none" : "translateY(0)",
           opacity: 1,
           transition: "all 0.5s cubic-bezier(0.4, 0, 0.2, 1)",
         }}
       >
         <div
           className={`w-full transition-all duration-500 ease-in-out ${
-            !reasoning && !error ? "max-w-2xl" : "container mx-auto px-4 py-4"
+            !reasoning && !isAnalyzing ? "max-w-2xl" : "container mx-auto px-4 py-4"
           }`}
         >
           <div
             className={`transition-all duration-500 ease-in-out ${
-              !reasoning && !error
-                ? "opacity-100 max-h-[200px]" // Add max-height for smooth animation
+              !reasoning && !isAnalyzing
+                ? "opacity-100 max-h-[200px]"
                 : "opacity-0 max-h-0"
             }`}
           >
@@ -306,7 +351,7 @@ export default function AnalyzePage() {
           <form
             onSubmit={handleSubmit}
             className={`transition-all duration-500 ease-in-out ${
-              reasoning || error ? "max-w-7xl mx-auto" : ""
+              reasoning || isAnalyzing ? "max-w-7xl mx-auto" : ""
             } space-y-4`}
           >
             <div className="flex gap-4">
@@ -341,9 +386,20 @@ export default function AnalyzePage() {
             <Button
               type="submit"
               disabled={isAnalyzing}
-              className="w-full h-12 rounded-xl bg-blue-500 text-white font-semibold text-md"
+              className="w-full h-12 rounded-xl bg-blue-500 text-white font-semibold text-md relative overflow-hidden"
             >
-              {buttonContent}
+              <span className="inline-flex items-center transition-transform duration-200 ease-in-out">
+                {isAnalyzing ? (
+                  <>
+                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                    <span className="transition-opacity duration-200 ease-in-out">
+                      {loadingMessages[loadingStage]}{loadingDots}
+                    </span>
+                  </>
+                ) : (
+                  "Analyze"
+                )}
+              </span>
             </Button>
           </form>
         </div>
