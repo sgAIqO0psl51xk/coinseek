@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { Button } from "../../components/ui/button";
 import { Input } from "../../components/ui/input";
 import { Card } from "../../components/ui/card";
@@ -31,6 +31,8 @@ export default function AnalyzePage() {
   const [error, setError] = useState<string | null>(null);
   const [isAnalyzing, setIsAnalyzing] = useState(false);
   const [loadingStage, setLoadingStage] = useState(0);
+  const reasoningRef = useRef<HTMLDivElement>(null);
+  const analysisRef = useRef<HTMLDivElement>(null);
 
   const loadingMessages = [
     "Checking onchain",
@@ -157,6 +159,19 @@ export default function AnalyzePage() {
     };
   }, [isAnalyzing, contractAddress, ticker]);
 
+  // Add new useEffect for auto-scrolling
+  useEffect(() => {
+    if (reasoningRef.current) {
+      reasoningRef.current.scrollTop = reasoningRef.current.scrollHeight;
+    }
+  }, [reasoning]);
+
+  useEffect(() => {
+    if (analysisRef.current) {
+      analysisRef.current.scrollTop = analysisRef.current.scrollHeight;
+    }
+  }, [analysis]);
+
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     setError(null);
@@ -178,10 +193,92 @@ export default function AnalyzePage() {
 
   return (
     <main className="flex-1 flex flex-col overflow-hidden">
-      {!reasoning && !error ? (
-        // Initial centered form - accounting for navbar
-        <div className="flex-1 grid place-items-center p-4">
-          <div className="w-full max-w-2xl">
+      {/* Analysis Results */}
+      {(reasoning || error) && (
+        <div className="flex-1 overflow-y-auto pb-24 transition-opacity duration-500 ease-in-out">
+          <div className="container mx-auto px-4 py-8">
+            <div className="max-w-7xl mx-auto space-y-8 mb-20 md:mb-0">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 auto-rows-min">
+                <MagicCard className="h-fit max-h-[calc(100vh-16rem)]">
+                  <div className="p-6 space-y-4 h-full flex flex-col">
+                    <h2 className="text-2xl font-semibold mx-auto">
+                      Chain of Thought
+                    </h2>
+                    <div className="prose prose-invert max-w-none flex-1 min-h-0">
+                      <div
+                        ref={reasoningRef}
+                        dir="rtl"
+                        className="h-full overflow-y-auto scrollbar-thin scrollbar-thumb-rounded-md scrollbar-track-rounded-md scrollbar-track-background scrollbar-thumb-accent hover:scrollbar-thumb-accent/80 transition-colors"
+                      >
+                        <div dir="ltr">
+                          <ReactMarkdown className="whitespace-pre-wrap font-mono font-light text-gray-300 text-sm pl-6">
+                            {reasoning}
+                          </ReactMarkdown>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </MagicCard>
+                <MagicCard className="h-fit max-h-[calc(100vh-16rem)]">
+                  <div className="p-6 space-y-4 h-full flex flex-col">
+                    <h2 className="text-2xl font-semibold mx-auto">Result</h2>
+                    {error && (
+                      <Card className="bg-destructive/10 text-destructive p-4">
+                        {error}
+                      </Card>
+                    )}
+                    <div className="prose prose-invert max-w-none flex-1 min-h-0">
+                      <div
+                        ref={analysisRef}
+                        className="h-full overflow-y-auto scrollbar-thin scrollbar-thumb-rounded-md scrollbar-track-rounded-md scrollbar-track-background scrollbar-thumb-accent hover:scrollbar-thumb-accent/80 transition-colors"
+                      >
+                        <ReactMarkdown className="whitespace-pre-wrap font-mono text-sm leading-relaxed pr-6">
+                          {analysis}
+                        </ReactMarkdown>
+                      </div>
+                    </div>
+                  </div>
+                </MagicCard>
+              </div>
+
+              {/* <MagicCard>
+                <div className="p-6 space-y-4">
+                  <h2 className="text-2xl font-semibold">Metadata</h2>
+                  <div className="prose prose-invert max-w-none">
+                    {metadata}
+                  </div>
+                </div>
+              </MagicCard> */}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Single Form with Dynamic Positioning */}
+      <div
+        className={`transition-all duration-500 ease-in-out ${
+          !reasoning && !error
+            ? "relative flex-1 grid place-items-center p-4" // Centered position
+            : "fixed bottom-0 left-0 right-0 bg-background/80 backdrop-blur-sm border-t z-50" // Bottom position
+        }`}
+        style={{
+          transform: reasoning || error ? "none" : "translateY(0)",
+          opacity: 1,
+          transition: "all 0.5s cubic-bezier(0.4, 0, 0.2, 1)",
+        }}
+      >
+        <div
+          className={`w-full transition-all duration-500 ease-in-out ${
+            !reasoning && !error ? "max-w-2xl" : "container mx-auto px-4 py-4"
+          }`}
+        >
+          <div
+            className={`transition-all duration-500 ease-in-out ${
+              !reasoning && !error
+                ? "opacity-100 max-h-[200px]" // Add max-height for smooth animation
+                : "opacity-0 max-h-0"
+            }`}
+          >
             <div className="flex flex-col items-center justify-center gap-3 mb-8">
               <div className="flex items-center gap-3 mb-2">
                 <Image
@@ -200,142 +297,53 @@ export default function AnalyzePage() {
                 ticker below
               </h3>
             </div>
-            <form onSubmit={handleSubmit} className="space-y-4">
-              <div className="flex gap-4">
-                <div className="flex-1">
-                  <Input
-                    id="contract"
-                    value={contractAddress}
-                    onChange={(e) => setContractAddress(e.target.value)}
-                    placeholder="Enter contract address"
-                    required
-                    className="h-12 text-lg"
-                  />
-                </div>
-                <div className="w-48 relative">
-                  <span className="absolute left-3 top-1/2 -translate-y-1/2 text-lg">
-                    $
-                  </span>
-                  <Input
-                    id="ticker"
-                    value={ticker.replace("$", "").toUpperCase()}
-                    onChange={(e) => {
-                      const value = e.target.value
-                        .replace(/\$/g, "")
-                        .toUpperCase();
-                      setTicker(`$${value}`);
-                    }}
-                    className="pl-6 h-12 text-lg"
-                    placeholder="Enter ticker"
-                  />
-                </div>
-              </div>
-              <Button
-                type="submit"
-                disabled={isAnalyzing}
-                className="w-full h-12 rounded-xl bg-blue-500 text-white font-semibold text-md"
-              >
-                {buttonContent}
-              </Button>
-            </form>
           </div>
+
+          <form
+            onSubmit={handleSubmit}
+            className={`transition-all duration-500 ease-in-out ${
+              reasoning || error ? "max-w-7xl mx-auto" : ""
+            } space-y-4`}
+          >
+            <div className="flex gap-4">
+              <div className="flex-1">
+                <Input
+                  id="contract"
+                  value={contractAddress}
+                  onChange={(e) => setContractAddress(e.target.value)}
+                  placeholder="Enter contract address"
+                  required
+                  className="h-12 text-lg"
+                />
+              </div>
+              <div className="w-48 relative">
+                <span className="absolute left-3 top-1/2 -translate-y-1/2 text-lg">
+                  $
+                </span>
+                <Input
+                  id="ticker"
+                  value={ticker.replace("$", "").toUpperCase()}
+                  onChange={(e) => {
+                    const value = e.target.value
+                      .replace(/\$/g, "")
+                      .toUpperCase();
+                    setTicker(`$${value}`);
+                  }}
+                  className="pl-6 h-12 text-lg"
+                  placeholder="Enter ticker"
+                />
+              </div>
+            </div>
+            <Button
+              type="submit"
+              disabled={isAnalyzing}
+              className="w-full h-12 rounded-xl bg-blue-500 text-white font-semibold text-md"
+            >
+              {buttonContent}
+            </Button>
+          </form>
         </div>
-      ) : (
-        // Analysis results view with sticky form
-        <>
-          <div className="flex-1 overflow-y-auto pb-24">
-            <div className="container mx-auto px-4 py-8">
-              <div className="max-w-7xl mx-auto space-y-8">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <MagicCard>
-                    <div className="p-6 space-y-4">
-                      <h2 className="text-2xl font-semibold">
-                        Chain of Thought
-                      </h2>
-                      <div className="prose prose-invert max-w-none">
-                        <ReactMarkdown className="whitespace-pre-wrap font-mono font-light text-gray-300 text-sm">
-                          {reasoning}
-                        </ReactMarkdown>
-                      </div>
-                    </div>
-                  </MagicCard>
-                  <MagicCard>
-                    <div className="p-6 space-y-6">
-                      <h2 className="text-2xl font-semibold">Result</h2>
-                      {error && (
-                        <Card className="bg-destructive/10 text-destructive p-4">
-                          {error}
-                        </Card>
-                      )}
-                      <div className="prose prose-invert max-w-none ">
-                        <ReactMarkdown className="whitespace-pre-wrap font-mono text-sm leading-relaxed">
-                          {analysis}
-                        </ReactMarkdown>
-                      </div>
-                    </div>
-                  </MagicCard>
-                </div>
-
-                {/* <MagicCard>
-                  <div className="p-6 space-y-4">
-                    <h2 className="text-2xl font-semibold">Metadata</h2>
-                    <div className="prose prose-invert max-w-none">
-                      {metadata}
-                    </div>
-                  </div>
-                </MagicCard> */}
-              </div>
-            </div>
-          </div>
-
-          {/* Sticky form at bottom */}
-          <div className="fixed bottom-0 left-0 right-0 bg-background/80 backdrop-blur-sm border-t z-50">
-            <div className="container mx-auto px-4 py-4">
-              <form
-                onSubmit={handleSubmit}
-                className="max-w-7xl mx-auto space-y-4"
-              >
-                <div className="flex gap-4">
-                  <div className="flex-1">
-                    <Input
-                      id="contract"
-                      value={contractAddress}
-                      onChange={(e) => setContractAddress(e.target.value)}
-                      placeholder="Enter contract address"
-                      required
-                      className="h-12 text-lg"
-                    />
-                  </div>
-                  <div className="w-48 relative">
-                    <span className="absolute left-3 top-1/2 -translate-y-1/2 text-lg">
-                      $
-                    </span>
-                    <Input
-                      id="ticker"
-                      value={ticker.replace("$", "").toUpperCase()}
-                      onChange={(e) => {
-                        const value = e.target.value
-                          .replace(/\$/g, "")
-                          .toUpperCase();
-                        setTicker(`$${value}`);
-                      }}
-                      className="pl-6 h-12 text-lg"
-                      placeholder="Enter ticker"
-                    />
-                  </div>
-                </div>
-                <Button
-                  type="submit"
-                  disabled={isAnalyzing}
-                  className="w-full h-12 rounded-xl bg-blue-500 text-white font-semibold text-md"
-                >
-                  {buttonContent}
-                </Button>
-              </form>
-            </div>
-          </div>
-        </>
-      )}
+      </div>
     </main>
   );
 }
