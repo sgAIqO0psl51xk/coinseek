@@ -1,18 +1,14 @@
 export const NAV_LINKS = [
     {
-        name: "Self-host Docs",
-        href: "https://github.com/Sl903Adma2/local-deepseek"
+        name: "Whitepaper",
+        href: "/whitepaper"
     },
     {
-        name: "The Model",
-        href: "#the-model"
+        name: "Twitter",
+        href: "https://x.com/CoinseekAI"
     },
     {
-        name: "Features",
-        href: "#features"
-    },
-    {
-        name: "Exchanges",
-        href: "#exchanges"
+        name: "Github",
+        href: "https://github.com"
     },
 ];
