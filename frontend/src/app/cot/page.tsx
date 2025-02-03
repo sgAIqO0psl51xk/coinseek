@@ -195,10 +195,17 @@ export default function AnalyzePage() {
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
+    
+    // Validate input before starting analysis
+    if (!contractAddress.trim()) {
+      setError("Please enter a contract address");
+      return;
+    }
+
     setError(null);
     setAnalysis("");
     setReasoning("");
-    setLoadingStage(0); // Reset loading stage
+    setLoadingStage(0);
     setIsAnalyzing(true);
   }
 
@@ -357,6 +364,7 @@ export default function AnalyzePage() {
                   placeholder="Enter contract address"
                   required
                   className="h-12 text-lg"
+                  disabled={isAnalyzing}
                 />
               </div>
               <div className="w-48 relative">
