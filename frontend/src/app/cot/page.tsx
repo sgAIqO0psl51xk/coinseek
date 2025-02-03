@@ -34,6 +34,10 @@ export default function AnalyzePage() {
     const eventSource = new EventSource(url);
 
     // Add event listeners for specific event types
+    eventSource.addEventListener('start', (event: MessageEvent) => {
+      setAnalysis("");
+    });
+
     eventSource.addEventListener('reasoning', (event: MessageEvent) => {
       try {
         const { content } = JSON.parse(event.data);
