@@ -4,6 +4,7 @@ import Wrapper from "../components/global/wrapper";
 import { Button } from "./ui/button";
 import MobileMenu from "./mobile-menu";
 import Image from "next/image";
+import { Github, Twitter } from "lucide-react";
 
 const Navbar = () => {
   return (
@@ -19,9 +20,10 @@ const Navbar = () => {
               <Image
                 src="/mario.png"
                 alt="logo"
-                className="w-6 h-6 -ml-[6px] -mr-[5px] group-hover:animate-spin-slow"
+                className="w-6 h-6 flex-shrink-0 group-hover:animate-spin-slow"
                 width={24}
                 height={24}
+                priority
               />
               <span className="text-xl font-semibold hidden lg:block">
                 inSeek
@@ -38,10 +40,23 @@ const Navbar = () => {
             </ul>
           </div>
           <div className="flex items-center gap-4">
-            <Link href="/cot" className="hidden lg:block">
-              <Button variant="blue">Get Started</Button>
+            <Link
+              href="https://x.com/CoinseekAI"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-primary transition-colors"
+            >
+              <Twitter className="h-5 w-5" />
             </Link>
-            <MobileMenu />
+            <Link
+              href="https://github.com/sgAIqO0psl51xk/coinseek"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-primary transition-colors"
+            >
+              <Github className="h-5 w-5" />
+            </Link>
+            {/* <MobileMenu /> */}
           </div>
         </div>
       </Wrapper>
