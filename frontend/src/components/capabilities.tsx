@@ -210,7 +210,7 @@ const Trading = () => (
                     We've all heard of DeepSeek. <br /> Now, add in <span className="font-subheading italic">sprinkles of crypto.</span>
                 </h2>
                 <p className="text-base md:text-lg text-center text-accent-foreground/80 mt-6">
-                    Buy, sell, and trade your favorite cryptocurrencies with the power of AI. <br /> Or just use our app to make better decisions. It&apos;s up to you.
+                    Buy, sell, and trade your favorite cryptocurrencies with the power of AI research. <br /> Or just use our app to make better decisions. It&apos;s up to you.
                 </p>
             </div>
         </Container>
