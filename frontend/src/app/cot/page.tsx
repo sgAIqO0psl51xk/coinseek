@@ -21,26 +21,7 @@ interface AnalysisResponse {
 }
 
 // Add this helper function to parse the analysis text
-function parseAnalysisText(text: string) {
-  const sections: { title: string; content: string }[] = [];
 
-  // Split by numbered sections (1., 2., etc)
-  const sectionRegex = /(\d+\..*?)(?=\d+\.|$)/gs;
-  const matches = text.match(sectionRegex);
-
-  if (matches) {
-    matches.forEach((section) => {
-      // Split the first line (title) from the rest (content)
-      const lines = section.trim().split("\n");
-      const title = lines[0].trim();
-      const content = lines.slice(1).join("\n").trim();
-
-      sections.push({ title, content });
-    });
-  }
-
-  return sections;
-}
 
 export default function AnalyzePage() {
   const [contractAddress, setContractAddress] = useState("");
