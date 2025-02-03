@@ -44,7 +44,6 @@ export default function Home() {
           <Capabilities />
           <Integration />
           <CTA />
-          <Footer />
         </Wrapper>
       </div>
     </div>

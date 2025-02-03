@@ -14,7 +14,7 @@ const Navbar = () => {
           <div className="flex items-center">
             <Link
               href="/"
-              className="flex items-center gap-2 uppercase tracking-widest group"
+              className="flex items-center gap-1 lg:gap-0.5 uppercase tracking-widest group"
             >
               <span className="text-xl font-semibold hidden lg:block">C</span>
               <Image
@@ -32,11 +32,11 @@ const Navbar = () => {
           </div>
           <div className="hidden lg:flex items-center gap-4">
             <ul className="flex items-center gap-8">
-              {NAV_LINKS.map((link, index) => (
+              {/* {NAV_LINKS.map((link, index) => (
                 <li key={index} className="text-sm font-medium -1 link">
                   <Link href={link.href}>{link.name}</Link>
                 </li>
-              ))}
+              ))} */}
             </ul>
           </div>
           <div className="flex items-center gap-4">
