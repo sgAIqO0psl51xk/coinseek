@@ -77,6 +77,10 @@ export default function AnalyzePage() {
     const eventSource = new EventSource(url);
 
     // Update loading stage when reasoning starts
+    eventSource.addEventListener('start', (event: MessageEvent) => {
+      setAnalysis("");
+    });
+
     eventSource.addEventListener("reasoning", (event: MessageEvent) => {
       try {
         const { content } = JSON.parse(event.data);
