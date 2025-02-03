@@ -15,8 +15,6 @@ class DexScreenerTokenData:
     def __str__(self):
         base_str = f"- Market Cap: {self.mcap}\n- Volume: {self.volume}\n- Liquidity: {self.liquidity}"
         if self.socials:
-            # Let's print the socials data to see its structure
-            print("Debug - Socials data:", self.socials)
             social_urls = []
             for social in self.socials:
                 if isinstance(social, dict):
