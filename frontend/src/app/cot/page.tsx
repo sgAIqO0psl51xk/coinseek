@@ -76,8 +76,12 @@ export default function AnalyzePage() {
     )}${ticker ? `&ticker=${encodeURIComponent(ticker.toUpperCase())}` : ""}`;
     const eventSource = new EventSource(url);
 
-    // Update loading stage when reasoning starts
-    eventSource.addEventListener("reasoning", (event: MessageEvent) => {
+    // Add event listeners for specific event types
+    eventSource.addEventListener('start', (event: MessageEvent) => {
+      setAnalysis("");
+    });
+
+    eventSource.addEventListener('reasoning', (event: MessageEvent) => {
       try {
         const { content } = JSON.parse(event.data);
         setReasoning((prev) => prev + content);
