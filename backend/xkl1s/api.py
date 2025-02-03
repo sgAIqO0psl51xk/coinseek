@@ -115,25 +115,32 @@ async def analyze(request: Request, contract_address: str, ticker: str = ""):
         logging.info("Initializing DeepseekDriver...")
         llm_providers = [
             LLMProvider(
-                api_key=os.getenv("DEEPSEEK_API_KEY", ""),  # Ensure this is set in your environment
-                model_name="deepseek-reasoner",  # OpenRouter model name
-                base_url="https://api.deepseek.com/chat/completions",  # OpenRouter's API endpoint
+                api_key=os.getenv("DEEPSEEK_API_KEY", ""),
+                model_name="deepseek-reasoner",
+                base_url="https://api.deepseek.com/chat/completions",
                 provider_type="deepseek",
-                priority=0,
-            ),
-            LLMProvider(
-                api_key=os.getenv("OPENROUTER_API_KEY", ""),  # Ensure this is set in your environment
-                model_name="deepseek/deepseek-r1",  # OpenRouter model name
-                base_url="https://openrouter.ai/api/v1/chat/completions",  # OpenRouter's API endpoint
-                provider_type="openrouter",
                 priority=1,
             ),
             LLMProvider(
-                api_key=os.getenv("OPENROUTER_API_KEY", ""),  # Ensure this is set in your environment
-                model_name="deepseek/deepseek-r1:nitro",  # OpenRouter model name
-                base_url="https://openrouter.ai/api/v1/chat/completions",  # OpenRouter's API endpoint
+                api_key=os.getenv("OPENROUTER_API_KEY", ""),
+                model_name="deepseek/deepseek-r1",
+                base_url="https://openrouter.ai/api/v1/chat/completions",
                 provider_type="openrouter",
                 priority=2,
+            ),
+            LLMProvider(
+                api_key=os.getenv("OPENROUTER_API_KEY", ""),
+                model_name="deepseek/deepseek-r1:free",
+                base_url="https://openrouter.ai/api/v1/chat/completions",
+                provider_type="openrouter",
+                priority=0,
+            ),
+            LLMProvider(
+                api_key=os.getenv("OPENROUTER_API_KEY", ""),
+                model_name="deepseek/deepseek-r1:nitro",
+                base_url="https://openrouter.ai/api/v1/chat/completions",
+                provider_type="openrouter",
+                priority=3,
             ),
         ]
         driver = DeepseekDriver(contract_address=contract_address, ticker=ticker, llm_providers=llm_providers)
