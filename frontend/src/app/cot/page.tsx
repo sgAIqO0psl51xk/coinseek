@@ -22,7 +22,6 @@ interface AnalysisResponse {
 
 // Add this helper function to parse the analysis text
 
-
 export default function AnalyzePage() {
   const [contractAddress, setContractAddress] = useState("");
   const [ticker, setTicker] = useState("");
@@ -43,8 +42,8 @@ export default function AnalyzePage() {
   useEffect(() => {
     if (!isAnalyzing) return;
 
-    // Set up stage progression
-    const stageIntervals = [1000, 2000, 3000, 4000]; // Timing for each stage
+    // Increased intervals for more realistic timing (in milliseconds)
+    const stageIntervals = [3000, 6000, 9000, 12000]; // Each stage now takes 3 seconds
     let timeouts: NodeJS.Timeout[] = [];
 
     stageIntervals.forEach((delay, index) => {
@@ -249,6 +248,18 @@ export default function AnalyzePage() {
               <div className="max-w-7xl mx-auto space-y-8">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <MagicCard>
+                    <div className="p-6 space-y-4">
+                      <h2 className="text-2xl font-semibold">
+                        Chain of Thought
+                      </h2>
+                      <div className="prose prose-invert max-w-none">
+                        <ReactMarkdown className="whitespace-pre-wrap font-mono font-light text-gray-300 text-sm">
+                          {reasoning}
+                        </ReactMarkdown>
+                      </div>
+                    </div>
+                  </MagicCard>
+                  <MagicCard>
                     <div className="p-6 space-y-6">
                       <h2 className="text-2xl font-semibold">Result</h2>
                       {error && (
@@ -257,21 +268,8 @@ export default function AnalyzePage() {
                         </Card>
                       )}
                       <div className="prose prose-invert max-w-none ">
-                        <ReactMarkdown className="text-md">
+                        <ReactMarkdown className="whitespace-pre-wrap font-mono text-sm leading-relaxed">
                           {analysis}
-                        </ReactMarkdown>
-                      </div>
-                    </div>
-                  </MagicCard>
-
-                  <MagicCard>
-                    <div className="p-6 space-y-4">
-                      <h2 className="text-2xl font-semibold">
-                        Chain of Thought
-                      </h2>
-                      <div className="prose prose-invert max-w-none">
-                        <ReactMarkdown className="italic font-light text-gray-300 text-sm">
-                          {reasoning}
                         </ReactMarkdown>
                       </div>
                     </div>
