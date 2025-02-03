@@ -13,13 +13,13 @@ const Navbar = () => {
           <div className="flex items-center">
             <Link
               href="/"
-              className="flex items-center gap-2 uppercase tracking-widest"
+              className="flex items-center gap-2 uppercase tracking-widest group"
             >
               <span className="text-xl font-semibold hidden lg:block">C</span>
               <Image
                 src="/mario.png"
                 alt="logo"
-                className="w-6 h-6 -ml-[6px] -mr-[5px] rotate-12"
+                className="w-6 h-6 -ml-[6px] -mr-[5px] group-hover:animate-spin-slow"
                 width={24}
                 height={24}
               />
@@ -38,7 +38,7 @@ const Navbar = () => {
             </ul>
           </div>
           <div className="flex items-center gap-4">
-            <Link href="/start" className="hidden lg:block">
+            <Link href="/cot" className="hidden lg:block">
               <Button variant="blue">Get Started</Button>
             </Link>
             <MobileMenu />
