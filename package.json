@@ -1,5 +1,8 @@
 {
 	"devDependencies": {
 		"autoprefixer": "^10.4.20"
+	},
+	"dependencies": {
+		"nuqs": "^2.3.2"
 	}
 }

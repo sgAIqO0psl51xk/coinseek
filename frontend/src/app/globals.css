@@ -90,3 +90,7 @@ body {
 html {
   scroll-behavior: smooth;
 }
+
+[data-state="open"] .collapsible-chevron {
+  transform: rotate(180deg);
+}

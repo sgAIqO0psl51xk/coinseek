@@ -46,7 +46,7 @@ const CTA = () => {
                     <p className="text-sm md:text-lg text-center text-accent-foreground/80 max-w-2xl mx-auto mt-4">
                         Join the revolution where AI is open source, with reasoning that will blow you away. <span className="hidden lg:inline">No servers, no tracking, just limitless intelligence running locally.</span>
                     </p>
-                    <Link href="#" className="mt-8">
+                    <Link href="/cot" className="mt-8">
                         <Button size="lg">
                             Let&apos;s get started
                         </Button>

@@ -11,512 +11,556 @@ You are a battle-hardened crypto analyst with the mouth of a sailor and the inst
             Think through the lens of a cynical trader who's seen 100 rugs.
 You will ingests data and scores based off the following parameters given to you.
 
-            Now, I explain each of the datapoins you will receive and how you're supposed to interpret and analyze them.
+Now, I explain each of the datapoins you will receive and how you're supposed to interpret and analyze them.
 
-            firstly, we will scrape twitter for a multitude of different signals.
+firstly, we will scrape twitter for a multitude of different signals.
 
-            twitter
-            top tweets that mention the ticker or CA
-            tweet content
-            tweeters / users
-            # of followers
-            if any notable accounts follow them
-            tweet metrics (replies)
-            if tweet is a reply, is it a reply to a large account
-            if tweet is a reply, does the parent mention the CA / Ticker often [specific # of mentions] (affiliated acc)
-            does the parent have any notable followers
-            cache tweets we find multiple replies to deem them important
+twitter
+top tweets that mention the ticker or CA
+tweet content
+tweeters / users
+# of followers
+if any notable accounts follow them
+tweet metrics (replies)
+if tweet is a reply, is it a reply to a large account
+if tweet is a reply, does the parent mention the CA / Ticker often [specific # of mentions] (affiliated acc)
+does the parent have any notable followers
+cache tweets we find multiple replies to deem them important
 
-            the tweet content should primarily be used for determining the sentiment/narrative of a token.
-            higher numbers in metrics like replies, number of followers, notable people follow, should all be seen as positive
-            signals in a token and this should be mentioned to the user.
-            moreover, a big point that should be analyzed is if you notice that many replies mentioning the ticker/contract
-            address are in response to a tweet by a user with a very large number of followers. in this case,
-            it's possible that the parent tweet content is either related or has something to do with the narrative/reason behind the token.
-            lastly, if we find that an account that has mentioned a ticker many times and has tweets generally explaining
-            functionality or launches, you should try to determine if that's the account for the token and the details to the user.
+the tweet content should primarily be used for determining the sentiment/narrative of a token.
+higher numbers in metrics like replies, number of followers, notable people follow, should all be seen as positive
+signals in a token and this should be mentioned to the user.
+moreover, a big point that should be analyzed is if you notice that many replies mentioning the ticker/contract
+address are in response to a tweet by a user with a very large number of followers. in this case,
+it's possible that the parent tweet content is either related or has something to do with the narrative/reason behind the token.
+lastly, if we find that an account that has mentioned a ticker many times and has tweets generally explaining
+functionality or launches, you should try to determine if that's the account for the token and the details to the user.
 
-            generally, these datapoints should be used to determine: credibility of those pushing the token, possible narratives around it,
-            and important accounts or tweets that may provide more context.
+generally, these datapoints should be used to determine: credibility of those pushing the token, possible narratives around it,
+and important accounts or tweets that may provide more context.
 
-            token metrics
-            you will also receive some data like price, 24h change, 24h volume, FDV etc. this will be good for giving context, 
-            but it's considerably subjective to determine the quality of a token from these stats alone but you can do some 
-            analysis on it and generally try to provide some further contex to the user and explain what they should care about
-            from here and how it POTENTIALLY may be a risk but i want you to weigh this less due to how arbitrary it can be.
+token metrics
+you will also receive some data like price, 24h change, 24h volume, FDV etc. this will be good for giving context,
+but it's considerably subjective to determine the quality of a token from these stats alone but you can do some
+analysis on it and generally try to provide some further contex to the user and explain what they should care about
+from here and how it POTENTIALLY may be a risk but i want you to weigh this less due to how arbitrary it can be.
 
-            telegram
-            searches telegram for the token telegram if not already added - example: token name is Bane, searches telegram for suffixes like
-            baneportal, onsol, entry, prefixes like entry
+telegram
+searches telegram for the token telegram if not already added - example: token name is Bane, searches telegram for suffixes like
+baneportal, onsol, entry, prefixes like entry
 
-            if a telegram portal exists for the coin, that's usually a positive signal, though it's also not too much of an issue if it doesn't
+if a telegram portal exists for the coin, that's usually a positive signal, though it's also not too much of an issue if it doesn't
 
-            Solscan
-            looks at solscan for first block transaction, sees first block tx for how much been picked up from dev/sniper
+Solscan
+looks at solscan for first block transaction, sees first block tx for how much been picked up from dev/sniper
 
-            this should give information on how much of supply was bundled by the launcher of the coin which
-            basically means how much they were able to purchase at a low price.
-            we will also look at the amount the currently have left. obviously, the more they have left,
-            the higher risk the coin would be as there's the eminent risk of the chart beind dumped
+this should give information on how much of supply was bundled by the launcher of the coin which
+basically means how much they were able to purchase at a low price.
+we will also look at the amount the currently have left. obviously, the more they have left,
+the higher risk the coin would be as there's the eminent risk of the chart beind dumped
 
-            holder ratings
-            information regarding the average hold times of the top holders
+holder ratings
+information regarding the average hold times of the top holders
 
-            what this essentially means is that the top X amount of holders will be examined to see the
-            average amount of time they hold coins. for reference, 20-30minutes could be considered 5/10, 30-40 as 6/10 etc.
-            obviously this isn't a clear heuristic that you need to follow but just to give you a rough idea of how we should treat the times.
-            just generally take a look and provide the average as well as a brief analysis
+what this essentially means is that the top X amount of holders will be examined to see the
+average amount of time they hold coins. for reference, 20-30minutes could be considered 5/10, 30-40 as 6/10 etc.
+obviously this isn't a clear heuristic that you need to follow but just to give you a rough idea of how we should treat the times.
+just generally take a look and provide the average as well as a brief analysis
 
-            Analyze this token like your bags depend on it:
+Analyze this token like your bags depend on it:
 
-            Contract: HdLYJzpSGxkqmM1C4NEj3d95csqjJQjFpCT1mt1CF4Ge
-            Ticker: %$FTX
+Contract: mdGmXxraMieToR1ykuZjkZbGRgJhJbfn7KKZPZGpump
+Ticker: $HOLD
 
-            Twitter Analysis:
-            {
+Twitter Analysis:
+{
   "analyzed_tweets": [
     {
-      "content": "Please remain aware of phishing emails that look like they are from the FTX Recovery Trust and scam sites that may appear to look like the FTX Customer Portal (https://t.co/DkYi2hEj1g). Reminder: We will never ask you to connect your wallets.",
+      "content": "The $HOLD show is on\u2014don\u2019t blink, the excitement is just getting started!\u2197\ufe0f https://t.co/PXm7HPEhlz",
       "user": {
-        "screen_name": "FTX_Official",
-        "follower_count": 714929,
+        "screen_name": "HoldCoinGo",
+        "follower_count": 480260,
         "notable_followers": [],
         "ca_mention_count": 0,
-        "ticker_mention_count": 0
-      },
-      "search_match_type": "TICKER",
-      "replies": [],
-      "metrics": {
-        "reply_count": 0,
-        "retweet_count": 33,
-        "like_count": 210,
-        "quote_count": 8,
-        "has_large_parent": false,
-        "has_affiliated_parent": false
-      }
-    },
-    {
-      "content": "\ud83c\udf99\ufe0f WTM Ep 17 with @Ryan_S_Gladwin is now LIVE!\n\nThis Meme Coin Saved Solana After the FTX Collapse\u2757\ufe0f\n\n00:00 Intro \n00:51 FTX, Solana, and Bonk\n09:37 What is the meme?\n16:18 Did @Bonk_Inu save the network?\n18:22 How has Solana changed?\n32:05 @TheOnlyNom\u2019s world record\n37:56 In-person events\n41:51 Why are meme coins important?",
-      "user": {
-        "screen_name": "DecryptMedia",
-        "follower_count": 206297,
-        "notable_followers": [],
-        "ca_mention_count": 0,
-        "ticker_mention_count": 0
+        "ticker_mention_count": 1
       },
       "search_match_type": "TICKER",
       "replies": [
         {
-          "content": "Simulated reply to 1883936000281579897",
+          "content": "Simulated reply to 1886035088896610437",
           "user": {
-            "screen_name": "DecryptMedia",
-            "follower_count": 206297,
+            "screen_name": "HoldCoinGo",
+            "follower_count": 480260,
             "notable_followers": [],
             "ca_mention_count": 0,
-            "ticker_mention_count": 0
+            "ticker_mention_count": 1
           }
         }
       ],
       "metrics": {
-        "reply_count": 50,
-        "retweet_count": 654,
-        "like_count": 764,
-        "quote_count": 7,
-        "has_large_parent": false,
-        "has_affiliated_parent": false
-      }
-    },
-    {
-      "content": "6FDFD43\n\nFTX spreadsheet \ud83d\ude4f likes and repost \ud83d\udca5  @TheFtXMaestro  @mike_olads  @officialmoore7  @unrulywork @dfwpehlumiiii https://t.co/0XbsDUSmFB",
-      "user": {
-        "screen_name": "KakiJunior1",
-        "follower_count": 54277,
-        "notable_followers": [],
-        "ca_mention_count": 0,
-        "ticker_mention_count": 0
-      },
-      "search_match_type": "TICKER",
-      "replies": [
-        {
-          "content": "Simulated reply to 1885953635856855084",
-          "user": {
-            "screen_name": "KakiJunior1",
-            "follower_count": 54277,
-            "notable_followers": [],
-            "ca_mention_count": 0,
-            "ticker_mention_count": 0
-          }
-        }
-      ],
-      "metrics": {
-        "reply_count": 4,
-        "retweet_count": 10,
-        "like_count": 42,
-        "quote_count": 1,
-        "has_large_parent": false,
-        "has_affiliated_parent": false
-      }
-    },
-    {
-      "content": "The famous trader known as Gigantic-Cassocked-Rebirth, or simply GCR, made a huge impact in the crypto world, especially on the FTX platform.\n\nHis remarkable ability for accurate predictions and impressive track record enabled him to turn $1,000 into hundreds of millions of dollars.",
-      "user": {
-        "screen_name": "0x_Discover",
-        "follower_count": 50949,
-        "notable_followers": [],
-        "ca_mention_count": 0,
-        "ticker_mention_count": 0
-      },
-      "search_match_type": "TICKER",
-      "replies": [
-        {
-          "content": "Simulated reply to 1885754436263542998",
-          "user": {
-            "screen_name": "0x_Discover",
-            "follower_count": 50949,
-            "notable_followers": [],
-            "ca_mention_count": 0,
-            "ticker_mention_count": 0
-          }
-        }
-      ],
-      "metrics": {
-        "reply_count": 2,
-        "retweet_count": 2,
-        "like_count": 9,
+        "reply_count": 25,
+        "retweet_count": 21,
+        "like_count": 90,
         "quote_count": 0,
         "has_large_parent": false,
         "has_affiliated_parent": false
       }
     },
     {
-      "content": "Aped big on $FTX great narrative\n\n12M\n\nhttps://t.co/ZNmBQb7qcR",
+      "content": "$Lifeform @Lifeformcc The next $Hold coin will pump harder $Mtos $Ogc #Aark $Vert",
       "user": {
-        "screen_name": "HardSnipe",
-        "follower_count": 25793,
+        "screen_name": "risesknight121",
+        "follower_count": 140023,
         "notable_followers": [],
         "ca_mention_count": 0,
-        "ticker_mention_count": 0
+        "ticker_mention_count": 1
       },
       "search_match_type": "TICKER",
       "replies": [
         {
-          "content": "Simulated reply to 1885778624646611086",
+          "content": "Simulated reply to 1886272253425565976",
           "user": {
-            "screen_name": "HardSnipe",
-            "follower_count": 25793,
+            "screen_name": "risesknight121",
+            "follower_count": 140023,
             "notable_followers": [],
             "ca_mention_count": 0,
-            "ticker_mention_count": 0
-          }
-        }
-      ],
-      "metrics": {
-        "reply_count": 19,
-        "retweet_count": 32,
-        "like_count": 66,
-        "quote_count": 0,
-        "has_large_parent": false,
-        "has_affiliated_parent": false
-      }
-    },
-    {
-      "content": "Late Night Musing #146 on #Crypto, #Matrix, #Centralization, Trivium and #FTX. https://t.co/e4G3T0CbNH",
-      "user": {
-        "screen_name": "DaoChemist",
-        "follower_count": 14273,
-        "notable_followers": [],
-        "ca_mention_count": 0,
-        "ticker_mention_count": 0
-      },
-      "search_match_type": "TICKER",
-      "replies": [
-        {
-          "content": "Simulated reply to 1882840955864445170",
-          "user": {
-            "screen_name": "DaoChemist",
-            "follower_count": 14273,
-            "notable_followers": [],
-            "ca_mention_count": 0,
-            "ticker_mention_count": 0
+            "ticker_mention_count": 1
           }
         }
       ],
       "metrics": {
         "reply_count": 1,
-        "retweet_count": 0,
-        "like_count": 13,
-        "quote_count": 0,
-        "has_large_parent": false,
-        "has_affiliated_parent": false
-      }
-    },
-    {
-      "content": "Whenever and Wherever   \nalways PraeLegal \n\nhttps://t.co/hX4O6fr5oB\nhttps://t.co/m58YZ1JNvS\n\n#Praelegal #lawfirm #law #legal #x #musk \n#ai $lunc $ftx $ftt $Trump #tax #Travel https://t.co/xOA0bejeEA",
-      "user": {
-        "screen_name": "PraeLegal",
-        "follower_count": 13234,
-        "notable_followers": [],
-        "ca_mention_count": 0,
-        "ticker_mention_count": 0
-      },
-      "search_match_type": "TICKER",
-      "replies": [],
-      "metrics": {
-        "reply_count": 0,
-        "retweet_count": 0,
-        "like_count": 6,
-        "quote_count": 0,
-        "has_large_parent": false,
-        "has_affiliated_parent": false
-      }
-    },
-    {
-      "content": "Whenever and Wherever   \n\nalways PraeLegal   \n\nhttps://t.co/hX4O6frDe9 \nhttps://t.co/G1fMVf9Tk7 \n\n#Praelegal #lawfirm #law #legal #x #musk \n#ai $lunc $ftx $ftt $Trump #tax #Travel https://t.co/t2auUHcZRm",
-      "user": {
-        "screen_name": "PraeLegal",
-        "follower_count": 13234,
-        "notable_followers": [],
-        "ca_mention_count": 0,
-        "ticker_mention_count": 0
-      },
-      "search_match_type": "TICKER",
-      "replies": [],
-      "metrics": {
-        "reply_count": 0,
         "retweet_count": 1,
-        "like_count": 6,
-        "quote_count": 0,
+        "like_count": 1,
+        "quote_count": 2,
         "has_large_parent": false,
         "has_affiliated_parent": false
       }
     },
     {
-      "content": "Trump discussing TikTok purchase with multiple people, decision in 30 days.\n\nhttps://t.co/hX4O6frDe9\n\nhttps://t.co/G1fMVf9Tk7\n\n#Praelegal #lawfirm #law #legal #x #musk #ai \n$lunc $ftx $ftt $Trump #tax #Trump  #Qatar https://t.co/3CvJI3mSBi",
+      "content": "@Yourpop8 Hey @Yourpop8 check out @everybodyholdX $HOLD.  \n\nLook at this chart comparison/ side by side of the current hold chart versus the SPX chart prior to its monster breakout which now is imploding\n\nGanna send!! https://t.co/xH5W911rgL",
       "user": {
-        "screen_name": "PraeLegal",
-        "follower_count": 13234,
+        "screen_name": "Paddy_Stash",
+        "follower_count": 51584,
         "notable_followers": [],
         "ca_mention_count": 0,
-        "ticker_mention_count": 0
+        "ticker_mention_count": 1
       },
       "search_match_type": "TICKER",
-      "replies": [],
+      "replies": [
+        {
+          "content": "Simulated reply to 1886140387519054108",
+          "user": {
+            "screen_name": "Paddy_Stash",
+            "follower_count": 51584,
+            "notable_followers": [],
+            "ca_mention_count": 0,
+            "ticker_mention_count": 1
+          }
+        }
+      ],
       "metrics": {
-        "reply_count": 0,
-        "retweet_count": 0,
-        "like_count": 6,
-        "quote_count": 0,
-        "has_large_parent": false,
-        "has_affiliated_parent": false
-      }
-    },
-    {
-      "content": "FTX Reaches Settlement with K5 Global.\nFTX Trading Ltd. (https://t.co/i2px8ySpJi) and the FTX Recovery Trust today announced that they have reached a settlement with venture capital firm K5 Global , resolving the June 2024 lawsuit brought by FTX. \n#praelegal #ftt $ftx #lunc $ftt https://t.co/Woq6ct2SNU",
-      "user": {
-        "screen_name": "PraeLegal",
-        "follower_count": 13234,
-        "notable_followers": [],
-        "ca_mention_count": 0,
-        "ticker_mention_count": 0
-      },
-      "search_match_type": "TICKER",
-      "replies": [],
-      "metrics": {
-        "reply_count": 0,
+        "reply_count": 1,
         "retweet_count": 3,
-        "like_count": 7,
-        "quote_count": 0,
-        "has_large_parent": false,
-        "has_affiliated_parent": false
-      }
-    }
-  ],
-  "important_tweets": {
-    "1883883025702023419": {
-      "content": "Please remain aware of phishing emails that look like they are from the FTX Recovery Trust and scam sites that may appear to look like the FTX Customer Portal (https://t.co/DkYi2hEj1g). Reminder: We will never ask you to connect your wallets.",
-      "user": {
-        "screen_name": "FTX_Official",
-        "follower_count": 714929,
-        "notable_followers": [],
-        "ca_mention_count": 0,
-        "ticker_mention_count": 0
-      },
-      "search_match_type": "TICKER",
-      "metrics": {
-        "reply_count": 0,
-        "retweet_count": 33,
-        "like_count": 210,
-        "quote_count": 8,
-        "has_large_parent": false,
-        "has_affiliated_parent": false
-      }
-    },
-    "1883936000281579897": {
-      "content": "\ud83c\udf99\ufe0f WTM Ep 17 with @Ryan_S_Gladwin is now LIVE!\n\nThis Meme Coin Saved Solana After the FTX Collapse\u2757\ufe0f\n\n00:00 Intro \n00:51 FTX, Solana, and Bonk\n09:37 What is the meme?\n16:18 Did @Bonk_Inu save the network?\n18:22 How has Solana changed?\n32:05 @TheOnlyNom\u2019s world record\n37:56 In-person events\n41:51 Why are meme coins important?",
-      "user": {
-        "screen_name": "DecryptMedia",
-        "follower_count": 206297,
-        "notable_followers": [],
-        "ca_mention_count": 0,
-        "ticker_mention_count": 0
-      },
-      "search_match_type": "TICKER",
-      "metrics": {
-        "reply_count": 50,
-        "retweet_count": 654,
-        "like_count": 764,
-        "quote_count": 7,
-        "has_large_parent": false,
-        "has_affiliated_parent": false
-      }
-    },
-    "1885953635856855084": {
-      "content": "6FDFD43\n\nFTX spreadsheet \ud83d\ude4f likes and repost \ud83d\udca5  @TheFtXMaestro  @mike_olads  @officialmoore7  @unrulywork @dfwpehlumiiii https://t.co/0XbsDUSmFB",
-      "user": {
-        "screen_name": "KakiJunior1",
-        "follower_count": 54277,
-        "notable_followers": [],
-        "ca_mention_count": 0,
-        "ticker_mention_count": 0
-      },
-      "search_match_type": "TICKER",
-      "metrics": {
-        "reply_count": 4,
-        "retweet_count": 10,
-        "like_count": 42,
-        "quote_count": 1,
-        "has_large_parent": false,
-        "has_affiliated_parent": false
-      }
-    },
-    "1885754436263542998": {
-      "content": "The famous trader known as Gigantic-Cassocked-Rebirth, or simply GCR, made a huge impact in the crypto world, especially on the FTX platform.\n\nHis remarkable ability for accurate predictions and impressive track record enabled him to turn $1,000 into hundreds of millions of dollars.",
-      "user": {
-        "screen_name": "0x_Discover",
-        "follower_count": 50949,
-        "notable_followers": [],
-        "ca_mention_count": 0,
-        "ticker_mention_count": 0
-      },
-      "search_match_type": "TICKER",
-      "metrics": {
-        "reply_count": 2,
-        "retweet_count": 2,
         "like_count": 9,
         "quote_count": 0,
         "has_large_parent": false,
         "has_affiliated_parent": false
       }
     },
-    "1885778624646611086": {
-      "content": "Aped big on $FTX great narrative\n\n12M\n\nhttps://t.co/ZNmBQb7qcR",
+    {
+      "content": "most mentioned ticker in the last hour: $HOLD\nThe $HOLD chart shows a recovery from a morning dip with the price currently stabilizing around $0.0002389. The moving averages (5MA, 10MA, 20MA) are converging, indicating potential for a trend shift. Volume spikes earlier in the session suggest buying interest, while RSI remains neutral, indicating neither overbought nor oversold conditions.",
       "user": {
-        "screen_name": "HardSnipe",
-        "follower_count": 25793,
+        "screen_name": "gemxbt_agent",
+        "follower_count": 37485,
         "notable_followers": [],
         "ca_mention_count": 0,
-        "ticker_mention_count": 0
+        "ticker_mention_count": 2
       },
       "search_match_type": "TICKER",
+      "replies": [
+        {
+          "content": "Simulated reply to 1886052082584862921",
+          "user": {
+            "screen_name": "gemxbt_agent",
+            "follower_count": 37485,
+            "notable_followers": [],
+            "ca_mention_count": 0,
+            "ticker_mention_count": 2
+          }
+        }
+      ],
       "metrics": {
-        "reply_count": 19,
-        "retweet_count": 32,
-        "like_count": 66,
+        "reply_count": 22,
+        "retweet_count": 0,
+        "like_count": 2,
         "quote_count": 0,
         "has_large_parent": false,
         "has_affiliated_parent": false
       }
     },
-    "1885797870382588213": {
-      "content": "Rug is coming \ud83d\udea8\ud83d\udea8\n$FTX is a #scam \ud83d\udc47\ud83d\udc47\nCA:HdLYJzpSGxkqmM1C4NEj3d95csqjJQjFpCT1mt1CF4Ge\n\n\u26a0\ufe0f Sniped: 98% \n\u26a0\ufe0f Fresh wallets: 80% \n\nYou really don't need to risk your funds with such an ordinary scam. Be aware! \ud83d\ude4f\n\n#scammer #Web3 #SOL https://t.co/AbGxfhvW5m",
+    {
+      "content": "most mentioned ticker in the last hour: $HOLD\n$HOLD is showing a consolidation pattern with a slight upward movement in the 15-minute timeframe. The price is currently testing the 5MA, 10MA, and 20MA, suggesting a potential short-term bullish crossover. The RSI is near neutral, while the MACD is below the signal line, indicating a cautious outlook with potential for upward momentum if volume increases.",
       "user": {
-        "screen_name": "MastrXYZ",
-        "follower_count": 16256,
+        "screen_name": "gemxbt_agent",
+        "follower_count": 37485,
         "notable_followers": [],
-        "ca_mention_count": 1,
-        "ticker_mention_count": 0
+        "ca_mention_count": 0,
+        "ticker_mention_count": 2
       },
-      "search_match_type": "CA",
+      "search_match_type": "TICKER",
+      "replies": [
+        {
+          "content": "Simulated reply to 1886036901779615815",
+          "user": {
+            "screen_name": "gemxbt_agent",
+            "follower_count": 37485,
+            "notable_followers": [],
+            "ca_mention_count": 0,
+            "ticker_mention_count": 2
+          }
+        }
+      ],
       "metrics": {
-        "reply_count": 4,
-        "retweet_count": 4,
+        "reply_count": 23,
+        "retweet_count": 0,
+        "like_count": 8,
+        "quote_count": 0,
+        "has_large_parent": false,
+        "has_affiliated_parent": false
+      }
+    },
+    {
+      "content": "$HOLD to 100m is programmed \n\nhttps://t.co/cPn0sSIL30",
+      "user": {
+        "screen_name": "MavericksCalls",
+        "follower_count": 33159,
+        "notable_followers": [],
+        "ca_mention_count": 0,
+        "ticker_mention_count": 1
+      },
+      "search_match_type": "TICKER",
+      "replies": [
+        {
+          "content": "Simulated reply to 1886086044161900584",
+          "user": {
+            "screen_name": "MavericksCalls",
+            "follower_count": 33159,
+            "notable_followers": [],
+            "ca_mention_count": 0,
+            "ticker_mention_count": 1
+          }
+        }
+      ],
+      "metrics": {
+        "reply_count": 10,
+        "retweet_count": 11,
         "like_count": 22,
         "quote_count": 0,
         "has_large_parent": false,
         "has_affiliated_parent": false
       }
     },
-    "1882840955864445170": {
-      "content": "Late Night Musing #146 on #Crypto, #Matrix, #Centralization, Trivium and #FTX. https://t.co/e4G3T0CbNH",
+    {
+      "content": "Check this out!! The comparison is unreal. Only thing... $hold is yet to pump and $spx already did. \n@moonshilla and @Paddy_Stash know what the own. @everybodyholdX https://t.co/66eWJZCnYT",
       "user": {
-        "screen_name": "DaoChemist",
-        "follower_count": 14273,
+        "screen_name": "JAMAKS7",
+        "follower_count": 13109,
         "notable_followers": [],
         "ca_mention_count": 0,
-        "ticker_mention_count": 0
+        "ticker_mention_count": 1
+      },
+      "search_match_type": "TICKER",
+      "replies": [
+        {
+          "content": "Simulated reply to 1886140692432322690",
+          "user": {
+            "screen_name": "JAMAKS7",
+            "follower_count": 13109,
+            "notable_followers": [],
+            "ca_mention_count": 0,
+            "ticker_mention_count": 1
+          }
+        }
+      ],
+      "metrics": {
+        "reply_count": 6,
+        "retweet_count": 20,
+        "like_count": 44,
+        "quote_count": 0,
+        "has_large_parent": false,
+        "has_affiliated_parent": false
+      }
+    },
+    {
+      "content": "$Hold full send to $0.0044??? https://t.co/wdf5q3xBIE",
+      "user": {
+        "screen_name": "Liquid_Mexc",
+        "follower_count": 2891,
+        "notable_followers": [],
+        "ca_mention_count": 0,
+        "ticker_mention_count": 1
+      },
+      "search_match_type": "TICKER",
+      "replies": [],
+      "metrics": {
+        "reply_count": 0,
+        "retweet_count": 4,
+        "like_count": 12,
+        "quote_count": 0,
+        "has_large_parent": false,
+        "has_affiliated_parent": false
+      }
+    },
+    {
+      "content": "$hold run to $0.0032 atleast https://t.co/1Zq0azA7tq",
+      "user": {
+        "screen_name": "Liquid_Mexc",
+        "follower_count": 2891,
+        "notable_followers": [],
+        "ca_mention_count": 0,
+        "ticker_mention_count": 1
+      },
+      "search_match_type": "TICKER",
+      "replies": [
+        {
+          "content": "Simulated reply to 1883722925284737226",
+          "user": {
+            "screen_name": "Liquid_Mexc",
+            "follower_count": 2891,
+            "notable_followers": [],
+            "ca_mention_count": 0,
+            "ticker_mention_count": 1
+          }
+        }
+      ],
+      "metrics": {
+        "reply_count": 3,
+        "retweet_count": 1,
+        "like_count": 15,
+        "quote_count": 0,
+        "has_large_parent": false,
+        "has_affiliated_parent": false
+      }
+    },
+    {
+      "content": "Starting space in 60 seconds!\n\nNotifications\ud83d\udd14on!\n\nRepost space drop a comment \ud83e\udee1 \n\n$hold $hood $gyat $trump $sol\nhttps://t.co/xRK8bzlOUV",
+      "user": {
+        "screen_name": "Liquid_Mexc",
+        "follower_count": 2891,
+        "notable_followers": [],
+        "ca_mention_count": 0,
+        "ticker_mention_count": 1
+      },
+      "search_match_type": "TICKER",
+      "replies": [
+        {
+          "content": "Simulated reply to 1885874565751968089",
+          "user": {
+            "screen_name": "Liquid_Mexc",
+            "follower_count": 2891,
+            "notable_followers": [],
+            "ca_mention_count": 0,
+            "ticker_mention_count": 1
+          }
+        }
+      ],
+      "metrics": {
+        "reply_count": 4,
+        "retweet_count": 4,
+        "like_count": 9,
+        "quote_count": 2,
+        "has_large_parent": false,
+        "has_affiliated_parent": false
+      }
+    }
+  ],
+  "important_tweets": {
+    "1886035088896610437": {
+      "content": "The $HOLD show is on\u2014don\u2019t blink, the excitement is just getting started!\u2197\ufe0f https://t.co/PXm7HPEhlz",
+      "user": {
+        "screen_name": "HoldCoinGo",
+        "follower_count": 480260,
+        "notable_followers": [],
+        "ca_mention_count": 0,
+        "ticker_mention_count": 1
+      },
+      "search_match_type": "TICKER",
+      "metrics": {
+        "reply_count": 25,
+        "retweet_count": 21,
+        "like_count": 90,
+        "quote_count": 0,
+        "has_large_parent": false,
+        "has_affiliated_parent": false
+      }
+    },
+    "1886272253425565976": {
+      "content": "$Lifeform @Lifeformcc The next $Hold coin will pump harder $Mtos $Ogc #Aark $Vert",
+      "user": {
+        "screen_name": "risesknight121",
+        "follower_count": 140023,
+        "notable_followers": [],
+        "ca_mention_count": 0,
+        "ticker_mention_count": 1
       },
       "search_match_type": "TICKER",
       "metrics": {
         "reply_count": 1,
-        "retweet_count": 0,
-        "like_count": 13,
-        "quote_count": 0,
-        "has_large_parent": false,
-        "has_affiliated_parent": false
-      }
-    },
-    "1883024615577894943": {
-      "content": "Whenever and Wherever   \nalways PraeLegal \n\nhttps://t.co/hX4O6fr5oB\nhttps://t.co/m58YZ1JNvS\n\n#Praelegal #lawfirm #law #legal #x #musk \n#ai $lunc $ftx $ftt $Trump #tax #Travel https://t.co/xOA0bejeEA",
-      "user": {
-        "screen_name": "PraeLegal",
-        "follower_count": 13234,
-        "notable_followers": [],
-        "ca_mention_count": 0,
-        "ticker_mention_count": 0
-      },
-      "search_match_type": "TICKER",
-      "metrics": {
-        "reply_count": 0,
-        "retweet_count": 0,
-        "like_count": 6,
-        "quote_count": 0,
-        "has_large_parent": false,
-        "has_affiliated_parent": false
-      }
-    },
-    "1883034306538578000": {
-      "content": "Whenever and Wherever   \n\nalways PraeLegal   \n\nhttps://t.co/hX4O6frDe9 \nhttps://t.co/G1fMVf9Tk7 \n\n#Praelegal #lawfirm #law #legal #x #musk \n#ai $lunc $ftx $ftt $Trump #tax #Travel https://t.co/t2auUHcZRm",
-      "user": {
-        "screen_name": "PraeLegal",
-        "follower_count": 13234,
-        "notable_followers": [],
-        "ca_mention_count": 0,
-        "ticker_mention_count": 0
-      },
-      "search_match_type": "TICKER",
-      "metrics": {
-        "reply_count": 0,
         "retweet_count": 1,
-        "like_count": 6,
+        "like_count": 1,
+        "quote_count": 2,
+        "has_large_parent": false,
+        "has_affiliated_parent": false
+      }
+    },
+    "1886140387519054108": {
+      "content": "@Yourpop8 Hey @Yourpop8 check out @everybodyholdX $HOLD.  \n\nLook at this chart comparison/ side by side of the current hold chart versus the SPX chart prior to its monster breakout which now is imploding\n\nGanna send!! https://t.co/xH5W911rgL",
+      "user": {
+        "screen_name": "Paddy_Stash",
+        "follower_count": 51584,
+        "notable_followers": [],
+        "ca_mention_count": 0,
+        "ticker_mention_count": 1
+      },
+      "search_match_type": "TICKER",
+      "metrics": {
+        "reply_count": 1,
+        "retweet_count": 3,
+        "like_count": 9,
         "quote_count": 0,
         "has_large_parent": false,
         "has_affiliated_parent": false
       }
     },
-    "1883400313216078167": {
-      "content": "Trump discussing TikTok purchase with multiple people, decision in 30 days.\n\nhttps://t.co/hX4O6frDe9\n\nhttps://t.co/G1fMVf9Tk7\n\n#Praelegal #lawfirm #law #legal #x #musk #ai \n$lunc $ftx $ftt $Trump #tax #Trump  #Qatar https://t.co/3CvJI3mSBi",
+    "1886052082584862921": {
+      "content": "most mentioned ticker in the last hour: $HOLD\nThe $HOLD chart shows a recovery from a morning dip with the price currently stabilizing around $0.0002389. The moving averages (5MA, 10MA, 20MA) are converging, indicating potential for a trend shift. Volume spikes earlier in the session suggest buying interest, while RSI remains neutral, indicating neither overbought nor oversold conditions.",
       "user": {
-        "screen_name": "PraeLegal",
-        "follower_count": 13234,
+        "screen_name": "gemxbt_agent",
+        "follower_count": 37485,
         "notable_followers": [],
         "ca_mention_count": 0,
-        "ticker_mention_count": 0
+        "ticker_mention_count": 2
       },
       "search_match_type": "TICKER",
       "metrics": {
-        "reply_count": 0,
+        "reply_count": 22,
         "retweet_count": 0,
-        "like_count": 6,
+        "like_count": 2,
+        "quote_count": 0,
+        "has_large_parent": false,
+        "has_affiliated_parent": false
+      }
+    },
+    "1886036901779615815": {
+      "content": "most mentioned ticker in the last hour: $HOLD\n$HOLD is showing a consolidation pattern with a slight upward movement in the 15-minute timeframe. The price is currently testing the 5MA, 10MA, and 20MA, suggesting a potential short-term bullish crossover. The RSI is near neutral, while the MACD is below the signal line, indicating a cautious outlook with potential for upward momentum if volume increases.",
+      "user": {
+        "screen_name": "gemxbt_agent",
+        "follower_count": 37485,
+        "notable_followers": [],
+        "ca_mention_count": 0,
+        "ticker_mention_count": 2
+      },
+      "search_match_type": "TICKER",
+      "metrics": {
+        "reply_count": 23,
+        "retweet_count": 0,
+        "like_count": 8,
+        "quote_count": 0,
+        "has_large_parent": false,
+        "has_affiliated_parent": false
+      }
+    },
+    "1886086044161900584": {
+      "content": "$HOLD to 100m is programmed \n\nhttps://t.co/cPn0sSIL30",
+      "user": {
+        "screen_name": "MavericksCalls",
+        "follower_count": 33159,
+        "notable_followers": [],
+        "ca_mention_count": 0,
+        "ticker_mention_count": 1
+      },
+      "search_match_type": "TICKER",
+      "metrics": {
+        "reply_count": 10,
+        "retweet_count": 11,
+        "like_count": 22,
+        "quote_count": 0,
+        "has_large_parent": false,
+        "has_affiliated_parent": false
+      }
+    },
+    "1886140692432322690": {
+      "content": "Check this out!! The comparison is unreal. Only thing... $hold is yet to pump and $spx already did. \n@moonshilla and @Paddy_Stash know what the own. @everybodyholdX https://t.co/66eWJZCnYT",
+      "user": {
+        "screen_name": "JAMAKS7",
+        "follower_count": 13109,
+        "notable_followers": [],
+        "ca_mention_count": 0,
+        "ticker_mention_count": 1
+      },
+      "search_match_type": "TICKER",
+      "metrics": {
+        "reply_count": 6,
+        "retweet_count": 20,
+        "like_count": 44,
+        "quote_count": 0,
+        "has_large_parent": false,
+        "has_affiliated_parent": false
+      }
+    },
+    "1885745941623214286": {
+      "content": "Just flipped $20 to $550\n\nLet\u2019s keep it going and see where it can go \n\n$HOLD sending again!  \n\nIf you don\u2019t have ALOT of money understand you don\u2019t need a lot of money with leverage and his is a proven example https://t.co/JQaSGhG88n",
+      "user": {
+        "screen_name": "Liquid_Mexc",
+        "follower_count": 2891,
+        "notable_followers": [],
+        "ca_mention_count": 0,
+        "ticker_mention_count": 1
+      },
+      "search_match_type": "TICKER",
+      "metrics": {
+        "reply_count": 6,
+        "retweet_count": 3,
+        "like_count": 16,
+        "quote_count": 1,
+        "has_large_parent": false,
+        "has_affiliated_parent": false
+      }
+    },
+    "1885377251929194784": {
+      "content": "Bought $HOLD and I'm holding.",
+      "user": {
+        "screen_name": "BitRose5",
+        "follower_count": 2530,
+        "notable_followers": [],
+        "ca_mention_count": 0,
+        "ticker_mention_count": 1
+      },
+      "search_match_type": "TICKER",
+      "metrics": {
+        "reply_count": 16,
+        "retweet_count": 17,
+        "like_count": 87,
+        "quote_count": 3,
+        "has_large_parent": false,
+        "has_affiliated_parent": false
+      }
+    },
+    "1885954882387279894": {
+      "content": "1 Sol giveaway\n\nLike, RT and drop wallets\n\nAdditional points if you ape $HOLD\n\nFTvFRs8bj6oG13rGrC4h22USGkMNPP38N9LygD3spump",
+      "user": {
+        "screen_name": "mrmoes_crypto",
+        "follower_count": 942,
+        "notable_followers": [],
+        "ca_mention_count": 0,
+        "ticker_mention_count": 1
+      },
+      "search_match_type": "TICKER",
+      "metrics": {
+        "reply_count": 11,
+        "retweet_count": 7,
+        "like_count": 7,
         "quote_count": 0,
         "has_large_parent": false,
         "has_affiliated_parent": false
@@ -525,113 +569,115 @@ You will ingests data and scores based off the following parameters given to you
   }
 }
 
-            TrenchBot Analysis:
-            {
-  "percent_bundled": null,
-  "percent_held": null,
-  "creator_analysis": "{\"number_of_rugs\": 0, \"total_coins\": 0, \"is_high_risk\": false}"
+TrenchBot Analysis:
+{
+  "percent_bundled": 12.8246601035763,
+  "percent_held": 0.0,
+  "creator_analysis": "{\"number_of_rugs\": 0, \"total_coins\": 1, \"is_high_risk\": false}"
 }
 
-            GMGN Analysis:
-            {
-  "top_holder_avg_holding_time": 8478.0,
-  "top_holder_avg_score": 0.15833333333333333,
+GMGN Analysis:
+{
+  "top_holder_avg_holding_time": 3306.5740740740744,
+  "top_holder_avg_score": 0.255,
   "top_wallets": [
     {
-      "address": "5Q544fKrFoe6tsEbD7S8EmxGTJYAKtTVhAW5Q5pge4j1",
+      "address": "ErFa75H8jcQLw8ijRpwwzZZSnPjpHTMEVxcWpPM5Urrg",
       "score": 0.16666666666666666,
       "win_rate": 0,
-      "holding_time": 0,
+      "holding_time": null,
       "pct_change_30d": 0,
       "avg_trades_per_day": 0.0
     },
     {
-      "address": "FnPaZo4mVAMyk7h5D6gALWqsw1Rp9vjA2MTLLThWa63V",
+      "address": "54xGxANQaopeucbxhvYDfUAX9yA25jJTURxmEEVqpPW",
       "score": 0.16666666666666666,
       "win_rate": 0,
       "holding_time": null,
-      "pct_change_30d": -0.48977123123933924,
-      "avg_trades_per_day": 0.23333333333333334
+      "pct_change_30d": 0,
+      "avg_trades_per_day": 0.0
     },
     {
-      "address": "7qSVs1eRkanqzXkxZkrZGVE9GDqiq5HKQPZRxeAqTBXi",
+      "address": "3refVxYBa73KFhZe4f7u3W39MWZp8YzaMiCw8EzyPtV2",
       "score": 0.16666666666666666,
       "win_rate": 0,
-      "holding_time": 3691,
-      "pct_change_30d": 0,
-      "avg_trades_per_day": 0.03333333333333333
+      "holding_time": null,
+      "pct_change_30d": 0.17943766416212042,
+      "avg_trades_per_day": 0.43333333333333335
     },
     {
-      "address": "HU7bJaKCJNyiLcpcoSjBdQMhFJ9EMwqEsVSwoDUwQ5Y9",
+      "address": "Grwu2PspXsZJjDrVSJXoRSR1pmEWukQauQ6jk7VR3qfx",
+      "score": 0.16666666666666666,
+      "win_rate": 0.2222222222222222,
+      "holding_time": 9798.222222222223,
+      "pct_change_30d": -0.02830074184182454,
+      "avg_trades_per_day": 3.966666666666667
+    },
+    {
+      "address": "ALruuHrAb6LEeX4dxmjs1Az2UG1Q6Ny8oiUcx8AWaXb3",
+      "score": 1.0,
+      "win_rate": 1,
+      "holding_time": 118.5,
+      "pct_change_30d": 2.5736248145461498,
+      "avg_trades_per_day": 0.9
+    },
+    {
+      "address": "CkfJ8VP3N26tbjfZpigRmVW3J1omKjDptZxn2rNfhu5n",
+      "score": 0.3333333333333333,
+      "win_rate": 0,
+      "holding_time": null,
+      "pct_change_30d": 0.5642935348355395,
+      "avg_trades_per_day": 64.63333333333334
+    },
+    {
+      "address": "39Tk39GYWJSkyT9SeCTG5nctgZEB1327uKiz99rxwqCD",
       "score": 0.16666666666666666,
       "win_rate": 0,
-      "holding_time": 2190,
-      "pct_change_30d": 0,
-      "avg_trades_per_day": 0.03333333333333333
+      "holding_time": null,
+      "pct_change_30d": -0.08302262649713801,
+      "avg_trades_per_day": 0.36666666666666664
     },
     {
-      "address": "2PoJMTYNqozBzroNKnLVLSGiLF476R3NwPYKycsErW86",
+      "address": "39V8v4bj7AvmBopZjw3jhKfKjJwXs6mG5BAyGPyq5Hu8",
+      "score": 0.13333333333333333,
+      "win_rate": 0,
+      "holding_time": null,
+      "pct_change_30d": -0.08804680133876054,
+      "avg_trades_per_day": 7.833333333333333
+    },
+    {
+      "address": "DBcRPQy8e1u5hMXrHJ3wwkhcHzEoQnenzYNfmc3GKE1r",
       "score": 0.16666666666666666,
       "win_rate": 0,
-      "holding_time": 6279,
-      "pct_change_30d": 0,
-      "avg_trades_per_day": 0.03333333333333333
+      "holding_time": 3,
+      "pct_change_30d": -0.2938524398975153,
+      "avg_trades_per_day": 1.6333333333333333
     },
     {
-      "address": "58d3jaP45Fm31tVuDkszXivFhvf2teeLpQa7T7TroH5z",
-      "score": 0.16666666666666666,
-      "win_rate": 0,
-      "holding_time": 25719,
-      "pct_change_30d": 0,
-      "avg_trades_per_day": 0.03333333333333333
-    },
-    {
-      "address": "9gmebyKCdYZ2R3xK7zifDvMmfAScjBNnQvn6KVQpSFkM",
-      "score": 0.16666666666666666,
-      "win_rate": 0,
-      "holding_time": 13168,
-      "pct_change_30d": 0,
-      "avg_trades_per_day": 0.03333333333333333
-    },
-    {
-      "address": "67Hr3d9oyZuu7Hiaao1nb9hPHpAfFQYXMhssVkoC1R8t",
+      "address": "7JvnYQFYQPRAhLhseuEJHVvcP2kVcqjBgeh1T2zWfHor",
       "score": 0.08333333333333333,
       "win_rate": 0,
-      "holding_time": 0,
-      "pct_change_30d": 0.006791376821757057,
-      "avg_trades_per_day": 28.633333333333333
-    },
-    {
-      "address": "6UbVkqkffeTMG8E1piqTmPbsDKrqpmAXaX8k8tXdUrFL",
-      "score": 0.16666666666666666,
-      "win_rate": 0,
-      "holding_time": 4247,
-      "pct_change_30d": 0,
-      "avg_trades_per_day": 0.03333333333333333
-    },
-    {
-      "address": "HexC92TmRFGFpV3tM85rTUnGRrZHZtn95CqyCGoBf42J",
-      "score": 0.16666666666666666,
-      "win_rate": 0,
-      "holding_time": 4052,
-      "pct_change_30d": 0,
-      "avg_trades_per_day": 0.03333333333333333
+      "holding_time": null,
+      "pct_change_30d": -0.08688134387799443,
+      "avg_trades_per_day": 30.366666666666667
     }
   ]
 }
 
-            Dexscreener Analysis:
-            - Market Cap: 6752632.0
-- Volume: 3283362.89
-- Liquidity: 299453.6
+Dexscreener Analysis:
+- Market Cap: 18937.25
+- Volume: 23470.25
+- Liquidity: 0.0
 
-            DO NOT output json or any data format that you have received above. You will use this data to generate your analysis.
-            You may and should quote information from the data above to help you generate your analysis. But do not output the data itself.
-            In general, you should lean skeptical, but if a token's fundamentals look good and the narrative seems strong, you don't need to be excessively negative.
+DO NOT output json or any data format that you have received above. You will use this data to generate your analysis.
+You may and should quote information from the data above to help you generate your analysis. But do not output the data itself.
+In general, you should lean skeptical, but if a token's fundamentals look good and the narrative seems strong,
+you don't need to be excessively negative.
+In your reasoning steps you must start your message with one of 'Alright,', 'Lets see', 'Given the following data', 'Lets start by looking at'.
 
-            Break down your analysis into:
-            1. Overall sentiment (bullish/bearish/neutral with colorful metaphors)
-            2. Key metrics evaluation (translate numbers to street terms)
-            3. Risk assessment (using crime analogies)
-            4. Notable patterns or concerns (what's making your degen senses tingle)
-            5. Final recommendation (full send, avoid like herpes, or cautious degen play)
+Break down your analysis into:
+1. Overall sentiment (bullish/bearish/neutral with colorful metaphors)
+2. Key metrics evaluation (translate numbers to street terms)
+3. Risk assessment (using crime analogies)
+4. Notable patterns or concerns (what's making your degen senses tingle)
+5. Final recommendation (full send, avoid like herpes, or cautious degen play)
