@@ -296,81 +296,107 @@ Break down your analysis into:
 
     async def run_llm_analysis(self, messages: List[ChatCompletionMessageParam]) -> AsyncGenerator[Dict[str, Any], None]:
         """Run the LLM analysis with automatic fallback between providers"""
+        last_error = None
+        TIMEOUT = 5  # 5 seconds timeout
+
         for provider in self.llm_providers:
-            got_data = False
             logging.info(f"Attempting analysis with {provider.provider_type}:{provider.model_name}...")
+            
+            # Prepare request parameters
             headers = {
                 "Authorization": f"Bearer {provider.api_key}",
                 "Content-Type": "application/json",
             }
-
+            
             payload = {
                 "model": provider.model_name,
                 "messages": messages,
                 "temperature": 0.75,
                 "stream": True,
             }
-
             if provider.provider_type == "openrouter":
                 payload["include_reasoning"] = True
 
-            async with aiohttp.ClientSession() as session:
-                try:
-                    response = await session.post(
-                        provider.base_url,
-                        headers=headers,
-                        json=payload,
-                    )
+            try:
+                async with aiohttp.ClientSession() as session:
+                    # Make API request with timeout
+                    async with asyncio.timeout(TIMEOUT):
+                        response = await session.post(
+                            provider.base_url,
+                            headers=headers,
+                            json=payload,
+                        )
+                    
                     if response.status != 200:
                         error_message = await response.text()
                         logging.error(f"API error: {error_message}")
                         raise Exception(f"API error: {error_message}")
 
-                    # Process the response stream
+                    # Process streaming response
+                    got_data = False
+                    last_data_time = asyncio.get_event_loop().time()
+
                     async for line in response.content:
-                        if line:
-                            decoded_line = line.decode("utf-8").strip()
-                            if decoded_line.startswith("data:"):
-                                json_str = decoded_line[5:].strip()
-                                if json_str == "[DONE]":
-                                    continue
-                                try:
-                                    chunk = json.loads(json_str)
-                                except json.JSONDecodeError as e:
-                                    logging.error(f"JSON decode error: {e} | Data: {json_str}")
-                                    raise
+                        # Check if we've exceeded timeout since last data
+                        current_time = asyncio.get_event_loop().time()
+                        if current_time - last_data_time > TIMEOUT:
+                            raise asyncio.TimeoutError("No data received for 5 seconds")
+                        
+                        if not line:
+                            continue
+                            
+                        # Update last data time
+                        last_data_time = current_time
 
-                                if "choices" not in chunk or not chunk["choices"]:
-                                    logging.error("Invalid response chunk missing choices")
-                                    raise Exception("Response missing 'choices' field")
+                        # Parse the SSE line
+                        decoded_line = line.decode("utf-8").strip()
+                        if not decoded_line.startswith("data:"):
+                            continue
+                            
+                        json_str = decoded_line[5:].strip()
+                        if json_str == "[DONE]":
+                            continue
 
-                                delta = chunk["choices"][0].get("delta", {})
-                                content = delta.get("content")
-                                if content:
-                                    got_data = True
-                                    # logging.info(f"Analysis content: {content}")
-                                    yield {"type": "analysis", "content": content}
-                                reasoning_content = delta.get("reasoning_content") or delta.get("assistant_feedback") or delta.get("reasoning")
-                                if reasoning_content:
-                                    got_data = True
-                                    # logging.info(f"Reasoning content: {reasoning_content}")
-                                    yield {"type": "reasoning", "content": reasoning_content}
+                        # Parse JSON response
+                        try:
+                            chunk = json.loads(json_str)
+                        except json.JSONDecodeError as e:
+                            logging.error(f"JSON decode error: {e} | Data: {json_str}")
+                            raise
 
-                    # Stream completed successfully
+                        if "choices" not in chunk or not chunk["choices"]:
+                            raise Exception("Response missing 'choices' field")
+
+                        # Extract content from delta
+                        delta = chunk["choices"][0].get("delta", {})
+                        
+                        # Handle main content
+                        if content := delta.get("content"):
+                            got_data = True
+                            yield {"type": "analysis", "content": content}
+                        
+                        # Handle reasoning content (multiple possible field names)
+                        reasoning_content = (
+                            delta.get("reasoning_content") or 
+                            delta.get("assistant_feedback") or 
+                            delta.get("reasoning")
+                        )
+                        if reasoning_content:
+                            got_data = True
+                            yield {"type": "reasoning", "content": reasoning_content}
+
+                    # Verify we got data and complete
                     if not got_data:
-                        logging.error("No data received from LLM stream")
-                        raise Exception("No data received from llm")
+                        raise Exception("No data received from LLM stream")
+                        
                     logging.info(f"Successfully completed analysis with {provider.model_name}")
                     yield {"type": "complete"}
                     return
 
-                except Exception as e:
-                    logging.error(f"Provider {provider.provider_type} error: {str(e)}")
-                    if got_data:
-                        yield {"type": "error", "message": f"Stream interrupted: {str(e)}"}
-                        return
-                    last_error = str(e)
-                    continue  # Proceed to next provider
+            except (asyncio.TimeoutError, Exception) as e:
+                logging.error(f"Provider {provider.provider_type} error: {str(e)}")
+                last_error = str(e)
+                continue  # Try next provider
 
         # All providers failed
         logging.error("All LLM providers failed")
