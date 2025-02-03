@@ -240,7 +240,8 @@ analysis on it and generally try to provide some further contex to the user and 
 from here and how it POTENTIALLY may be a risk but i want you to weigh this less due to how arbitrary it can be.
 
 telegram
-dexscreener data will usually contain a link in the form of t.me - if it has one, it means there's a telegram portal of some sort
+searches telegram for the token telegram if not already added - example: token name is Bane, searches telegram for suffixes like
+baneportal, onsol, entry, prefixes like entry
 
 if a telegram portal exists for the coin, that's usually a positive signal, though it's also not too much of an issue if it doesn't
 
@@ -278,7 +279,6 @@ Dexscreener Analysis:
 {str(analysis.dexscreener_data)}
 
 DO NOT output json or any data format that you have received above. You will use this data to generate your analysis.
-DO NOT feel the need to give advice on amount of solana someone should put into a coin. Each person has different size.
 You may and should quote information from the data above to help you generate your analysis. But do not output the data itself.
 In general, you should lean skeptical, but if a token's fundamentals look good and the narrative seems strong,
 you don't need to be excessively negative.
@@ -297,8 +297,8 @@ Break down your analysis into:
     async def run_llm_analysis(self, messages: List[ChatCompletionMessageParam]) -> AsyncGenerator[Dict[str, Any], None]:
         """Run the LLM analysis with automatic fallback between providers"""
         last_error = None
-        TIMEOUT = 5  # 5 seconds timeout
-        INITIAL_TIMEOUT = 5  # 5 seconds timeout for initial response
+        CONNECTION_TIMEOUT = 2  # 5 seconds timeout
+        RESPONSE_TIMEOUT = 10  # 5 seconds timeout for initial response
 
         for provider in self.llm_providers:
             yield {"type": "start", "message": f"Attempting analysis with {provider.provider_type}:{provider.model_name}..."}
@@ -321,46 +321,47 @@ Break down your analysis into:
 
             try:
                 async with aiohttp.ClientSession() as session:
-                    # Make API request with timeout
-                    start_time = asyncio.get_event_loop().time()
-                    async with asyncio.timeout(TIMEOUT):
-                        response = await session.post(
-                            provider.base_url,
-                            headers=headers,
-                            json=payload,
-                        )
-                    end_time = asyncio.get_event_loop().time()
-                    if end_time - start_time > TIMEOUT:
-                        logging.warning(f"Request took longer than {TIMEOUT} seconds")
+                    current_time = asyncio.get_event_loop().time()
+                    try:
+                        # Isolate timeout to just the connection establishment
+                        async with asyncio.timeout(CONNECTION_TIMEOUT):
+                            response = await session.post(
+                                provider.base_url,
+                                headers=headers,
+                                json=payload,
+                            )
+                            # Immediately check if we got a valid response
+                            if response.status != 200:
+                                error_message = await response.text()
+                                raise Exception(f"API error: {error_message}")
 
-                    if response.status != 200:
-                        error_message = await response.text()
-                        logging.error(f"API error: {error_message}")
-                        raise Exception(f"API error: {error_message}")
+                    except asyncio.TimeoutError as e:
+                        raise asyncio.TimeoutError(f"Connection timed out after {CONNECTION_TIMEOUT}s") from e
+                    except aiohttp.ClientConnectionError as e:
+                        raise Exception(f"Connection failed: {str(e)}") from e
 
-                    # Process streaming response
+                    logging.info(f"Connection response received in {asyncio.get_event_loop().time() - current_time}s")
+
+                    # Now process the stream without timeout
                     got_data = False
-                    last_data_time = asyncio.get_event_loop().time()
-                    start_time = last_data_time
+                    content_iterator = response.content.__aiter__()
 
-                    async for line in response.content:
-                        current_time = asyncio.get_event_loop().time()
+                    last_data_time = None
+                    while True:
+                        try:
+                            # Use appropriate timeout for current state
+                            current_timeout = RESPONSE_TIMEOUT
+                            async with asyncio.timeout(current_timeout):
+                                line = await content_iterator.__anext__()
 
-                        # Use longer timeout for initial response
-                        if not got_data:
-                            if current_time - start_time > INITIAL_TIMEOUT:
-                                raise asyncio.TimeoutError(f"No initial response received after {INITIAL_TIMEOUT} seconds")
-                        # Use shorter timeout between chunks once streaming starts
-                        elif current_time - last_data_time > TIMEOUT:
-                            raise asyncio.TimeoutError(f"No data received for {TIMEOUT} seconds")
+                            if last_data_time is None:
+                                last_data_time = asyncio.get_event_loop().time()
+                        except StopAsyncIteration:
+                            break
+                        except asyncio.TimeoutError as e:
+                            error_msg = f"No {'initial' if not got_data else 'subsequent'} " f"response within {current_timeout}s"
+                            raise asyncio.TimeoutError(error_msg) from e
 
-                        if not line:
-                            continue
-
-                        # Update last data time
-                        last_data_time = current_time
-
-                        # Parse the SSE line
                         decoded_line = line.decode("utf-8").strip()
                         if not decoded_line.startswith("data:"):
                             continue
@@ -369,7 +370,6 @@ Break down your analysis into:
                         if json_str == "[DONE]":
                             continue
 
-                        # Parse JSON response
                         try:
                             chunk = json.loads(json_str)
                         except json.JSONDecodeError as e:
@@ -377,37 +377,41 @@ Break down your analysis into:
                             raise
 
                         if "choices" not in chunk or not chunk["choices"]:
+                            logging.error(f"Response missing 'choices' field: {chunk}")
                             raise Exception("Response missing 'choices' field")
 
-                        # Extract content from delta
                         delta = chunk["choices"][0].get("delta", {})
 
-                        # Handle main content
+                        # Handle different content types
+                        current_run_data = False
                         if content := delta.get("content"):
-                            got_data = True
+                            current_run_data = True  # Mark that we've received at least one chunk
                             yield {"type": "analysis", "content": content}
-
-                        # Handle reasoning content (multiple possible field names)
-                        reasoning_content = delta.get("reasoning_content") or delta.get("assistant_feedback") or delta.get("reasoning")
-                        if reasoning_content:
-                            got_data = True
+                        if reasoning_content := delta.get("reasoning_content") or delta.get("reasoning"):
+                            current_run_data = True  # Mark that we've received at least one chunk
                             yield {"type": "reasoning", "content": reasoning_content}
+                        got_data = got_data or current_run_data
 
-                    # Verify we got data and complete
+                        time_to_receive_data = asyncio.get_event_loop().time() - last_data_time
+                        if time_to_receive_data > RESPONSE_TIMEOUT:
+                            logging.warning(delta)
+                            logging.warning(f"Data received in {time_to_receive_data}s")
+                            raise Exception(f"Data received in {time_to_receive_data}s more than limit of {RESPONSE_TIMEOUT}s")
+                        if current_run_data:
+                            last_data_time = asyncio.get_event_loop().time()
+
                     if not got_data:
                         raise Exception("No data received from LLM stream")
 
-                    logging.info(f"Successfully completed analysis with {provider.model_name}")
                     yield {"type": "complete"}
-                    return
+                    return  # Success - exit provider loop
 
             except (asyncio.TimeoutError, Exception) as e:
-                logging.error(f"Provider {provider.provider_type} error: {str(e)}")
+                logging.warning(f"Provider {provider.provider_type} error: {str(e)}")
                 last_error = str(e)
                 continue  # Try next provider
 
         # All providers failed
-        logging.error("All LLM providers failed")
         yield {"type": "error", "message": f"All providers failed. Last error: {last_error}"}
 
     async def stream_analysis(self):

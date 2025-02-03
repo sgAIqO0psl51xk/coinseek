@@ -13,7 +13,7 @@ load_dotenv()
 
 app = FastAPI()
 
-COOLDOWN_PERIOD = datetime.timedelta(seconds=30)
+COOLDOWN_PERIOD = datetime.timedelta(seconds=1)
 
 app.add_middleware(
     CORSMiddleware,
