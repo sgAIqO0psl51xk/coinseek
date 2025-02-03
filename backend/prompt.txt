@@ -76,13 +76,44 @@ Twitter Analysis:
 {
   "analyzed_tweets": [
     {
+      "content": "\ud83d\ude80 Bi-Weekly Carnival: HOLD is the Way!\n\n\ud83d\udc8e February 3 - February 17, 2025 (UTC) \u2013 An exclusive reward event for $HOLD holders is coming!\n\n\ud83c\udfaf Remember! The reward structure is simple \u2013 the amount of $HOLD in your wallet during the event determines your reward level.\n\nYour $HOLD is not only an asset but also a conviction in your future! \ud83e\ude99\nWe prove with actions that holding = rewards! \u2197\ufe0f",
+      "user": {
+        "screen_name": "HoldCoinGo",
+        "follower_count": 485958,
+        "notable_followers": [],
+        "ca_mention_count": 0,
+        "ticker_mention_count": 1
+      },
+      "search_match_type": "TICKER",
+      "replies": [
+        {
+          "content": "Simulated reply to 1886407853361238279",
+          "user": {
+            "screen_name": "HoldCoinGo",
+            "follower_count": 485958,
+            "notable_followers": [],
+            "ca_mention_count": 0,
+            "ticker_mention_count": 1
+          }
+        }
+      ],
+      "metrics": {
+        "reply_count": 14,
+        "retweet_count": 11,
+        "like_count": 64,
+        "quote_count": 0,
+        "has_large_parent": false,
+        "has_affiliated_parent": false
+      }
+    },
+    {
       "content": "The $HOLD show is on\u2014don\u2019t blink, the excitement is just getting started!\u2197\ufe0f https://t.co/PXm7HPEhlz",
       "user": {
         "screen_name": "HoldCoinGo",
-        "follower_count": 480706,
+        "follower_count": 485958,
         "notable_followers": [],
         "ca_mention_count": 0,
-        "ticker_mention_count": 2
+        "ticker_mention_count": 1
       },
       "search_match_type": "TICKER",
       "replies": [
@@ -90,69 +121,7 @@ Twitter Analysis:
           "content": "Simulated reply to 1886035088896610437",
           "user": {
             "screen_name": "HoldCoinGo",
-            "follower_count": 480706,
-            "notable_followers": [],
-            "ca_mention_count": 0,
-            "ticker_mention_count": 2
-          }
-        }
-      ],
-      "metrics": {
-        "reply_count": 25,
-        "retweet_count": 21,
-        "like_count": 90,
-        "quote_count": 0,
-        "has_large_parent": false,
-        "has_affiliated_parent": false
-      }
-    },
-    {
-      "content": "\ud83d\uded2 $HOLD Exclusive rewards for loyal guardians!\n\nAfter 15 days of firm holding, your loyalty has received exciting rewards - the rewards have been distributed\ud83d\udc8e\ud83d\udc8e\n\nGo check your wallet, $HOLD is using practical actions to thank you for your trust! \u2764\ufe0f\n\n\ud83d\ude80The more you hold, the more you will gain in the future - more surprises are about to be unlocked, are you ready for greater rewards? \ud83d\udd25",
-      "user": {
-        "screen_name": "HoldCoinGo",
-        "follower_count": 480706,
-        "notable_followers": [],
-        "ca_mention_count": 0,
-        "ticker_mention_count": 2
-      },
-      "search_match_type": "TICKER",
-      "replies": [
-        {
-          "content": "Simulated reply to 1885996886211052013",
-          "user": {
-            "screen_name": "HoldCoinGo",
-            "follower_count": 480706,
-            "notable_followers": [],
-            "ca_mention_count": 0,
-            "ticker_mention_count": 2
-          }
-        }
-      ],
-      "metrics": {
-        "reply_count": 30,
-        "retweet_count": 11,
-        "like_count": 94,
-        "quote_count": 0,
-        "has_large_parent": false,
-        "has_affiliated_parent": false
-      }
-    },
-    {
-      "content": "$Lifeform @Lifeformcc The next $Hold coin will pump harder $Mtos $Ogc #Aark $Vert",
-      "user": {
-        "screen_name": "risesknight121",
-        "follower_count": 140029,
-        "notable_followers": [],
-        "ca_mention_count": 0,
-        "ticker_mention_count": 1
-      },
-      "search_match_type": "TICKER",
-      "replies": [
-        {
-          "content": "Simulated reply to 1886272253425565976",
-          "user": {
-            "screen_name": "risesknight121",
-            "follower_count": 140029,
+            "follower_count": 485958,
             "notable_followers": [],
             "ca_mention_count": 0,
             "ticker_mention_count": 1
@@ -160,19 +129,50 @@ Twitter Analysis:
         }
       ],
       "metrics": {
-        "reply_count": 1,
-        "retweet_count": 1,
-        "like_count": 2,
+        "reply_count": 28,
+        "retweet_count": 22,
+        "like_count": 96,
+        "quote_count": 0,
+        "has_large_parent": false,
+        "has_affiliated_parent": false
+      }
+    },
+    {
+      "content": "Which #memecoin you think can do #100x PUMP this JANUARY \n\n$PEPE\n$RET\n$BETA\n$DINO\n$VRA\n$ALCX\n$BOND\n$GORK\n$BONK\n$HOLD\n$POND\n#DroverInu\n#Pepe2\n$WEB\n$HOT\n$GEO\n$WSM\n$WTC\n$DEXO\n$DOGS\n$BOB\n$WOJAK\n$BOB\n$PONKE\n$MYRO\n#Cat \n#BookOfHaribo\n$BRETT\n$DOG\n$GME\n$TRUMP\n#MyGarage \n$WYNN\n\nAny Other",
+      "user": {
+        "screen_name": "CryptoThro",
+        "follower_count": 167262,
+        "notable_followers": [],
+        "ca_mention_count": 0,
+        "ticker_mention_count": 1
+      },
+      "search_match_type": "TICKER",
+      "replies": [
+        {
+          "content": "Simulated reply to 1881961590905307162",
+          "user": {
+            "screen_name": "CryptoThro",
+            "follower_count": 167262,
+            "notable_followers": [],
+            "ca_mention_count": 0,
+            "ticker_mention_count": 1
+          }
+        }
+      ],
+      "metrics": {
+        "reply_count": 209,
+        "retweet_count": 44,
+        "like_count": 104,
         "quote_count": 2,
         "has_large_parent": false,
         "has_affiliated_parent": false
       }
     },
     {
-      "content": "WTF is this? $HOLD\n15x in two days\ud83e\udd2f https://t.co/qabGAaJ35V",
+      "content": "The best crypto community is:\n\n\ud83d\udc51 $TOSHI\n\ud83d\udc51 $FLOKI\n\ud83d\udc51 $NEIRO\n\ud83d\udc51 $HOLD",
       "user": {
-        "screen_name": "j0hnnyw00",
-        "follower_count": 119150,
+        "screen_name": "TrueGemHunter",
+        "follower_count": 139949,
         "notable_followers": [],
         "ca_mention_count": 0,
         "ticker_mention_count": 1
@@ -180,10 +180,10 @@ Twitter Analysis:
       "search_match_type": "TICKER",
       "replies": [
         {
-          "content": "Simulated reply to 1883445902276513878",
+          "content": "Simulated reply to 1886067250307739663",
           "user": {
-            "screen_name": "j0hnnyw00",
-            "follower_count": 119150,
+            "screen_name": "TrueGemHunter",
+            "follower_count": 139949,
             "notable_followers": [],
             "ca_mention_count": 0,
             "ticker_mention_count": 1
@@ -191,19 +191,19 @@ Twitter Analysis:
         }
       ],
       "metrics": {
-        "reply_count": 2,
-        "retweet_count": 0,
-        "like_count": 14,
-        "quote_count": 1,
+        "reply_count": 80,
+        "retweet_count": 89,
+        "like_count": 178,
+        "quote_count": 14,
         "has_large_parent": false,
         "has_affiliated_parent": false
       }
     },
     {
-      "content": "@Yourpop8 Hey @Yourpop8 check out @everybodyholdX $HOLD.  \n\nLook at this chart comparison/ side by side of the current hold chart versus the SPX chart prior to its monster breakout which now is imploding\n\nGanna send!! https://t.co/xH5W911rgL",
+      "content": "Textbook retest of support and pivoted off.. \n\nBeautiful!! Now its time to smash ATH's!  $HOLD https://t.co/w1O5sFkT0C",
       "user": {
         "screen_name": "Paddy_Stash",
-        "follower_count": 51589,
+        "follower_count": 51724,
         "notable_followers": [],
         "ca_mention_count": 0,
         "ticker_mention_count": 1
@@ -211,10 +211,10 @@ Twitter Analysis:
       "search_match_type": "TICKER",
       "replies": [
         {
-          "content": "Simulated reply to 1886140387519054108",
+          "content": "Simulated reply to 1886459190668927151",
           "user": {
             "screen_name": "Paddy_Stash",
-            "follower_count": 51589,
+            "follower_count": 51724,
             "notable_followers": [],
             "ca_mention_count": 0,
             "ticker_mention_count": 1
@@ -222,10 +222,10 @@ Twitter Analysis:
         }
       ],
       "metrics": {
-        "reply_count": 1,
-        "retweet_count": 3,
-        "like_count": 9,
-        "quote_count": 0,
+        "reply_count": 5,
+        "retweet_count": 25,
+        "like_count": 45,
+        "quote_count": 3,
         "has_large_parent": false,
         "has_affiliated_parent": false
       }
@@ -234,7 +234,7 @@ Twitter Analysis:
       "content": "most mentioned ticker in the last hour: $HOLD\nThe $HOLD chart shows a recovery from a morning dip with the price currently stabilizing around $0.0002389. The moving averages (5MA, 10MA, 20MA) are converging, indicating potential for a trend shift. Volume spikes earlier in the session suggest buying interest, while RSI remains neutral, indicating neither overbought nor oversold conditions.",
       "user": {
         "screen_name": "gemxbt_agent",
-        "follower_count": 37496,
+        "follower_count": 37692,
         "notable_followers": [],
         "ca_mention_count": 0,
         "ticker_mention_count": 2
@@ -245,7 +245,7 @@ Twitter Analysis:
           "content": "Simulated reply to 1886052082584862921",
           "user": {
             "screen_name": "gemxbt_agent",
-            "follower_count": 37496,
+            "follower_count": 37692,
             "notable_followers": [],
             "ca_mention_count": 0,
             "ticker_mention_count": 2
@@ -262,10 +262,10 @@ Twitter Analysis:
       }
     },
     {
-      "content": "$HOLD to 100m is programmed \n\nhttps://t.co/cPn0sSIL30",
+      "content": "$HOLD Just Hits $100K Market Cap\n\nTrack New Coins on https://t.co/JsZhjazHxU before they moon https://t.co/oqM5EIBSaQ",
       "user": {
-        "screen_name": "MavericksCalls",
-        "follower_count": 33115,
+        "screen_name": "shotpumpfun",
+        "follower_count": 19038,
         "notable_followers": [],
         "ca_mention_count": 0,
         "ticker_mention_count": 1
@@ -273,10 +273,10 @@ Twitter Analysis:
       "search_match_type": "TICKER",
       "replies": [
         {
-          "content": "Simulated reply to 1886086044161900584",
+          "content": "Simulated reply to 1886352799652323433",
           "user": {
-            "screen_name": "MavericksCalls",
-            "follower_count": 33115,
+            "screen_name": "shotpumpfun",
+            "follower_count": 19038,
             "notable_followers": [],
             "ca_mention_count": 0,
             "ticker_mention_count": 1
@@ -284,71 +284,71 @@ Twitter Analysis:
         }
       ],
       "metrics": {
-        "reply_count": 10,
-        "retweet_count": 11,
-        "like_count": 22,
-        "quote_count": 0,
-        "has_large_parent": false,
-        "has_affiliated_parent": false
-      }
-    },
-    {
-      "content": "Check this out!! The comparison is unreal. Only thing... $hold is yet to pump and $spx already did. \n@moonshilla and @Paddy_Stash know what the own. @everybodyholdX https://t.co/66eWJZCnYT",
-      "user": {
-        "screen_name": "JAMAKS7",
-        "follower_count": 13109,
-        "notable_followers": [],
-        "ca_mention_count": 0,
-        "ticker_mention_count": 1
-      },
-      "search_match_type": "TICKER",
-      "replies": [
-        {
-          "content": "Simulated reply to 1886140692432322690",
-          "user": {
-            "screen_name": "JAMAKS7",
-            "follower_count": 13109,
-            "notable_followers": [],
-            "ca_mention_count": 0,
-            "ticker_mention_count": 1
-          }
-        }
-      ],
-      "metrics": {
-        "reply_count": 6,
-        "retweet_count": 20,
-        "like_count": 44,
-        "quote_count": 0,
-        "has_large_parent": false,
-        "has_affiliated_parent": false
-      }
-    },
-    {
-      "content": "Aping to $LLM here\nTargets 2X+ \n\n$D $UOS $AEG $HQ $J $SPA $MXC $DIGIMON $WEEBS $NAKA $CREO $TICO $FRED $HOLD $TRUMP https://t.co/okZruP91U4",
-      "user": {
-        "screen_name": "Coinnesa",
-        "follower_count": 9533,
-        "notable_followers": [],
-        "ca_mention_count": 0,
-        "ticker_mention_count": 1
-      },
-      "search_match_type": "TICKER",
-      "replies": [
-        {
-          "content": "Simulated reply to 1884091611392651391",
-          "user": {
-            "screen_name": "Coinnesa",
-            "follower_count": 9533,
-            "notable_followers": [],
-            "ca_mention_count": 0,
-            "ticker_mention_count": 1
-          }
-        }
-      ],
-      "metrics": {
-        "reply_count": 6,
+        "reply_count": 2,
         "retweet_count": 0,
-        "like_count": 12,
+        "like_count": 3,
+        "quote_count": 0,
+        "has_large_parent": false,
+        "has_affiliated_parent": false
+      }
+    },
+    {
+      "content": "@TrueGemHunter $Hold offcourse \ud83d\udc9a https://t.co/wYGzdTvEQX",
+      "user": {
+        "screen_name": "paul_de28017",
+        "follower_count": 7711,
+        "notable_followers": [],
+        "ca_mention_count": 0,
+        "ticker_mention_count": 1
+      },
+      "search_match_type": "TICKER",
+      "replies": [
+        {
+          "content": "Simulated reply to 1886080199315349971",
+          "user": {
+            "screen_name": "paul_de28017",
+            "follower_count": 7711,
+            "notable_followers": [],
+            "ca_mention_count": 0,
+            "ticker_mention_count": 1
+          }
+        }
+      ],
+      "metrics": {
+        "reply_count": 1,
+        "retweet_count": 4,
+        "like_count": 23,
+        "quote_count": 0,
+        "has_large_parent": false,
+        "has_affiliated_parent": false
+      }
+    },
+    {
+      "content": "I have a crystal ball \ud83d\udd2e $HOLD $WAT \n\n#Crypto #Bitcoin #GEM #Trump https://t.co/Gggzd6hvcA",
+      "user": {
+        "screen_name": "GemoneCrypto",
+        "follower_count": 2998,
+        "notable_followers": [],
+        "ca_mention_count": 0,
+        "ticker_mention_count": 1
+      },
+      "search_match_type": "TICKER",
+      "replies": [
+        {
+          "content": "Simulated reply to 1884562964021227930",
+          "user": {
+            "screen_name": "GemoneCrypto",
+            "follower_count": 2998,
+            "notable_followers": [],
+            "ca_mention_count": 0,
+            "ticker_mention_count": 1
+          }
+        }
+      ],
+      "metrics": {
+        "reply_count": 5,
+        "retweet_count": 2,
+        "like_count": 9,
         "quote_count": 0,
         "has_large_parent": false,
         "has_affiliated_parent": false
@@ -358,7 +358,7 @@ Twitter Analysis:
       "content": "$Hold full send to $0.0044??? https://t.co/wdf5q3xBIE",
       "user": {
         "screen_name": "Liquid_Mexc",
-        "follower_count": 2890,
+        "follower_count": 2908,
         "notable_followers": [],
         "ca_mention_count": 0,
         "ticker_mention_count": 1
@@ -376,97 +376,97 @@ Twitter Analysis:
     }
   ],
   "important_tweets": {
-    "1886035088896610437": {
-      "content": "The $HOLD show is on\u2014don\u2019t blink, the excitement is just getting started!\u2197\ufe0f https://t.co/PXm7HPEhlz",
+    "1886407853361238279": {
+      "content": "\ud83d\ude80 Bi-Weekly Carnival: HOLD is the Way!\n\n\ud83d\udc8e February 3 - February 17, 2025 (UTC) \u2013 An exclusive reward event for $HOLD holders is coming!\n\n\ud83c\udfaf Remember! The reward structure is simple \u2013 the amount of $HOLD in your wallet during the event determines your reward level.\n\nYour $HOLD is not only an asset but also a conviction in your future! \ud83e\ude99\nWe prove with actions that holding = rewards! \u2197\ufe0f",
       "user": {
         "screen_name": "HoldCoinGo",
-        "follower_count": 480706,
-        "notable_followers": [],
-        "ca_mention_count": 0,
-        "ticker_mention_count": 2
-      },
-      "search_match_type": "TICKER",
-      "metrics": {
-        "reply_count": 25,
-        "retweet_count": 21,
-        "like_count": 90,
-        "quote_count": 0,
-        "has_large_parent": false,
-        "has_affiliated_parent": false
-      }
-    },
-    "1885996886211052013": {
-      "content": "\ud83d\uded2 $HOLD Exclusive rewards for loyal guardians!\n\nAfter 15 days of firm holding, your loyalty has received exciting rewards - the rewards have been distributed\ud83d\udc8e\ud83d\udc8e\n\nGo check your wallet, $HOLD is using practical actions to thank you for your trust! \u2764\ufe0f\n\n\ud83d\ude80The more you hold, the more you will gain in the future - more surprises are about to be unlocked, are you ready for greater rewards? \ud83d\udd25",
-      "user": {
-        "screen_name": "HoldCoinGo",
-        "follower_count": 480706,
-        "notable_followers": [],
-        "ca_mention_count": 0,
-        "ticker_mention_count": 2
-      },
-      "search_match_type": "TICKER",
-      "metrics": {
-        "reply_count": 30,
-        "retweet_count": 11,
-        "like_count": 94,
-        "quote_count": 0,
-        "has_large_parent": false,
-        "has_affiliated_parent": false
-      }
-    },
-    "1886272253425565976": {
-      "content": "$Lifeform @Lifeformcc The next $Hold coin will pump harder $Mtos $Ogc #Aark $Vert",
-      "user": {
-        "screen_name": "risesknight121",
-        "follower_count": 140029,
+        "follower_count": 485958,
         "notable_followers": [],
         "ca_mention_count": 0,
         "ticker_mention_count": 1
       },
       "search_match_type": "TICKER",
       "metrics": {
-        "reply_count": 1,
-        "retweet_count": 1,
-        "like_count": 2,
+        "reply_count": 14,
+        "retweet_count": 11,
+        "like_count": 64,
+        "quote_count": 0,
+        "has_large_parent": false,
+        "has_affiliated_parent": false
+      }
+    },
+    "1886035088896610437": {
+      "content": "The $HOLD show is on\u2014don\u2019t blink, the excitement is just getting started!\u2197\ufe0f https://t.co/PXm7HPEhlz",
+      "user": {
+        "screen_name": "HoldCoinGo",
+        "follower_count": 485958,
+        "notable_followers": [],
+        "ca_mention_count": 0,
+        "ticker_mention_count": 1
+      },
+      "search_match_type": "TICKER",
+      "metrics": {
+        "reply_count": 28,
+        "retweet_count": 22,
+        "like_count": 96,
+        "quote_count": 0,
+        "has_large_parent": false,
+        "has_affiliated_parent": false
+      }
+    },
+    "1881961590905307162": {
+      "content": "Which #memecoin you think can do #100x PUMP this JANUARY \n\n$PEPE\n$RET\n$BETA\n$DINO\n$VRA\n$ALCX\n$BOND\n$GORK\n$BONK\n$HOLD\n$POND\n#DroverInu\n#Pepe2\n$WEB\n$HOT\n$GEO\n$WSM\n$WTC\n$DEXO\n$DOGS\n$BOB\n$WOJAK\n$BOB\n$PONKE\n$MYRO\n#Cat \n#BookOfHaribo\n$BRETT\n$DOG\n$GME\n$TRUMP\n#MyGarage \n$WYNN\n\nAny Other",
+      "user": {
+        "screen_name": "CryptoThro",
+        "follower_count": 167262,
+        "notable_followers": [],
+        "ca_mention_count": 0,
+        "ticker_mention_count": 1
+      },
+      "search_match_type": "TICKER",
+      "metrics": {
+        "reply_count": 209,
+        "retweet_count": 44,
+        "like_count": 104,
         "quote_count": 2,
         "has_large_parent": false,
         "has_affiliated_parent": false
       }
     },
-    "1883445902276513878": {
-      "content": "WTF is this? $HOLD\n15x in two days\ud83e\udd2f https://t.co/qabGAaJ35V",
+    "1886067250307739663": {
+      "content": "The best crypto community is:\n\n\ud83d\udc51 $TOSHI\n\ud83d\udc51 $FLOKI\n\ud83d\udc51 $NEIRO\n\ud83d\udc51 $HOLD",
       "user": {
-        "screen_name": "j0hnnyw00",
-        "follower_count": 119150,
+        "screen_name": "TrueGemHunter",
+        "follower_count": 139949,
         "notable_followers": [],
         "ca_mention_count": 0,
         "ticker_mention_count": 1
       },
       "search_match_type": "TICKER",
       "metrics": {
-        "reply_count": 2,
-        "retweet_count": 0,
-        "like_count": 14,
-        "quote_count": 1,
+        "reply_count": 80,
+        "retweet_count": 89,
+        "like_count": 178,
+        "quote_count": 14,
         "has_large_parent": false,
         "has_affiliated_parent": false
       }
     },
-    "1886140387519054108": {
-      "content": "@Yourpop8 Hey @Yourpop8 check out @everybodyholdX $HOLD.  \n\nLook at this chart comparison/ side by side of the current hold chart versus the SPX chart prior to its monster breakout which now is imploding\n\nGanna send!! https://t.co/xH5W911rgL",
+    "1886459190668927151": {
+      "content": "Textbook retest of support and pivoted off.. \n\nBeautiful!! Now its time to smash ATH's!  $HOLD https://t.co/w1O5sFkT0C",
       "user": {
         "screen_name": "Paddy_Stash",
-        "follower_count": 51589,
+        "follower_count": 51724,
         "notable_followers": [],
         "ca_mention_count": 0,
         "ticker_mention_count": 1
       },
       "search_match_type": "TICKER",
       "metrics": {
-        "reply_count": 1,
-        "retweet_count": 3,
-        "like_count": 9,
-        "quote_count": 0,
+        "reply_count": 5,
+        "retweet_count": 25,
+        "like_count": 45,
+        "quote_count": 3,
         "has_large_parent": false,
         "has_affiliated_parent": false
       }
@@ -475,7 +475,7 @@ Twitter Analysis:
       "content": "most mentioned ticker in the last hour: $HOLD\nThe $HOLD chart shows a recovery from a morning dip with the price currently stabilizing around $0.0002389. The moving averages (5MA, 10MA, 20MA) are converging, indicating potential for a trend shift. Volume spikes earlier in the session suggest buying interest, while RSI remains neutral, indicating neither overbought nor oversold conditions.",
       "user": {
         "screen_name": "gemxbt_agent",
-        "follower_count": 37496,
+        "follower_count": 37692,
         "notable_followers": [],
         "ca_mention_count": 0,
         "ticker_mention_count": 2
@@ -490,58 +490,20 @@ Twitter Analysis:
         "has_affiliated_parent": false
       }
     },
-    "1886086044161900584": {
-      "content": "$HOLD to 100m is programmed \n\nhttps://t.co/cPn0sSIL30",
+    "1886352799652323433": {
+      "content": "$HOLD Just Hits $100K Market Cap\n\nTrack New Coins on https://t.co/JsZhjazHxU before they moon https://t.co/oqM5EIBSaQ",
       "user": {
-        "screen_name": "MavericksCalls",
-        "follower_count": 33115,
+        "screen_name": "shotpumpfun",
+        "follower_count": 19038,
         "notable_followers": [],
         "ca_mention_count": 0,
         "ticker_mention_count": 1
       },
       "search_match_type": "TICKER",
       "metrics": {
-        "reply_count": 10,
-        "retweet_count": 11,
-        "like_count": 22,
-        "quote_count": 0,
-        "has_large_parent": false,
-        "has_affiliated_parent": false
-      }
-    },
-    "1886140692432322690": {
-      "content": "Check this out!! The comparison is unreal. Only thing... $hold is yet to pump and $spx already did. \n@moonshilla and @Paddy_Stash know what the own. @everybodyholdX https://t.co/66eWJZCnYT",
-      "user": {
-        "screen_name": "JAMAKS7",
-        "follower_count": 13109,
-        "notable_followers": [],
-        "ca_mention_count": 0,
-        "ticker_mention_count": 1
-      },
-      "search_match_type": "TICKER",
-      "metrics": {
-        "reply_count": 6,
-        "retweet_count": 20,
-        "like_count": 44,
-        "quote_count": 0,
-        "has_large_parent": false,
-        "has_affiliated_parent": false
-      }
-    },
-    "1884091611392651391": {
-      "content": "Aping to $LLM here\nTargets 2X+ \n\n$D $UOS $AEG $HQ $J $SPA $MXC $DIGIMON $WEEBS $NAKA $CREO $TICO $FRED $HOLD $TRUMP https://t.co/okZruP91U4",
-      "user": {
-        "screen_name": "Coinnesa",
-        "follower_count": 9533,
-        "notable_followers": [],
-        "ca_mention_count": 0,
-        "ticker_mention_count": 1
-      },
-      "search_match_type": "TICKER",
-      "metrics": {
-        "reply_count": 6,
+        "reply_count": 2,
         "retweet_count": 0,
-        "like_count": 12,
+        "like_count": 3,
         "quote_count": 0,
         "has_large_parent": false,
         "has_affiliated_parent": false
@@ -551,7 +513,7 @@ Twitter Analysis:
       "content": "Just flipped $20 to $550\n\nLet\u2019s keep it going and see where it can go \n\n$HOLD sending again!  \n\nIf you don\u2019t have ALOT of money understand you don\u2019t need a lot of money with leverage and his is a proven example https://t.co/JQaSGhG88n",
       "user": {
         "screen_name": "Liquid_Mexc",
-        "follower_count": 2890,
+        "follower_count": 2908,
         "notable_followers": [],
         "ca_mention_count": 0,
         "ticker_mention_count": 1
@@ -578,8 +540,8 @@ TrenchBot Analysis:
 
 GMGN Analysis:
 {
-  "top_holder_avg_holding_time": 3306.5740740740744,
-  "top_holder_avg_score": 0.255,
+  "top_holder_avg_holding_time": 61039.24074074074,
+  "top_holder_avg_score": 0.2633333333333333,
   "top_wallets": [
     {
       "address": "ErFa75H8jcQLw8ijRpwwzZZSnPjpHTMEVxcWpPM5Urrg",
@@ -622,12 +584,20 @@ GMGN Analysis:
       "avg_trades_per_day": 0.9
     },
     {
+      "address": "DBcRPQy8e1u5hMXrHJ3wwkhcHzEoQnenzYNfmc3GKE1r",
+      "score": 0.25,
+      "win_rate": 0.3333333333333333,
+      "holding_time": 173201,
+      "pct_change_30d": -0.2938524398975153,
+      "avg_trades_per_day": 1.6666666666666667
+    },
+    {
       "address": "CkfJ8VP3N26tbjfZpigRmVW3J1omKjDptZxn2rNfhu5n",
       "score": 0.3333333333333333,
       "win_rate": 0,
       "holding_time": null,
-      "pct_change_30d": 0.5642935348355395,
-      "avg_trades_per_day": 64.63333333333334
+      "pct_change_30d": 0.5617936976741581,
+      "avg_trades_per_day": 64.93333333333334
     },
     {
       "address": "39Tk39GYWJSkyT9SeCTG5nctgZEB1327uKiz99rxwqCD",
@@ -646,14 +616,6 @@ GMGN Analysis:
       "avg_trades_per_day": 7.833333333333333
     },
     {
-      "address": "DBcRPQy8e1u5hMXrHJ3wwkhcHzEoQnenzYNfmc3GKE1r",
-      "score": 0.16666666666666666,
-      "win_rate": 0,
-      "holding_time": 3,
-      "pct_change_30d": -0.2938524398975153,
-      "avg_trades_per_day": 1.6333333333333333
-    },
-    {
       "address": "7JvnYQFYQPRAhLhseuEJHVvcP2kVcqjBgeh1T2zWfHor",
       "score": 0.08333333333333333,
       "win_rate": 0,
@@ -665,8 +627,8 @@ GMGN Analysis:
 }
 
 Dexscreener Analysis:
-- Market Cap: 18937.25
-- Volume: 23430.53
+- Market Cap: 21434.05
+- Volume: 11558.14
 - Liquidity: 0.0
 
 DO NOT output json or any data format that you have received above. You will use this data to generate your analysis.
