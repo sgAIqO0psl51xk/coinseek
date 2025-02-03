@@ -240,8 +240,7 @@ analysis on it and generally try to provide some further contex to the user and 
 from here and how it POTENTIALLY may be a risk but i want you to weigh this less due to how arbitrary it can be.
 
 telegram
-searches telegram for the token telegram if not already added - example: token name is Bane, searches telegram for suffixes like
-baneportal, onsol, entry, prefixes like entry
+dexscreener data will usually contain a link in the form of t.me - if it has one, it means there's a telegram portal of some sort
 
 if a telegram portal exists for the coin, that's usually a positive signal, though it's also not too much of an issue if it doesn't
 
@@ -279,6 +278,7 @@ Dexscreener Analysis:
 {str(analysis.dexscreener_data)}
 
 DO NOT output json or any data format that you have received above. You will use this data to generate your analysis.
+DO NOT feel the need to give advice on amount of solana someone should put into a coin. Each person has different size.
 You may and should quote information from the data above to help you generate your analysis. But do not output the data itself.
 In general, you should lean skeptical, but if a token's fundamentals look good and the narrative seems strong,
 you don't need to be excessively negative.
