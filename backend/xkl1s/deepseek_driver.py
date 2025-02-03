@@ -7,10 +7,18 @@ from typing import AsyncGenerator, List, Dict, Any
 import aiohttp
 
 from xkl1s.dexscreener import DexScreenerTokenData, get_token_mcap_volume
+import logging
+from typing import AsyncGenerator, List, Dict, Any
+
+import aiohttp
+
+from xkl1s.dexscreener import DexScreenerTokenData, get_token_mcap_volume
 from xkl1s.trench_bot import TrenchBotFetcher
 from xkl1s.gmgn import GMGNTokenData
 from xkl1s.ingestion_2 import ApifyTwitterAnalyzer
 from dotenv import load_dotenv
+from openai.types.chat import ChatCompletionMessageParam
+import tiktoken
 from openai.types.chat import ChatCompletionMessageParam
 import tiktoken
 
@@ -19,10 +27,15 @@ load_dotenv()
 
 @dataclass
 class LLMProvider:
+class LLMProvider:
     api_key: str
     model_name: str
     base_url: str
+    model_name: str
+    base_url: str
     max_tokens: int = 2000
+    priority: int = 1  # Lower numbers get tried first
+    provider_type: str = "deepseek"  # deepseek|openrouter
     priority: int = 1  # Lower numbers get tried first
     provider_type: str = "deepseek"  # deepseek|openrouter
 
@@ -34,6 +47,7 @@ class TokenAnalysis:
     twitter_data: Dict[str, Any]
     trenchbot_data: Dict[str, Any]
     gmgn_data: Dict[str, Any]
+    dexscreener_data: DexScreenerTokenData
     dexscreener_data: DexScreenerTokenData
 
     def to_dict(self) -> Dict[str, Any]:
@@ -48,8 +62,10 @@ class TokenAnalysis:
 
 class DeepseekDriver:
     def __init__(self, contract_address: str, ticker: str, llm_providers: list[LLMProvider]):
+    def __init__(self, contract_address: str, ticker: str, llm_providers: list[LLMProvider]):
         self.contract_address = contract_address
         self.ticker = ticker
+        self.llm_providers = sorted(llm_providers, key=lambda x: x.priority)
         self.llm_providers = sorted(llm_providers, key=lambda x: x.priority)
 
     async def analyze_twitter(self) -> Dict[str, Any]:
@@ -60,6 +76,15 @@ class DeepseekDriver:
         )
         tweet_data = await analyzer.analyze_tweets(num_tweets=50)
         print(f"Found {len(tweet_data)} tweets")
+        # Filter tweets by follower count, but ensure at least 10 tweets are kept
+        tweet_data = sorted(tweet_data, key=lambda x: x.user.follower_count, reverse=True)[:10]
+
+        important_tweets = dict(
+            sorted(analyzer.important_tweets_cache.items(), key=lambda item: item[1].user.follower_count, reverse=True)[:10]
+        )
+        logging.info(f"Important tweets: {len(important_tweets)}")
+        logging.info(f"Tweet data: {len(tweet_data)}")
+        return self._process_twitter_results(tweet_data, important_tweets)
         # Filter tweets by follower count, but ensure at least 10 tweets are kept
         tweet_data = sorted(tweet_data, key=lambda x: x.user.follower_count, reverse=True)[:10]
 
@@ -174,12 +199,14 @@ class DeepseekDriver:
         trenchbot_task = asyncio.create_task(self.analyze_trenchbot())
         gmgn_data = self.analyze_gmgn()
         dexscreener_data = asyncio.create_task(get_token_mcap_volume(self.contract_address))
+        dexscreener_data = asyncio.create_task(get_token_mcap_volume(self.contract_address))
 
         return TokenAnalysis(
             contract_address=self.contract_address,
             ticker=self.ticker,
             twitter_data=await twitter_task,
             trenchbot_data=await trenchbot_task,
+            dexscreener_data=await dexscreener_data,
             dexscreener_data=await dexscreener_data,
             gmgn_data=gmgn_data,
         )
@@ -206,9 +233,22 @@ class DeepseekDriver:
             "content": f"""You will ingests data and scores based off the following parameters given to you.
 
 Now, I explain each of the datapoins you will receive and how you're supposed to interpret and analyze them.
+Now, I explain each of the datapoins you will receive and how you're supposed to interpret and analyze them.
 
 firstly, we will scrape twitter for a multitude of different signals.
+firstly, we will scrape twitter for a multitude of different signals.
 
+twitter
+top tweets that mention the ticker or CA
+tweet content
+tweeters / users
+# of followers
+if any notable accounts follow them
+tweet metrics (replies)
+if tweet is a reply, is it a reply to a large account
+if tweet is a reply, does the parent mention the CA / Ticker often [specific # of mentions] (affiliated acc)
+does the parent have any notable followers
+cache tweets we find multiple replies to deem them important
 twitter
 top tweets that mention the ticker or CA
 tweet content
@@ -229,7 +269,23 @@ address are in response to a tweet by a user with a very large number of followe
 it's possible that the parent tweet content is either related or has something to do with the narrative/reason behind the token.
 lastly, if we find that an account that has mentioned a ticker many times and has tweets generally explaining
 functionality or launches, you should try to determine if that's the account for the token and the details to the user.
+the tweet content should primarily be used for determining the sentiment/narrative of a token.
+higher numbers in metrics like replies, number of followers, notable people follow, should all be seen as positive
+signals in a token and this should be mentioned to the user.
+moreover, a big point that should be analyzed is if you notice that many replies mentioning the ticker/contract
+address are in response to a tweet by a user with a very large number of followers. in this case,
+it's possible that the parent tweet content is either related or has something to do with the narrative/reason behind the token.
+lastly, if we find that an account that has mentioned a ticker many times and has tweets generally explaining
+functionality or launches, you should try to determine if that's the account for the token and the details to the user.
 
+generally, these datapoints should be used to determine: credibility of those pushing the token, possible narratives around it,
+and important accounts or tweets that may provide more context.
+
+token metrics
+you will also receive some data like price, 24h change, 24h volume, FDV etc. this will be good for giving context,
+but it's considerably subjective to determine the quality of a token from these stats alone but you can do some
+analysis on it and generally try to provide some further contex to the user and explain what they should care about
+from here and how it POTENTIALLY may be a risk but i want you to weigh this less due to how arbitrary it can be.
 generally, these datapoints should be used to determine: credibility of those pushing the token, possible narratives around it,
 and important accounts or tweets that may provide more context.
 
@@ -242,9 +298,15 @@ from here and how it POTENTIALLY may be a risk but i want you to weigh this less
 telegram
 searches telegram for the token telegram if not already added - example: token name is Bane, searches telegram for suffixes like
 baneportal, onsol, entry, prefixes like entry
+telegram
+searches telegram for the token telegram if not already added - example: token name is Bane, searches telegram for suffixes like
+baneportal, onsol, entry, prefixes like entry
 
 if a telegram portal exists for the coin, that's usually a positive signal, though it's also not too much of an issue if it doesn't
+if a telegram portal exists for the coin, that's usually a positive signal, though it's also not too much of an issue if it doesn't
 
+Solscan
+looks at solscan for first block transaction, sees first block tx for how much been picked up from dev/sniper
 Solscan
 looks at solscan for first block transaction, sees first block tx for how much been picked up from dev/sniper
 
@@ -252,7 +314,13 @@ this should give information on how much of supply was bundled by the launcher o
 basically means how much they were able to purchase at a low price.
 we will also look at the amount the currently have left. obviously, the more they have left,
 the higher risk the coin would be as there's the eminent risk of the chart beind dumped
+this should give information on how much of supply was bundled by the launcher of the coin which
+basically means how much they were able to purchase at a low price.
+we will also look at the amount the currently have left. obviously, the more they have left,
+the higher risk the coin would be as there's the eminent risk of the chart beind dumped
 
+holder ratings
+information regarding the average hold times of the top holders
 holder ratings
 information regarding the average hold times of the top holders
 
@@ -260,15 +328,26 @@ what this essentially means is that the top X amount of holders will be examined
 average amount of time they hold coins. for reference, 20-30minutes could be considered 5/10, 30-40 as 6/10 etc.
 obviously this isn't a clear heuristic that you need to follow but just to give you a rough idea of how we should treat the times.
 just generally take a look and provide the average as well as a brief analysis
+what this essentially means is that the top X amount of holders will be examined to see the
+average amount of time they hold coins. for reference, 20-30minutes could be considered 5/10, 30-40 as 6/10 etc.
+obviously this isn't a clear heuristic that you need to follow but just to give you a rough idea of how we should treat the times.
+just generally take a look and provide the average as well as a brief analysis
 
 Analyze this token like your bags depend on it:
+Analyze this token like your bags depend on it:
 
+Contract: {self.contract_address}
+Ticker: {self.ticker}
 Contract: {self.contract_address}
 Ticker: {self.ticker}
 
 Twitter Analysis:
 {json.dumps(analysis.twitter_data, indent=2)}
+Twitter Analysis:
+{json.dumps(analysis.twitter_data, indent=2)}
 
+TrenchBot Analysis:
+{json.dumps(analysis.trenchbot_data, indent=2)}
 TrenchBot Analysis:
 {json.dumps(analysis.trenchbot_data, indent=2)}
 
@@ -283,7 +362,24 @@ You may and should quote information from the data above to help you generate yo
 In general, you should lean skeptical, but if a token's fundamentals look good and the narrative seems strong,
 you don't need to be excessively negative.
 In your reasoning steps you must start your message with one of 'Alright,', 'Lets see', 'Given the following data', 'Lets start by looking at'.
+GMGN Analysis:
+{json.dumps(analysis.gmgn_data, indent=2)}
 
+Dexscreener Analysis:
+{str(analysis.dexscreener_data)}
+
+DO NOT output json or any data format that you have received above. You will use this data to generate your analysis.
+You may and should quote information from the data above to help you generate your analysis. But do not output the data itself.
+In general, you should lean skeptical, but if a token's fundamentals look good and the narrative seems strong,
+you don't need to be excessively negative.
+In your reasoning steps you must start your message with one of 'Alright,', 'Lets see', 'Given the following data', 'Lets start by looking at'.
+
+Break down your analysis into:
+1. Overall sentiment (bullish/bearish/neutral with colorful metaphors)
+2. Key metrics evaluation (translate numbers to street terms)
+3. Risk assessment (using crime analogies)
+4. Notable patterns or concerns (what's making your degen senses tingle)
+5. Final recommendation (full send, avoid like herpes, or cautious degen play)""",
 Break down your analysis into:
 1. Overall sentiment (bullish/bearish/neutral with colorful metaphors)
 2. Key metrics evaluation (translate numbers to street terms)
@@ -426,8 +522,20 @@ Break down your analysis into:
 
         # dict = analysis.to_dict()
         # del dict["twitter_analysis"]
+        # save entire prompt to a file
+        with open("prompt.txt", "w") as f:
+            for message in messages:
+                f.write(message["content"] + "\n")
+
+        # log tokens used in the prompt using tiktoken
+        enc = tiktoken.encoding_for_model("gpt-4o")
+        logging.info(f"Tokens used in prompt: {sum([len(enc.encode(m['content'])) for m in messages])}")
+
+        # dict = analysis.to_dict()
+        # del dict["twitter_analysis"]
 
         # Yield initial data
+        yield {"type": "metadata", "data": {}}
         yield {"type": "metadata", "data": {}}
 
         async for chunk in self.run_llm_analysis(messages):
@@ -467,7 +575,18 @@ Break down your analysis into:
 #         model_name="deepseek-reasoner",
 #         base_url="https://api.deepseek.com",
 #     )
+# async def main():
+#     llm_config = LLMConfig(
+#         api_key=os.getenv("DEEPSEEK_API_KEY"),
+#         model_name="deepseek-reasoner",
+#         base_url="https://api.deepseek.com",
+#     )
 
+#     driver = DeepseekDriver(
+#         contract_address="7E448GypzBbahPkoUaATMBdYpeycnzyZ1g43myWogxAd",
+#         ticker="$xyz",
+#         llm_config=llm_config,
+#     )
 #     driver = DeepseekDriver(
 #         contract_address="7E448GypzBbahPkoUaATMBdYpeycnzyZ1g43myWogxAd",
 #         ticker="$xyz",
@@ -475,12 +594,18 @@ Break down your analysis into:
 #     )
 
 #     report = await driver.analyze_and_report()
+#     report = await driver.analyze_and_report()
 
+#     with open("full_analysis_report.json", "w") as f:
+#         json.dump(report, f, indent=2)
 #     with open("full_analysis_report.json", "w") as f:
 #         json.dump(report, f, indent=2)
 
 #     print("\nAnalysis complete! Results saved to 'full_analysis_report.json'")
+#     print("\nAnalysis complete! Results saved to 'full_analysis_report.json'")
 
 
+# if __name__ == "__main__":
+#     asyncio.run(main())
 # if __name__ == "__main__":
 #     asyncio.run(main())

@@ -46,8 +46,7 @@ analysis on it and generally try to provide some further contex to the user and 
 from here and how it POTENTIALLY may be a risk but i want you to weigh this less due to how arbitrary it can be.
 
 telegram
-searches telegram for the token telegram if not already added - example: token name is Bane, searches telegram for suffixes like
-baneportal, onsol, entry, prefixes like entry
+dexscreener data will usually contain a link in the form of t.me - if it has one, it means there's a telegram portal of some sort
 
 if a telegram portal exists for the coin, that's usually a positive signal, though it's also not too much of an issue if it doesn't
 
@@ -69,17 +68,17 @@ just generally take a look and provide the average as well as a brief analysis
 
 Analyze this token like your bags depend on it:
 
-Contract: mdGmXxraMieToR1ykuZjkZbGRgJhJbfn7KKZPZGpump
-Ticker: $HOLD
+Contract: 2sCUCJdVkmyXp4dT8sFaA9LKgSMK4yDPi9zLHiwXpump
+Ticker: $ALPHA
 
 Twitter Analysis:
 {
   "analyzed_tweets": [
     {
-      "content": "\ud83d\ude80 Bi-Weekly Carnival: HOLD is the Way!\n\n\ud83d\udc8e February 3 - February 17, 2025 (UTC) \u2013 An exclusive reward event for $HOLD holders is coming!\n\n\ud83c\udfaf Remember! The reward structure is simple \u2013 the amount of $HOLD in your wallet during the event determines your reward level.\n\nYour $HOLD is not only an asset but also a conviction in your future! \ud83e\ude99\nWe prove with actions that holding = rewards! \u2197\ufe0f",
+      "content": "They literally burned $27,400,000 and you\u2019re not bullish? \ud83d\ude2d\n\nWho else would do that? NOBODY.\n\n$ALPHA \ud83d\udcc8",
       "user": {
-        "screen_name": "HoldCoinGo",
-        "follower_count": 486702,
+        "screen_name": "cryptobeastreal",
+        "follower_count": 615382,
         "notable_followers": [],
         "ca_mention_count": 0,
         "ticker_mention_count": 1
@@ -87,10 +86,10 @@ Twitter Analysis:
       "search_match_type": "TICKER",
       "replies": [
         {
-          "content": "Simulated reply to 1886407853361238279",
+          "content": "Simulated reply to 1886516180959289531",
           "user": {
-            "screen_name": "HoldCoinGo",
-            "follower_count": 486702,
+            "screen_name": "cryptobeastreal",
+            "follower_count": 615382,
             "notable_followers": [],
             "ca_mention_count": 0,
             "ticker_mention_count": 1
@@ -98,19 +97,19 @@ Twitter Analysis:
         }
       ],
       "metrics": {
-        "reply_count": 14,
-        "retweet_count": 11,
-        "like_count": 68,
-        "quote_count": 0,
+        "reply_count": 99,
+        "retweet_count": 76,
+        "like_count": 599,
+        "quote_count": 5,
         "has_large_parent": false,
         "has_affiliated_parent": false
       }
     },
     {
-      "content": "The $HOLD show is on\u2014don\u2019t blink, the excitement is just getting started!\u2197\ufe0f https://t.co/PXm7HPEhlz",
+      "content": "\ud83d\udea8BREAKING: $ALPHA IS THE BEST PERFORMING MEMECOIN\n\nALPHA IS UNSTOPPABLE!!!!!\n\nBILLIONS INCOMING \ud83d\ude80 https://t.co/wgjnKLK1ng",
       "user": {
-        "screen_name": "HoldCoinGo",
-        "follower_count": 486702,
+        "screen_name": "cryptobeastreal",
+        "follower_count": 615382,
         "notable_followers": [],
         "ca_mention_count": 0,
         "ticker_mention_count": 1
@@ -118,10 +117,10 @@ Twitter Analysis:
       "search_match_type": "TICKER",
       "replies": [
         {
-          "content": "Simulated reply to 1886035088896610437",
+          "content": "Simulated reply to 1886386380533547218",
           "user": {
-            "screen_name": "HoldCoinGo",
-            "follower_count": 486702,
+            "screen_name": "cryptobeastreal",
+            "follower_count": 615382,
             "notable_followers": [],
             "ca_mention_count": 0,
             "ticker_mention_count": 1
@@ -129,19 +128,19 @@ Twitter Analysis:
         }
       ],
       "metrics": {
-        "reply_count": 28,
-        "retweet_count": 22,
-        "like_count": 97,
-        "quote_count": 0,
+        "reply_count": 367,
+        "retweet_count": 346,
+        "like_count": 1810,
+        "quote_count": 8,
         "has_large_parent": false,
         "has_affiliated_parent": false
       }
     },
     {
-      "content": "The best crypto community is:\n\n\ud83d\udc51 $TOSHI\n\ud83d\udc51 $FLOKI\n\ud83d\udc51 $NEIRO\n\ud83d\udc51 $HOLD",
+      "content": "If $ALPHA reaches a market-cap of 200M\n\nI\u2019ll give $2,000 in tokens to 10 people\n\nJust interact and comment your $SOL address \ud83d\udc47 https://t.co/ozbhvQxbkj",
       "user": {
-        "screen_name": "TrueGemHunter",
-        "follower_count": 139952,
+        "screen_name": "Investments_CEO",
+        "follower_count": 574640,
         "notable_followers": [],
         "ca_mention_count": 0,
         "ticker_mention_count": 1
@@ -149,10 +148,10 @@ Twitter Analysis:
       "search_match_type": "TICKER",
       "replies": [
         {
-          "content": "Simulated reply to 1886067250307739663",
+          "content": "Simulated reply to 1886514368814440631",
           "user": {
-            "screen_name": "TrueGemHunter",
-            "follower_count": 139952,
+            "screen_name": "Investments_CEO",
+            "follower_count": 574640,
             "notable_followers": [],
             "ca_mention_count": 0,
             "ticker_mention_count": 1
@@ -160,50 +159,19 @@ Twitter Analysis:
         }
       ],
       "metrics": {
-        "reply_count": 80,
-        "retweet_count": 90,
-        "like_count": 179,
-        "quote_count": 14,
-        "has_large_parent": false,
-        "has_affiliated_parent": false
-      }
-    },
-    {
-      "content": "WTF is this? $HOLD\n15x in two days\ud83e\udd2f https://t.co/qabGAaJ35V",
-      "user": {
-        "screen_name": "j0hnnyw00",
-        "follower_count": 119392,
-        "notable_followers": [],
-        "ca_mention_count": 0,
-        "ticker_mention_count": 1
-      },
-      "search_match_type": "TICKER",
-      "replies": [
-        {
-          "content": "Simulated reply to 1883445902276513878",
-          "user": {
-            "screen_name": "j0hnnyw00",
-            "follower_count": 119392,
-            "notable_followers": [],
-            "ca_mention_count": 0,
-            "ticker_mention_count": 1
-          }
-        }
-      ],
-      "metrics": {
-        "reply_count": 2,
-        "retweet_count": 0,
-        "like_count": 14,
+        "reply_count": 140,
+        "retweet_count": 49,
+        "like_count": 195,
         "quote_count": 1,
         "has_large_parent": false,
         "has_affiliated_parent": false
       }
     },
     {
-      "content": "@Yourpop8 Hey @Yourpop8 check out @everybodyholdX $HOLD.  \n\nLook at this chart comparison/ side by side of the current hold chart versus the SPX chart prior to its monster breakout which now is imploding\n\nGanna send!! https://t.co/xH5W911rgL",
+      "content": "Interact if you hold $ALPHA \ud83e\udef5 https://t.co/mxsNcFfD9k",
       "user": {
-        "screen_name": "Paddy_Stash",
-        "follower_count": 51723,
+        "screen_name": "Investments_CEO",
+        "follower_count": 574640,
         "notable_followers": [],
         "ca_mention_count": 0,
         "ticker_mention_count": 1
@@ -211,10 +179,10 @@ Twitter Analysis:
       "search_match_type": "TICKER",
       "replies": [
         {
-          "content": "Simulated reply to 1886140387519054108",
+          "content": "Simulated reply to 1886195833927880941",
           "user": {
-            "screen_name": "Paddy_Stash",
-            "follower_count": 51723,
+            "screen_name": "Investments_CEO",
+            "follower_count": 574640,
             "notable_followers": [],
             "ca_mention_count": 0,
             "ticker_mention_count": 1
@@ -222,50 +190,112 @@ Twitter Analysis:
         }
       ],
       "metrics": {
-        "reply_count": 1,
-        "retweet_count": 4,
-        "like_count": 12,
-        "quote_count": 0,
-        "has_large_parent": false,
-        "has_affiliated_parent": false
-      }
-    },
-    {
-      "content": "Textbook retest of support and pivoted off.. \n\nBeautiful!! Now its time to smash ATH's!  $HOLD https://t.co/w1O5sFkT0C",
-      "user": {
-        "screen_name": "Paddy_Stash",
-        "follower_count": 51723,
-        "notable_followers": [],
-        "ca_mention_count": 0,
-        "ticker_mention_count": 1
-      },
-      "search_match_type": "TICKER",
-      "replies": [
-        {
-          "content": "Simulated reply to 1886459190668927151",
-          "user": {
-            "screen_name": "Paddy_Stash",
-            "follower_count": 51723,
-            "notable_followers": [],
-            "ca_mention_count": 0,
-            "ticker_mention_count": 1
-          }
-        }
-      ],
-      "metrics": {
-        "reply_count": 6,
-        "retweet_count": 29,
-        "like_count": 50,
+        "reply_count": 194,
+        "retweet_count": 145,
+        "like_count": 1657,
         "quote_count": 3,
         "has_large_parent": false,
         "has_affiliated_parent": false
       }
     },
     {
-      "content": "most mentioned ticker in the last hour: $HOLD\nThe $HOLD chart shows a recovery from a morning dip with the price currently stabilizing around $0.0002389. The moving averages (5MA, 10MA, 20MA) are converging, indicating potential for a trend shift. Volume spikes earlier in the session suggest buying interest, while RSI remains neutral, indicating neither overbought nor oversold conditions.",
+      "content": "$1,500 $ALPHA giveaway\n\nJust interact and make sure you\u2019re following me\n\nWinner in 72h",
       "user": {
-        "screen_name": "gemxbt_agent",
-        "follower_count": 37702,
+        "screen_name": "Investments_CEO",
+        "follower_count": 574640,
+        "notable_followers": [],
+        "ca_mention_count": 0,
+        "ticker_mention_count": 1
+      },
+      "search_match_type": "TICKER",
+      "replies": [
+        {
+          "content": "Simulated reply to 1886119370293690443",
+          "user": {
+            "screen_name": "Investments_CEO",
+            "follower_count": 574640,
+            "notable_followers": [],
+            "ca_mention_count": 0,
+            "ticker_mention_count": 1
+          }
+        }
+      ],
+      "metrics": {
+        "reply_count": 1482,
+        "retweet_count": 800,
+        "like_count": 3346,
+        "quote_count": 10,
+        "has_large_parent": false,
+        "has_affiliated_parent": false
+      }
+    },
+    {
+      "content": "Who all is bullish on $ALPHA\n\nCommunity Test\n\nLet\u2019s see \ud83d\udc47 https://t.co/h9auXuyukc",
+      "user": {
+        "screen_name": "Investments_CEO",
+        "follower_count": 574640,
+        "notable_followers": [],
+        "ca_mention_count": 0,
+        "ticker_mention_count": 1
+      },
+      "search_match_type": "TICKER",
+      "replies": [
+        {
+          "content": "Simulated reply to 1886328774402158602",
+          "user": {
+            "screen_name": "Investments_CEO",
+            "follower_count": 574640,
+            "notable_followers": [],
+            "ca_mention_count": 0,
+            "ticker_mention_count": 1
+          }
+        }
+      ],
+      "metrics": {
+        "reply_count": 101,
+        "retweet_count": 85,
+        "like_count": 765,
+        "quote_count": 2,
+        "has_large_parent": false,
+        "has_affiliated_parent": false
+      }
+    },
+    {
+      "content": "Missed $Trump ?\nMissed $Vine ?\nMissed #JellyJelly ?\nMissed $Alpha ?\nMissed #Fartcoin ?\n\nPromise you don't want to miss my next gem !\n\nLike + RT\nFollow\nDrop your solana wallet https://t.co/7uHb16Gblv",
+      "user": {
+        "screen_name": "morpheuswhale",
+        "follower_count": 248989,
+        "notable_followers": [],
+        "ca_mention_count": 0,
+        "ticker_mention_count": 1
+      },
+      "search_match_type": "TICKER",
+      "replies": [
+        {
+          "content": "Simulated reply to 1886481830259646748",
+          "user": {
+            "screen_name": "morpheuswhale",
+            "follower_count": 248989,
+            "notable_followers": [],
+            "ca_mention_count": 0,
+            "ticker_mention_count": 1
+          }
+        }
+      ],
+      "metrics": {
+        "reply_count": 176,
+        "retweet_count": 117,
+        "like_count": 243,
+        "quote_count": 2,
+        "has_large_parent": false,
+        "has_affiliated_parent": false
+      }
+    },
+    {
+      "content": "I believe $ALPHA will reach $200 Million mc by sunday !\n\nSo I'm giving away OVER $5,000 worth of $ALPHA\n\nDrop your $SOL address\n\nLike, RT and must be following https://t.co/kMTPfCjdtu",
+      "user": {
+        "screen_name": "cabelo_escobar",
+        "follower_count": 105309,
         "notable_followers": [],
         "ca_mention_count": 0,
         "ticker_mention_count": 2
@@ -273,10 +303,10 @@ Twitter Analysis:
       "search_match_type": "TICKER",
       "replies": [
         {
-          "content": "Simulated reply to 1886052082584862921",
+          "content": "Simulated reply to 1886466840601485688",
           "user": {
-            "screen_name": "gemxbt_agent",
-            "follower_count": 37702,
+            "screen_name": "cabelo_escobar",
+            "follower_count": 105309,
             "notable_followers": [],
             "ca_mention_count": 0,
             "ticker_mention_count": 2
@@ -284,19 +314,50 @@ Twitter Analysis:
         }
       ],
       "metrics": {
-        "reply_count": 22,
-        "retweet_count": 0,
-        "like_count": 2,
+        "reply_count": 410,
+        "retweet_count": 352,
+        "like_count": 567,
+        "quote_count": 9,
+        "has_large_parent": false,
+        "has_affiliated_parent": false
+      }
+    },
+    {
+      "content": "Nobody wants to part with their $ALPHA\n\nWhy? Because they see the vision this is a 1B+ play in the making\n\nWhile the market dips, ALPHA holds strong, barely 20% from ATH and still in its prime accumulation range\n\nFlipping 90% of my memecoins into $ALPHA? Easily one of my best moves\n\nIf you get it, you get it...",
+      "user": {
+        "screen_name": "SBlockspy",
+        "follower_count": 49710,
+        "notable_followers": [],
+        "ca_mention_count": 0,
+        "ticker_mention_count": 2
+      },
+      "search_match_type": "TICKER",
+      "replies": [
+        {
+          "content": "Simulated reply to 1886108735485137091",
+          "user": {
+            "screen_name": "SBlockspy",
+            "follower_count": 49710,
+            "notable_followers": [],
+            "ca_mention_count": 0,
+            "ticker_mention_count": 2
+          }
+        }
+      ],
+      "metrics": {
+        "reply_count": 3,
+        "retweet_count": 26,
+        "like_count": 88,
         "quote_count": 0,
         "has_large_parent": false,
         "has_affiliated_parent": false
       }
     },
     {
-      "content": "$HOLD Just Hits $100K Market Cap\n\nTrack New Coins on https://t.co/JsZhjazHxU before they moon https://t.co/oqM5EIBSaQ",
+      "content": "I bought this $ALPHA for $10,000 as soon as it went live  and now its worth $800,000. Pretty insane.\n\nFck it, give away. 1 anon who like and retweet will get 50 $SOL (yes, for real) in 24hrs. https://t.co/yKuWBuvhdL",
       "user": {
-        "screen_name": "shotpumpfun",
-        "follower_count": 19037,
+        "screen_name": "mrpradaguy",
+        "follower_count": 47403,
         "notable_followers": [],
         "ca_mention_count": 0,
         "ticker_mention_count": 1
@@ -304,10 +365,10 @@ Twitter Analysis:
       "search_match_type": "TICKER",
       "replies": [
         {
-          "content": "Simulated reply to 1886352799652323433",
+          "content": "Simulated reply to 1886483320462303701",
           "user": {
-            "screen_name": "shotpumpfun",
-            "follower_count": 19037,
+            "screen_name": "mrpradaguy",
+            "follower_count": 47403,
             "notable_followers": [],
             "ca_mention_count": 0,
             "ticker_mention_count": 1
@@ -315,263 +376,201 @@ Twitter Analysis:
         }
       ],
       "metrics": {
-        "reply_count": 2,
-        "retweet_count": 0,
-        "like_count": 3,
-        "quote_count": 0,
-        "has_large_parent": false,
-        "has_affiliated_parent": false
-      }
-    },
-    {
-      "content": "Aping to $LLM here\nTargets 2X+ \n\n$D $UOS $AEG $HQ $J $SPA $MXC $DIGIMON $WEEBS $NAKA $CREO $TICO $FRED $HOLD $TRUMP https://t.co/okZruP91U4",
-      "user": {
-        "screen_name": "Coinnesa",
-        "follower_count": 9547,
-        "notable_followers": [],
-        "ca_mention_count": 0,
-        "ticker_mention_count": 1
-      },
-      "search_match_type": "TICKER",
-      "replies": [
-        {
-          "content": "Simulated reply to 1884091611392651391",
-          "user": {
-            "screen_name": "Coinnesa",
-            "follower_count": 9547,
-            "notable_followers": [],
-            "ca_mention_count": 0,
-            "ticker_mention_count": 1
-          }
-        }
-      ],
-      "metrics": {
-        "reply_count": 6,
-        "retweet_count": 0,
-        "like_count": 12,
-        "quote_count": 0,
-        "has_large_parent": false,
-        "has_affiliated_parent": false
-      }
-    },
-    {
-      "content": "I have a crystal ball \ud83d\udd2e $HOLD $WAT \n\n#Crypto #Bitcoin #GEM #Trump https://t.co/Gggzd6hvcA",
-      "user": {
-        "screen_name": "GemoneCrypto",
-        "follower_count": 2998,
-        "notable_followers": [],
-        "ca_mention_count": 0,
-        "ticker_mention_count": 1
-      },
-      "search_match_type": "TICKER",
-      "replies": [
-        {
-          "content": "Simulated reply to 1884562964021227930",
-          "user": {
-            "screen_name": "GemoneCrypto",
-            "follower_count": 2998,
-            "notable_followers": [],
-            "ca_mention_count": 0,
-            "ticker_mention_count": 1
-          }
-        }
-      ],
-      "metrics": {
-        "reply_count": 5,
-        "retweet_count": 2,
-        "like_count": 9,
-        "quote_count": 0,
+        "reply_count": 143,
+        "retweet_count": 167,
+        "like_count": 222,
+        "quote_count": 1,
         "has_large_parent": false,
         "has_affiliated_parent": false
       }
     }
   ],
   "important_tweets": {
-    "1886407853361238279": {
-      "content": "\ud83d\ude80 Bi-Weekly Carnival: HOLD is the Way!\n\n\ud83d\udc8e February 3 - February 17, 2025 (UTC) \u2013 An exclusive reward event for $HOLD holders is coming!\n\n\ud83c\udfaf Remember! The reward structure is simple \u2013 the amount of $HOLD in your wallet during the event determines your reward level.\n\nYour $HOLD is not only an asset but also a conviction in your future! \ud83e\ude99\nWe prove with actions that holding = rewards! \u2197\ufe0f",
+    "1886516180959289531": {
+      "content": "They literally burned $27,400,000 and you\u2019re not bullish? \ud83d\ude2d\n\nWho else would do that? NOBODY.\n\n$ALPHA \ud83d\udcc8",
       "user": {
-        "screen_name": "HoldCoinGo",
-        "follower_count": 486702,
+        "screen_name": "cryptobeastreal",
+        "follower_count": 615382,
         "notable_followers": [],
         "ca_mention_count": 0,
         "ticker_mention_count": 1
       },
       "search_match_type": "TICKER",
       "metrics": {
-        "reply_count": 14,
-        "retweet_count": 11,
-        "like_count": 68,
-        "quote_count": 0,
+        "reply_count": 99,
+        "retweet_count": 76,
+        "like_count": 599,
+        "quote_count": 5,
         "has_large_parent": false,
         "has_affiliated_parent": false
       }
     },
-    "1886035088896610437": {
-      "content": "The $HOLD show is on\u2014don\u2019t blink, the excitement is just getting started!\u2197\ufe0f https://t.co/PXm7HPEhlz",
+    "1886386380533547218": {
+      "content": "\ud83d\udea8BREAKING: $ALPHA IS THE BEST PERFORMING MEMECOIN\n\nALPHA IS UNSTOPPABLE!!!!!\n\nBILLIONS INCOMING \ud83d\ude80 https://t.co/wgjnKLK1ng",
       "user": {
-        "screen_name": "HoldCoinGo",
-        "follower_count": 486702,
+        "screen_name": "cryptobeastreal",
+        "follower_count": 615382,
         "notable_followers": [],
         "ca_mention_count": 0,
         "ticker_mention_count": 1
       },
       "search_match_type": "TICKER",
       "metrics": {
-        "reply_count": 28,
-        "retweet_count": 22,
-        "like_count": 97,
-        "quote_count": 0,
+        "reply_count": 367,
+        "retweet_count": 346,
+        "like_count": 1810,
+        "quote_count": 8,
         "has_large_parent": false,
         "has_affiliated_parent": false
       }
     },
-    "1886067250307739663": {
-      "content": "The best crypto community is:\n\n\ud83d\udc51 $TOSHI\n\ud83d\udc51 $FLOKI\n\ud83d\udc51 $NEIRO\n\ud83d\udc51 $HOLD",
+    "1886514368814440631": {
+      "content": "If $ALPHA reaches a market-cap of 200M\n\nI\u2019ll give $2,000 in tokens to 10 people\n\nJust interact and comment your $SOL address \ud83d\udc47 https://t.co/ozbhvQxbkj",
       "user": {
-        "screen_name": "TrueGemHunter",
-        "follower_count": 139952,
+        "screen_name": "Investments_CEO",
+        "follower_count": 574640,
         "notable_followers": [],
         "ca_mention_count": 0,
         "ticker_mention_count": 1
       },
       "search_match_type": "TICKER",
       "metrics": {
-        "reply_count": 80,
-        "retweet_count": 90,
-        "like_count": 179,
-        "quote_count": 14,
-        "has_large_parent": false,
-        "has_affiliated_parent": false
-      }
-    },
-    "1883445902276513878": {
-      "content": "WTF is this? $HOLD\n15x in two days\ud83e\udd2f https://t.co/qabGAaJ35V",
-      "user": {
-        "screen_name": "j0hnnyw00",
-        "follower_count": 119392,
-        "notable_followers": [],
-        "ca_mention_count": 0,
-        "ticker_mention_count": 1
-      },
-      "search_match_type": "TICKER",
-      "metrics": {
-        "reply_count": 2,
-        "retweet_count": 0,
-        "like_count": 14,
+        "reply_count": 140,
+        "retweet_count": 49,
+        "like_count": 195,
         "quote_count": 1,
         "has_large_parent": false,
         "has_affiliated_parent": false
       }
     },
-    "1886140387519054108": {
-      "content": "@Yourpop8 Hey @Yourpop8 check out @everybodyholdX $HOLD.  \n\nLook at this chart comparison/ side by side of the current hold chart versus the SPX chart prior to its monster breakout which now is imploding\n\nGanna send!! https://t.co/xH5W911rgL",
+    "1886195833927880941": {
+      "content": "Interact if you hold $ALPHA \ud83e\udef5 https://t.co/mxsNcFfD9k",
       "user": {
-        "screen_name": "Paddy_Stash",
-        "follower_count": 51723,
+        "screen_name": "Investments_CEO",
+        "follower_count": 574640,
         "notable_followers": [],
         "ca_mention_count": 0,
         "ticker_mention_count": 1
       },
       "search_match_type": "TICKER",
       "metrics": {
-        "reply_count": 1,
-        "retweet_count": 4,
-        "like_count": 12,
-        "quote_count": 0,
-        "has_large_parent": false,
-        "has_affiliated_parent": false
-      }
-    },
-    "1886459190668927151": {
-      "content": "Textbook retest of support and pivoted off.. \n\nBeautiful!! Now its time to smash ATH's!  $HOLD https://t.co/w1O5sFkT0C",
-      "user": {
-        "screen_name": "Paddy_Stash",
-        "follower_count": 51723,
-        "notable_followers": [],
-        "ca_mention_count": 0,
-        "ticker_mention_count": 1
-      },
-      "search_match_type": "TICKER",
-      "metrics": {
-        "reply_count": 6,
-        "retweet_count": 29,
-        "like_count": 50,
+        "reply_count": 194,
+        "retweet_count": 145,
+        "like_count": 1657,
         "quote_count": 3,
         "has_large_parent": false,
         "has_affiliated_parent": false
       }
     },
-    "1886052082584862921": {
-      "content": "most mentioned ticker in the last hour: $HOLD\nThe $HOLD chart shows a recovery from a morning dip with the price currently stabilizing around $0.0002389. The moving averages (5MA, 10MA, 20MA) are converging, indicating potential for a trend shift. Volume spikes earlier in the session suggest buying interest, while RSI remains neutral, indicating neither overbought nor oversold conditions.",
+    "1886119370293690443": {
+      "content": "$1,500 $ALPHA giveaway\n\nJust interact and make sure you\u2019re following me\n\nWinner in 72h",
       "user": {
-        "screen_name": "gemxbt_agent",
-        "follower_count": 37702,
+        "screen_name": "Investments_CEO",
+        "follower_count": 574640,
+        "notable_followers": [],
+        "ca_mention_count": 0,
+        "ticker_mention_count": 1
+      },
+      "search_match_type": "TICKER",
+      "metrics": {
+        "reply_count": 1482,
+        "retweet_count": 800,
+        "like_count": 3346,
+        "quote_count": 10,
+        "has_large_parent": false,
+        "has_affiliated_parent": false
+      }
+    },
+    "1886328774402158602": {
+      "content": "Who all is bullish on $ALPHA\n\nCommunity Test\n\nLet\u2019s see \ud83d\udc47 https://t.co/h9auXuyukc",
+      "user": {
+        "screen_name": "Investments_CEO",
+        "follower_count": 574640,
+        "notable_followers": [],
+        "ca_mention_count": 0,
+        "ticker_mention_count": 1
+      },
+      "search_match_type": "TICKER",
+      "metrics": {
+        "reply_count": 101,
+        "retweet_count": 85,
+        "like_count": 765,
+        "quote_count": 2,
+        "has_large_parent": false,
+        "has_affiliated_parent": false
+      }
+    },
+    "1886481830259646748": {
+      "content": "Missed $Trump ?\nMissed $Vine ?\nMissed #JellyJelly ?\nMissed $Alpha ?\nMissed #Fartcoin ?\n\nPromise you don't want to miss my next gem !\n\nLike + RT\nFollow\nDrop your solana wallet https://t.co/7uHb16Gblv",
+      "user": {
+        "screen_name": "morpheuswhale",
+        "follower_count": 248989,
+        "notable_followers": [],
+        "ca_mention_count": 0,
+        "ticker_mention_count": 1
+      },
+      "search_match_type": "TICKER",
+      "metrics": {
+        "reply_count": 176,
+        "retweet_count": 117,
+        "like_count": 243,
+        "quote_count": 2,
+        "has_large_parent": false,
+        "has_affiliated_parent": false
+      }
+    },
+    "1886466840601485688": {
+      "content": "I believe $ALPHA will reach $200 Million mc by sunday !\n\nSo I'm giving away OVER $5,000 worth of $ALPHA\n\nDrop your $SOL address\n\nLike, RT and must be following https://t.co/kMTPfCjdtu",
+      "user": {
+        "screen_name": "cabelo_escobar",
+        "follower_count": 105309,
         "notable_followers": [],
         "ca_mention_count": 0,
         "ticker_mention_count": 2
       },
       "search_match_type": "TICKER",
       "metrics": {
-        "reply_count": 22,
-        "retweet_count": 0,
-        "like_count": 2,
+        "reply_count": 410,
+        "retweet_count": 352,
+        "like_count": 567,
+        "quote_count": 9,
+        "has_large_parent": false,
+        "has_affiliated_parent": false
+      }
+    },
+    "1886108735485137091": {
+      "content": "Nobody wants to part with their $ALPHA\n\nWhy? Because they see the vision this is a 1B+ play in the making\n\nWhile the market dips, ALPHA holds strong, barely 20% from ATH and still in its prime accumulation range\n\nFlipping 90% of my memecoins into $ALPHA? Easily one of my best moves\n\nIf you get it, you get it...",
+      "user": {
+        "screen_name": "SBlockspy",
+        "follower_count": 49710,
+        "notable_followers": [],
+        "ca_mention_count": 0,
+        "ticker_mention_count": 2
+      },
+      "search_match_type": "TICKER",
+      "metrics": {
+        "reply_count": 3,
+        "retweet_count": 26,
+        "like_count": 88,
         "quote_count": 0,
         "has_large_parent": false,
         "has_affiliated_parent": false
       }
     },
-    "1886352799652323433": {
-      "content": "$HOLD Just Hits $100K Market Cap\n\nTrack New Coins on https://t.co/JsZhjazHxU before they moon https://t.co/oqM5EIBSaQ",
+    "1886483320462303701": {
+      "content": "I bought this $ALPHA for $10,000 as soon as it went live  and now its worth $800,000. Pretty insane.\n\nFck it, give away. 1 anon who like and retweet will get 50 $SOL (yes, for real) in 24hrs. https://t.co/yKuWBuvhdL",
       "user": {
-        "screen_name": "shotpumpfun",
-        "follower_count": 19037,
+        "screen_name": "mrpradaguy",
+        "follower_count": 47403,
         "notable_followers": [],
         "ca_mention_count": 0,
         "ticker_mention_count": 1
       },
       "search_match_type": "TICKER",
       "metrics": {
-        "reply_count": 2,
-        "retweet_count": 0,
-        "like_count": 3,
-        "quote_count": 0,
-        "has_large_parent": false,
-        "has_affiliated_parent": false
-      }
-    },
-    "1884091611392651391": {
-      "content": "Aping to $LLM here\nTargets 2X+ \n\n$D $UOS $AEG $HQ $J $SPA $MXC $DIGIMON $WEEBS $NAKA $CREO $TICO $FRED $HOLD $TRUMP https://t.co/okZruP91U4",
-      "user": {
-        "screen_name": "Coinnesa",
-        "follower_count": 9547,
-        "notable_followers": [],
-        "ca_mention_count": 0,
-        "ticker_mention_count": 1
-      },
-      "search_match_type": "TICKER",
-      "metrics": {
-        "reply_count": 6,
-        "retweet_count": 0,
-        "like_count": 12,
-        "quote_count": 0,
-        "has_large_parent": false,
-        "has_affiliated_parent": false
-      }
-    },
-    "1885745941623214286": {
-      "content": "Just flipped $20 to $550\n\nLet\u2019s keep it going and see where it can go \n\n$HOLD sending again!  \n\nIf you don\u2019t have ALOT of money understand you don\u2019t need a lot of money with leverage and his is a proven example https://t.co/JQaSGhG88n",
-      "user": {
-        "screen_name": "Liquid_Mexc",
-        "follower_count": 2911,
-        "notable_followers": [],
-        "ca_mention_count": 0,
-        "ticker_mention_count": 1
-      },
-      "search_match_type": "TICKER",
-      "metrics": {
-        "reply_count": 6,
-        "retweet_count": 3,
-        "like_count": 16,
+        "reply_count": 143,
+        "retweet_count": 167,
+        "like_count": 222,
         "quote_count": 1,
         "has_large_parent": false,
         "has_affiliated_parent": false
@@ -582,105 +581,107 @@ Twitter Analysis:
 
 TrenchBot Analysis:
 {
-  "percent_bundled": 12.8246601035763,
+  "percent_bundled": 27.168450613994498,
   "percent_held": 0.0,
   "creator_analysis": "{\"number_of_rugs\": 0, \"total_coins\": 1, \"is_high_risk\": false}"
 }
 
 GMGN Analysis:
 {
-  "top_holder_avg_holding_time": 86659.75,
-  "top_holder_avg_score": 0.2633333333333333,
+  "top_holder_avg_holding_time": 33490.122,
+  "top_holder_avg_score": 0.175,
   "top_wallets": [
     {
-      "address": "ErFa75H8jcQLw8ijRpwwzZZSnPjpHTMEVxcWpPM5Urrg",
+      "address": "6LwDE8zkHGJkTfw5cYRDQFfbzARXTy5h4oL6zo3TiDca",
       "score": 0.16666666666666666,
       "win_rate": 0,
-      "holding_time": null,
+      "holding_time": 0,
       "pct_change_30d": 0,
-      "avg_trades_per_day": 0.0
+      "avg_trades_per_day": 0.5
     },
     {
-      "address": "54xGxANQaopeucbxhvYDfUAX9yA25jJTURxmEEVqpPW",
+      "address": "3b7VW4y8LGoxFK7GWNpLsRqqsP6p1mBhej44d7zPkB8g",
       "score": 0.16666666666666666,
       "win_rate": 0,
-      "holding_time": null,
+      "holding_time": 0,
       "pct_change_30d": 0,
-      "avg_trades_per_day": 0.0
+      "avg_trades_per_day": 0.7333333333333333
     },
     {
-      "address": "3refVxYBa73KFhZe4f7u3W39MWZp8YzaMiCw8EzyPtV2",
-      "score": 0.16666666666666666,
-      "win_rate": 0,
-      "holding_time": null,
-      "pct_change_30d": 0.17943766416212042,
-      "avg_trades_per_day": 0.43333333333333335
-    },
-    {
-      "address": "ALruuHrAb6LEeX4dxmjs1Az2UG1Q6Ny8oiUcx8AWaXb3",
-      "score": 1.0,
-      "win_rate": 1,
-      "holding_time": 118.5,
-      "pct_change_30d": 2.5736248145461498,
-      "avg_trades_per_day": 0.9
-    },
-    {
-      "address": "DBcRPQy8e1u5hMXrHJ3wwkhcHzEoQnenzYNfmc3GKE1r",
+      "address": "HRXUhxoNpd1Yzi1tYuFytFNdFVhKZxLjabXNzKHjGDfo",
       "score": 0.25,
-      "win_rate": 0.3333333333333333,
-      "holding_time": 173201,
-      "pct_change_30d": -0.2938524398975153,
-      "avg_trades_per_day": 1.6666666666666667
+      "win_rate": 0.45681818181818185,
+      "holding_time": 33490.122,
+      "pct_change_30d": 0.4010300104270718,
+      "avg_trades_per_day": 204.4
     },
     {
-      "address": "CkfJ8VP3N26tbjfZpigRmVW3J1omKjDptZxn2rNfhu5n",
-      "score": 0.3333333333333333,
-      "win_rate": 0,
-      "holding_time": null,
-      "pct_change_30d": 0.5617936976741581,
-      "avg_trades_per_day": 64.96666666666667
-    },
-    {
-      "address": "39Tk39GYWJSkyT9SeCTG5nctgZEB1327uKiz99rxwqCD",
+      "address": "9fpQd6AAscyPwq4yDct4iZYCEyiCYSCfvSnWFXaeEpdQ",
       "score": 0.16666666666666666,
       "win_rate": 0,
-      "holding_time": null,
-      "pct_change_30d": -0.08302262649713801,
-      "avg_trades_per_day": 0.36666666666666664
+      "holding_time": 0,
+      "pct_change_30d": 0,
+      "avg_trades_per_day": 0.0
     },
     {
-      "address": "39V8v4bj7AvmBopZjw3jhKfKjJwXs6mG5BAyGPyq5Hu8",
-      "score": 0.13333333333333333,
-      "win_rate": 0,
-      "holding_time": null,
-      "pct_change_30d": -0.08804680133876054,
-      "avg_trades_per_day": 7.833333333333333
-    },
-    {
-      "address": "7JvnYQFYQPRAhLhseuEJHVvcP2kVcqjBgeh1T2zWfHor",
-      "score": 0.08333333333333333,
-      "win_rate": 0,
-      "holding_time": null,
-      "pct_change_30d": -0.08688134387799443,
-      "avg_trades_per_day": 30.366666666666667
-    },
-    {
-      "address": "B41XzdcPyfZxUPDaPc5ENfTHqbku9keCmU5DJ4GgibJN",
+      "address": "B9tDjaoE2PN2YyxiY4AqLS3xv3Q9crTQqQr5uJW5165Q",
       "score": 0.16666666666666666,
       "win_rate": 0,
-      "holding_time": null,
-      "pct_change_30d": 0.026385035598774167,
+      "holding_time": 0,
+      "pct_change_30d": 0,
+      "avg_trades_per_day": 0.16666666666666666
+    },
+    {
+      "address": "EuaRcxgAaCd4RDzVhCPeRiptRVjutMZz6ETtASkWqziX",
+      "score": 0.16666666666666666,
+      "win_rate": 0,
+      "holding_time": 0,
+      "pct_change_30d": 0,
       "avg_trades_per_day": 0.13333333333333333
+    },
+    {
+      "address": "DCc23t7MStkh1djMXWqXmNrAvZNjve1DEfnhcBLehg5B",
+      "score": 0.16666666666666666,
+      "win_rate": 0,
+      "holding_time": null,
+      "pct_change_30d": 0,
+      "avg_trades_per_day": 0.0
+    },
+    {
+      "address": "6Tb4JZbUDHReuUPy66N7NZxQo9YttbTVcGVVEqueZcxM",
+      "score": 0.16666666666666666,
+      "win_rate": 0,
+      "holding_time": null,
+      "pct_change_30d": 0,
+      "avg_trades_per_day": 0.0
+    },
+    {
+      "address": "3nvMJZeuZQWw7Vz3ejLNetTMKf2f5sUuqU2sELq6MepR",
+      "score": 0.16666666666666666,
+      "win_rate": 0,
+      "holding_time": null,
+      "pct_change_30d": 0,
+      "avg_trades_per_day": 0.0
+    },
+    {
+      "address": "533gFZFHzHF9NCutqHE4hZT8bQZZgGzDDnwVQzkN4Fwh",
+      "score": 0.16666666666666666,
+      "win_rate": 0,
+      "holding_time": 0,
+      "pct_change_30d": 0,
+      "avg_trades_per_day": 0.4
     }
   ]
 }
 
 Dexscreener Analysis:
-- Market Cap: 18917.52
-- Volume: 11509.96
-- Liquidity: 0.0
+- Market Cap: 108492317.0
+- Volume: 23743905.75
+- Liquidity: 2293525.9
+- Socials: https://x.com/alphaofsol, https://t.me/alphaofsol
 
 DO NOT output json or any data format that you have received above. You will use this data to generate your analysis.
+DO NOT feel the need to give advice on amount of solana someone should put into a coin. Each person has different size.
 You may and should quote information from the data above to help you generate your analysis. But do not output the data itself.
 In general, you should lean skeptical, but if a token's fundamentals look good and the narrative seems strong,
 you don't need to be excessively negative.

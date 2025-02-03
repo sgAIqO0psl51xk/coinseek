@@ -40,11 +40,115 @@ class RateLimiter:
 
             if ip in self.active_requests:
                 entry = self.active_requests[ip]
+            if ip in self.active_requests:
+                entry = self.active_requests[ip]
 
                 # Check if request is active
                 if entry["active"]:
                     return False, "Another request is already in progress"
+                # Check if request is active
+                if entry["active"]:
+                    return False, "Another request is already in progress"
 
+                # Check cooldown period
+                if entry["cooldown_until"] and current_time < entry["cooldown_until"]:
+                    remaining = (entry["cooldown_until"] - current_time).total_seconds()
+                    return False, f"Wait {int(remaining)} seconds before requesting again"
+
+            # Either new IP or passed all checks - set active state
+            self.active_requests[ip] = {"active": True, "cooldown_until": None, "last_request": current_time}
+            return True, ""
+
+    async def release_ip(self, ip: str):
+        async with self.lock:
+            if ip in self.active_requests:
+                self.active_requests[ip] = {
+                    "active": False,
+                    "cooldown_until": datetime.datetime.now() + COOLDOWN_PERIOD,
+                    "last_request": datetime.datetime.now(),
+                }
+
+
+# Create global rate limiter instance
+rate_limiter = RateLimiter()
+
+
+@app.get("/analyze")
+async def analyze(request: Request, contract_address: str, ticker: str = ""):
+    logging.info(f"Received analyze request for contract: {contract_address}, ticker: {ticker}")
+
+    client_ip = (
+        request.headers.get("x-forwarded-for", "").split(",")[0].strip() or request.headers.get("x-real-ip", "") or request.client.host
+        if request.client
+        else ""
+    )
+    logging.info(f"Client IP: {client_ip}")
+
+    async def error_response(message: str):
+        # Format error as SSE event with both type and message
+        error_data = f"event: error\ndata: {json.dumps({'type': 'error', 'message': message})}\n\n"
+        return StreamingResponse(
+            iter([error_data]),
+            media_type="text/event-stream",
+            headers={
+                "Cache-Control": "no-cache",
+                "Connection": "keep-alive",
+                "Content-Type": "text/event-stream",
+                "Access-Control-Allow-Origin": request.headers.get("origin", "*"),
+                "Access-Control-Allow-Credentials": "true",
+            },
+        )
+
+    # Check rate limit
+    is_allowed, error_message = await rate_limiter.check_rate_limit(client_ip)
+    if not is_allowed:
+        return await error_response(error_message)
+
+    try:
+        # Add logging for environment variables
+        logging.info("Checking API keys...")
+        if not os.getenv("OPENROUTER_API_KEY"):
+            logging.error("OPENROUTER_API_KEY not found")
+            return await error_response("Backend service configuration error: OPENROUTER_API_KEY missing")
+        if not os.getenv("DEEPSEEK_API_KEY"):
+            logging.error("DEEPSEEK_API_KEY not found")
+            return await error_response("Backend service configuration error: DEEPSEEK_API_KEY missing")
+
+        assert os.getenv("OPENROUTER_API_KEY"), "APIkey for OPENROUTER_API_KEY is not specified"
+        assert os.getenv("DEEPSEEK_API_KEY"), "APIkey for DEEPSEEK_API_KEY is not specified"
+
+        logging.info("Initializing DeepseekDriver...")
+        llm_providers = [
+            LLMProvider(
+                api_key=os.getenv("DEEPSEEK_API_KEY", ""),
+                model_name="deepseek-reasoner",
+                base_url="https://api.deepseek.com/chat/completions",
+                provider_type="deepseek",
+                priority=1,
+            ),
+            LLMProvider(
+                api_key=os.getenv("OPENROUTER_API_KEY", ""),
+                model_name="deepseek/deepseek-r1",
+                base_url="https://openrouter.ai/api/v1/chat/completions",
+                provider_type="openrouter",
+                priority=2,
+            ),
+            LLMProvider(
+                api_key=os.getenv("OPENROUTER_API_KEY", ""),
+                model_name="deepseek/deepseek-r1:free",
+                base_url="https://openrouter.ai/api/v1/chat/completions",
+                provider_type="openrouter",
+                priority=0,
+            ),
+            LLMProvider(
+                api_key=os.getenv("OPENROUTER_API_KEY", ""),
+                model_name="deepseek/deepseek-r1:nitro",
+                base_url="https://openrouter.ai/api/v1/chat/completions",
+                provider_type="openrouter",
+                priority=3,
+            ),
+        ]
+        driver = DeepseekDriver(contract_address=contract_address, ticker=ticker, llm_providers=llm_providers)
                 # Check cooldown period
                 if entry["cooldown_until"] and current_time < entry["cooldown_until"]:
                     remaining = (entry["cooldown_until"] - current_time).total_seconds()

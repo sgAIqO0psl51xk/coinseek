@@ -3,6 +3,16 @@
 		"autoprefixer": "^10.4.20"
 	},
 	"dependencies": {
+		"@radix-ui/react-alert-dialog": "^1.1.5",
+		"nuqs": "^2.3.2"
+	}
+}
+
+{
+	"devDependencies": {
+		"autoprefixer": "^10.4.20"
+	},
+	"dependencies": {
 		"nuqs": "^2.3.2"
 	}
 }
