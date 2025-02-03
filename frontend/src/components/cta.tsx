@@ -44,7 +44,7 @@ const CTA = () => {
                         Ready to experience the <br /> <span className="font-subheading italic">model of the future</span> ?
                     </h2>
                     <p className="text-sm md:text-lg text-center text-accent-foreground/80 max-w-2xl mx-auto mt-4 px-4 lg:px-0">
-                        Join the revolution where AI is open source, with reasoning that will blow you away. <span className="hidden lg:inline">No servers, no tracking, just limitless intelligence running locally.</span>
+                        Join the revolution where AI is open source, with reasoning that will blow you away. <span className="hidden lg:inline">Limitless intelligence at your fingertips.</span>
                     </p>
                     <Link href="/cot" className="mt-8">
                         <Button size="lg">
