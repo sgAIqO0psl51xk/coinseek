@@ -240,8 +240,8 @@ analysis on it and generally try to provide some further contex to the user and 
 from here and how it POTENTIALLY may be a risk but i want you to weigh this less due to how arbitrary it can be.
 
 telegram
-dexscreener will provide all socials and if a telegram is present, it'll be in the form of a t.me link and that is how 
-you'll know
+dexscreener will provide all socials and if a telegram is present, it'll be in the form of a t.me link and that is how
+ you'll know
 
 if a telegram portal exists for the coin, that's usually a positive signal, though it's also not too much of an issue if it doesn't
 

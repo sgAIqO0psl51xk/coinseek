@@ -209,6 +209,8 @@ class ApifyTwitterAnalyzer:
         try:
             actor_call = client.actor("kaitoeasyapi/twitter-x-data-tweet-scraper-pay-per-result-cheapest").call(run_input=run_input)
             run = await actor_call
+            if run is None:
+                raise Exception("Actor did not return a run")
         except Exception as e:
             logger.error(f"Scraper run failed: {e}")
             return []
