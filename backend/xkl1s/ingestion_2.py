@@ -3,6 +3,7 @@ import datetime
 import os
 import json
 from dataclasses import dataclass, field
+import random
 from typing import List, Dict, Optional, Any, Tuple
 from apify_client import ApifyClientAsync
 import logging
@@ -58,7 +59,9 @@ class ApifyTwitterAnalyzer:
         while True:
             async with ApifyTwitterAnalyzer.lock:
                 current_time = datetime.datetime.now()
-                for key in os.getenv("APIFY_KEY", "").split(","):
+                keys = os.getenv("APIFY_KEY", "").split(",")
+                random.shuffle(keys)
+                for key in keys:
                     if (
                         key not in ApifyTwitterAnalyzer.api_key_last_used
                         or current_time - ApifyTwitterAnalyzer.api_key_last_used[key] >= ApifyTwitterAnalyzer.MIN_DELAY
