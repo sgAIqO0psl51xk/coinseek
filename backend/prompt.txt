@@ -46,7 +46,8 @@ analysis on it and generally try to provide some further contex to the user and 
 from here and how it POTENTIALLY may be a risk but i want you to weigh this less due to how arbitrary it can be.
 
 telegram
-dexscreener data will usually contain a link in the form of t.me - if it has one, it means there's a telegram portal of some sort
+dexscreener will provide all socials and if a telegram is present, it'll be in the form of a t.me link and that is how 
+you'll know
 
 if a telegram portal exists for the coin, that's usually a positive signal, though it's also not too much of an issue if it doesn't
 
@@ -68,510 +69,359 @@ just generally take a look and provide the average as well as a brief analysis
 
 Analyze this token like your bags depend on it:
 
-Contract: 2sCUCJdVkmyXp4dT8sFaA9LKgSMK4yDPi9zLHiwXpump
-Ticker: $ALPHA
+Contract: FdRNfzPK2UdPnxYRRLkenV8QA1PuDKxjgXLBAozApump
+Ticker: $TTC
 
 Twitter Analysis:
 {
   "analyzed_tweets": [
     {
-      "content": "They literally burned $27,400,000 and you\u2019re not bullish? \ud83d\ude2d\n\nWho else would do that? NOBODY.\n\n$ALPHA \ud83d\udcc8",
+      "content": "$TTC: coin that moves with Trump\u2019s policies\n\n\ud83d\udd36 Trump mentions tax cuts \u2192 $TTC trends\n\ud83d\udd36 GOP pushes for new fiscal policies \u2192 $TTC spikes\n\ud83d\udd36 Election debates heat up \u2192 Expect volatility \n\nNarratives = Liquidity. Play the game \ud83d\udcaa\n\nFdRNfzPK2UdPnxYRRLkenV8QA1PuDKxjgXLBAozApump https://t.co/cgtvBktJOH",
       "user": {
-        "screen_name": "cryptobeastreal",
-        "follower_count": 615382,
+        "screen_name": "Milan__btc",
+        "follower_count": 257622,
         "notable_followers": [],
-        "ca_mention_count": 0,
-        "ticker_mention_count": 1
+        "ca_mention_count": 1,
+        "ticker_mention_count": 3
       },
-      "search_match_type": "TICKER",
-      "replies": [
-        {
-          "content": "Simulated reply to 1886516180959289531",
-          "user": {
-            "screen_name": "cryptobeastreal",
-            "follower_count": 615382,
-            "notable_followers": [],
-            "ca_mention_count": 0,
-            "ticker_mention_count": 1
-          }
-        }
-      ],
+      "search_match_type": "BOTH",
+      "replies": [],
       "metrics": {
-        "reply_count": 99,
-        "retweet_count": 76,
-        "like_count": 599,
-        "quote_count": 5,
-        "has_large_parent": false,
-        "has_affiliated_parent": false
-      }
-    },
-    {
-      "content": "\ud83d\udea8BREAKING: $ALPHA IS THE BEST PERFORMING MEMECOIN\n\nALPHA IS UNSTOPPABLE!!!!!\n\nBILLIONS INCOMING \ud83d\ude80 https://t.co/wgjnKLK1ng",
-      "user": {
-        "screen_name": "cryptobeastreal",
-        "follower_count": 615382,
-        "notable_followers": [],
-        "ca_mention_count": 0,
-        "ticker_mention_count": 1
-      },
-      "search_match_type": "TICKER",
-      "replies": [
-        {
-          "content": "Simulated reply to 1886386380533547218",
-          "user": {
-            "screen_name": "cryptobeastreal",
-            "follower_count": 615382,
-            "notable_followers": [],
-            "ca_mention_count": 0,
-            "ticker_mention_count": 1
-          }
-        }
-      ],
-      "metrics": {
-        "reply_count": 367,
-        "retweet_count": 346,
-        "like_count": 1810,
-        "quote_count": 8,
-        "has_large_parent": false,
-        "has_affiliated_parent": false
-      }
-    },
-    {
-      "content": "If $ALPHA reaches a market-cap of 200M\n\nI\u2019ll give $2,000 in tokens to 10 people\n\nJust interact and comment your $SOL address \ud83d\udc47 https://t.co/ozbhvQxbkj",
-      "user": {
-        "screen_name": "Investments_CEO",
-        "follower_count": 574640,
-        "notable_followers": [],
-        "ca_mention_count": 0,
-        "ticker_mention_count": 1
-      },
-      "search_match_type": "TICKER",
-      "replies": [
-        {
-          "content": "Simulated reply to 1886514368814440631",
-          "user": {
-            "screen_name": "Investments_CEO",
-            "follower_count": 574640,
-            "notable_followers": [],
-            "ca_mention_count": 0,
-            "ticker_mention_count": 1
-          }
-        }
-      ],
-      "metrics": {
-        "reply_count": 140,
-        "retweet_count": 49,
-        "like_count": 195,
-        "quote_count": 1,
-        "has_large_parent": false,
-        "has_affiliated_parent": false
-      }
-    },
-    {
-      "content": "Interact if you hold $ALPHA \ud83e\udef5 https://t.co/mxsNcFfD9k",
-      "user": {
-        "screen_name": "Investments_CEO",
-        "follower_count": 574640,
-        "notable_followers": [],
-        "ca_mention_count": 0,
-        "ticker_mention_count": 1
-      },
-      "search_match_type": "TICKER",
-      "replies": [
-        {
-          "content": "Simulated reply to 1886195833927880941",
-          "user": {
-            "screen_name": "Investments_CEO",
-            "follower_count": 574640,
-            "notable_followers": [],
-            "ca_mention_count": 0,
-            "ticker_mention_count": 1
-          }
-        }
-      ],
-      "metrics": {
-        "reply_count": 194,
-        "retweet_count": 145,
-        "like_count": 1657,
-        "quote_count": 3,
-        "has_large_parent": false,
-        "has_affiliated_parent": false
-      }
-    },
-    {
-      "content": "$1,500 $ALPHA giveaway\n\nJust interact and make sure you\u2019re following me\n\nWinner in 72h",
-      "user": {
-        "screen_name": "Investments_CEO",
-        "follower_count": 574640,
-        "notable_followers": [],
-        "ca_mention_count": 0,
-        "ticker_mention_count": 1
-      },
-      "search_match_type": "TICKER",
-      "replies": [
-        {
-          "content": "Simulated reply to 1886119370293690443",
-          "user": {
-            "screen_name": "Investments_CEO",
-            "follower_count": 574640,
-            "notable_followers": [],
-            "ca_mention_count": 0,
-            "ticker_mention_count": 1
-          }
-        }
-      ],
-      "metrics": {
-        "reply_count": 1482,
-        "retweet_count": 800,
-        "like_count": 3346,
-        "quote_count": 10,
-        "has_large_parent": false,
-        "has_affiliated_parent": false
-      }
-    },
-    {
-      "content": "Who all is bullish on $ALPHA\n\nCommunity Test\n\nLet\u2019s see \ud83d\udc47 https://t.co/h9auXuyukc",
-      "user": {
-        "screen_name": "Investments_CEO",
-        "follower_count": 574640,
-        "notable_followers": [],
-        "ca_mention_count": 0,
-        "ticker_mention_count": 1
-      },
-      "search_match_type": "TICKER",
-      "replies": [
-        {
-          "content": "Simulated reply to 1886328774402158602",
-          "user": {
-            "screen_name": "Investments_CEO",
-            "follower_count": 574640,
-            "notable_followers": [],
-            "ca_mention_count": 0,
-            "ticker_mention_count": 1
-          }
-        }
-      ],
-      "metrics": {
-        "reply_count": 101,
-        "retweet_count": 85,
-        "like_count": 765,
-        "quote_count": 2,
-        "has_large_parent": false,
-        "has_affiliated_parent": false
-      }
-    },
-    {
-      "content": "Missed $Trump ?\nMissed $Vine ?\nMissed #JellyJelly ?\nMissed $Alpha ?\nMissed #Fartcoin ?\n\nPromise you don't want to miss my next gem !\n\nLike + RT\nFollow\nDrop your solana wallet https://t.co/7uHb16Gblv",
-      "user": {
-        "screen_name": "morpheuswhale",
-        "follower_count": 248989,
-        "notable_followers": [],
-        "ca_mention_count": 0,
-        "ticker_mention_count": 1
-      },
-      "search_match_type": "TICKER",
-      "replies": [
-        {
-          "content": "Simulated reply to 1886481830259646748",
-          "user": {
-            "screen_name": "morpheuswhale",
-            "follower_count": 248989,
-            "notable_followers": [],
-            "ca_mention_count": 0,
-            "ticker_mention_count": 1
-          }
-        }
-      ],
-      "metrics": {
-        "reply_count": 176,
-        "retweet_count": 117,
-        "like_count": 243,
-        "quote_count": 2,
-        "has_large_parent": false,
-        "has_affiliated_parent": false
-      }
-    },
-    {
-      "content": "I believe $ALPHA will reach $200 Million mc by sunday !\n\nSo I'm giving away OVER $5,000 worth of $ALPHA\n\nDrop your $SOL address\n\nLike, RT and must be following https://t.co/kMTPfCjdtu",
-      "user": {
-        "screen_name": "cabelo_escobar",
-        "follower_count": 105309,
-        "notable_followers": [],
-        "ca_mention_count": 0,
-        "ticker_mention_count": 2
-      },
-      "search_match_type": "TICKER",
-      "replies": [
-        {
-          "content": "Simulated reply to 1886466840601485688",
-          "user": {
-            "screen_name": "cabelo_escobar",
-            "follower_count": 105309,
-            "notable_followers": [],
-            "ca_mention_count": 0,
-            "ticker_mention_count": 2
-          }
-        }
-      ],
-      "metrics": {
-        "reply_count": 410,
-        "retweet_count": 352,
-        "like_count": 567,
-        "quote_count": 9,
-        "has_large_parent": false,
-        "has_affiliated_parent": false
-      }
-    },
-    {
-      "content": "Nobody wants to part with their $ALPHA\n\nWhy? Because they see the vision this is a 1B+ play in the making\n\nWhile the market dips, ALPHA holds strong, barely 20% from ATH and still in its prime accumulation range\n\nFlipping 90% of my memecoins into $ALPHA? Easily one of my best moves\n\nIf you get it, you get it...",
-      "user": {
-        "screen_name": "SBlockspy",
-        "follower_count": 49710,
-        "notable_followers": [],
-        "ca_mention_count": 0,
-        "ticker_mention_count": 2
-      },
-      "search_match_type": "TICKER",
-      "replies": [
-        {
-          "content": "Simulated reply to 1886108735485137091",
-          "user": {
-            "screen_name": "SBlockspy",
-            "follower_count": 49710,
-            "notable_followers": [],
-            "ca_mention_count": 0,
-            "ticker_mention_count": 2
-          }
-        }
-      ],
-      "metrics": {
-        "reply_count": 3,
-        "retweet_count": 26,
-        "like_count": 88,
+        "reply_count": 0,
+        "retweet_count": 0,
+        "like_count": 1,
         "quote_count": 0,
         "has_large_parent": false,
         "has_affiliated_parent": false
       }
     },
     {
-      "content": "I bought this $ALPHA for $10,000 as soon as it went live  and now its worth $800,000. Pretty insane.\n\nFck it, give away. 1 anon who like and retweet will get 50 $SOL (yes, for real) in 24hrs. https://t.co/yKuWBuvhdL",
+      "content": "Trump tax policy = $TTC core narrative\n\n\ud83d\udcbc Employer perks taxation \u2192 corporate liquidity shifts\n\n\ud83d\udcb8 Tax breaks on tips &amp; overtime \u2192 increased spending power\n\nWith Trump\u2019s economic reforms reshaping fiscal policy $TTC go to the MOON!\n\nFdRNfzPK2UdPnxYRRLkenV8QA1PuDKxjgXLBAozApump https://t.co/IYF1E79jJM",
       "user": {
-        "screen_name": "mrpradaguy",
-        "follower_count": 47403,
+        "screen_name": "kryptonitepost",
+        "follower_count": 155112,
         "notable_followers": [],
+        "ca_mention_count": 1,
+        "ticker_mention_count": 2
+      },
+      "search_match_type": "BOTH",
+      "replies": [],
+      "metrics": {
+        "reply_count": 0,
+        "retweet_count": 0,
+        "like_count": 2,
+        "quote_count": 0,
+        "has_large_parent": false,
+        "has_affiliated_parent": false
+      }
+    },
+    {
+      "content": "The $TTC revolution begins \ud83d\udd25\n\nTrump's Tax Company $TTC  it's a statement!\n\nWith GOP tax plans under fire &amp; Trump pushing for trillions in cuts, $TTC embodies the tax warfare ahead \ud83d\udcc8\n\nStay ahead of the curve \ud83d\udc40\n\nFdRNfzPK2UdPnxYRRLkenV8QA1PuDKxjgXLBAozApump https://t.co/q1VmCSIuVx",
+      "user": {
+        "screen_name": "DannyBitcoiner",
+        "follower_count": 153350,
+        "notable_followers": [],
+        "ca_mention_count": 1,
+        "ticker_mention_count": 3
+      },
+      "search_match_type": "BOTH",
+      "replies": [],
+      "metrics": {
+        "reply_count": 0,
+        "retweet_count": 1,
+        "like_count": 1,
+        "quote_count": 0,
+        "has_large_parent": false,
+        "has_affiliated_parent": false
+      }
+    },
+    {
+      "content": "$TTC vs political risk -> trader\u2019s perspective\n\n1\u20e3 Over 6,000 market makers ensure stability\n2\u20e3 Buyers outpacing sellers signals continued demand\n3\u20e3 Trump\u2019s administration pushes economic shifts \u2192 traders hedge via $TTC\n\nWith Trump\u2019s economic reforms reshaping fiscal policy, $TTC traders capitalize on volatility \ud83d\udcc8\n\nFdRNfzPK2UdPnxYRRLkenV8QA1PuDKxjgXLBAozApump",
+      "user": {
+        "screen_name": "GrayPunkETH",
+        "follower_count": 122340,
+        "notable_followers": [
+          "BlueVerified"
+        ],
+        "ca_mention_count": 1,
+        "ticker_mention_count": 3
+      },
+      "search_match_type": "BOTH",
+      "replies": [],
+      "metrics": {
+        "reply_count": 0,
+        "retweet_count": 0,
+        "like_count": 2,
+        "quote_count": 0,
+        "has_large_parent": false,
+        "has_affiliated_parent": false
+      }
+    },
+    {
+      "content": "\ud835\uddd4\ud835\uddf1\ud835\uddf1\ud835\uddff\ud835\uddf2\ud835\ude00\ud835\ude00: FdRNfzPK2UdPnxYRRLkenV8QA1PuDKxjgXLBAozApump\n\n\ud835\udde1\ud835\uddee\ud835\uddfa\ud835\uddf2: Trump's Tax Company $TTC\n\ud835\udde7\ud835\uddf6\ud835\uddfa\ud835\uddf2 \ud835\ude01\ud835\uddfc \ud835\uddd5\ud835\uddfc\ud835\uddfb\ud835\uddf1: 0 Hours - 2 Minutes\n\ud835\uddd9\ud835\ude02\ud835\uddf9\ud835\uddf9 \ud835\udde5\ud835\uddf2\ud835\uddfd\ud835\uddfc\ud835\uddff\ud835\ude01 - https://t.co/mCRMgHH8Jm\n\n\ud83d\udcdd\ud835\uddd7\ud835\uddf2\ud835\ude00\ud835\uddf0\ud835\uddff\ud835\uddf6\ud835\uddfd\ud835\ude01\ud835\uddf6\ud835\uddfc\ud835\uddfb\ud83d\udcdd\n$TTC: The Epicenter of the Tax War.\n\n\ud83e\udd16\ud835\uddd4\ud835\udddc \ud835\uddd4\ud835\uddfb\ud835\uddee\ud835\uddf9\ud835\ude06\ud835\ude00\ud835\uddf6\ud835\ude00\ud83e\udd16\nMemeability: 4.6/10\nToken Meta: Trump and Political Figures\nMeta Match: Yes\nToken Originality: 8.0/10\nImage Duplicate: False\n\n\ud83c\udfe6\ud835\uddd9\ud835\uddf6\ud835\uddfb\ud835\uddee\ud835\uddfb\ud835\uddf0\ud835\uddf6\ud835\uddee\ud835\uddf9\ud835\ude00\ud83c\udfe6\nMarket Cap: $89.23k\nTotal Supply: 1.00B\nBurned Tokens: 0.00\n\n\ud83d\udc68\u200d\ud83d\udcbc\ud835\uddd6\ud835\uddff\ud835\uddf2\ud835\uddee\ud835\ude01\ud835\uddfc\ud835\uddff \ud835\udddc\ud835\uddfb\ud835\uddf3\ud835\uddfc\ud835\uddff\ud835\uddfa\ud835\uddee\ud835\ude01\ud835\uddf6\ud835\uddfc\ud835\uddfb\ud83d\udc68\u200d\ud83d\udcbc\nTransaction Count: 0\nToken Activity:\n  Bought: 42.92%\n  Sold: 0.00%\nhttps://t.co/pXsOsBufYs\n\n\ud83d\udd12\ud835\uddda\ud835\uddf2\ud835\uddfb\ud835\uddf2\ud835\uddff\ud835\uddee\ud835\uddf9 \ud835\udddc\ud835\uddfb\ud835\uddf3\ud835\uddfc\ud83d\udd12\nDex: \u2705\nBurns: \u274c\nDev Sold: \u274c\nAds: \u274c\n67.9% - On curve addresses\n\ud835\udc7b\ud835\udc90\ud835\udc91 5 \ud835\udc6f\ud835\udc90\ud835\udc8d\ud835\udc85\ud835\udc86\ud835\udc93\ud835\udc94\n42.9% \ud83c\udf31 | 2.4% | 1.8% \ud83c\udf31 | 1.8% \ud83c\udf31 | 1.8% \ud83c\udf31\n14 - \ud83c\udf31 New Wallets\n9 - Reply Count\n\n\ud83d\udc33\ud835\uddea\ud835\uddf5\ud835\uddee\ud835\uddf9\ud835\uddf2 \ud835\udde0\ud835\uddee\ud835\uddfd (\ud835\udde7\ud835\uddfc\ud835\uddfd \ud835\udff1\ud835\udfec \ud835\udddb\ud835\uddfc\ud835\uddf9\ud835\uddf1\ud835\uddf2\ud835\uddff\ud835\ude00)\ud83d\udc33\nLargest SOL Balance: 651 SOL (#41)\nSmallest SOL Balance: &lt; 1 SOL\n\n\ud83e\udd90\ud83e\udd90\ud83e\udd90\ud83e\udd90\ud83d\udc1f\ud83e\udd90\ud83e\udd90\ud83d\udc1f\ud83d\udc1f\ud83e\udd90\n\ud83d\udc1f\ud83e\udd90\ud83e\udd90\ud83e\udd90\ud83e\udd90\ud83e\udd90\ud83e\udd90\ud83e\udd90\ud83e\udd90\ud83e\udd90\n\ud83d\udc1f\ud83d\udc1f\ud83e\udd90\ud83e\udd90\ud83e\udd90\ud83e\udd90\ud83d\udc1f\ud83e\udd90\ud83e\udd90\ud83d\udc1f\n\ud83e\udd90\ud83e\udd90\ud83d\udc1f\ud83e\udd90\ud83d\udc1f\ud83e\udd90\ud83e\udd90\ud83d\udc1f\ud83e\udd90\ud83e\udd90\n\ud83e\udd88\ud83d\udc1f\ud83e\udd90\ud83e\udd90\ud83e\udd90\ud83e\udd90\ud83e\udd90\ud83e\udd90\n\ud83e\udd90 (0 - 10 SOL) 35\n\ud83d\udc1f (10 - 100 SOL) 12\n\ud83d\udc2c (100 - 500 SOL) 0\n\ud83e\udd88 (500 - 1000 SOL) 1\n\ud83d\udc33 (1000+) 0\n\n\ud835\udde7\ud835\uddff\ud835\uddfc\ud835\uddf7\ud835\uddee\ud835\uddfb \ud835\uddd5\ud835\uddfc\ud835\ude01 - https://t.co/eHqi6W9pgn\n\n\ud835\uddd5\ud835\uddfc\ud835\uddfb\ud835\uddf8 - https://t.co/Z22LBYElkM\n\n\ud835\uddd5\ud835\ude02\ud835\uddf9\ud835\uddf9\ud835\uddeb  - https://t.co/37q2vhhwsh\n\n\ud835\uddda\ud835\udde0\ud835\uddda\ud835\udde1 - https://t.co/x6399wj73J\n\n\ud835\udde3\ud835\uddf5\ud835\uddfc\ud835\ude01\ud835\uddfc\ud835\uddfb - https://t.co/vA8Z1vqgGV\n\nDisclaimer: This is an automated detection of a new token. This is not an endorsement or investment advice. This message is intended for informational purposes only. This is the end of transmission. Please understand any and all risks before executing any transaction on the Solana blockchain. Interacting with this Blink is of the users own volition. Purchasing micro-cap tokens is inherently risky.",
+      "user": {
+        "screen_name": "BondedPump",
+        "follower_count": 27659,
+        "notable_followers": [
+          "BlueVerified"
+        ],
+        "ca_mention_count": 1,
+        "ticker_mention_count": 2
+      },
+      "search_match_type": "BOTH",
+      "replies": [],
+      "metrics": {
+        "reply_count": 0,
+        "retweet_count": 0,
+        "like_count": 1,
+        "quote_count": 0,
+        "has_large_parent": false,
+        "has_affiliated_parent": false
+      }
+    },
+    {
+      "content": "\ud83d\udd25Just in : Current Memecoin Meta is \"**Internet Culture**\"\n-----------------------------\nwant your token to get featured?\u26a1\ncheck pinned message!\ud83d\udccc\n-----------------------------\n\n$INDEX | $crypto | $DLT | $JENNA\n$eggs | $WHTS | #HELICAL | $SOTUS\n$WHTS | $Egg | $YTFANS | $TTC\n$GADA | #DAGESTAN | $dreams | $HESTER\n$BBC | $GYAT | $ATTIA | $Aut1sm\n#nigga6900x | $NEXEA | #PORTNOY | $LUNA\n$STASK | $DOGEAI | $NYAN | $98%\n_________________________\n$INDEX 690 | Realtime Memecoin Rating\u26a1\ufe0f",
+      "user": {
+        "screen_name": "MCR_index",
+        "follower_count": 11626,
+        "notable_followers": [
+          "BlueVerified"
+        ],
         "ca_mention_count": 0,
         "ticker_mention_count": 1
       },
       "search_match_type": "TICKER",
-      "replies": [
-        {
-          "content": "Simulated reply to 1886483320462303701",
-          "user": {
-            "screen_name": "mrpradaguy",
-            "follower_count": 47403,
-            "notable_followers": [],
-            "ca_mention_count": 0,
-            "ticker_mention_count": 1
-          }
-        }
-      ],
+      "replies": [],
       "metrics": {
-        "reply_count": 143,
-        "retweet_count": 167,
-        "like_count": 222,
-        "quote_count": 1,
+        "reply_count": 0,
+        "retweet_count": 0,
+        "like_count": 2,
+        "quote_count": 0,
+        "has_large_parent": false,
+        "has_affiliated_parent": false
+      }
+    },
+    {
+      "content": "\ud835\udde1\ud835\uddee\ud835\uddfa\ud835\uddf2: Trump's Tax Company  $TTC\n\ud835\uddd4\ud835\uddf1\ud835\uddf1\ud835\uddff\ud835\uddf2\ud835\ude00\ud835\ude00: FdRNfzPK2UdPnxYRRLkenV8QA1PuDKxjgXLBAozApump\n\n\ud83d\udcb0 \ud835\udde0\ud835\uddee\ud835\uddff\ud835\uddf8\ud835\uddf2\ud835\ude01 \ud835\uddd6\ud835\uddee\ud835\uddfd: $89,234.955 USD\n\ud83d\udc65 \ud835\udde7\ud835\uddfc\ud835\ude01\ud835\uddee\ud835\uddf9 \ud835\udddb\ud835\uddfc\ud835\uddf9\ud835\uddf1\ud835\uddf2\ud835\uddff\ud835\ude00: 48\n\ud83d\udd1d \ud835\udde7\ud835\uddfc\ud835\uddfd \ud835\udfed\ud835\udfec \ud835\udddb\ud835\uddfc\ud835\uddf9\ud835\uddf1\ud835\uddf2\ud835\uddff\ud835\ude00: 77.19%\n\u26a0\ufe0f \ud835\uddd7\ud835\uddf2\ud835\ude03 \ud835\udddb\ud835\uddfc\ud835\uddf9\ud835\uddf1\ud835\uddf6\ud835\uddfb\ud835\uddf4\ud835\ude00: 42.92%\n\u2728 \ud835\udddf\ud835\uddee\ud835\ude02\ud835\uddfb\ud835\uddf0\ud835\uddf5\ud835\uddf2\ud835\uddf1: 0 Day 0 Hour 2 Min. ago \u23f3\n\ud83d\udcc4 \ud835\uddd4\ud835\uddf9\ud835\uddf9 \ud835\uddd4\ud835\uddf0\ud835\ude01\ud835\uddf6\ud835\ude03\ud835\uddf6\ud835\ude01\ud835\ude06: Bought: 63  Sold: 12\n\ud83d\udd8c\ufe0f \ud835\uddd6\ud835\uddff\ud835\uddf2\ud835\uddee\ud835\ude01\ud835\uddfc\ud835\uddff: 7RMMpMpqniwGey9z9iiy1AadzK4hZQQyMqrwi5LMcoGQ",
+      "user": {
+        "screen_name": "solmemescope",
+        "follower_count": 9951,
+        "notable_followers": [
+          "BlueVerified"
+        ],
+        "ca_mention_count": 1,
+        "ticker_mention_count": 1
+      },
+      "search_match_type": "BOTH",
+      "replies": [],
+      "metrics": {
+        "reply_count": 0,
+        "retweet_count": 0,
+        "like_count": 0,
+        "quote_count": 0,
+        "has_large_parent": false,
+        "has_affiliated_parent": false
+      }
+    },
+    {
+      "content": "\ud83d\udcd6 $Reader Found a Meme!\n\n\ud83d\udc8e $TTC ( MC: 224.1K )\n\ud83e\udd16 TTC - \"Toilet Token Coin\": flush your worries away with this meme token! It\u2019s the only currency that guarantees you\u2019ll never be in the loo without funds! \ud83d\udebd\ud83d\udcb0\n\n\ud83d\udc8e CA: FdRNfzPK2UdPnxYRRLkenV8QA1PuDKxjgXLBAozApump\n\ud83c\udf10 @TTC_COIN",
+      "user": {
+        "screen_name": "SolanaReader",
+        "follower_count": 9932,
+        "notable_followers": [],
+        "ca_mention_count": 1,
+        "ticker_mention_count": 1
+      },
+      "search_match_type": "BOTH",
+      "replies": [],
+      "metrics": {
+        "reply_count": 0,
+        "retweet_count": 0,
+        "like_count": 0,
+        "quote_count": 0,
+        "has_large_parent": false,
+        "has_affiliated_parent": false
+      }
+    },
+    {
+      "content": "Trump's Tax Company |  $TTC | #Solana \n\nCA: FdRNfzPK2UdPnxYRRLkenV8QA1PuDKxjgXLBAozApump\n\n\u23f3 Age:  17m\n\ud83d\udcb0MCap: $285.2K\n\u2708\ufe0f TG: https://t.co/5yiWvmZL3h\n\ud83d\udcc8Chart: https://t.co/YZRkaOiSOz\n\n\ud83d\udc51 Premium calls: https://t.co/85mWfpAkeu\n\nAlways DYOR. https://t.co/Y1aFQPJ66D",
+      "user": {
+        "screen_name": "Bull_Pump",
+        "follower_count": 8764,
+        "notable_followers": [
+          "BlueVerified"
+        ],
+        "ca_mention_count": 1,
+        "ticker_mention_count": 1
+      },
+      "search_match_type": "BOTH",
+      "replies": [],
+      "metrics": {
+        "reply_count": 0,
+        "retweet_count": 0,
+        "like_count": 1,
+        "quote_count": 0,
+        "has_large_parent": false,
+        "has_affiliated_parent": false
+      }
+    },
+    {
+      "content": "The $TTC playbook \ud83d\udc47\n\n\ud83d\udcbc Trump\u2019s expiring tax cuts &amp; new proposed ones could shake up markets\n\ud83d\udcb0 The deficit is ballooning, and $TTC thrives on political chaos &amp; fiscal shifts\n\nMore tax talk = more volatility = $TTC gets juiced\n\nFdRNfzPK2UdPnxYRRLkenV8QA1PuDKxjgXLBAozApump https://t.co/jPf8FXesX2",
+      "user": {
+        "screen_name": "MementoFun",
+        "follower_count": 6845,
+        "notable_followers": [],
+        "ca_mention_count": 1,
+        "ticker_mention_count": 3
+      },
+      "search_match_type": "BOTH",
+      "replies": [],
+      "metrics": {
+        "reply_count": 0,
+        "retweet_count": 0,
+        "like_count": 1,
+        "quote_count": 0,
         "has_large_parent": false,
         "has_affiliated_parent": false
       }
     }
   ],
   "important_tweets": {
-    "1886516180959289531": {
-      "content": "They literally burned $27,400,000 and you\u2019re not bullish? \ud83d\ude2d\n\nWho else would do that? NOBODY.\n\n$ALPHA \ud83d\udcc8",
+    "1886882881097584932": {
+      "content": "$TTC: coin that moves with Trump\u2019s policies\n\n\ud83d\udd36 Trump mentions tax cuts \u2192 $TTC trends\n\ud83d\udd36 GOP pushes for new fiscal policies \u2192 $TTC spikes\n\ud83d\udd36 Election debates heat up \u2192 Expect volatility \n\nNarratives = Liquidity. Play the game \ud83d\udcaa\n\nFdRNfzPK2UdPnxYRRLkenV8QA1PuDKxjgXLBAozApump https://t.co/cgtvBktJOH",
       "user": {
-        "screen_name": "cryptobeastreal",
-        "follower_count": 615382,
+        "screen_name": "Milan__btc",
+        "follower_count": 257622,
         "notable_followers": [],
-        "ca_mention_count": 0,
-        "ticker_mention_count": 1
+        "ca_mention_count": 1,
+        "ticker_mention_count": 3
       },
-      "search_match_type": "TICKER",
+      "search_match_type": "BOTH",
       "metrics": {
-        "reply_count": 99,
-        "retweet_count": 76,
-        "like_count": 599,
-        "quote_count": 5,
-        "has_large_parent": false,
-        "has_affiliated_parent": false
-      }
-    },
-    "1886386380533547218": {
-      "content": "\ud83d\udea8BREAKING: $ALPHA IS THE BEST PERFORMING MEMECOIN\n\nALPHA IS UNSTOPPABLE!!!!!\n\nBILLIONS INCOMING \ud83d\ude80 https://t.co/wgjnKLK1ng",
-      "user": {
-        "screen_name": "cryptobeastreal",
-        "follower_count": 615382,
-        "notable_followers": [],
-        "ca_mention_count": 0,
-        "ticker_mention_count": 1
-      },
-      "search_match_type": "TICKER",
-      "metrics": {
-        "reply_count": 367,
-        "retweet_count": 346,
-        "like_count": 1810,
-        "quote_count": 8,
-        "has_large_parent": false,
-        "has_affiliated_parent": false
-      }
-    },
-    "1886514368814440631": {
-      "content": "If $ALPHA reaches a market-cap of 200M\n\nI\u2019ll give $2,000 in tokens to 10 people\n\nJust interact and comment your $SOL address \ud83d\udc47 https://t.co/ozbhvQxbkj",
-      "user": {
-        "screen_name": "Investments_CEO",
-        "follower_count": 574640,
-        "notable_followers": [],
-        "ca_mention_count": 0,
-        "ticker_mention_count": 1
-      },
-      "search_match_type": "TICKER",
-      "metrics": {
-        "reply_count": 140,
-        "retweet_count": 49,
-        "like_count": 195,
-        "quote_count": 1,
-        "has_large_parent": false,
-        "has_affiliated_parent": false
-      }
-    },
-    "1886195833927880941": {
-      "content": "Interact if you hold $ALPHA \ud83e\udef5 https://t.co/mxsNcFfD9k",
-      "user": {
-        "screen_name": "Investments_CEO",
-        "follower_count": 574640,
-        "notable_followers": [],
-        "ca_mention_count": 0,
-        "ticker_mention_count": 1
-      },
-      "search_match_type": "TICKER",
-      "metrics": {
-        "reply_count": 194,
-        "retweet_count": 145,
-        "like_count": 1657,
-        "quote_count": 3,
-        "has_large_parent": false,
-        "has_affiliated_parent": false
-      }
-    },
-    "1886119370293690443": {
-      "content": "$1,500 $ALPHA giveaway\n\nJust interact and make sure you\u2019re following me\n\nWinner in 72h",
-      "user": {
-        "screen_name": "Investments_CEO",
-        "follower_count": 574640,
-        "notable_followers": [],
-        "ca_mention_count": 0,
-        "ticker_mention_count": 1
-      },
-      "search_match_type": "TICKER",
-      "metrics": {
-        "reply_count": 1482,
-        "retweet_count": 800,
-        "like_count": 3346,
-        "quote_count": 10,
-        "has_large_parent": false,
-        "has_affiliated_parent": false
-      }
-    },
-    "1886328774402158602": {
-      "content": "Who all is bullish on $ALPHA\n\nCommunity Test\n\nLet\u2019s see \ud83d\udc47 https://t.co/h9auXuyukc",
-      "user": {
-        "screen_name": "Investments_CEO",
-        "follower_count": 574640,
-        "notable_followers": [],
-        "ca_mention_count": 0,
-        "ticker_mention_count": 1
-      },
-      "search_match_type": "TICKER",
-      "metrics": {
-        "reply_count": 101,
-        "retweet_count": 85,
-        "like_count": 765,
-        "quote_count": 2,
-        "has_large_parent": false,
-        "has_affiliated_parent": false
-      }
-    },
-    "1886481830259646748": {
-      "content": "Missed $Trump ?\nMissed $Vine ?\nMissed #JellyJelly ?\nMissed $Alpha ?\nMissed #Fartcoin ?\n\nPromise you don't want to miss my next gem !\n\nLike + RT\nFollow\nDrop your solana wallet https://t.co/7uHb16Gblv",
-      "user": {
-        "screen_name": "morpheuswhale",
-        "follower_count": 248989,
-        "notable_followers": [],
-        "ca_mention_count": 0,
-        "ticker_mention_count": 1
-      },
-      "search_match_type": "TICKER",
-      "metrics": {
-        "reply_count": 176,
-        "retweet_count": 117,
-        "like_count": 243,
-        "quote_count": 2,
-        "has_large_parent": false,
-        "has_affiliated_parent": false
-      }
-    },
-    "1886466840601485688": {
-      "content": "I believe $ALPHA will reach $200 Million mc by sunday !\n\nSo I'm giving away OVER $5,000 worth of $ALPHA\n\nDrop your $SOL address\n\nLike, RT and must be following https://t.co/kMTPfCjdtu",
-      "user": {
-        "screen_name": "cabelo_escobar",
-        "follower_count": 105309,
-        "notable_followers": [],
-        "ca_mention_count": 0,
-        "ticker_mention_count": 2
-      },
-      "search_match_type": "TICKER",
-      "metrics": {
-        "reply_count": 410,
-        "retweet_count": 352,
-        "like_count": 567,
-        "quote_count": 9,
-        "has_large_parent": false,
-        "has_affiliated_parent": false
-      }
-    },
-    "1886108735485137091": {
-      "content": "Nobody wants to part with their $ALPHA\n\nWhy? Because they see the vision this is a 1B+ play in the making\n\nWhile the market dips, ALPHA holds strong, barely 20% from ATH and still in its prime accumulation range\n\nFlipping 90% of my memecoins into $ALPHA? Easily one of my best moves\n\nIf you get it, you get it...",
-      "user": {
-        "screen_name": "SBlockspy",
-        "follower_count": 49710,
-        "notable_followers": [],
-        "ca_mention_count": 0,
-        "ticker_mention_count": 2
-      },
-      "search_match_type": "TICKER",
-      "metrics": {
-        "reply_count": 3,
-        "retweet_count": 26,
-        "like_count": 88,
+        "reply_count": 0,
+        "retweet_count": 0,
+        "like_count": 1,
         "quote_count": 0,
         "has_large_parent": false,
         "has_affiliated_parent": false
       }
     },
-    "1886483320462303701": {
-      "content": "I bought this $ALPHA for $10,000 as soon as it went live  and now its worth $800,000. Pretty insane.\n\nFck it, give away. 1 anon who like and retweet will get 50 $SOL (yes, for real) in 24hrs. https://t.co/yKuWBuvhdL",
+    "1886901869630382429": {
+      "content": "Trump tax policy = $TTC core narrative\n\n\ud83d\udcbc Employer perks taxation \u2192 corporate liquidity shifts\n\n\ud83d\udcb8 Tax breaks on tips &amp; overtime \u2192 increased spending power\n\nWith Trump\u2019s economic reforms reshaping fiscal policy $TTC go to the MOON!\n\nFdRNfzPK2UdPnxYRRLkenV8QA1PuDKxjgXLBAozApump https://t.co/IYF1E79jJM",
       "user": {
-        "screen_name": "mrpradaguy",
-        "follower_count": 47403,
+        "screen_name": "kryptonitepost",
+        "follower_count": 155112,
+        "notable_followers": [],
+        "ca_mention_count": 1,
+        "ticker_mention_count": 2
+      },
+      "search_match_type": "BOTH",
+      "metrics": {
+        "reply_count": 0,
+        "retweet_count": 0,
+        "like_count": 2,
+        "quote_count": 0,
+        "has_large_parent": false,
+        "has_affiliated_parent": false
+      }
+    },
+    "1886874022421410235": {
+      "content": "The $TTC revolution begins \ud83d\udd25\n\nTrump's Tax Company $TTC  it's a statement!\n\nWith GOP tax plans under fire &amp; Trump pushing for trillions in cuts, $TTC embodies the tax warfare ahead \ud83d\udcc8\n\nStay ahead of the curve \ud83d\udc40\n\nFdRNfzPK2UdPnxYRRLkenV8QA1PuDKxjgXLBAozApump https://t.co/q1VmCSIuVx",
+      "user": {
+        "screen_name": "DannyBitcoiner",
+        "follower_count": 153350,
+        "notable_followers": [],
+        "ca_mention_count": 1,
+        "ticker_mention_count": 3
+      },
+      "search_match_type": "BOTH",
+      "metrics": {
+        "reply_count": 0,
+        "retweet_count": 1,
+        "like_count": 1,
+        "quote_count": 0,
+        "has_large_parent": false,
+        "has_affiliated_parent": false
+      }
+    },
+    "1886899382815002772": {
+      "content": "$TTC vs political risk -> trader\u2019s perspective\n\n1\u20e3 Over 6,000 market makers ensure stability\n2\u20e3 Buyers outpacing sellers signals continued demand\n3\u20e3 Trump\u2019s administration pushes economic shifts \u2192 traders hedge via $TTC\n\nWith Trump\u2019s economic reforms reshaping fiscal policy, $TTC traders capitalize on volatility \ud83d\udcc8\n\nFdRNfzPK2UdPnxYRRLkenV8QA1PuDKxjgXLBAozApump",
+      "user": {
+        "screen_name": "GrayPunkETH",
+        "follower_count": 122340,
+        "notable_followers": [
+          "BlueVerified"
+        ],
+        "ca_mention_count": 1,
+        "ticker_mention_count": 3
+      },
+      "search_match_type": "BOTH",
+      "metrics": {
+        "reply_count": 0,
+        "retweet_count": 0,
+        "like_count": 2,
+        "quote_count": 0,
+        "has_large_parent": false,
+        "has_affiliated_parent": false
+      }
+    },
+    "1886865863426375801": {
+      "content": "\ud835\uddd4\ud835\uddf1\ud835\uddf1\ud835\uddff\ud835\uddf2\ud835\ude00\ud835\ude00: FdRNfzPK2UdPnxYRRLkenV8QA1PuDKxjgXLBAozApump\n\n\ud835\udde1\ud835\uddee\ud835\uddfa\ud835\uddf2: Trump's Tax Company $TTC\n\ud835\udde7\ud835\uddf6\ud835\uddfa\ud835\uddf2 \ud835\ude01\ud835\uddfc \ud835\uddd5\ud835\uddfc\ud835\uddfb\ud835\uddf1: 0 Hours - 2 Minutes\n\ud835\uddd9\ud835\ude02\ud835\uddf9\ud835\uddf9 \ud835\udde5\ud835\uddf2\ud835\uddfd\ud835\uddfc\ud835\uddff\ud835\ude01 - https://t.co/mCRMgHH8Jm\n\n\ud83d\udcdd\ud835\uddd7\ud835\uddf2\ud835\ude00\ud835\uddf0\ud835\uddff\ud835\uddf6\ud835\uddfd\ud835\ude01\ud835\uddf6\ud835\uddfc\ud835\uddfb\ud83d\udcdd\n$TTC: The Epicenter of the Tax War.\n\n\ud83e\udd16\ud835\uddd4\ud835\udddc \ud835\uddd4\ud835\uddfb\ud835\uddee\ud835\uddf9\ud835\ude06\ud835\ude00\ud835\uddf6\ud835\ude00\ud83e\udd16\nMemeability: 4.6/10\nToken Meta: Trump and Political Figures\nMeta Match: Yes\nToken Originality: 8.0/10\nImage Duplicate: False\n\n\ud83c\udfe6\ud835\uddd9\ud835\uddf6\ud835\uddfb\ud835\uddee\ud835\uddfb\ud835\uddf0\ud835\uddf6\ud835\uddee\ud835\uddf9\ud835\ude00\ud83c\udfe6\nMarket Cap: $89.23k\nTotal Supply: 1.00B\nBurned Tokens: 0.00\n\n\ud83d\udc68\u200d\ud83d\udcbc\ud835\uddd6\ud835\uddff\ud835\uddf2\ud835\uddee\ud835\ude01\ud835\uddfc\ud835\uddff \ud835\udddc\ud835\uddfb\ud835\uddf3\ud835\uddfc\ud835\uddff\ud835\uddfa\ud835\uddee\ud835\ude01\ud835\uddf6\ud835\uddfc\ud835\uddfb\ud83d\udc68\u200d\ud83d\udcbc\nTransaction Count: 0\nToken Activity:\n  Bought: 42.92%\n  Sold: 0.00%\nhttps://t.co/pXsOsBufYs\n\n\ud83d\udd12\ud835\uddda\ud835\uddf2\ud835\uddfb\ud835\uddf2\ud835\uddff\ud835\uddee\ud835\uddf9 \ud835\udddc\ud835\uddfb\ud835\uddf3\ud835\uddfc\ud83d\udd12\nDex: \u2705\nBurns: \u274c\nDev Sold: \u274c\nAds: \u274c\n67.9% - On curve addresses\n\ud835\udc7b\ud835\udc90\ud835\udc91 5 \ud835\udc6f\ud835\udc90\ud835\udc8d\ud835\udc85\ud835\udc86\ud835\udc93\ud835\udc94\n42.9% \ud83c\udf31 | 2.4% | 1.8% \ud83c\udf31 | 1.8% \ud83c\udf31 | 1.8% \ud83c\udf31\n14 - \ud83c\udf31 New Wallets\n9 - Reply Count\n\n\ud83d\udc33\ud835\uddea\ud835\uddf5\ud835\uddee\ud835\uddf9\ud835\uddf2 \ud835\udde0\ud835\uddee\ud835\uddfd (\ud835\udde7\ud835\uddfc\ud835\uddfd \ud835\udff1\ud835\udfec \ud835\udddb\ud835\uddfc\ud835\uddf9\ud835\uddf1\ud835\uddf2\ud835\uddff\ud835\ude00)\ud83d\udc33\nLargest SOL Balance: 651 SOL (#41)\nSmallest SOL Balance: &lt; 1 SOL\n\n\ud83e\udd90\ud83e\udd90\ud83e\udd90\ud83e\udd90\ud83d\udc1f\ud83e\udd90\ud83e\udd90\ud83d\udc1f\ud83d\udc1f\ud83e\udd90\n\ud83d\udc1f\ud83e\udd90\ud83e\udd90\ud83e\udd90\ud83e\udd90\ud83e\udd90\ud83e\udd90\ud83e\udd90\ud83e\udd90\ud83e\udd90\n\ud83d\udc1f\ud83d\udc1f\ud83e\udd90\ud83e\udd90\ud83e\udd90\ud83e\udd90\ud83d\udc1f\ud83e\udd90\ud83e\udd90\ud83d\udc1f\n\ud83e\udd90\ud83e\udd90\ud83d\udc1f\ud83e\udd90\ud83d\udc1f\ud83e\udd90\ud83e\udd90\ud83d\udc1f\ud83e\udd90\ud83e\udd90\n\ud83e\udd88\ud83d\udc1f\ud83e\udd90\ud83e\udd90\ud83e\udd90\ud83e\udd90\ud83e\udd90\ud83e\udd90\n\ud83e\udd90 (0 - 10 SOL) 35\n\ud83d\udc1f (10 - 100 SOL) 12\n\ud83d\udc2c (100 - 500 SOL) 0\n\ud83e\udd88 (500 - 1000 SOL) 1\n\ud83d\udc33 (1000+) 0\n\n\ud835\udde7\ud835\uddff\ud835\uddfc\ud835\uddf7\ud835\uddee\ud835\uddfb \ud835\uddd5\ud835\uddfc\ud835\ude01 - https://t.co/eHqi6W9pgn\n\n\ud835\uddd5\ud835\uddfc\ud835\uddfb\ud835\uddf8 - https://t.co/Z22LBYElkM\n\n\ud835\uddd5\ud835\ude02\ud835\uddf9\ud835\uddf9\ud835\uddeb  - https://t.co/37q2vhhwsh\n\n\ud835\uddda\ud835\udde0\ud835\uddda\ud835\udde1 - https://t.co/x6399wj73J\n\n\ud835\udde3\ud835\uddf5\ud835\uddfc\ud835\ude01\ud835\uddfc\ud835\uddfb - https://t.co/vA8Z1vqgGV\n\nDisclaimer: This is an automated detection of a new token. This is not an endorsement or investment advice. This message is intended for informational purposes only. This is the end of transmission. Please understand any and all risks before executing any transaction on the Solana blockchain. Interacting with this Blink is of the users own volition. Purchasing micro-cap tokens is inherently risky.",
+      "user": {
+        "screen_name": "BondedPump",
+        "follower_count": 27659,
+        "notable_followers": [
+          "BlueVerified"
+        ],
+        "ca_mention_count": 1,
+        "ticker_mention_count": 2
+      },
+      "search_match_type": "BOTH",
+      "metrics": {
+        "reply_count": 0,
+        "retweet_count": 0,
+        "like_count": 1,
+        "quote_count": 0,
+        "has_large_parent": false,
+        "has_affiliated_parent": false
+      }
+    },
+    "1886880453711348135": {
+      "content": "\ud83d\udd25Just in : Current Memecoin Meta is \"**Internet Culture**\"\n-----------------------------\nwant your token to get featured?\u26a1\ncheck pinned message!\ud83d\udccc\n-----------------------------\n\n$INDEX | $crypto | $DLT | $JENNA\n$eggs | $WHTS | #HELICAL | $SOTUS\n$WHTS | $Egg | $YTFANS | $TTC\n$GADA | #DAGESTAN | $dreams | $HESTER\n$BBC | $GYAT | $ATTIA | $Aut1sm\n#nigga6900x | $NEXEA | #PORTNOY | $LUNA\n$STASK | $DOGEAI | $NYAN | $98%\n_________________________\n$INDEX 690 | Realtime Memecoin Rating\u26a1\ufe0f",
+      "user": {
+        "screen_name": "MCR_index",
+        "follower_count": 11626,
+        "notable_followers": [
+          "BlueVerified"
+        ],
+        "ca_mention_count": 0,
+        "ticker_mention_count": 1
+      },
+      "search_match_type": "TICKER",
+      "metrics": {
+        "reply_count": 0,
+        "retweet_count": 0,
+        "like_count": 2,
+        "quote_count": 0,
+        "has_large_parent": false,
+        "has_affiliated_parent": false
+      }
+    },
+    "1886896484463075491": {
+      "content": "$BIRD utility keeps getting better.. dev updating software non-stop!\n\nSafe investment at $100k mc!\n\nX: @LittleBirdieBot \nCommunity TG: https://t.co/VPTOg81IKI\u2026\n\n$snai $swarms $trump $arena $lynk $ttc $pain $nyan $whts $luna $fern $mlk $purr $popcat $fwog $minion",
+      "user": {
+        "screen_name": "cryptow3avo",
+        "follower_count": 20,
         "notable_followers": [],
         "ca_mention_count": 0,
         "ticker_mention_count": 1
       },
       "search_match_type": "TICKER",
       "metrics": {
-        "reply_count": 143,
-        "retweet_count": 167,
-        "like_count": 222,
-        "quote_count": 1,
+        "reply_count": 6,
+        "retweet_count": 4,
+        "like_count": 10,
+        "quote_count": 0,
         "has_large_parent": false,
         "has_affiliated_parent": false
       }
@@ -581,42 +431,18 @@ Twitter Analysis:
 
 TrenchBot Analysis:
 {
-  "percent_bundled": 27.168450613994498,
-  "percent_held": 0.0,
+  "percent_bundled": 66.2936879836592,
+  "percent_held": 0.0013057124789864819,
   "creator_analysis": "{\"number_of_rugs\": 0, \"total_coins\": 1, \"is_high_risk\": false}"
 }
 
 GMGN Analysis:
 {
-  "top_holder_avg_holding_time": 33490.122,
-  "top_holder_avg_score": 0.175,
+  "top_holder_avg_holding_time": 10895.773210685484,
+  "top_holder_avg_score": 0.4,
   "top_wallets": [
     {
-      "address": "6LwDE8zkHGJkTfw5cYRDQFfbzARXTy5h4oL6zo3TiDca",
-      "score": 0.16666666666666666,
-      "win_rate": 0,
-      "holding_time": 0,
-      "pct_change_30d": 0,
-      "avg_trades_per_day": 0.5
-    },
-    {
-      "address": "3b7VW4y8LGoxFK7GWNpLsRqqsP6p1mBhej44d7zPkB8g",
-      "score": 0.16666666666666666,
-      "win_rate": 0,
-      "holding_time": 0,
-      "pct_change_30d": 0,
-      "avg_trades_per_day": 0.7333333333333333
-    },
-    {
-      "address": "HRXUhxoNpd1Yzi1tYuFytFNdFVhKZxLjabXNzKHjGDfo",
-      "score": 0.25,
-      "win_rate": 0.45681818181818185,
-      "holding_time": 33490.122,
-      "pct_change_30d": 0.4010300104270718,
-      "avg_trades_per_day": 204.4
-    },
-    {
-      "address": "9fpQd6AAscyPwq4yDct4iZYCEyiCYSCfvSnWFXaeEpdQ",
+      "address": "5Q544fKrFoe6tsEbD7S8EmxGTJYAKtTVhAW5Q5pge4j1",
       "score": 0.16666666666666666,
       "win_rate": 0,
       "holding_time": 0,
@@ -624,64 +450,88 @@ GMGN Analysis:
       "avg_trades_per_day": 0.0
     },
     {
-      "address": "B9tDjaoE2PN2YyxiY4AqLS3xv3Q9crTQqQr5uJW5165Q",
-      "score": 0.16666666666666666,
-      "win_rate": 0,
-      "holding_time": 0,
-      "pct_change_30d": 0,
-      "avg_trades_per_day": 0.16666666666666666
+      "address": "6UPHRtGAYdz4VDxEedPiJxdi3ARvug17jsbX4Q4QPbZ9",
+      "score": 0.5833333333333334,
+      "win_rate": 0.3333333333333333,
+      "holding_time": 5011.5,
+      "pct_change_30d": 5.113001385315728,
+      "avg_trades_per_day": 0.5333333333333333
     },
     {
-      "address": "EuaRcxgAaCd4RDzVhCPeRiptRVjutMZz6ETtASkWqziX",
+      "address": "HwVgXByMfi1ixQEpASKaEStXqD5WetNEMNBVLbG7KhUZ",
       "score": 0.16666666666666666,
       "win_rate": 0,
-      "holding_time": 0,
+      "holding_time": 408,
       "pct_change_30d": 0,
+      "avg_trades_per_day": 0.1
+    },
+    {
+      "address": "726SanrEaBqJLu5xaUNK3WBZ6zq5XujiBDFgEjuhkGxu",
+      "score": 0.16666666666666666,
+      "win_rate": 0.5,
+      "holding_time": 72787.84375,
+      "pct_change_30d": 0.21008973487583027,
+      "avg_trades_per_day": 15.833333333333334
+    },
+    {
+      "address": "FgWpQmDf2KGVAcW3y3g1aXXEZj3cXrVRxcJvmQNaRLoz",
+      "score": 0.5,
+      "win_rate": 0,
+      "holding_time": 4080,
+      "pct_change_30d": 1.0791002215528838,
+      "avg_trades_per_day": 2.2
+    },
+    {
+      "address": "ETyNooFrCpAMknfzN4GfCwd7Rjgjcb8HnetFunugFuRV",
+      "score": 0.16666666666666666,
+      "win_rate": 0,
+      "holding_time": 411,
+      "pct_change_30d": 0.2454846935488461,
+      "avg_trades_per_day": 0.3
+    },
+    {
+      "address": "GSLX4AD5DCMikmRbbSzaSQXWGAsfu8Dw6WJQdxBQEyVn",
+      "score": 0.75,
+      "win_rate": 0.631578947368421,
+      "holding_time": 1475.1,
+      "pct_change_30d": 1.6132018825528454,
+      "avg_trades_per_day": 3.0
+    },
+    {
+      "address": "5pKVDzDYxz3LHDS9RdWucPRQHVefaekvSsJCirVkm6MQ",
+      "score": 0.3333333333333333,
+      "win_rate": 0.6,
+      "holding_time": 1623.741935483871,
+      "pct_change_30d": 0.21469527318472856,
+      "avg_trades_per_day": 24.5
+    },
+    {
+      "address": "8VFbYgjkGW5m54yYy4swL3Qq5sTwM39GCNxMX5WHzmXY",
+      "score": 1.0,
+      "win_rate": 1,
+      "holding_time": 1369,
+      "pct_change_30d": 0.7661669303189494,
       "avg_trades_per_day": 0.13333333333333333
     },
     {
-      "address": "DCc23t7MStkh1djMXWqXmNrAvZNjve1DEfnhcBLehg5B",
+      "address": "F7E1zcTHJqBRYzR6Ko752qUxvtpJEtPcirnbmb7qoCsH",
       "score": 0.16666666666666666,
       "win_rate": 0,
       "holding_time": null,
       "pct_change_30d": 0,
-      "avg_trades_per_day": 0.0
-    },
-    {
-      "address": "6Tb4JZbUDHReuUPy66N7NZxQo9YttbTVcGVVEqueZcxM",
-      "score": 0.16666666666666666,
-      "win_rate": 0,
-      "holding_time": null,
-      "pct_change_30d": 0,
-      "avg_trades_per_day": 0.0
-    },
-    {
-      "address": "3nvMJZeuZQWw7Vz3ejLNetTMKf2f5sUuqU2sELq6MepR",
-      "score": 0.16666666666666666,
-      "win_rate": 0,
-      "holding_time": null,
-      "pct_change_30d": 0,
-      "avg_trades_per_day": 0.0
-    },
-    {
-      "address": "533gFZFHzHF9NCutqHE4hZT8bQZZgGzDDnwVQzkN4Fwh",
-      "score": 0.16666666666666666,
-      "win_rate": 0,
-      "holding_time": 0,
-      "pct_change_30d": 0,
-      "avg_trades_per_day": 0.4
+      "avg_trades_per_day": 0.03333333333333333
     }
   ]
 }
 
 Dexscreener Analysis:
-- Market Cap: 108492317.0
-- Volume: 23743905.75
-- Liquidity: 2293525.9
-- Socials: https://x.com/alphaofsol, https://t.me/alphaofsol
+- Market Cap: 263349.0
+- Volume: 2157298.06
+- Liquidity: 63968.11
+- Socials: https://x.com/TTC_COIN, https://t.me/tax_company_community
 
 DO NOT output json or any data format that you have received above. You will use this data to generate your analysis.
-DO NOT feel the need to give advice on amount of solana someone should put into a coin. Each person has different size.
+DO NOT advise in exact sol amounts, if you want to advise amounts, simply advise on size but even then try to refrain.
 You may and should quote information from the data above to help you generate your analysis. But do not output the data itself.
 In general, you should lean skeptical, but if a token's fundamentals look good and the narrative seems strong,
 you don't need to be excessively negative.

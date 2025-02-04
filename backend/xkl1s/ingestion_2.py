@@ -39,6 +39,7 @@ class ParentTweetInfo:
 
 @dataclass
 class TweetData:
+    id: str  # Added tweet ID field
     content: str
     user: UserInfo
     search_match_type: str
@@ -85,32 +86,40 @@ class ApifyTwitterAnalyzer:
         self.parent_cache: Dict[str, ParentTweetInfo] = {}
 
     def _translate_item(self, item: Dict) -> Dict:
-        """Convert danek/scraper fields to our expected format"""
-        return {
-            "id": item["tweet_id"],
+        """Convert kaitoeasyapi scraper fields to our expected format"""
+        translated = {
+            "id": item["id"],
             "author": {
-                "id": item["user_info"]["rest_id"],
-                "userName": item["screen_name"],
-                "followers": item["user_info"]["followers_count"],
-                "isVerified": item["user_info"]["verified"],
+                "id": item["author"]["id"],
+                "userName": item["author"]["userName"],
+                "followers": item["author"].get("followers", 0),
+                "isVerified": item["author"].get("isVerified", False),
+                "isBlueVerified": item["author"].get("isBlueVerified", False),
             },
             "text": item["text"],
-            "replyCount": item.get("replies", 0),
-            "retweetCount": item.get("retweets", 0),
-            "likeCount": item.get("favorites", 0),
-            "quoteCount": item.get("quotes", 0),
+            "replyCount": item.get("replyCount", 0),
+            "retweetCount": item.get("retweetCount", 0),
+            "likeCount": item.get("likeCount", 0),
+            "quoteCount": item.get("quoteCount", 0),
             "quote": None,  # Parent tweets not handled in this version
         }
+        return translated
 
     def _create_user_info(self, user_data: Dict) -> UserInfo:
         cached_user = self.user_cache.get(user_data["id"])
         if cached_user:
             return cached_user
 
+        notable_followers = []
+        if user_data.get("isVerified"):
+            notable_followers.append("Verified")
+        if user_data.get("isBlueVerified"):
+            notable_followers.append("BlueVerified")
+
         user_info = UserInfo(
             screen_name=user_data["userName"],
             follower_count=user_data.get("followers", 0),
-            notable_followers=["Verified"] if user_data.get("isVerified") else [],
+            notable_followers=notable_followers,
             is_verified=user_data.get("isVerified", False),
             ca_mention_count=0,
             ticker_mention_count=0,
@@ -148,6 +157,7 @@ class ApifyTwitterAnalyzer:
                 ][:5]
 
             tweet_data = TweetData(
+                id=tweet_id,  # Include tweet ID
                 content=item["text"],
                 user=user_info,
                 search_match_type=self._determine_search_match_type(item["text"]),
@@ -178,39 +188,43 @@ class ApifyTwitterAnalyzer:
         return "BOTH" if has_ca and has_ticker else "CA" if has_ca else "TICKER"
 
     async def analyze_tweets(self, num_tweets: int = 50) -> List[TweetData]:
-        queries = [
-            {"query": f'"{self.ticker}" lang:en', "max_posts": num_tweets, "sort": "recent"},
-            {"query": f'"{self.contract_address}" lang:en', "max_posts": num_tweets, "sort": "recent"},
-        ]
+        run_input = {
+            "searchTerms": [f'"{self.ticker}"', f'"{self.contract_address}"'],
+            "maxItems": num_tweets // 2,
+            "lang": "en",
+            "queryType": "Latest",
+            "filter:blue_verified": False,
+            "filter:replies": False,
+            "filter:hashtags": False,
+            "filter:media": False,
+            "include:nativeretweets": False,
+        }
 
         api_key = await ApifyTwitterAnalyzer.get_next_api_key()
         client = ApifyClientAsync(api_key)
 
-        # Run both scrapers concurrently
-        tasks = [client.actor("danek/twitter-scraper-ppr").call(run_input=query, max_items=num_tweets // 2) for query in queries]
-        results = await asyncio.gather(*tasks)
+        try:
+            actor_call = client.actor("kaitoeasyapi/twitter-x-data-tweet-scraper-pay-per-result-cheapest").call(run_input=run_input)
+            run = await actor_call
+        except Exception as e:
+            logger.error(f"Scraper run failed: {e}")
+            return []
 
         processed_tweets: List[TweetData] = []
+        dataset = client.dataset(run["defaultDatasetId"])
+        async for item in dataset.iterate_items():
+            if len(processed_tweets) >= num_tweets:
+                break
+            processed = await self._process_tweet(item)
+            if processed:
+                processed_tweets.append(processed)
 
-        for run in results:
-            if not run:
-                logger.error("Scraper run failed")
-                continue
-
-            dataset = client.dataset(run["defaultDatasetId"])
-            async for item in dataset.iterate_items():
-                if len(processed_tweets) >= num_tweets * 2:  # Double for both queries
-                    break
-                processed = await self._process_tweet(item)
-                if processed:
-                    processed_tweets.append(processed)
-
-        # Deduplicate while preserving order
-        seen = set()
+        # Deduplicate based on tweet ID (though processed_tweets should already be unique)
+        seen_ids = set()
         deduped = []
         for tweet in processed_tweets:
-            if tweet.content not in seen:
-                seen.add(tweet.content)
+            if tweet.id not in seen_ids:
+                seen_ids.add(tweet.id)
                 deduped.append(tweet)
 
         logger.info(f"Processed {len(deduped)} unique tweets")
@@ -226,6 +240,7 @@ class ApifyTwitterAnalyzer:
 
     def _tweet_to_dict(self, tweet: TweetData) -> Dict:
         return {
+            "id": tweet.id,
             "content": tweet.content,
             "user": {
                 "screen_name": tweet.user.screen_name,
@@ -235,7 +250,7 @@ class ApifyTwitterAnalyzer:
                 "ticker_mentions": tweet.user.ticker_mention_count,
             },
             "metrics": tweet.metrics,
-            "parent_tweet": None,  # Removed for simplicity
+            "parent_tweet": None,
         }
 
 
