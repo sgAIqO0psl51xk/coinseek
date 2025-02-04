@@ -77,8 +77,7 @@ export default function AnalyzePage() {
       return;
     }
 
-    console.log(`Starting analysis for ${contractAddress}`);
-    const url = `${backendUrl}analyze?contract_address=${encodeURIComponent(
+    const url = `${backendUrl}/analyze?contract_address=${encodeURIComponent(
       contractAddress
     )}${ticker ? `&ticker=${encodeURIComponent(ticker.toUpperCase())}` : ""}`;
     const eventSource = new EventSource(url);
