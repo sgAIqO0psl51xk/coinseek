@@ -346,16 +346,12 @@ Break down your analysis into:
                     got_data = False
                     content_iterator = response.content.__aiter__()
 
-                    last_data_time = None
                     while True:
                         try:
                             # Use appropriate timeout for current state
                             current_timeout = RESPONSE_TIMEOUT
                             async with asyncio.timeout(current_timeout):
                                 line = await content_iterator.__anext__()
-
-                            if last_data_time is None:
-                                last_data_time = asyncio.get_event_loop().time()
                         except StopAsyncIteration:
                             break
                         except asyncio.TimeoutError as e:
@@ -383,27 +379,18 @@ Break down your analysis into:
                         delta = chunk["choices"][0].get("delta", {})
 
                         # Handle different content types
-                        current_run_data = False
                         if content := delta.get("content"):
-                            current_run_data = True  # Mark that we've received at least one chunk
+                            got_data = True  # Mark that we've received at least one chunk
                             yield {"type": "analysis", "content": content}
                         if reasoning_content := delta.get("reasoning_content") or delta.get("reasoning"):
-                            current_run_data = True  # Mark that we've received at least one chunk
+                            got_data = True  # Mark that we've received at least one chunk
                             yield {"type": "reasoning", "content": reasoning_content}
-                        got_data = got_data or current_run_data
-
-                        time_to_receive_data = asyncio.get_event_loop().time() - last_data_time
-                        if time_to_receive_data > RESPONSE_TIMEOUT:
-                            logging.warning(delta)
-                            logging.warning(f"Data received in {time_to_receive_data}s")
-                            raise Exception(f"Data received in {time_to_receive_data}s more than limit of {RESPONSE_TIMEOUT}s")
-                        if current_run_data:
-                            last_data_time = asyncio.get_event_loop().time()
 
                     if not got_data:
                         raise Exception("No data received from LLM stream")
 
                     yield {"type": "complete"}
+                    logging.info("Analysis complete")
                     return  # Success - exit provider loop
 
             except (asyncio.TimeoutError, Exception) as e:

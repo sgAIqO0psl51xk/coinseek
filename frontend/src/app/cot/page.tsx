@@ -85,7 +85,10 @@ export default function AnalyzePage() {
 
     // Add event listeners for specific event types
     eventSource.addEventListener('start', (event: MessageEvent) => {
+      setError(null);
       setAnalysis("");
+      setReasoning("");
+      setIsAnalyzing(true);
     });
 
     eventSource.addEventListener('reasoning', (event: MessageEvent) => {
