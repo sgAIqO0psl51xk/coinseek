@@ -366,7 +366,6 @@ export default function AnalyzePage() {
                   placeholder="Enter contract address"
                   required
                   className="h-12 text-lg"
-                  disabled={isAnalyzing}
                 />
               </div>
               <div className="w-48 relative">
