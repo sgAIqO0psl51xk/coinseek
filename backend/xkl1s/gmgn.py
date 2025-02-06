@@ -1,23 +1,57 @@
 import json
 import logging
+import random
 import time
 from typing import Any, Dict, List
+
+import requests
 from curl_cffi import requests as c_requests
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
 
+proxies_table: List[Dict[str, str]] | List[None] = []
 
-def fetch_data_retry(headers: Dict[str, str], url: str, max_attempts: int = 5) -> Dict[str, Any]:
-    last_error = ""
-    for attempt in range(max_attempts):
+
+def get_proxy():
+    global proxies_table
+    if not proxies_table:
         try:
-            response = c_requests.get(url, headers=headers, impersonate="chrome110")
+            url = (
+                "https://api.proxyscrape.com/v4/free-proxy-list/get?request=display_proxies&proxy_format=protocolipport&format=json&timeout=420"
+            )
+            response = requests.get(url)
+            proxies = response.json()
+            if not proxies:
+                raise Exception("No proxies found")
+            if proxies.get("proxies"):
+                proxies = proxies["proxies"]
+            else:
+                raise Exception("No proxies found")
+            for proxy in proxies:
+                port = proxy.get("port")
+                ip = proxy.get("ip")
+                protocol = proxy.get("protocol")
+
+                proxies_table.append({protocol: f"{protocol}://{ip}:{port}"})
+        except Exception as e:
+            logging.error(f"Error fetching proxies: {e}")
+            proxies_table = [None]
+    return proxies_table
+
+
+def fetch_data_retry(headers: Dict[str, str], url: str, max_attempts: int = 20) -> Dict[str, Any]:
+    last_error = ""
+    wait_time = 2
+    for attempt in range(max_attempts):
+        proxies = random.choice(get_proxy())
+        try:
+            logging.debug(f"Using proxy: {proxies}")
+            response = c_requests.get(url, headers=headers, impersonate="chrome110", proxies=proxies)
             response.raise_for_status()
             return response.json()
         except Exception as e:
             last_error = str(e)
-            wait_time = 2**attempt
-            logging.warning(f"Attempt {attempt + 1} failed: {e}. Retrying in {wait_time} seconds...")
+            logging.warning(f"Attempt {attempt + 1} failed: {e}. With proxy {proxies}. Retrying in {wait_time} seconds...")
             if attempt + 1 != max_attempts:
                 time.sleep(wait_time)
 
