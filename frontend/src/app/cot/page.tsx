@@ -327,9 +327,10 @@ export default function AnalyzePage() {
           <div
             className={`transition-all duration-500 ease-in-out ${
               !reasoning && !isAnalyzing
-                ? "opacity-100 max-h-[200px]"
-                : "opacity-0 max-h-0"
+                ? "opacity-100 max-h-[200px] pointer-events-auto"
+                : "opacity-0 max-h-0 pointer-events-none"
             }`}
+            style={{ zIndex: !reasoning && !isAnalyzing ? 0 : -1 }}
           >
             <div className="flex flex-col items-center justify-center gap-3 mb-8">
               <div className="flex items-center gap-3 mb-2">
@@ -339,6 +340,7 @@ export default function AnalyzePage() {
                   className="w-6 h-6"
                   width={24}
                   height={24}
+                  priority
                 />
                 <h1 className="text-4xl font-bold tracking-tight">
                   Hi, I'm CoinSeek
