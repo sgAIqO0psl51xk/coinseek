@@ -148,23 +148,25 @@ class DeepseekDriver:
             "creator_analysis": creator_analysis,
         }
 
-    def analyze_gmgn(self) -> Dict[str, Any]:
+    async def analyze_gmgn(self) -> Dict[str, Any]:
         """Gather GMGN analysis data"""
         print("\nStarting GMGN analysis...")
         token_data = GMGNTokenData(self.contract_address)
+        wallets = await token_data.get_top_wallets()
+        
         return {
-            "top_holder_avg_holding_time": token_data.get_top_holder_average_holding_time(10),
-            "top_holder_avg_score": token_data.get_average_wallet_score(10),
+            "top_holder_avg_holding_time": await token_data.get_top_holder_average_holding_time(10),
+            "top_holder_avg_score": await token_data.get_average_wallet_score(10),
             "top_wallets": [
                 {
                     "address": wallet.wallet,
-                    "score": wallet.get_wallet_score(),
-                    "win_rate": wallet.get_win_rate(),
-                    "holding_time": wallet.get_holding_time(),
-                    "pct_change_30d": wallet.get_30d_pctchange(),
-                    "avg_trades_per_day": wallet.average_trades_per_day(),
+                    "score": await wallet.get_wallet_score(),
+                    "win_rate": await wallet.get_win_rate(),
+                    "holding_time": await wallet.get_holding_time(),
+                    "pct_change_30d": await wallet.get_30d_pctchange(),
+                    "avg_trades_per_day": await wallet.average_trades_per_day(),
                 }
-                for wallet in token_data.get_top_wallets()[:10]
+                for wallet in wallets[:10]
             ],
         }
 
@@ -172,7 +174,7 @@ class DeepseekDriver:
         """Run all analyses and combine results"""
         twitter_task = asyncio.create_task(self.analyze_twitter())
         trenchbot_task = asyncio.create_task(self.analyze_trenchbot())
-        gmgn_data = self.analyze_gmgn()
+        gmgn_data = await self.analyze_gmgn()
         dexscreener_data = asyncio.create_task(get_token_mcap_volume(self.contract_address))
 
         return TokenAnalysis(
