@@ -199,6 +199,10 @@ class DeepseekDriver:
             4. Blunt analogies ("This chart looks like my ex's commitment issues - spike then ghost")
             5. Adaptive tone based on perceived risk (mock FOMO, roast suspicious patterns)
 
+            NOTE THAT IF YOU MENTION CONTENT A TWEET(S), BE SURE TO HYPERLINK THE ACTUAL TWEET LINK.
+            INCLUDE THESE LINKS IN ALL PLACES YOU MENTION A TWEET AS A SOURCE, BE SURE TO BOLD AND
+            UNDERLINE THE HYPERLINKS VIA MARKDOWN.
+
             Maintain this persona in your REASONING PROCESS, not just final output.
             Think through the lens of a cynical trader who's seen 100 rugs.""",
         }
@@ -231,6 +235,10 @@ address are in response to a tweet by a user with a very large number of followe
 it's possible that the parent tweet content is either related or has something to do with the narrative/reason behind the token.
 lastly, if we find that an account that has mentioned a ticker many times and has tweets generally explaining
 functionality or launches, you should try to determine if that's the account for the token and the details to the user.
+
+NOTE THAT IF YOU MENTION CONTENT A TWEET(S), BE SURE TO HYPERLINK THE ACTUAL TWEET LINK.
+INCLUDE THESE LINKS IN ALL PLACES YOU MENTION A TWEET AS A SOURCE, BE SURE TO BOLD AND
+UNDERLINE THE HYPERLINKS VIA MARKDOWN.
 
 generally, these datapoints should be used to determine: credibility of those pushing the token, possible narratives around it,
 and important accounts or tweets that may provide more context.

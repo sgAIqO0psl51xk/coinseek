@@ -247,6 +247,7 @@ class ApifyTwitterAnalyzer:
         return {
             "id": tweet.id,
             "content": tweet.content,
+            "url": f"https://twitter.com/{tweet.user.screen_name}/status/{tweet.id}",
             "user": {
                 "screen_name": tweet.user.screen_name,
                 "followers": tweet.user.follower_count,
