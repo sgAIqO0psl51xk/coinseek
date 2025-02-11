@@ -44,7 +44,7 @@ def get_proxy():
     return proxies_table
 
 
-async def fetch_data_retry(headers: Dict[str, str], url: str, max_attempts: int = 20) -> Dict[str, Any]:
+async def fetch_data_retry(headers: Dict[str, str], url: str, max_attempts: int = 7) -> Dict[str, Any]:
     global _last_request_time
     last_error = ""
     wait_time = 2
