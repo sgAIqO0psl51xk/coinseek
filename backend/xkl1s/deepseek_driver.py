@@ -77,6 +77,7 @@ class DeepseekDriver:
         for tweet in tweet_data:
             tweet_dict = {
                 "content": tweet.content,
+                "url": tweet.url,
                 "user": {
                     "screen_name": tweet.user.screen_name,
                     "follower_count": tweet.user.follower_count,

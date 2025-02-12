@@ -44,10 +44,10 @@ class TweetData:
     content: str
     user: UserInfo
     search_match_type: str
+    url: str
     replies: List[TweetReply] = field(default_factory=list)
     parent_tweet: Optional[ParentTweetInfo] = None
     metrics: Dict[str, Any] = field(default_factory=dict)
-
 
 class ApifyTwitterAnalyzer:
     api_key_last_used: Dict[str, datetime.datetime] = {}
@@ -105,6 +105,7 @@ class ApifyTwitterAnalyzer:
             "likeCount": item.get("likeCount", 0),
             "quoteCount": item.get("quoteCount", 0),
             "quote": None,  # Parent tweets not handled in this version
+            "url": item.get("url", ""),
         }
         return translated
 
@@ -173,6 +174,7 @@ class ApifyTwitterAnalyzer:
                     "has_large_parent": False,
                     "has_affiliated_parent": False,
                 },
+                url=item.get("url") or f"https://twitter.com/{user_info.screen_name}/status/{tweet_id}",
             )
 
             if tweet_data.metrics["reply_count"] > 5 or user_info.follower_count >= self.large_account_threshold:
@@ -247,7 +249,7 @@ class ApifyTwitterAnalyzer:
         return {
             "id": tweet.id,
             "content": tweet.content,
-            "url": f"https://twitter.com/{tweet.user.screen_name}/status/{tweet.id}",
+            "url": tweet.url if tweet.url else f"https://twitter.com/{tweet.user.screen_name}/status/{tweet.id}",
             "user": {
                 "screen_name": tweet.user.screen_name,
                 "followers": tweet.user.follower_count,
