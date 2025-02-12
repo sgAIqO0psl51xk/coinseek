@@ -343,11 +343,6 @@ Break down your analysis into:
         CONNECTION_TIMEOUT = 2  # 5 seconds timeout
         RESPONSE_TIMEOUT = 10  # 5 seconds timeout for initial response
 
-        # write prompt to file
-        with open("prompt.txt", "w") as f:
-            for message in messages:
-                f.write(message["content"] + "\n")
-
         for provider in self.llm_providers:
             yield {"type": "start", "message": f"Attempting analysis with {provider.provider_type}:{provider.model_name}..."}
             logging.info(f"Attempting analysis with {provider.provider_type}:{provider.model_name}...")

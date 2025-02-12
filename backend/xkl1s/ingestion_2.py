@@ -49,6 +49,7 @@ class TweetData:
     parent_tweet: Optional[ParentTweetInfo] = None
     metrics: Dict[str, Any] = field(default_factory=dict)
 
+
 class ApifyTwitterAnalyzer:
     api_key_last_used: Dict[str, datetime.datetime] = {}
     lock = asyncio.Lock()

@@ -20,7 +20,6 @@ def get_proxy():
     return [{"http": proxy_url, "https": proxy_url}]
 
 
-
 async def fetch_data_retry(headers: Dict[str, str], url: str, max_attempts: int = 3) -> Dict[str, Any]:
     global _last_request_time
     last_error = ""
@@ -68,7 +67,7 @@ class GMGNWalletData:
         }
 
         url = f"https://gmgn.ai/defi/quotation/v1/smartmoney/sol/walletNew/{self.wallet}?app_lang=en&period=7d"
-        
+
         self.data = await fetch_data_retry(headers, url)
         self.data = self.data.get("data", {})
 
@@ -190,7 +189,7 @@ class GMGNTokenData:
             return average_score
         else:
             return 0
-        
+
     async def get_total_pnl(self, num_wallets: int = 4) -> float:
         wallets = (await self.get_top_wallets())[:num_wallets]
         pnl = [await wallet.get_pnl() for wallet in wallets]
