@@ -4,8 +4,6 @@ import random
 import time
 import asyncio
 from typing import Any, Dict, List
-
-import requests
 from curl_cffi import requests as c_requests
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
@@ -18,33 +16,12 @@ _rate_limit_lock = asyncio.Lock()
 
 
 def get_proxy():
-    global proxies_table
-    if not proxies_table:
-        try:
-            url = (
-                "https://api.proxyscrape.com/v4/free-proxy-list/get?request=display_proxies&proxy_format=protocolipport&format=json&timeout=420"
-            )
-            response = requests.get(url)
-            proxies = response.json()
-            if not proxies:
-                raise Exception("No proxies found")
-            if proxies.get("proxies"):
-                proxies = proxies["proxies"]
-            else:
-                raise Exception("No proxies found")
-            for proxy in proxies:
-                port = proxy.get("port")
-                ip = proxy.get("ip")
-                protocol = proxy.get("protocol")
-
-                proxies_table.append({protocol: f"{protocol}://{ip}:{port}"})
-        except Exception as e:
-            logging.error(f"Error fetching proxies: {e}")
-            proxies_table = [None]
-    return proxies_table
+    proxy_url = "http://user-10021641-country-us-plan-luminati:YGO5toluZS@rv3.pookyyproxies.com:8888"
+    return [{"http": proxy_url, "https": proxy_url}]
 
 
-async def fetch_data_retry(headers: Dict[str, str], url: str, max_attempts: int = 20) -> Dict[str, Any]:
+
+async def fetch_data_retry(headers: Dict[str, str], url: str, max_attempts: int = 3) -> Dict[str, Any]:
     global _last_request_time
     last_error = ""
     wait_time = 2
@@ -91,7 +68,7 @@ class GMGNWalletData:
         }
 
         url = f"https://gmgn.ai/defi/quotation/v1/smartmoney/sol/walletNew/{self.wallet}?app_lang=en&period=7d"
-
+        
         self.data = await fetch_data_retry(headers, url)
         self.data = self.data.get("data", {})
 
@@ -117,6 +94,11 @@ class GMGNWalletData:
         if self.data == {}:
             await self._pull_data()
         return (self.data.get("buy_30d", 0) + self.data.get("sell_30d", 0)) / 30
+
+    async def get_pnl(self) -> float:
+        if self.data == {}:
+            await self._pull_data()
+        return self.data.get("realized_profit_7d", 0)
 
     async def get_wallet_score(self) -> float:
         cur_score = 0
@@ -208,12 +190,17 @@ class GMGNTokenData:
             return average_score
         else:
             return 0
+        
+    async def get_total_pnl(self, num_wallets: int = 4) -> float:
+        wallets = (await self.get_top_wallets())[:num_wallets]
+        pnl = [await wallet.get_pnl() for wallet in wallets]
+        return sum(pnl)
 
 
 if __name__ == "__main__":
 
     async def main():
-        data = GMGNTokenData("8FqXr6dw5NHA2TtwFeDz6q9p7y9uWyoEdZmpXqqUpump")
+        data = GMGNTokenData("0x47A1EB0b825b73e6A14807BEaECAFef199d5477c")
         print(f"Top 10 avg holding: {await data.get_top_holder_average_holding_time(10)}")
         print(f"Top 10 avg score: {await data.get_average_wallet_score(10)}")
         wallet = GMGNWalletData("BJVHxVNDbBVx6Nv1zckuPyKuboy8xjvvoTRYr97pToie")

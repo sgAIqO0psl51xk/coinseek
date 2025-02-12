@@ -162,6 +162,7 @@ class DeepseekDriver:
         return {
             "top_holder_avg_holding_time": await token_data.get_top_holder_average_holding_time(10),
             "top_holder_avg_score": await token_data.get_average_wallet_score(10),
+            "total_top_wallets_pnl": await token_data.get_total_pnl(10),
             "top_wallets": [
                 {
                     "address": wallet.wallet,
@@ -170,6 +171,7 @@ class DeepseekDriver:
                     "holding_time": await wallet.get_holding_time(),
                     "pct_change_30d": await wallet.get_30d_pctchange(),
                     "avg_trades_per_day": await wallet.average_trades_per_day(),
+                    "pnl": await wallet.get_pnl(),
                 }
                 for wallet in wallets[:10]
             ],
@@ -287,6 +289,10 @@ through multiple wallets.
 
 holder ratings
 information regarding the average hold times of the top holders
+If the data is zeroed out then this probably means that there was an api error or the chain does not support this data. In that case do 
+not mention it in the analysis.
+Use the total pnl of the top 10 wallets to determine the risk of the token. If the total pnl is negative, mention that in the analysis 
+and explain that this is a risk as it means that the top holders are losing money and this could lead to a dump.
 
 what this essentially means is that the top X amount of holders will be examined to see the
 average amount of time they hold coins. for reference, 20-30minutes could be considered 5/10, 30-40 as 6/10 etc.
