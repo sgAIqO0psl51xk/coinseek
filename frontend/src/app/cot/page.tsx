@@ -42,6 +42,10 @@ export default function AnalyzePage() {
   const [loadingDots, setLoadingDots] = useState('.');
   const [selectedChain, setSelectedChain] = useState('eth');
 
+  // New state variables to capture submitted values:
+  const [submittedContractAddress, setSubmittedContractAddress] = useState("");
+  const [submittedTicker, setSubmittedTicker] = useState("");
+  const [submittedChain, setSubmittedChain] = useState("eth");
 
   const loadingMessages = [
     "Checking onchain",
@@ -81,15 +85,15 @@ export default function AnalyzePage() {
 
     // Map dropdown selection to API chain_id value:
     // 'eth' becomes 'ethereum' and 'sol' becomes 'solana'
-    const chainIdForApi = selectedChain === 'eth' 
+    const chainIdForApi = submittedChain === 'eth' 
       ? 'ethereum' 
-      : selectedChain === 'sol'
+      : submittedChain === 'sol'
         ? 'solana'
-        : selectedChain;
+        : submittedChain;
 
     const url = `${backendUrl}/analyze?contract_address=${encodeURIComponent(
-      contractAddress
-    )}${ticker ? `&ticker=${encodeURIComponent(ticker.toUpperCase())}` : ""}&chain_id=${encodeURIComponent(chainIdForApi)}`;
+      submittedContractAddress
+    )}${submittedTicker ? `&ticker=${encodeURIComponent(submittedTicker.toUpperCase())}` : ""}&chain_id=${encodeURIComponent(chainIdForApi)}`;
     const eventSource = new EventSource(url);
 
     // Add event listeners for specific event types
@@ -170,7 +174,7 @@ export default function AnalyzePage() {
     return () => {
       eventSource.close();
     };
-  }, [isAnalyzing, contractAddress, ticker, selectedChain]);
+  }, [isAnalyzing, submittedContractAddress, submittedTicker, submittedChain]);
 
   // Auto-scroll for reasoning messages if the user is already near the bottom.
   useEffect(() => {
@@ -217,6 +221,12 @@ export default function AnalyzePage() {
     setAnalysis("");
     setReasoning("");
     setLoadingStage(0);
+    
+    // Capture submitted values
+    setSubmittedContractAddress(contractAddress);
+    setSubmittedTicker(ticker);
+    setSubmittedChain(selectedChain);
+
     setIsAnalyzing(true);
   }
 
