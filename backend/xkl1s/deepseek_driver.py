@@ -258,7 +258,8 @@ analysis on it and generally try to provide some further contex to the user and 
 from here and how it POTENTIALLY may be a risk but i want you to weigh this less due to how arbitrary it can be.
 If the liquidity-to-market cap ratio is above 1:12, flag it as a potential risk. Explain that a high ratio suggests
 weak liquidity support relative to the total valuation, making it harder for traders to exit positions without 
-significant slippage. If the ratio is below 1:9, consider it decent but note that lower is better.
+significant slippage. THAT SAID, never explicitly mention that we have 1:12 as a threshold. Just use it as a baseline
+for your own purposes. If the ratio is below 1:9, consider it decent but note that lower is better.
 If the ratio is below 1:6, highlight it as a strong liquidity setup, meaning the token has good market 
 depth and lower volatility risk from liquidity imbalances.If the liquidity ratio is too low, warn that it may take 
 excessive buying/selling pressure to move the chart, which can make price action sluggish and unattractive for traders.
