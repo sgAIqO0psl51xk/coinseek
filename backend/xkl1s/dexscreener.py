@@ -27,9 +27,9 @@ class DexScreenerTokenData:
         return base_str
 
 
-async def get_token_mcap_volume(token_address: str) -> DexScreenerTokenData:
+async def get_token_mcap_volume(token_address: str, chain_id: str) -> DexScreenerTokenData:
     async with httpx.AsyncClient() as client:
-        response = await client.get(f"https://api.dexscreener.com/tokens/v1/solana/{token_address}")
+        response = await client.get(f"https://api.dexscreener.com/tokens/v1/{chain_id}/{token_address}")
         if response.status_code != 200:
             raise ValueError(f"DexScreener API error: {response.status_code}")
 
@@ -61,7 +61,7 @@ async def get_token_mcap_volume(token_address: str) -> DexScreenerTokenData:
 
 async def main():
     token_address = "FtBXDMyD4SvAa6keQPAGk4sgRVuUECsxGU1X2dLWpump"
-    ret = await get_token_mcap_volume(token_address)
+    ret = await get_token_mcap_volume(token_address, "solana")
     print(ret)
 
 

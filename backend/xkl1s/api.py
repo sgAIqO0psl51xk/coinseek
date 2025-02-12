@@ -69,8 +69,8 @@ rate_limiter = RateLimiter()
 
 
 @app.get("/analyze")
-async def analyze(request: Request, contract_address: str, ticker: str = ""):
-    logging.info(f"Received analyze request for contract: {contract_address}, ticker: {ticker}")
+async def analyze(request: Request, contract_address: str, ticker: str, chain_id: str):
+    logging.info(f"Received analyze request for contract: {contract_address}, ticker: {ticker}, chain_id: {chain_id}")
 
     client_ip = (
         request.headers.get("x-forwarded-for", "").split(",")[0].strip() or request.headers.get("x-real-ip", "") or request.client.host
@@ -143,7 +143,7 @@ async def analyze(request: Request, contract_address: str, ticker: str = ""):
                 priority=3,
             ),
         ]
-        driver = DeepseekDriver(contract_address=contract_address, ticker=ticker, llm_providers=llm_providers)
+        driver = DeepseekDriver(contract_address=contract_address, ticker=ticker, llm_providers=llm_providers, chain_id=chain_id)
 
         async def generate():
             try:

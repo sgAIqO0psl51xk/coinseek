@@ -47,10 +47,11 @@ class TokenAnalysis:
 
 
 class DeepseekDriver:
-    def __init__(self, contract_address: str, ticker: str, llm_providers: list[LLMProvider]):
+    def __init__(self, contract_address: str, ticker: str, llm_providers: list[LLMProvider], chain_id: str):
         self.contract_address = contract_address
         self.ticker = ticker
         self.llm_providers = sorted(llm_providers, key=lambda x: x.priority)
+        self.chain_id = chain_id
 
     async def analyze_twitter(self) -> Dict[str, Any]:
         """Twitter analysis using Apify"""
@@ -153,7 +154,7 @@ class DeepseekDriver:
         print("\nStarting GMGN analysis...")
         token_data = GMGNTokenData(self.contract_address)
         wallets = await token_data.get_top_wallets()
-        
+
         return {
             "top_holder_avg_holding_time": await token_data.get_top_holder_average_holding_time(10),
             "top_holder_avg_score": await token_data.get_average_wallet_score(10),
@@ -175,7 +176,7 @@ class DeepseekDriver:
         twitter_task = asyncio.create_task(self.analyze_twitter())
         trenchbot_task = asyncio.create_task(self.analyze_trenchbot())
         gmgn_data = await self.analyze_gmgn()
-        dexscreener_data = asyncio.create_task(get_token_mcap_volume(self.contract_address))
+        dexscreener_data = asyncio.create_task(get_token_mcap_volume(self.contract_address, self.chain_id))
 
         return TokenAnalysis(
             contract_address=self.contract_address,
