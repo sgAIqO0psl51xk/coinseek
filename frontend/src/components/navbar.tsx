@@ -12,23 +12,19 @@ const Navbar = () => {
       <Wrapper className="h-full">
         <div className="flex items-center justify-between h-full">
           <div className="flex items-center">
-            <Link
-              href="/"
-              className="flex items-center gap-1 lg:gap-0.5 uppercase tracking-widest group"
-            >
-              <span className="text-xl font-semibold hidden lg:block">C</span>
-              <Image
-                src="/mario.png"
-                alt="logo"
-                className="w-6 h-6 flex-shrink-0 group-hover:animate-spin-slow"
-                width={24}
-                height={24}
-                priority
-              />
-              <span className="text-xl font-semibold hidden lg:block">
-                inSeek
-              </span>
-            </Link>
+          <Link
+            href="/"
+            className="flex items-center"
+          >
+            <Image
+              src="/coinseek.png"
+              alt="CoinSeek logo"
+              className="h-8 w-auto flex-shrink-0 group-hover:animate-spin-slow"
+              width={120}  // Adjust based on your image dimensions
+              height={32}  // Adjust based on your image dimensions
+              priority
+            />
+          </Link>
           </div>
           <div className="hidden lg:flex items-center gap-4">
             <ul className="flex items-center gap-8">
