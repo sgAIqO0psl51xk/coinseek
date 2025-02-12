@@ -47,10 +47,11 @@ class TokenAnalysis:
 
 
 class DeepseekDriver:
-    def __init__(self, contract_address: str, ticker: str, llm_providers: list[LLMProvider]):
+    def __init__(self, contract_address: str, ticker: str, llm_providers: list[LLMProvider], chain_id: str):
         self.contract_address = contract_address
         self.ticker = ticker
         self.llm_providers = sorted(llm_providers, key=lambda x: x.priority)
+        self.chain_id = chain_id
 
     async def analyze_twitter(self) -> Dict[str, Any]:
         """Twitter analysis using Apify"""
@@ -153,7 +154,7 @@ class DeepseekDriver:
         print("\nStarting GMGN analysis...")
         token_data = GMGNTokenData(self.contract_address)
         wallets = await token_data.get_top_wallets()
-        
+
         return {
             "top_holder_avg_holding_time": await token_data.get_top_holder_average_holding_time(10),
             "top_holder_avg_score": await token_data.get_average_wallet_score(10),
@@ -175,7 +176,7 @@ class DeepseekDriver:
         twitter_task = asyncio.create_task(self.analyze_twitter())
         trenchbot_task = asyncio.create_task(self.analyze_trenchbot())
         gmgn_data = await self.analyze_gmgn()
-        dexscreener_data = asyncio.create_task(get_token_mcap_volume(self.contract_address))
+        dexscreener_data = asyncio.create_task(get_token_mcap_volume(self.contract_address, self.chain_id))
 
         return TokenAnalysis(
             contract_address=self.contract_address,
@@ -191,20 +192,23 @@ class DeepseekDriver:
         system_message: ChatCompletionMessageParam = {
             "role": "system",
             "content": """You are a battle-hardened crypto analyst with the mouth of a sailor and the instincts of a wolf.
-            Your thinking process should reflect these traits:
+Your output should use proper formatting with clear line breaks between sections and points.
+Each major point should be on its own line, preceded by a newline character.
 
-            1. Ruthlessly pragmatic analysis peppered with trader slang ("rekt", "ape in", "bags")
-            2. Dark humor in risk assessment ("this could moon or leave us holding our dicks")
-            3. Unfiltered takes on data patterns ("Top holders still holding? Bullish, they know something")
-            4. Blunt analogies ("This chart looks like my ex's commitment issues - spike then ghost")
-            5. Adaptive tone based on perceived risk (mock FOMO, roast suspicious patterns)
+Your thinking process should reflect these traits:
 
-            NOTE THAT IF YOU MENTION CONTENT A TWEET(S), BE SURE TO HYPERLINK THE ACTUAL TWEET LINK.
-            INCLUDE THESE LINKS IN ALL PLACES YOU MENTION A TWEET AS A SOURCE, BE SURE TO BOLD AND
-            UNDERLINE THE HYPERLINKS VIA MARKDOWN.
+1. Ruthlessly pragmatic analysis peppered with trader slang ("rekt", "ape in", "bags")
+2. Dark humor in risk assessment ("this could moon or leave us holding our dicks")
+3. Unfiltered takes on data patterns ("Top holders still holding? Bullish, they know something")
+4. Blunt analogies ("This chart looks like my ex's commitment issues - spike then ghost")
+5. Adaptive tone based on perceived risk (mock FOMO, roast suspicious patterns)
 
-            Maintain this persona in your REASONING PROCESS, not just final output.
-            Think through the lens of a cynical trader who's seen 100 rugs.""",
+NOTE THAT IF YOU MENTION CONTENT A TWEET(S), BE SURE TO HYPERLINK THE ACTUAL TWEET LINK.
+INCLUDE THESE LINKS IN ALL PLACES YOU MENTION A TWEET AS A SOURCE, BE SURE TO BOLD AND
+UNDERLINE THE HYPERLINKS VIA MARKDOWN.
+
+Maintain this persona in your REASONING PROCESS, not just final output.
+Think through the lens of a cynical trader who's seen 100 rugs.""",
         }
 
         user_message: ChatCompletionMessageParam = {
@@ -355,28 +359,36 @@ Break down your analysis into:
 
                     # Now process the stream without timeout
                     got_data = False
+                    last_valid_time = asyncio.get_event_loop().time()  # initialize last valid data time
                     content_iterator = response.content.__aiter__()
 
                     while True:
+                        # Compute the remaining timeout based on time elapsed since the last valid data chunk
+                        elapsed = asyncio.get_event_loop().time() - last_valid_time
+                        remaining_timeout = RESPONSE_TIMEOUT - elapsed
+                        if remaining_timeout <= 0:
+                            error_msg = f"No {'initial' if not got_data else 'subsequent'} response within {RESPONSE_TIMEOUT}s"
+                            raise asyncio.TimeoutError(error_msg)
+
                         try:
-                            # Use appropriate timeout for current state
-                            current_timeout = RESPONSE_TIMEOUT
-                            async with asyncio.timeout(current_timeout):
+                            async with asyncio.timeout(remaining_timeout):
                                 line = await content_iterator.__anext__()
                         except StopAsyncIteration:
                             break
                         except asyncio.TimeoutError as e:
-                            error_msg = f"No {'initial' if not got_data else 'subsequent'} " f"response within {current_timeout}s"
+                            error_msg = f"No {'initial' if not got_data else 'subsequent'} response within {RESPONSE_TIMEOUT}s"
                             raise asyncio.TimeoutError(error_msg) from e
 
                         decoded_line = line.decode("utf-8").strip()
-                        if not decoded_line.startswith("data:"):
-                            continue
 
+                        logging.info(f"Decoded line: {decoded_line}")
+
+                        if not decoded_line.startswith("data:"):
+                            # Do not update last_valid_time if the line is not valid data.
+                            continue
                         json_str = decoded_line[5:].strip()
                         if json_str == "[DONE]":
                             continue
-
                         try:
                             chunk = json.loads(json_str)
                         except json.JSONDecodeError as e:
@@ -389,13 +401,17 @@ Break down your analysis into:
 
                         delta = chunk["choices"][0].get("delta", {})
 
-                        # Handle different content types
-                        if content := delta.get("content"):
-                            got_data = True  # Mark that we've received at least one chunk
+                        # Handle different content types, only yield if non-empty
+                        if (content := delta.get("content")) is not None and content:
+                            last_valid_time = asyncio.get_event_loop().time()
+                            got_data = True  # Mark that we've received at least one valid chunk
                             yield {"type": "analysis", "content": content}
-                        if reasoning_content := delta.get("reasoning_content") or delta.get("reasoning"):
-                            got_data = True  # Mark that we've received at least one chunk
-                            yield {"type": "reasoning", "content": reasoning_content}
+
+                        # Try to get reasoning from either key and yield it if it has non-whitespace content
+                        if (resp_reasoning := (delta.get("reasoning_content") or delta.get("reasoning"))) is not None and resp_reasoning:
+                            last_valid_time = asyncio.get_event_loop().time()
+                            got_data = True  # Mark that we've received at least one valid chunk
+                            yield {"type": "reasoning", "content": resp_reasoning}
 
                     if not got_data:
                         raise Exception("No data received from LLM stream")
