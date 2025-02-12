@@ -138,6 +138,9 @@ class DeepseekDriver:
     async def analyze_trenchbot(self) -> Dict[str, Any]:
         """Gather TrenchBot analysis data"""
         print("\nStarting TrenchBot analysis...")
+        if self.chain_id != "solana":
+            print("Trench bot not enabled for non solana tokens")
+            return {}
         fetcher = TrenchBotFetcher(self.contract_address)
         percent_bundled = await fetcher.get_total_percent_bundled()
         percent_held = await fetcher.get_current_held_as_percent_of_total_bundle()
@@ -253,6 +256,7 @@ you will also receive some data like price, 24h change, 24h volume, FDV etc. thi
 but it's considerably subjective to determine the quality of a token from these stats alone but you can do some
 analysis on it and generally try to provide some further contex to the user and explain what they should care about
 from here and how it POTENTIALLY may be a risk but i want you to weigh this less due to how arbitrary it can be.
+if the liquidity to market cap ratio is 1:13 or better, this is considered to be good/decent liquidity.
 
 telegram
 dexscreener will provide all socials and if a telegram is present, it'll be in the form of a t.me link and that is how
@@ -260,13 +264,13 @@ dexscreener will provide all socials and if a telegram is present, it'll be in t
 
 if a telegram portal exists for the coin, that's usually a positive signal, though it's also not too much of an issue if it doesn't
 
-Solscan
+{"""Solscan
 looks at solscan for first block transaction, sees first block tx for how much been picked up from dev/sniper
 
 this should give information on how much of supply was bundled by the launcher of the coin which
 basically means how much they were able to purchase at a low price.
 we will also look at the amount the currently have left. obviously, the more they have left,
-the higher risk the coin would be as there's the eminent risk of the chart beind dumped
+the higher risk the coin would be as there's the eminent risk of the chart beind dumped""" if self.chain_id == "solana" else ""}
 
 holder ratings
 information regarding the average hold times of the top holders
@@ -284,8 +288,8 @@ Ticker: {self.ticker}
 Twitter Analysis:
 {json.dumps(analysis.twitter_data, indent=2)}
 
-TrenchBot Analysis:
-{json.dumps(analysis.trenchbot_data, indent=2)}
+{f"""TrenchBot Analysis:
+{json.dumps(analysis.trenchbot_data, indent=2)}""" if self.chain_id == "solana" else ""}
 
 GMGN Analysis:
 {json.dumps(analysis.gmgn_data, indent=2)}
@@ -315,6 +319,11 @@ Break down your analysis into:
         last_error = None
         CONNECTION_TIMEOUT = 2  # 5 seconds timeout
         RESPONSE_TIMEOUT = 10  # 5 seconds timeout for initial response
+
+        # write prompt to file
+        with open("prompt.txt", "w") as f:
+            for message in messages:
+                f.write(message["content"] + "\n")
 
         for provider in self.llm_providers:
             yield {"type": "start", "message": f"Attempting analysis with {provider.provider_type}:{provider.model_name}..."}
