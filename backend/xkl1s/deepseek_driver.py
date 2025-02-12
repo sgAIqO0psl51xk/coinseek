@@ -256,7 +256,12 @@ you will also receive some data like price, 24h change, 24h volume, FDV etc. thi
 but it's considerably subjective to determine the quality of a token from these stats alone but you can do some
 analysis on it and generally try to provide some further contex to the user and explain what they should care about
 from here and how it POTENTIALLY may be a risk but i want you to weigh this less due to how arbitrary it can be.
-if the liquidity to market cap ratio is 1:13 or better, this is considered to be good/decent liquidity.
+If the liquidity-to-market cap ratio is above 1:12, flag it as a potential risk. Explain that a high ratio suggests
+weak liquidity support relative to the total valuation, making it harder for traders to exit positions without 
+significant slippage. If the ratio is below 1:9, consider it decent but note that lower is better.
+If the ratio is below 1:6, highlight it as a strong liquidity setup, meaning the token has good market 
+depth and lower volatility risk from liquidity imbalances.If the liquidity ratio is too low, warn that it may take 
+excessive buying/selling pressure to move the chart, which can make price action sluggish and unattractive for traders.
 
 telegram
 dexscreener will provide all socials and if a telegram is present, it'll be in the form of a t.me link and that is how
@@ -264,13 +269,20 @@ dexscreener will provide all socials and if a telegram is present, it'll be in t
 
 if a telegram portal exists for the coin, that's usually a positive signal, though it's also not too much of an issue if it doesn't
 
+
 {"""Solscan
 looks at solscan for first block transaction, sees first block tx for how much been picked up from dev/sniper
 
-this should give information on how much of supply was bundled by the launcher of the coin which
+ this should give information on how much of supply was bundled by the launcher of the coin which
 basically means how much they were able to purchase at a low price.
 we will also look at the amount the currently have left. obviously, the more they have left,
 the higher risk the coin would be as there's the eminent risk of the chart beind dumped""" if self.chain_id == "solana" else ""}
+
+Mention that bundle technology does not exist on BNB, so exclude any bundle-related considerations.
+However, note that manual bundling may still occur, and this should be considered when evaluating large transactions.
+again, this should give information on how much of supply was purchased by the launcher of the coin and hidden away
+through multiple wallets.
+
 
 holder ratings
 information regarding the average hold times of the top holders
@@ -279,6 +291,10 @@ what this essentially means is that the top X amount of holders will be examined
 average amount of time they hold coins. for reference, 20-30minutes could be considered 5/10, 30-40 as 6/10 etc.
 obviously this isn't a clear heuristic that you need to follow but just to give you a rough idea of how we should treat the times.
 just generally take a look and provide the average as well as a brief analysis
+
+Analyze the ratio of top holders' balances relative to the liquidity pool size.
+If a major holder has a significant portion of the liquidity pool, warn that their selling could cause severe price drops
+ and liquidity drain. Provide context on how much of a price impact a large sell might have based on available liquidity. 
 
 Analyze this token like your bags depend on it:
 
