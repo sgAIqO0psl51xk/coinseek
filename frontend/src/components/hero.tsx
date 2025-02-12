@@ -30,9 +30,7 @@ const Hero = () => {
         <div className="flex flex-col items-center justify-center text-center gap-y-4 bg-background/0">
           <Container delay={0.15}>
             <h1 className="text-4xl md:text-4xl lg:text-7xl font-bold text-center !leading-tight max-w-4xl mx-auto">
-              Chain of Thought {"\n"}
-              <span className="text-blue-500">AI Analysis</span> for{" "}
-              <span className="text-blue-500">Solana</span>
+              <span className="text-blue-500">Omnichain</span> Chain of Thought <span className="text-blue-500">AI Analysis</span>
             </h1>
           </Container>
           <Container delay={0.2}>

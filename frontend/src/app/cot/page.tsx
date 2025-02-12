@@ -392,14 +392,17 @@ export default function AnalyzePage() {
             <path fill="#FFF" d="m9 16.22 7.498 4.353v-7.702z"/>
           </svg>
         )}
-        {selectedChain === 'solana' && (
+        {selectedChain === 'sol' && (
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" className="w-5 h-5">
-            <path fill="#000" d="M16 32c8.837 0 16-7.163 16-16S24.837 0 16 0 0 7.163 0 16s7.163 16 16 16z"/>
-            <path fill="url(#a)" d="M8.57 20.594L7.5 21.656l12.609 3.103 1.078-1.062-12.616-3.103zm1.062-4.226l-1.078-1.062 12.616-3.094 1.078 1.062-12.616 3.094zm2.122-4.219L10.68 11.09l9.375 9.344 1.07-1.063-9.375-9.344zm4.226 10.313l-1.078-1.063 6.563-6.562 1.078 1.063-6.563 6.562z"/>
+            <path d="M31.875 21.0625l-5.25 5.5313a1.5 1.5 0 0 1-0.9063 0.2812H0.625a0.625 0.625 0 0 1-0.4375-1.0625l5.25-5.5313a1.5 1.5 0 0 1 0.9063-0.2812h25.0937a0.625 0.625 0 0 1 0.4375 1.0625zM26.625 10.4062a1.5 1.5 0 0 0-0.9063-0.2812H0.625a0.625 0.625 0 0 0-0.4375 1.0625l5.25 5.5313a1.5 1.5 0 0 0 0.9063 0.2812h25.0937a0.625 0.625 0 0 0 0.4375-1.0625l-5.25-5.5313zM0.625 6.625h25.0937a1.5 1.5 0 0 0 0.9063-0.2812l5.25-5.5313A0.625 0.625 0 0 0 31.4375 0H6.3438a1.5 1.5 0 0 0-0.9063 0.2812l-5.25 5.5313a0.625 0.625 0 0 0 0.4375 1.0625z" fill="url(#solana-gradient)"/>
             <defs>
-              <linearGradient id="a" x1="11.032" x2="22.56" y1="17.867" y2="27.139" gradientUnits="userSpaceOnUse">
-                <stop stop-color="#00FFA3"/>
-                <stop offset="1" stop-color="#DC1FFF"/>
+              <linearGradient id="solana-gradient" x1="2" y1="28" x2="28" y2="2" gradientUnits="userSpaceOnUse">
+                <stop offset="0.08" stopColor="#9945FF"/>
+                <stop offset="0.3" stopColor="#8752F3"/>
+                <stop offset="0.5" stopColor="#5497D5"/>
+                <stop offset="0.6" stopColor="#43B4CA"/>
+                <stop offset="0.72" stopColor="#28E0B9"/>
+                <stop offset="0.97" stopColor="#19FB9B"/>
               </linearGradient>
             </defs>
           </svg>

@@ -119,28 +119,28 @@ async def analyze(request: Request, contract_address: str, ticker: str, chain_id
                 model_name="deepseek-reasoner",
                 base_url="https://api.deepseek.com/chat/completions",
                 provider_type="deepseek",
-                priority=1,
+                priority=2,
             ),
             LLMProvider(
                 api_key=os.getenv("OPENROUTER_API_KEY", ""),
                 model_name="deepseek/deepseek-r1",
                 base_url="https://openrouter.ai/api/v1/chat/completions",
                 provider_type="openrouter",
-                priority=2,
+                priority=1,
             ),
             LLMProvider(
                 api_key=os.getenv("OPENROUTER_API_KEY", ""),
                 model_name="deepseek/deepseek-r1:free",
                 base_url="https://openrouter.ai/api/v1/chat/completions",
                 provider_type="openrouter",
-                priority=0,
+                priority=3,
             ),
             LLMProvider(
                 api_key=os.getenv("OPENROUTER_API_KEY", ""),
                 model_name="deepseek/deepseek-r1:nitro",
                 base_url="https://openrouter.ai/api/v1/chat/completions",
                 provider_type="openrouter",
-                priority=3,
+                priority=0,
             ),
         ]
         driver = DeepseekDriver(contract_address=contract_address, ticker=ticker, llm_providers=llm_providers, chain_id=chain_id)
