@@ -381,8 +381,6 @@ Break down your analysis into:
 
                         decoded_line = line.decode("utf-8").strip()
 
-                        logging.info(f"Decoded line: {decoded_line}")
-
                         if not decoded_line.startswith("data:"):
                             # Do not update last_valid_time if the line is not valid data.
                             continue
@@ -402,13 +400,13 @@ Break down your analysis into:
                         delta = chunk["choices"][0].get("delta", {})
 
                         # Handle different content types, only yield if non-empty
-                        if (content := delta.get("content")) is not None and content:
+                        if (content := delta.get("content")) is not None:
                             last_valid_time = asyncio.get_event_loop().time()
                             got_data = True  # Mark that we've received at least one valid chunk
                             yield {"type": "analysis", "content": content}
 
                         # Try to get reasoning from either key and yield it if it has non-whitespace content
-                        if (resp_reasoning := (delta.get("reasoning_content") or delta.get("reasoning"))) is not None and resp_reasoning:
+                        if (resp_reasoning := (delta.get("reasoning_content") or delta.get("reasoning"))) is not None:
                             last_valid_time = asyncio.get_event_loop().time()
                             got_data = True  # Mark that we've received at least one valid chunk
                             yield {"type": "reasoning", "content": resp_reasoning}
