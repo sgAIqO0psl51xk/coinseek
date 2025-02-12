@@ -277,7 +277,19 @@ export default function AnalyzePage() {
                         className="h-full overflow-y-auto scrollbar-thin scrollbar-thumb-rounded-md scrollbar-track-rounded-md scrollbar-track-background scrollbar-thumb-accent hover:scrollbar-thumb-accent/80 transition-colors"
                       >
                         <div dir="ltr">
-                          <ReactMarkdown className="whitespace-pre-wrap font-mono font-light text-gray-300 text-sm pl-6">
+                          <ReactMarkdown 
+                            components={{
+                              a: ({ node, ...props }) => (
+                                <a 
+                                  {...props} 
+                                  className="underline text-blue-500" 
+                                  target="_blank" 
+                                  rel="noopener noreferrer" 
+                                />
+                              ),
+                            }}
+                            className="whitespace-pre-wrap font-mono font-light text-gray-300 text-sm pl-6"
+                          >
                             {reasoning}
                           </ReactMarkdown>
                         </div>
@@ -293,7 +305,19 @@ export default function AnalyzePage() {
                         ref={analysisRef}
                         className="h-full overflow-y-auto scrollbar-thin scrollbar-thumb-rounded-md scrollbar-track-rounded-md scrollbar-track-background scrollbar-thumb-accent hover:scrollbar-thumb-accent/80 transition-colors"
                       >
-                        <ReactMarkdown className="whitespace-pre-wrap font-mono text-sm leading-relaxed pr-6">
+                        <ReactMarkdown 
+                          components={{
+                            a: ({ node, ...props }) => (
+                              <a 
+                                {...props} 
+                                className="underline text-blue-500" 
+                                target="_blank" 
+                                rel="noopener noreferrer" 
+                              />
+                            ),
+                          }}
+                          className="whitespace-pre-wrap font-mono text-sm leading-relaxed pr-6"
+                        >
                           {analysis}
                         </ReactMarkdown>
                       </div>
