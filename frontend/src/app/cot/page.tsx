@@ -40,6 +40,8 @@ export default function AnalyzePage() {
   const reasoningRef = useRef<HTMLDivElement>(null);
   const analysisRef = useRef<HTMLDivElement>(null);
   const [loadingDots, setLoadingDots] = useState('.');
+  const [selectedChain, setSelectedChain] = useState('eth');
+
 
   const loadingMessages = [
     "Checking onchain",
@@ -359,35 +361,85 @@ export default function AnalyzePage() {
               reasoning || isAnalyzing ? "max-w-7xl mx-auto" : ""
             } space-y-4`}
           >
-            <div className="flex gap-4">
-              <div className="flex-1">
-                <Input
-                  id="contract"
-                  value={contractAddress}
-                  onChange={(e) => setContractAddress(e.target.value)}
-                  placeholder="Enter contract address"
-                  required
-                  className="h-12 text-lg"
-                />
-              </div>
-              <div className="w-48 relative">
-                <span className="absolute left-3 top-1/2 -translate-y-1/2 text-lg">
-                  $
-                </span>
-                <Input
-                  id="ticker"
-                  value={ticker.replace("$", "").toUpperCase()}
-                  onChange={(e) => {
-                    const value = e.target.value
-                      .replace(/\$/g, "")
-                      .toUpperCase();
-                    setTicker(`$${value}`);
-                  }}
-                  className="pl-6 h-12 text-lg"
-                  placeholder="Enter ticker"
-                />
-              </div>
-            </div>
+<div className="flex gap-0">
+  <div className="flex-1 flex gap-2">
+    <div className="relative group">
+      <select
+        value={selectedChain}
+        onChange={(e) => setSelectedChain(e.target.value)}
+        className="h-12 text-lg rounded-md border border-input bg-background px-3 py-2 ring-offset-background focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 w-32 flex-shrink-0 appearance-none pl-10"
+      >
+        <option value="eth">ETH</option>
+        <option value="solana">SOL</option>
+        <option value="bnb">BSC</option>
+      </select>
+      <div className="absolute left-3 top-1/2 -translate-y-1/2 flex items-center pointer-events-none">
+        {selectedChain === 'eth' && (
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" className="w-5 h-5">
+            <path fill="#627EEA" d="M16 32c8.837 0 16-7.163 16-16S24.837 0 16 0 0 7.163 0 16s7.163 16 16 16z"/>
+            <path fill="#FFF" d="M16.498 4v8.87l7.497 3.35z"/>
+            <path fill="#FFF" d="M16.498 4L9 16.22l7.498-3.35z"/>
+            <path fill="#FFF" d="M16.498 21.968v6.027L24 17.616z"/>
+            <path fill="#FFF" d="M16.498 27.995v-6.028L9 17.616z"/>
+            <path fill="#FFF" d="M16.498 20.573l7.497-4.353-7.497-3.349z"/>
+            <path fill="#FFF" d="m9 16.22 7.498 4.353v-7.702z"/>
+          </svg>
+        )}
+        {selectedChain === 'solana' && (
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" className="w-5 h-5">
+            <path fill="#000" d="M16 32c8.837 0 16-7.163 16-16S24.837 0 16 0 0 7.163 0 16s7.163 16 16 16z"/>
+            <path fill="url(#a)" d="M8.57 20.594L7.5 21.656l12.609 3.103 1.078-1.062-12.616-3.103zm1.062-4.226l-1.078-1.062 12.616-3.094 1.078 1.062-12.616 3.094zm2.122-4.219L10.68 11.09l9.375 9.344 1.07-1.063-9.375-9.344zm4.226 10.313l-1.078-1.063 6.563-6.562 1.078 1.063-6.563 6.562z"/>
+            <defs>
+              <linearGradient id="a" x1="11.032" x2="22.56" y1="17.867" y2="27.139" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#00FFA3"/>
+                <stop offset="1" stop-color="#DC1FFF"/>
+              </linearGradient>
+            </defs>
+          </svg>
+        )}
+        {selectedChain === 'bnb' && (
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" className="w-5 h-5">
+            <path fill="#F3BA2F" d="M16 32c8.837 0 16-7.163 16-16S24.837 0 16 0 0 7.163 0 16s7.163 16 16 16z"/>
+            <path fill="#FFF" d="m12.116 14.404 3.88-3.88 3.882 3.88 2.265-2.265-6.147-6.147-6.147 6.147 2.265 2.265zm-6.147 3.192 2.255-2.256 2.256 2.256-2.256 2.256-2.255-2.256zm6.147 3.192 3.88 3.88 3.88-3.88 2.265 2.265-6.145 6.147-6.147-6.147 2.265-2.265zm9.755-3.192 2.256-2.256 2.256 2.256-2.256 2.256-2.256-2.256zM16 18.22l-3.88-3.88L16 10.46l3.88 3.88L16 18.22z"/>
+          </svg>
+        )}
+      </div>
+      <ChevronDown className="w-4 h-4 absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-muted-foreground" />
+    </div>
+    
+    <Input
+      id="contract"
+      value={contractAddress}
+      onChange={(e) => setContractAddress(e.target.value)}
+      placeholder="Enter contract address"
+      required
+      className="h-12 text-lg flex-1 pl-4"
+    />
+  </div>
+  
+  {/* Vertical divider */}
+  <div className="h-12 w-px bg-gray-400 mx-2 self-center" />
+
+
+  
+  <div className="w-48 relative">
+    <span className="absolute left-3 top-1/2 -translate-y-1/2 text-lg">
+      $
+    </span>
+    <Input
+      id="ticker"
+      value={ticker.replace("$", "").toUpperCase()}
+      onChange={(e) => {
+        const value = e.target.value
+          .replace(/\$/g, "")
+          .toUpperCase();
+        setTicker(`$${value}`);
+      }}
+      className="pl-6 h-12 text-lg"
+      placeholder="Enter ticker"
+    />
+  </div>
+</div>
             <Button
               type="submit"
               disabled={isAnalyzing}
