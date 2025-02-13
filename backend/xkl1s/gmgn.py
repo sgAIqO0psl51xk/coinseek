@@ -193,7 +193,10 @@ class GMGNTokenData:
     async def get_total_pnl(self, num_wallets: int = 4) -> float:
         wallets = (await self.get_top_wallets())[:num_wallets]
         pnl = [await wallet.get_pnl() for wallet in wallets]
-        return sum(pnl)
+
+        filtered_pnl = [p for p in pnl if p is not None]
+
+        return sum(filtered_pnl)
 
 
 if __name__ == "__main__":
