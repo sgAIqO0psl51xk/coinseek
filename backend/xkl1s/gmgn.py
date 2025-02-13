@@ -97,7 +97,10 @@ class GMGNWalletData:
     async def get_pnl(self) -> float:
         if self.data == {}:
             await self._pull_data()
-        return self.data.get("realized_profit_7d", 0)
+        val = self.data.get("realized_profit_7d", 0)
+        if val is None:
+            return 0
+        return val
 
     async def get_wallet_score(self) -> float:
         cur_score = 0
