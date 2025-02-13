@@ -459,10 +459,10 @@ Break down your analysis into:
         analysis = await self.run_analysis()
         messages = await self.generate_analysis_prompt(analysis)
 
-        # save entire prompt to a file
-        with open("prompt.txt", "w") as f:
-            for message in messages:
-                f.write(message["content"] + "\n")
+        # # save entire prompt to a file
+        # with open("prompt.txt", "w") as f:
+        #     for message in messages:
+        #         f.write(message["content"] + "\n")
 
         # log tokens used in the prompt using tiktoken
         enc = tiktoken.encoding_for_model("gpt-4o")
