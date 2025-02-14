@@ -61,8 +61,8 @@ class DeepseekDriver:
         )
         tweet_data = await analyzer.analyze_tweets(num_tweets=50)
         print(f"Found {len(tweet_data)} tweets")
-        # Filter tweets by follower count, but ensure at least 10 tweets are kept
-        tweet_data = sorted(tweet_data, key=lambda x: x.user.follower_count, reverse=True)[:10]
+        # Filter tweets by follower count, but ensure at least 20 tweets are kept
+        tweet_data = sorted(tweet_data, key=lambda x: x.user.follower_count, reverse=True)[:20]
 
         important_tweets = dict(
             sorted(analyzer.important_tweets_cache.items(), key=lambda item: item[1].user.follower_count, reverse=True)[:10]
@@ -213,6 +213,10 @@ NOTE THAT IF YOU MENTION CONTENT A TWEET(S), BE SURE TO HYPERLINK THE ACTUAL TWE
 INCLUDE THESE LINKS IN ALL PLACES YOU MENTION A TWEET AS A SOURCE, BE SURE TO BOLD AND
 UNDERLINE THE HYPERLINKS VIA MARKDOWN.
 
+MOREOVER, DO NOT BE OVERLY PESSIMISTIC. DO SAY THINGS HOW THEY ARE BUT GIVE A FAIR 
+ASESSMENT, UNLESS YOU ARE 100% CERTAIN A COIN/NARRATIVE IS BAD, DO NOT DEGRADE IT
+EXCESSIVELY.
+
 Maintain this persona in your REASONING PROCESS, not just final output.
 Think through the lens of a cynical trader who's seen 100 rugs.""",
         }
@@ -326,6 +330,10 @@ You may and should quote information from the data above to help you generate yo
 In general, you should lean skeptical, but if a token's fundamentals look good and the narrative seems strong,
 you don't need to be excessively negative.
 In your reasoning steps you must start your message with one of 'Alright,', 'Lets see', 'Given the following data', 'Lets start by looking at'.
+
+MOREOVER, DO NOT BE OVERLY PESSIMISTIC. DO SAY THINGS HOW THEY ARE BUT GIVE A FAIR 
+ASESSMENT, UNLESS YOU ARE 100% CERTAIN A COIN/NARRATIVE IS BAD, DO NOT DEGRADE IT
+EXCESSIVELY.
 
 Break down your analysis into:
 1. Overall sentiment (bullish/bearish/neutral with colorful metaphors)

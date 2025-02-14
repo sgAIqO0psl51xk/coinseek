@@ -1,0 +1,90 @@
+{
+  "timestamp": "20250212_190055",
+  "chain_id": "bsc",
+  "token_address": "0x47A1EB0b825b73e6A14807BEaECAFef199d5477c",
+  "response": [
+    {
+      "chainId": "bsc",
+      "dexId": "pancakeswap",
+      "url": "https://dexscreener.com/bsc/0x705a36ec927dac3cf86bee7fcfeb69572d520a34",
+      "pairAddress": "0x705a36Ec927daC3cF86bEE7FcFEB69572D520a34",
+      "labels": [
+        "v2"
+      ],
+      "baseToken": {
+        "address": "0x47A1EB0b825b73e6A14807BEaECAFef199d5477c",
+        "name": "CaptainBNB",
+        "symbol": "CaptainBNB"
+      },
+      "quoteToken": {
+        "address": "0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c",
+        "name": "Wrapped BNB",
+        "symbol": "WBNB"
+      },
+      "priceNative": "0.00005529",
+      "priceUsd": "0.03839",
+      "txns": {
+        "m5": {
+          "buys": 29,
+          "sells": 12
+        },
+        "h1": {
+          "buys": 533,
+          "sells": 361
+        },
+        "h6": {
+          "buys": 5253,
+          "sells": 4427
+        },
+        "h24": {
+          "buys": 16683,
+          "sells": 15411
+        }
+      },
+      "volume": {
+        "h24": 40004942.1,
+        "h6": 14651646.81,
+        "h1": 589086.12,
+        "m5": 27584.61
+      },
+      "priceChange": {
+        "m5": -1.05,
+        "h1": -11.03,
+        "h6": -33.7,
+        "h24": 99.78
+      },
+      "liquidity": {
+        "usd": 672983.11,
+        "base": 8765043,
+        "quote": 484.6924
+      },
+      "fdv": 38390177,
+      "marketCap": 38390177,
+      "pairCreatedAt": 1739246005000,
+      "info": {
+        "imageUrl": "https://dd.dexscreener.com/ds-data/tokens/bsc/0x47a1eb0b825b73e6a14807beaecafef199d5477c.png?key=0a1ce3",
+        "header": "https://dd.dexscreener.com/ds-data/tokens/bsc/0x47a1eb0b825b73e6a14807beaecafef199d5477c/header.png?key=0a1ce3",
+        "openGraph": "https://cdn.dexscreener.com/token-images/og/bsc/0x47a1eb0b825b73e6a14807beaecafef199d5477c?timestamp=1739404800000",
+        "websites": [
+          {
+            "label": "Website",
+            "url": "https://captainbnb.xyz/"
+          }
+        ],
+        "socials": [
+          {
+            "type": "twitter",
+            "url": "https://x.com/CaptainBNB_bsc"
+          },
+          {
+            "type": "telegram",
+            "url": "https://t.me/captainbnbportal"
+          }
+        ]
+      },
+      "boosts": {
+        "active": 60
+      }
+    }
+  ]
+}
